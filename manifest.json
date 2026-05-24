@@ -7,34 +7,34 @@
     },
     {
       "path": "data/dashboard_data.json",
-      "sha256": "62d23b1420ff6aef34508f0c8de3f841ef38171d0b163560fc69317b477bc43b",
+      "sha256": "a7cfb5351904a950e16029fe57c62e5c1dda8e7694fc68b715d4e11b5f15ec15",
       "size_bytes": 151674
     },
     {
       "path": "data/detail_results.json",
-      "sha256": "53745229b12ba8c56d3a5d1c6bdd43ff28fd4324c38d18d19b64e1024c7cb544",
+      "sha256": "d78fbb0b4a870744cd82a94245ce4c72acc7d4a65a5bf1e0a5a96857134576d2",
       "size_bytes": 428795
     },
     {
       "path": "data/evidence_graph.json",
-      "sha256": "4112a8cc43c58396cc1eccd8976b6375cf586811fd4b5fa95d5ffe09099f6216",
+      "sha256": "e80dc6b435822ed0b3975eb91309447cffc3f884ee138afb2fdafea7c3183323",
       "size_bytes": 109169
     },
     {
       "path": "data/red_flag_data.json",
-      "sha256": "9bc84885e368a062e422196658b36e16fcead29921e33e5c3bd3da1c9fd8535c",
+      "sha256": "3f317088dfb8c2fd7e4c9b127bb2e739fe09f14c1a5f271055b13133e0256ac5",
       "size_bytes": 9836
     },
     {
       "path": "data/risk_signals.json",
-      "sha256": "e4d88f2c2e7ca8b0659026ad775c0326f0db43c0e95b3b0d126dd81c7d03c36d",
+      "sha256": "6d459066e9c14ee0ef93ba80b9dfbbe84db0e0a2227f6e5fca792898cc3c539b",
       "size_bytes": 29287
     },
     {
       "path": "index.html",
-      "sha256": "4685d8daf550e5912282534a08ead41b61115c09310f7d1183e488076bb328e8",
-      "size_bytes": 168293
+      "sha256": "e97d4b0413cce7eb799f946a6d7df3bd03513225b60599185ce52f65aacb98f5",
+      "size_bytes": 192552
     }
   ],
-  "signature": "513bbd784eca66a82314d2ec95a1a09740334f04250ea3b427aed072bc76bd2a"
+  "signature": "a443367429e9a457d8619f1ba024e6c9a1d4f748b641abd4f316134b8236d748"
 }

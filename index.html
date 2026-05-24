@@ -1240,6 +1240,9 @@
                 <button class="btn-nav" onclick="switchPanel('penetration')">
                     <i class="fa-solid fa-compass"></i> 職人町穿透報告
                 </button>
+                <button class="btn-nav" onclick="switchPanel('daily-mine')">
+                    <i class="fa-solid fa-calendar-day"></i> 每日礦機戰果
+                </button>
                 <button class="btn-nav" onclick="switchPanel('capabilities')">
                     <i class="fa-solid fa-cubes"></i> 查看模組能力
                 </button>
@@ -1808,6 +1811,66 @@
             </div>
         </section>
 
+        <!-- Panel 4: 每日礦機戰果 -->
+        <section id="panel-daily-mine" class="panel-container">
+            <div class="hero-section" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">每日礦機戰果</h2>
+                <p class="subtitle" style="max-width: 900px; margin-bottom: 1.5rem;">
+                    呈現全域公開政府採購案件之每日/本輪礦機稽核成果，不限於特定主題場域。
+                    <span style="display: block; font-size: 0.85rem; color: var(--neon-orange); margin-top: 0.5rem; font-weight: 600;">
+                        ⚠ 聲明：本系統僅呈現公開資料結構之統計狀態，不作任何法律定性或主觀指控。
+                    </span>
+                </p>
+            </div>
+
+            <!-- A. 礦機本輪摘要 -->
+            <div class="hud-grid" id="dm-hud-grid">
+                <!-- Will be dynamically populated -->
+            </div>
+
+            <!-- B. 高風險 Top 10 -->
+            <div class="penetration-section-title">
+                <i class="fa-solid fa-ranking-star"></i> 本輪高風險 Top 10 採購案
+            </div>
+            <div class="panel-box" style="overflow-x: auto; padding: 0; margin-bottom: 2.5rem;">
+                <table class="penetration-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">排名</th>
+                            <th style="width: 130px;">案號</th>
+                            <th>標案名稱</th>
+                            <th>主辦機關</th>
+                            <th>得標商</th>
+                            <th style="width: 140px;">金額</th>
+                            <th style="width: 80px; text-align: center;">風險分</th>
+                            <th>主要訊號 Badges</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dm-top10-table-body">
+                        <!-- Will be dynamically populated -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- C. 非職人町高風險池 -->
+            <div class="penetration-section-title">
+                <i class="fa-solid fa-layer-group"></i> 非職人町高風險案件池
+            </div>
+            <div class="panel-box" style="margin-bottom: 2.5rem; min-height: 100px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.01);">
+                <div id="dm-noncjt-container" style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
+                    <!-- Will be dynamically populated or fallback -->
+                </div>
+            </div>
+
+            <!-- D. 異常訊號分類牆 -->
+            <div class="penetration-section-title">
+                <i class="fa-solid fa-border-all"></i> 異常訊號特徵分類牆
+            </div>
+            <div class="modules-grid" id="dm-pattern-wall" style="margin-bottom: 2rem;">
+                <!-- Will be dynamically populated -->
+            </div>
+        </section>
+
     </main>
 
     <!-- Consultation Modal -->
@@ -1974,6 +2037,7 @@
                 renderVendorsTab(globalGraph, globalDetails);
                 renderTimelineTab(globalDetails, globalSignals);
                 renderPenetrationTab(globalGraph, globalDetails, globalSignals);
+                renderDailyMineTab(globalGraph, globalDetails, globalSignals);
 
             } catch (err) {
                 console.error(err);
@@ -3447,6 +3511,350 @@
                         tableBody.appendChild(tr);
                     });
                 }
+            }
+        }
+
+        function renderDailyMineTab(graph, details, signals) {
+            function getDailyMineRiskTagNarrative(tag) {
+                const mappings = {
+                    "Single Bidder Tender": "市場競爭稀薄",
+                    "High Budget Fit Ratio": "預算貼合度異常集中",
+                    "Short Tender Window": "市場準備時間壓縮",
+                    "Short Bid Preparation": "市場準備時間壓縮",
+                    "Extremely Short Bid Preparation": "市場準備時間壓縮",
+                    "same_committee_member_repeated": "評選共現密度偏高",
+                    "Repetitive Committee Members": "評選共現密度偏高",
+                    "same_vendor_repeated": "廠商重複得標密度偏高",
+                    "vendor repeated": "廠商重複得標密度偏高",
+                    "Repetitive Winning Vendor": "廠商重複得標密度偏高",
+                    "Multiple Announcement Changes": "公告修正頻率偏高",
+                    "Multiple Notice Amendments": "公告修正頻率偏高"
+                };
+                return mappings[tag] || tag;
+            }
+
+            const caseMap = {};
+            
+            // 1. First pass: details
+            details.forEach(c => {
+                const raw = c.raw_detail || {};
+                const cnum = c.case_number || raw['已公告資料:標案案號'];
+                if (!cnum) return;
+                
+                if (!caseMap[cnum]) {
+                    caseMap[cnum] = {
+                        case_number: cnum,
+                        case_name: c.title || c.case_name || raw['已公告資料:標案名稱'] || cnum,
+                        agency: raw['機關資料:機關名稱'] || c.agency || '未知機關',
+                        winning_vendor: c.winning_vendor || raw['已公告資料:得標廠商'] || '未決標/未刊登',
+                        award_amount: c.award_amount || raw['已公告資料:決標金額'] || raw['已公告資料:預算金額'] || 0,
+                        risk_score: c.risk_score || 0,
+                        anomaly_patterns: new Set(c.anomaly_patterns || [])
+                    };
+                } else {
+                    if (c.winning_vendor && caseMap[cnum].winning_vendor === '未決標/未刊登') {
+                        caseMap[cnum].winning_vendor = c.winning_vendor;
+                    }
+                    if (c.award_amount && !caseMap[cnum].award_amount) {
+                        caseMap[cnum].award_amount = c.award_amount;
+                    }
+                    if (c.risk_score > caseMap[cnum].risk_score) {
+                        caseMap[cnum].risk_score = c.risk_score;
+                    }
+                    (c.anomaly_patterns || []).forEach(p => caseMap[cnum].anomaly_patterns.add(p));
+                }
+            });
+
+            // 2. Second pass: signals
+            (signals || []).forEach(sig => {
+                const cnum = sig.case_number;
+                if (!cnum) return;
+                
+                if (!caseMap[cnum]) {
+                    caseMap[cnum] = {
+                        case_number: cnum,
+                        case_name: sig.case_name || cnum,
+                        agency: '未知機關',
+                        winning_vendor: '未決標/未刊登',
+                        award_amount: 0,
+                        risk_score: sig.risk_score || 0,
+                        anomaly_patterns: new Set(sig.anomaly_patterns || [])
+                    };
+                } else {
+                    if (sig.risk_score > caseMap[cnum].risk_score) {
+                        caseMap[cnum].risk_score = sig.risk_score;
+                    }
+                    (sig.anomaly_patterns || []).forEach(p => caseMap[cnum].anomaly_patterns.add(p));
+                }
+            });
+
+            // 3. Third pass: graph nodes
+            (graph.nodes || []).forEach(gn => {
+                if (gn.type === 'case' && gn.case_number) {
+                    const cnum = gn.case_number;
+                    if (!caseMap[cnum]) {
+                        caseMap[cnum] = {
+                            case_number: cnum,
+                            case_name: gn.case_name || gn.label || cnum,
+                            agency: '未知機關',
+                            winning_vendor: gn.winning_vendor || '未決標/未刊登',
+                            award_amount: gn.award_amount || 0,
+                            risk_score: gn.risk_score || 0,
+                            anomaly_patterns: new Set(gn.anomaly_patterns || [])
+                        };
+                    } else {
+                        if (gn.risk_score > caseMap[cnum].risk_score) {
+                            caseMap[cnum].risk_score = gn.risk_score;
+                        }
+                        if (gn.winning_vendor && caseMap[cnum].winning_vendor === '未決標/未刊登') {
+                            caseMap[cnum].winning_vendor = gn.winning_vendor;
+                        }
+                        if (gn.award_amount && !caseMap[cnum].award_amount) {
+                            caseMap[cnum].award_amount = gn.award_amount;
+                        }
+                        (gn.anomaly_patterns || []).forEach(p => caseMap[cnum].anomaly_patterns.add(p));
+                    }
+                }
+            });
+
+            // Flatten to array
+            const mergedCases = Object.values(caseMap).map(c => {
+                return {
+                    case_number: c.case_number,
+                    case_name: c.case_name,
+                    agency: c.agency,
+                    winning_vendor: c.winning_vendor,
+                    award_amount: c.award_amount,
+                    risk_score: c.risk_score,
+                    anomaly_patterns: Array.from(c.anomaly_patterns)
+                };
+            });
+
+            // 1. Render HUD KPI Grid
+            const dmHudContainer = document.getElementById('dm-hud-grid');
+            if (dmHudContainer) {
+                const highRiskCount = mergedCases.filter(c => c.risk_score >= 40).length;
+                const edgeCount = graph.edge_count || 370;
+                
+                let patternHitCount = 0;
+                mergedCases.forEach(c => {
+                    patternHitCount += (c.anomaly_patterns || []).length;
+                });
+                
+                const rawTime = graph.generated_at || (details[0] && details[0].last_updated) || '2026-05-24T21:29:52+08:00';
+                let displayTime = rawTime;
+                try {
+                    displayTime = new Date(rawTime).toLocaleString('zh-TW', { hour12: false });
+                } catch(e) {}
+                const schemaVer = graph.schema_version || '1.0.0';
+                
+                dmHudContainer.innerHTML = `
+                    <div class="hud-card blue">
+                        <span class="hud-label">本輪稽核案件數</span>
+                        <span class="hud-value">${mergedCases.length} <span style="font-size: 1rem; font-weight: 500;">案</span></span>
+                    </div>
+                    <div class="hud-card green">
+                        <span class="hud-label">全域關聯訊號</span>
+                        <span class="hud-value">${edgeCount} <span style="font-size: 1rem; font-weight: 500;">個</span></span>
+                    </div>
+                    <div class="hud-card pink">
+                        <span class="hud-label">高密度關聯群</span>
+                        <span class="hud-value">${highRiskCount} <span style="font-size: 1rem; font-weight: 500;">個</span></span>
+                    </div>
+                    <div class="hud-card orange">
+                        <span class="hud-label">異常模式命中</span>
+                        <span class="hud-value">${patternHitCount} <span style="font-size: 1rem; font-weight: 500;">次</span></span>
+                    </div>
+                `;
+            }
+
+            // 2. Render Top 10 Table (Deduplicated ranking)
+            const top10Container = document.getElementById('dm-top10-table-body');
+            if (top10Container) {
+                top10Container.innerHTML = '';
+                const top10Cases = [...mergedCases].sort((a, b) => b.risk_score - a.risk_score).slice(0, 10);
+                
+                if (top10Cases.length === 0) {
+                    top10Container.innerHTML = `
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                                目前公開資料不足以完整驗證，待補充。
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    top10Cases.forEach((c, index) => {
+                        const tr = document.createElement('tr');
+                        const scoreColor = c.risk_score >= 40 ? 'var(--neon-pink)' : (c.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
+                        
+                        const narrativePatterns = (c.anomaly_patterns || []).map(p => getDailyMineRiskTagNarrative(p));
+                        const uniqueNarratives = Array.from(new Set(narrativePatterns));
+                        
+                        let chipsHtml = '';
+                        if (uniqueNarratives.length === 0) {
+                            chipsHtml = '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block;">待補充分析</span>';
+                        } else {
+                            const majorNarratives = uniqueNarratives.slice(0, 3);
+                            const remainingCount = uniqueNarratives.length - 3;
+                            
+                            chipsHtml = majorNarratives.map(n => `
+                                <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block;">${n}</span>
+                            `).join('');
+                            
+                            if (remainingCount > 0) {
+                                chipsHtml += `<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; display: inline-block;">+${remainingCount}</span>`;
+                            }
+                        }
+                        
+                        const displayBudget = c.award_amount ? `${c.award_amount.toLocaleString()} 元` : '未決標/未刊登';
+                        
+                        tr.innerHTML = `
+                            <td style="text-align: center; font-weight: 800; color: var(--text-secondary); font-size: 1.1rem;">${index + 1}</td>
+                            <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-blue);">${c.case_number || '無'}</td>
+                            <td style="font-weight: 600; color: #ffffff; text-align: left;">${c.case_name || '無'}</td>
+                            <td style="color: var(--text-secondary); text-align: left;">${c.agency || '未知機關'}</td>
+                            <td style="color: var(--neon-green); font-weight: 600;">${c.winning_vendor || '未決標/未刊登'}</td>
+                            <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-green);">${displayBudget}</td>
+                            <td style="text-align: center; font-family: 'Fira Code', monospace; font-weight: 800; color: ${scoreColor}; font-size: 1.15rem; text-shadow: 0 0 6px ${scoreColor}glow;">${c.risk_score}</td>
+                            <td><div style="display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: left;">${chipsHtml}</div></td>
+                        `;
+                        top10Container.appendChild(tr);
+                    });
+                }
+            }
+
+            // 3. Render Non-CJT High Risk Pool
+            const nonCjtContainer = document.getElementById('dm-noncjt-container');
+            if (nonCjtContainer) {
+                nonCjtContainer.innerHTML = '';
+                const nonCjtCases = mergedCases.filter(c => {
+                    const name = (c.case_name || '').toLowerCase();
+                    return !name.includes('職人町') && !name.includes('chih-jen');
+                });
+                
+                if (nonCjtCases.length === 0) {
+                    nonCjtContainer.innerHTML = `
+                        <div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
+                            <i class="fa-solid fa-circle-nodes" style="color: var(--neon-orange); margin-right: 0.5rem; font-size: 1.2rem;"></i>
+                            目前本輪資料以職人町場域為主要樣本，待擴充其他場域後自動呈現。
+                        </div>
+                    `;
+                } else {
+                    const grid = document.createElement('div');
+                    grid.className = 'cards-list';
+                    nonCjtCases.sort((a, b) => b.risk_score - a.risk_score);
+                    nonCjtCases.forEach(c => {
+                        const card = document.createElement('div');
+                        card.className = 'risk-card';
+                        const scoreColor = c.risk_score >= 40 ? 'var(--neon-pink)' : (c.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
+                        
+                        const narrativePatterns = (c.anomaly_patterns || []).map(p => getDailyMineRiskTagNarrative(p));
+                        const uniqueNarratives = Array.from(new Set(narrativePatterns));
+                        
+                        let chipsHtml = '';
+                        if (uniqueNarratives.length === 0) {
+                            chipsHtml = '<span class="chip info">待補充分析</span>';
+                        } else {
+                            chipsHtml = uniqueNarratives.map(n => `
+                                <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}">${n}</span>
+                            `).join('');
+                        }
+                        
+                        card.innerHTML = `
+                            <div class="risk-card-header">
+                                <div class="risk-title-box">
+                                    <span class="risk-case-number">${c.case_number}</span>
+                                    <h3 class="risk-title">${c.case_name}</h3>
+                                </div>
+                                <div class="risk-badge">
+                                    <div class="score" style="color: ${scoreColor};">${c.risk_score}</div>
+                                    <div class="label">風險分</div>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                主辦機關: <strong>${c.agency}</strong> | 得標商: <strong style="color: var(--neon-green);">${c.winning_vendor}</strong>
+                            </div>
+                            <div class="chips-container">${chipsHtml}</div>
+                        `;
+                        grid.appendChild(card);
+                    });
+                    nonCjtContainer.appendChild(grid);
+                }
+            }
+
+            // 4. Render Anomaly Patterns Wall
+            const patternWall = document.getElementById('dm-pattern-wall');
+            if (patternWall) {
+                patternWall.innerHTML = '';
+                const categories = [
+                    {
+                        title: "市場競爭稀薄",
+                        keys: ["Single Bidder Tender"],
+                        icon: "fa-solid fa-user",
+                        desc: "標案僅有單一廠商投標，缺乏多元競爭機制。"
+                    },
+                    {
+                        title: "預算貼合度異常集中",
+                        keys: ["High Budget Fit Ratio"],
+                        icon: "fa-solid fa-scale-balanced",
+                        desc: "決算金額與預算金額高度吻合，近乎無議價空間。"
+                    },
+                    {
+                        title: "市場準備時間壓縮",
+                        keys: ["Short Tender Window", "Short Bid Preparation", "Extremely Short Bid Preparation"],
+                        icon: "fa-solid fa-hourglass-half",
+                        desc: "招標等標期短於一般市場準備合理天數，備標壓力高。"
+                    },
+                    {
+                        title: "評選共現密度偏高",
+                        keys: ["same_committee_member_repeated", "Repetitive Committee Members"],
+                        icon: "fa-solid fa-people-arrows",
+                        desc: "評選委員會名單中，特定委員於同類型或同對象標案中高度重複共現。"
+                    },
+                    {
+                        title: "廠商重複得標密度偏高",
+                        keys: ["vendor repeated", "same_vendor", "Repetitive Winning Vendor"],
+                        icon: "fa-solid fa-building-flag",
+                        desc: "同類型採購案或同一場域內，特定得標廠商頻繁得標。"
+                    }
+                ];
+
+                categories.forEach(cat => {
+                    const matchingCases = mergedCases.filter(c => {
+                        return (c.anomaly_patterns || []).some(pat => cat.keys.includes(pat));
+                    });
+                    
+                    const count = matchingCases.length;
+                    
+                    const representationHtml = matchingCases.slice(0, 3).map(c => `
+                        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(255,255,255,0.03); padding-bottom: 0.2rem;">
+                            <span style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700; margin-right: 0.5rem; white-space: nowrap;">${c.case_number}</span>
+                            <span style="text-align: right; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; flex: 1; min-width: 0;" title="${c.case_name}">${c.case_name}</span>
+                        </div>
+                    `).join('') || '<div style="font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.35rem;">無代表案件</div>';
+                    
+                    const card = document.createElement('div');
+                    card.className = 'module-card';
+                    card.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="module-icon-box" style="background: rgba(0, 240, 255, 0.04); border-color: rgba(0, 240, 255, 0.15);">
+                                <i class="${cat.icon || 'fa-solid fa-circle-exclamation'}"></i>
+                            </div>
+                            <span class="module-badge" style="color: ${count > 0 ? 'var(--neon-pink)' : 'var(--neon-green)'}; background: ${count > 0 ? 'rgba(255,0,85,0.08)' : 'rgba(5,255,161,0.08)'}; border-color: ${count > 0 ? 'rgba(255,0,85,0.2)' : 'rgba(5,255,161,0.2)'}; font-size: 0.8rem; padding: 0.15rem 0.6rem;">
+                                ${count} 案
+                            </span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">${cat.title}</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.5rem;">${cat.desc}</p>
+                        <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.75rem;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: var(--neon-blue); text-transform: uppercase;">代表案件:</div>
+                            <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.25rem;">
+                                ${representationHtml}
+                            </div>
+                        </div>
+                    `;
+                    patternWall.appendChild(card);
+                });
             }
         }
 
