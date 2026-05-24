@@ -3221,6 +3221,22 @@
         }
 
         function renderPenetrationTab(graph, details, signals) {
+            function getPenetrationRiskTagChinese(tag) {
+                const mappings = {
+                    "Single Bidder Tender": "單一投標",
+                    "High Budget Fit Ratio": "高預算吻合",
+                    "Multiple Notice Amendments": "公告流標更正頻繁",
+                    "Short Bid Preparation": "等標期偏短",
+                    "Extremely Short Bid Preparation": "等標期極短限制競爭",
+                    "Repetitive Winning Vendor": "同廠商特定頻繁得標",
+                    "Repetitive Committee Members": "高重複評選評審委員",
+                    "Bidders Shared Contact Info": "投標商登記地址電話重複",
+                    "Award Exceeds Budget": "決標超出預算",
+                    "Short Tender Window": "短等標期"
+                };
+                return mappings[tag] || tag;
+            }
+
             const uniqueCases = {};
             details.forEach(c => {
                 const raw = c.raw_detail || {};
@@ -3237,6 +3253,25 @@
                     prepDays = Math.round((rDate - nDate) / (1000 * 60 * 60 * 24));
                 }
                 
+                // Match from graph nodes to enrich risk_score and anomaly_patterns
+                let gRisk = 0;
+                const gPatterns = new Set();
+                
+                (graph.nodes || []).forEach(gn => {
+                    if (gn.type === 'case' && gn.case_number === cnum) {
+                        const score = gn.risk_score || 0;
+                        if (score > gRisk) {
+                            gRisk = score;
+                        }
+                        const pats = gn.anomaly_patterns || [];
+                        pats.forEach(p => gPatterns.add(p));
+                    }
+                });
+
+                if (prepDays !== null && prepDays <= 10) {
+                    gPatterns.add("Short Tender Window");
+                }
+                
                 if (!uniqueCases[cnum] || (uniqueCases[cnum].prepDays === null && prepDays !== null)) {
                     uniqueCases[cnum] = {
                         case_number: cnum,
@@ -3247,8 +3282,8 @@
                         budget: raw['已公告資料:預算金額'] || c.budget || '無公開預算',
                         winner: c.winning_vendor || '未決標/未刊登',
                         agency: raw['機關資料:機關名稱'] || '屏東縣政府',
-                        risk_score: c.risk_score || 0,
-                        anomaly_patterns: c.anomaly_patterns || []
+                        risk_score: gRisk || c.risk_score || 0,
+                        anomaly_patterns: Array.from(gPatterns)
                     };
                 }
             });
@@ -3350,6 +3385,10 @@
                         
                         const scoreColor = ac.risk_score >= 40 ? 'var(--neon-pink)' : (ac.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
                         
+                        const acChipsHtml = (ac.anomaly_patterns || []).map(p => `
+                            <span class="chip ${ac.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block; margin-top: 0.25rem;">${getPenetrationRiskTagChinese(p)}</span>
+                        `).join('') || '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; display: inline-block; margin-top: 0.25rem;">未標記</span>';
+
                         card.innerHTML = `
                             <div style="flex: 1; text-align: left;">
                                 <div style="font-family: \'Fira Code\', monospace; font-size: 0.75rem; color: var(--neon-blue); font-weight: 700;">${ac.case_number}</div>
@@ -3357,6 +3396,9 @@
                                 <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem;">
                                     得標商: <strong style="color: var(--neon-green);">${ac.winning_vendor || '未公佈'}</strong> | 
                                     金額: <strong>${ac.award_amount ? ac.award_amount.toLocaleString() + ' 元' : '未刊登'}</strong>
+                                </div>
+                                <div style="margin-top: 0.35rem; display: flex; flex-wrap: wrap; gap: 0.25rem;">
+                                    ${acChipsHtml}
                                 </div>
                             </div>
                             <div style="text-align: right; min-width: 60px;">
@@ -3389,8 +3431,8 @@
                         const tr = document.createElement('tr');
                         
                         const chipsHtml = (c.anomaly_patterns || []).map(p => `
-                            <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem;">${getRiskTagChinese(p)}</span>
-                        `).join('') || '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem;">無</span>';
+                            <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem;">${getPenetrationRiskTagChinese(p)}</span>
+                        `).join('') || '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem;">未標記</span>';
 
                         tr.innerHTML = `
                             <td style="font-family: \'Fira Code\', monospace; font-weight: 700; color: var(--neon-blue);">${c.case_number}</td>
