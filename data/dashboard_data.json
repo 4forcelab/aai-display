@@ -3572,5 +3572,9 @@
     }
   ],
   "schema_version": "1.0.0",
-  "generated_at": "2026-05-24T14:39:34.368175+00:00"
+  "generated_at": "2026-05-24T15:06:10.998410+00:00",
+  "active_pool_id": "chijencun",
+  "active_pool_display_name": "職人町樣本池",
+  "active_pool_scope_note": "初代示範池，涵蓋職人町、屏東數位青創中心、青創聚落相關採購標案，用於 AAI 礦機能力驗收。",
+  "active_pool_generated_from": "chijencun_detail_results + chijencun_risk_signals + chijencun_evidence_graph"
 }

@@ -1814,11 +1814,11 @@
         <!-- Panel 4: 本輪礦機戰果 -->
         <section id="panel-daily-mine" class="panel-container">
             <div class="hero-section" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">本輪礦機戰果｜職人町樣本池</h2>
+                <h2 id="dm-panel-title" style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">本輪礦機戰果｜職人町樣本池</h2>
                 <p class="subtitle" style="max-width: 900px; margin-bottom: 1.5rem;">
                     呈現全域公開政府採購案件之本輪礦機稽核成果。
-                    <span style="display: block; font-size: 0.9rem; color: var(--neon-blue); margin-top: 0.5rem; font-weight: 600; line-height: 1.5;">
-                        ℹ 說明：目前本輪資料以職人町場域為主要樣本，用於驗證 AAI 礦機對採購節奏、短等標期、單一投標與關聯共現的偵測能力。後續可替換或擴充為其他場域資料包。
+                    <span id="dm-panel-pool-note" style="display: block; font-size: 0.9rem; color: var(--neon-blue); margin-top: 0.5rem; font-weight: 600; line-height: 1.5;">
+                        ℹ 說明：目前本輪資料以「職人町樣本池」為主要樣本池。後續可替換或擴充為其他場域資料包。
                     </span>
                     <span style="display: block; font-size: 0.85rem; color: var(--neon-orange); margin-top: 0.5rem; font-weight: 600;">
                         ⚠ 聲明：本系統僅呈現公開資料結構之統計狀態，不作任何法律定性或主觀指控。
@@ -2041,6 +2041,20 @@
                 globalDetails = detailsData.cases || [];
                 globalSignals = signalsData.signals || [];
                 globalGraph = graphData || {};
+
+                // Inject active pool display name into panel title and note
+                const activePoolName = detailsData.active_pool_display_name
+                    || signalsData.active_pool_display_name
+                    || graphData.active_pool_display_name
+                    || '職人町樣本池';
+                const dmTitle = document.getElementById('dm-panel-title');
+                if (dmTitle) {
+                    dmTitle.textContent = `本輪礦機戰果｜${activePoolName}`;
+                }
+                const dmNote = document.getElementById('dm-panel-pool-note');
+                if (dmNote) {
+                    dmNote.textContent = `ℹ 說明：目前本輪資料以「${activePoolName}」為主要樣本池。後續可替換或擴充為其他場域資料包。`;
+                }
 
                 // Hide loader and show tab content
                 document.getElementById('warroom-loader').style.display = 'none';
