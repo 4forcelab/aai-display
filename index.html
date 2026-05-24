@@ -1289,11 +1289,30 @@
     <!-- Header Navigation -->
     <header>
         <div class="header-container">
-            <div class="logo-section">
-                <img src="assets/4force-logo.png" alt="4Force Logo" class="logo-image">
+            <div class="logo-section" style="position: relative;">
+                <!-- Subtle glow behind logo -->
+                <div style="position: absolute; top: 50%; left: 1rem; width: 45px; height: 45px; background: var(--neon-blue); filter: blur(28px); opacity: 0.5; transform: translateY(-50%); pointer-events: none;"></div>
+                
+                <img src="assets/4force-logo.png" alt="4Force Logo" class="logo-image" style="position: relative; z-index: 1;">
                 <div class="logo-text">
-                    <h1>4Force Active Audit Intelligence</h1>
-                    <p>PUBLIC DATA MINING PIPELINE // V2.4</p>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <h1>4Force Active Audit Intelligence</h1>
+                        <span style="font-family: 'Fira Code', monospace; font-size: 0.65rem; padding: 0.15rem 0.4rem; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: var(--neon-blue); border-radius: 4px; font-weight: 700; letter-spacing: 0.05em;">v2.5.3</span>
+                    </div>
+                    <p style="margin-bottom: 0.5rem; font-weight: 600;">AAI SIGNAL ENGINE // v2.5.3</p>
+                    
+                    <!-- Small Status Chips -->
+                    <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem;">
+                        <span style="font-size: 0.55rem; color: var(--neon-green); background: rgba(5, 255, 161, 0.08); border: 1px solid rgba(5, 255, 161, 0.2); padding: 0.15rem 0.35rem; border-radius: 3px; font-family: 'Fira Code', monospace; letter-spacing: 0.05em;">
+                            <i class="fa-solid fa-circle" style="font-size: 0.35rem; margin-right: 0.2rem; vertical-align: middle;"></i>SIGNAL LAYER ONLINE
+                        </span>
+                        <span style="font-size: 0.55rem; color: var(--neon-blue); background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); padding: 0.15rem 0.35rem; border-radius: 3px; font-family: 'Fira Code', monospace; letter-spacing: 0.05em;">
+                            <i class="fa-solid fa-circle" style="font-size: 0.35rem; margin-right: 0.2rem; vertical-align: middle;"></i>ACTIVE POOL READY
+                        </span>
+                        <span style="font-size: 0.55rem; color: var(--neon-pink); background: rgba(255, 0, 85, 0.08); border: 1px solid rgba(255, 0, 85, 0.2); padding: 0.15rem 0.35rem; border-radius: 3px; font-family: 'Fira Code', monospace; letter-spacing: 0.05em;">
+                            <i class="fa-solid fa-circle" style="font-size: 0.35rem; margin-right: 0.2rem; vertical-align: middle;"></i>DISPLAY VERIFIED
+                        </span>
+                    </div>
                 </div>
             </div>
             <nav class="main-nav">
@@ -1374,7 +1393,7 @@
                             <p class="sales-desc">單一標案視角，難以感知跨案件、跨年度之重複結構與潛在利害衝突。</p>
                         </div>
                         <div class="sales-item">
-                            <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> AAI v2.4+</span>
+                            <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> AAI v2.5+</span>
                             <p class="sales-desc">Entity Relation Mapper 自動構建跨案件、跨廠商、跨委員之多維治理關係圖譜，呈現系統性重複結構。</p>
                         </div>
                     </div>
@@ -1708,7 +1727,7 @@
                     </div>
                     <h3>異常訊號探勘模組 (Statistical Signal Mining)</h3>
                     <p>多源公開資料經由統計偵測與語義比對後，自動萃取異常密度、時間壓縮、關聯重複與決策節點偏移等訊號，形成可供公評與治理檢視的情報摘要。</p>
-                    <span class="module-badge">SIGNAL-MINING-V1</span>
+                    <span class="module-badge">SIGNAL-MINING-v2.3</span>
                 </div>
 
                 <!-- Module 2 -->
@@ -1718,7 +1737,7 @@
                     </div>
                     <h3>欄位語義抽取模組 (Semantic Field Extraction)</h3>
                     <p>將分散的公告文字、金額、日期、機關與角色資訊轉換為可比對的結構化訊號，降低人工查閱成本，提升跨案比對速度。</p>
-                    <span class="module-badge">SEMANTIC-EXTRACT-V1</span>
+                    <span class="module-badge">SEMANTIC-EXTRACT-v2.1</span>
                 </div>
 
                 <!-- Module 3 -->
@@ -1728,7 +1747,7 @@
                     </div>
                     <h3>風險分佈建模模組 (Risk Distribution Modeling)</h3>
                     <p>針對等標時間、投標型態、預算吻合度與重複關聯等公開訊號進行分佈式評估，標示需要進一步說明的高壓縮區域。</p>
-                    <span class="module-badge">RISK-MODEL-V1</span>
+                    <span class="module-badge">RISK-MODEL-v2.4-rc2</span>
                 </div>
 
                 <!-- Module 4 -->
@@ -1738,7 +1757,7 @@
                     </div>
                     <h3>實體關聯圖譜模組 (Entity Relation Mapping)</h3>
                     <p>將案件、機關、廠商、評選角色與場域脈絡轉換為可視化關聯圖，協助辨識重複共現、群聚關係與異常集中區。</p>
-                    <span class="module-badge">ENTITY-MAP-V1</span>
+                    <span class="module-badge">ENTITY-MAP-v2.2-patch3</span>
                 </div>
 
                 <!-- Module 5 -->
@@ -1748,7 +1767,7 @@
                     </div>
                     <h3>決策戰情介面模組 (Decision Intelligence Dashboard)</h3>
                     <p>將複雜資料轉譯為戰情卡、風險清單、時間線與關聯摘要，讓決策者在短時間內掌握哪裡需要追問、補件與公開說明。</p>
-                    <span class="module-badge">WARROOM-DASHBOARD-V1</span>
+                    <span class="module-badge">WARROOM-DASHBOARD-v2.5</span>
                 </div>
 
             </div>
@@ -1990,19 +2009,44 @@
     </div>
 
     <!-- Footer -->
-    <footer style="margin-top: 5rem; padding: 3rem 1.5rem; border-top: 1px solid var(--border-color); background: rgba(6, 9, 19, 0.4); text-align: center; font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem; line-height: 1.6;">
-        <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-            <img src="assets/4force-logo.png" alt="4Force Logo" style="height: 1.2rem; width: auto; opacity: 0.8; filter: drop-shadow(0 0 2px var(--neon-blue-glow));">
-            <span style="font-weight: 700; color: #ffffff; font-size: 0.95rem;">萬合天宜有限公司</span>
+    <!-- Footer / Conversion Layer -->
+    <footer style="margin-top: 5rem; padding: 4rem 1.5rem; border-top: 1px solid var(--border-color); background: rgba(6, 9, 19, 0.7); backdrop-filter: blur(8px); text-align: center; color: var(--text-secondary); display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+        
+        <div style="max-width: 800px; width: 100%;">
+            <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                <i class="fa-solid fa-satellite-dish" style="color: var(--neon-blue);"></i> AAI Strategy Desk
+            </h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2.5rem; line-height: 1.6;">
+                Governance Signal Consultation & Active Audit Intelligence Briefing
+            </p>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
+                    <div class="btn-cyber primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; min-width: max-content;">
+                        <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i> 啟動治理訊號健檢
+                    </div>
+                </a>
+                <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
+                    <div class="btn-cyber" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-color: var(--neon-green); color: var(--neon-green); min-width: max-content;">
+                        <i class="fa-solid fa-tower-radar"></i> 申請場域情報分析
+                    </div>
+                </a>
+                <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
+                    <div class="btn-cyber" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-color: #7c3aed; color: #b794f6; min-width: max-content;">
+                        <i class="fa-solid fa-headset"></i> 聯絡 AAI 戰情室
+                    </div>
+                </a>
+            </div>
         </div>
-        <div>地址：屏東縣屏東市興豐路 141-1 號</div>
-        <div>電話：08-7350179</div>
-        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
-            <div>AAI專案主理人 Wesley Juan</div>
-            <div>0900-489-893</div>
-            <div><i class="fa-brands fa-line" style="color: #06C755; margin-right: 0.25rem;"></i>Line id: iamwilljuan</div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 2rem; width: 100%; max-width: 600px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="assets/4force-logo.png" alt="4Force Logo" style="height: 1.3rem; width: auto; opacity: 0.8; filter: drop-shadow(0 0 2px var(--neon-blue-glow));">
+                <span style="font-weight: 700; color: #ffffff; font-size: 1rem; letter-spacing: 0.05em;">萬合天宜有限公司</span>
+            </div>
+            <div style="font-size: 0.85rem;">AAI 專案主理人 Wesley Juan / 0900-489-893</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4Force Lab. All rights reserved.</div>
         </div>
-        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4force lab. All rights reserved.</div>
     </footer>
 
     <!-- Frontend Core Scripting -->
