@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "data/dashboard_data.json",
-      "sha256": "233f3936124d2bcea2c60f7e1349a4f95a367808fc94a80e4ce21f4c6ea4e9b6",
-      "size_bytes": 131990
+      "sha256": "3d2910a0ae2a6894e1e3259ff732ccf8e1c4fe4af014ef2766dcfdd596fc5406",
+      "size_bytes": 151591
     },
     {
       "path": "data/detail_results.json",
@@ -27,9 +27,9 @@
     },
     {
       "path": "index.html",
-      "sha256": "08edd061a9af14946f510f9d5c8b91d397e08bb13e9fc0e472a9d0e177f66fec",
-      "size_bytes": 142487
+      "sha256": "f15931afbd4913edefe65ea97538048b274c133451fa88677bb0bbb198702475",
+      "size_bytes": 136481
     }
   ],
-  "signature": "de5b4586bcbf1feefcef4b75e2e94a92f95e7b55c0b6c1ec1cca94f4359c47b6"
+  "signature": "2fbe181510008577ce813e443c27dbbcad07eae5cd6bbdea967064df34d7a549"
 }
