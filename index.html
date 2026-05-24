@@ -1241,7 +1241,7 @@
                     <i class="fa-solid fa-compass"></i> 職人町穿透報告
                 </button>
                 <button class="btn-nav" onclick="switchPanel('daily-mine')">
-                    <i class="fa-solid fa-calendar-day"></i> 每日礦機戰果
+                    <i class="fa-solid fa-calendar-day"></i> 本輪礦機戰果
                 </button>
                 <button class="btn-nav" onclick="switchPanel('capabilities')">
                     <i class="fa-solid fa-cubes"></i> 查看模組能力
@@ -1811,12 +1811,15 @@
             </div>
         </section>
 
-        <!-- Panel 4: 每日礦機戰果 -->
+        <!-- Panel 4: 本輪礦機戰果 -->
         <section id="panel-daily-mine" class="panel-container">
             <div class="hero-section" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">每日礦機戰果</h2>
+                <h2 style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">本輪礦機戰果｜職人町樣本池</h2>
                 <p class="subtitle" style="max-width: 900px; margin-bottom: 1.5rem;">
-                    呈現全域公開政府採購案件之每日/本輪礦機稽核成果，不限於特定主題場域。
+                    呈現全域公開政府採購案件之本輪礦機稽核成果。
+                    <span style="display: block; font-size: 0.9rem; color: var(--neon-blue); margin-top: 0.5rem; font-weight: 600; line-height: 1.5;">
+                        ℹ 說明：目前本輪資料以職人町場域為主要樣本，用於驗證 AAI 礦機對採購節奏、短等標期、單一投標與關聯共現的偵測能力。後續可替換或擴充為其他場域資料包。
+                    </span>
                     <span style="display: block; font-size: 0.85rem; color: var(--neon-orange); margin-top: 0.5rem; font-weight: 600;">
                         ⚠ 聲明：本系統僅呈現公開資料結構之統計狀態，不作任何法律定性或主觀指控。
                     </span>
@@ -1852,9 +1855,9 @@
                 </table>
             </div>
 
-            <!-- C. 非職人町高風險池 -->
+            <!-- C. 跨場域高風險池｜待擴充 -->
             <div class="penetration-section-title">
-                <i class="fa-solid fa-layer-group"></i> 非職人町高風險案件池
+                <i class="fa-solid fa-layer-group"></i> 跨場域高風險池｜待擴充
             </div>
             <div class="panel-box" style="margin-bottom: 2.5rem; min-height: 100px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.01);">
                 <div id="dm-noncjt-container" style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
@@ -3736,7 +3739,7 @@
                     nonCjtContainer.innerHTML = `
                         <div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
                             <i class="fa-solid fa-circle-nodes" style="color: var(--neon-orange); margin-right: 0.5rem; font-size: 1.2rem;"></i>
-                            目前本輪資料以職人町場域為主要樣本，待擴充其他場域後自動呈現。
+                            目前樣本池主要集中於職人町場域。當後續加入其他機關、場域或標案來源後，本區將自動呈現非職人町高風險案件。
                         </div>
                     `;
                 } else {
