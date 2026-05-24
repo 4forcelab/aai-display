@@ -3140,169 +3140,253 @@
       "source": "case-E1131220-1-9",
       "target": "case-E1121214-4-14",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1131220-1-9",
       "target": "case-E1111201-1-16",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1131220-1-9",
       "target": "case-E1101209-3-18",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1131220-1-9",
       "target": "case-D107-1113-164-1-30",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1121214-4-14",
       "target": "case-E1111201-1-16",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1121214-4-14",
       "target": "case-E1101209-3-18",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1121214-4-14",
       "target": "case-D107-1113-164-1-30",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-E1101209-3-18",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-D107-1113-164-1-30",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-E1101209-3-18",
       "target": "case-D107-1113-164-1-30",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)"
+      "label": "同廠商得標關聯 (俊承工程企業行)",
+      "properties": {
+        "vendor": "俊承工程企業行"
+      }
     },
     {
       "source": "case-C1080118-1-26",
       "target": "case-C1080118-1-27",
       "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (可平方工作室)"
+      "label": "同廠商得標關聯 (可平方工作室)",
+      "properties": {
+        "vendor": "可平方工作室"
+      }
     },
     {
       "source": "case-E1150212-1-0",
       "target": "case-164-E1140401-2-5",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (李雨蓁)"
+      "label": "同委員評審關聯 (李雨蓁)",
+      "properties": {
+        "member": "李雨蓁"
+      }
     },
     {
       "source": "case-164-E1140401-2-5",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林雅靜)"
+      "label": "同委員評審關聯 (林雅靜)",
+      "properties": {
+        "member": "林雅靜"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-D107-0206-164-1-35",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (李登志)"
+      "label": "同委員評審關聯 (李登志)",
+      "properties": {
+        "member": "李登志"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-D107-1113-164-1-30",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林雅文)"
+      "label": "同委員評審關聯 (林雅文)",
+      "properties": {
+        "member": "林雅文"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林雅文)"
+      "label": "同委員評審關聯 (林雅文)",
+      "properties": {
+        "member": "林雅文"
+      }
     },
     {
       "source": "case-D107-1113-164-1-30",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林雅文)"
+      "label": "同委員評審關聯 (林雅文)",
+      "properties": {
+        "member": "林雅文"
+      }
     },
     {
       "source": "case-E1111201-1-16",
       "target": "case-E1101209-3-18",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (黃鼎倫)"
+      "label": "同委員評審關聯 (黃鼎倫)",
+      "properties": {
+        "member": "黃鼎倫"
+      }
     },
     {
       "source": "case-E1101209-3-18",
       "target": "case-D107-1113-164-1-30",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (許瑞娟)"
+      "label": "同委員評審關聯 (許瑞娟)",
+      "properties": {
+        "member": "許瑞娟"
+      }
     },
     {
       "source": "case-D107-1113-164-1-30",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (陳明吉)"
+      "label": "同委員評審關聯 (陳明吉)",
+      "properties": {
+        "member": "陳明吉"
+      }
     },
     {
       "source": "case-D107-1113-164-1-30",
       "target": "case-D107-0206-164-1-35",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D107-1113-164-1-30",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D107-1113-164-1-30",
       "target": "case-D106-0704-164-1-44",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D107-0206-164-1-35",
       "target": "case-D106-0927-164-1-41",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D107-0206-164-1-35",
       "target": "case-D106-0704-164-1-44",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D106-0927-164-1-41",
       "target": "case-D106-0704-164-1-44",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (林德輝)"
+      "label": "同委員評審關聯 (林德輝)",
+      "properties": {
+        "member": "林德輝"
+      }
     },
     {
       "source": "case-D107-0517-173-1-33",
       "target": "case-D107-0206-164-1-35",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (謝孟良)"
+      "label": "同委員評審關聯 (謝孟良)",
+      "properties": {
+        "member": "謝孟良"
+      }
     },
     {
       "source": "case-D107-0517-173-1-33",
       "target": "case-D106-0704-164-1-44",
       "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (邱宗成)"
+      "label": "同委員評審關聯 (邱宗成)",
+      "properties": {
+        "member": "邱宗成"
+      }
     },
     {
       "source": "case-E1150212-1-0",

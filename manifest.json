@@ -12,8 +12,8 @@
     },
     {
       "path": "data/evidence_graph.json",
-      "sha256": "84cf6ba63d5b44243b8555063bdd4d443b04e4769d390dca66b360a27437df0f",
-      "size_bytes": 107249
+      "sha256": "30bd4b9c1344c503e269a2adf7b56dd88f3bfc9239cf0939b32b7d6b81e6441b",
+      "size_bytes": 109086
     },
     {
       "path": "data/red_flag_data.json",
@@ -31,5 +31,5 @@
       "size_bytes": 136481
     }
   ],
-  "signature": "2fbe181510008577ce813e443c27dbbcad07eae5cd6bbdea967064df34d7a549"
+  "signature": "08ed8ff16b61eef6d63820551c4c364c85d71af4d4af5f500332da40ade03375"
 }
