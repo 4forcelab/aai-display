@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="4Force Active Audit Intelligence - 公共資料礦機，將採購、補助、廠商、評委與金流關係轉成可驗證風險圖譜。">
+    <meta name="description" content="4Force Active Audit Intelligence - 主動稽核情報系統，將採購脈絡、關係圖譜、與風險訊號轉成決策線索，方法論由 4Force Lab 黑箱保護。">
     <title>4Force Active Audit Intelligence | 戰情指揮中心</title>
 
     <!-- Google Fonts -->
@@ -120,6 +120,13 @@
             font-size: 1.8rem;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue-glow);
+        }
+
+        .logo-image {
+            height: 2rem;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 4px var(--neon-blue-glow));
         }
 
         .logo-text h1 {
@@ -1053,6 +1060,83 @@
             font-weight: 800;
             color: #ffffff;
         }
+
+        @media (max-width: 768px) {
+            /* Hero title sizing */
+            .hero-section h2 {
+                font-size: 1.8rem !important;
+            }
+            .hero-section p.subtitle {
+                font-size: 0.95rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            /* KPI status grids to single column */
+            .hud-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Sales grids to single column */
+            .sales-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Pack grids to single column */
+            .sales-pack-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Enable horizontal scrolling on warroom navigation tabs */
+            .warroom-nav {
+                flex-wrap: nowrap !important;
+                justify-content: flex-start !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.75rem !important;
+            }
+            .btn-war-tab {
+                flex-shrink: 0 !important;
+            }
+
+            /* Intelligence, member and vendor cards to single column */
+            .flow-grid,
+            .network-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Restrict starmap canvas height */
+            #starmap-canvas {
+                height: 420px !important;
+            }
+
+            /* Adjust consultation modal width */
+            #consult-modal .panel-box {
+                width: 92vw !important;
+                max-width: 92vw !important;
+            }
+
+            /* Align footer text and increase spacing */
+            footer {
+                text-align: center !important;
+                line-height: 1.9 !important;
+            }
+
+            /* Expand hero CTA buttons to full width */
+            .btn-hero-group {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.75rem !important;
+                width: 100% !important;
+                padding: 0 1rem !important;
+                box-sizing: border-box !important;
+            }
+            .btn-hero-group .btn-cyber {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1061,7 +1145,7 @@
     <header>
         <div class="header-container">
             <div class="logo-section">
-                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                <img src="assets/4force-logo.png" alt="4Force Logo" class="logo-image">
                 <div class="logo-text">
                     <h1>4Force Active Audit Intelligence</h1>
                     <p>PUBLIC DATA MINING PIPELINE // V2.4</p>
@@ -1089,7 +1173,7 @@
             <!-- Hero Section -->
             <section class="hero-section">
                 <h2>4Force Active Audit Intelligence</h2>
-                <p class="subtitle">4Force AAI 是白帽公共資料風險情報服務。用公開資料，在幾分鐘內把採購、廠商、評委與風險訊號洗成可驗證圖譜。</p>
+                <p class="subtitle">4Force AAI 是主動稽核情報系統。在幾分鐘內把採購脈絡、關係圖譜、與風險訊號洗成決策線索，方法論由 4Force Lab 黑箱保護。</p>
 
                 <div class="btn-hero-group">
                     <button class="btn-cyber primary" onclick="switchPanel('warroom')">
@@ -1151,7 +1235,7 @@
                         </div>
                         <div class="sales-item">
                             <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> 現在</span>
-                            <p class="sales-desc">系統可在公開資料池中自動掃描非指定案件，標出高風險訊號與關聯結構。</p>
+                            <p class="sales-desc">主動稽核情報系統自動掃描非指定案件，標出風險訊號與關係圖譜，方法論由 4Force Lab 黑箱保護。</p>
                         </div>
                     </div>
                 </div>
@@ -1222,7 +1306,7 @@
             <section class="sales-section">
                 <h3>情報訂製：您能買到什麼？</h3>
                 <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    AAI 提供全量客製化公共資料解構服務，針對指定對象實施深層關聯審計。
+                    AAI 提供全量客製化主動稽核情報服務，針對指定對象實施深層關聯審計，方法論由 4Force Lab 黑箱保護。
                 </p>
                 <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     <div class="sales-pack-card">
@@ -1257,7 +1341,7 @@
             <section class="sales-section">
                 <h3>服務對象</h3>
                 <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    4Force AAI 的白帽公共資料情報，旨在協助專業人員建構深層的關聯問責機制。
+                    4Force AAI 的主動稽核情報系統，旨在協助專業人員建構關係圖譜與採購脈絡，發掘關鍵決策線索。
                 </p>
                 <div class="sales-grid">
                     <div class="sales-card" style="border-left: 4px solid var(--neon-blue);">
@@ -1266,7 +1350,7 @@
                         </h4>
                         <div class="sales-item">
                             <span class="sales-tag after" style="background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2);">案源預警</span>
-                            <p class="sales-desc">提供實時公共資料採礦與前期情報，發掘案源預警線索，縮短前期查核部署時間。</p>
+                            <p class="sales-desc">提供實時主動稽核情報與關係圖譜，發掘風險訊號與決策線索，縮短前期部署時間。</p>
                         </div>
                     </div>
                     <div class="sales-card" style="border-left: 4px solid var(--neon-orange);">
@@ -1523,26 +1607,51 @@
 
     <!-- Consultation Modal -->
     <div id="consult-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(6, 9, 19, 0.85); backdrop-filter: blur(12px); z-index: 9999; justify-content: center; align-items: center; transition: opacity 0.3s ease;">
-        <div class="panel-box" style="width: 90%; max-width: 480px; text-align: center; display: flex; flex-direction: column; gap: 1.5rem; border: 1px solid var(--neon-blue); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
-            <i class="fa-solid fa-calendar-check" style="font-size: 3rem; color: var(--neon-blue); text-shadow: 0 0 12px var(--neon-blue-glow);"></i>
-            <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">預約顧問簡報</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
-                您即將為貴單位申請 4Force Active Audit Intelligence 現場簡報與客製化礦池展示。
+        <div class="panel-box" style="width: 90%; max-width: 480px; text-align: center; display: flex; flex-direction: column; gap: 1.25rem; border: 1px solid var(--neon-blue); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
+            <i class="fa-solid fa-calendar-check" style="font-size: 2.5rem; color: var(--neon-blue); text-shadow: 0 0 12px var(--neon-blue-glow);"></i>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff;">預約顧問簡報</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+                您即將申請 4Force Active Audit Intelligence 現場簡報與客製化分析展示。
             </p>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; text-align: left;">
-                <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">聯絡信箱</label>
-                <input type="email" id="consult-email" class="input-cyber" placeholder="name@agency.gov.tw" style="width: 100%;">
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; text-align: left;">
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">姓名</label>
+                    <input type="text" id="consult-name" class="input-cyber" placeholder="請輸入姓名" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">公司 / 組織</label>
+                    <input type="text" id="consult-company" class="input-cyber" placeholder="請輸入單位名稱" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">聯絡信箱</label>
+                    <input type="email" id="consult-email" class="input-cyber" placeholder="name@agency.gov.tw" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">需求描述</label>
+                    <textarea id="consult-desc" class="input-cyber" placeholder="請輸入您的具體稽核或簡報需求" style="width: 100%; height: 80px; resize: none; font-family: inherit; font-size: 0.82rem; padding: 0.45rem 0.6rem;"></textarea>
+                </div>
             </div>
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem;">
-                <button class="btn-cyber" onclick="closeConsultModal()" style="padding: 0.6rem 1.5rem;">取消</button>
-                <button class="btn-cyber primary" onclick="submitConsultation()" style="padding: 0.6rem 1.5rem;">送出預約</button>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 0.25rem;">
+                <button class="btn-cyber" onclick="closeConsultModal()" style="padding: 0.5rem 1.25rem;">取消</button>
+                <button class="btn-cyber primary" onclick="submitConsultation()" style="padding: 0.5rem 1.25rem;">送出預約</button>
             </div>
         </div>
     </div>
 
-    <!-- Footer Disclaimer -->
-    <footer>
-        <p class="disclaimer">本系統僅呈現公開資料結構與異常訊號，不作法律定性。後續調查、處分或判斷仍應由具權責機關依程序辦理。</p>
+    <!-- Footer -->
+    <footer style="margin-top: 5rem; padding: 3rem 1.5rem; border-top: 1px solid var(--border-color); background: rgba(6, 9, 19, 0.4); text-align: center; font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem; line-height: 1.6;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+            <img src="assets/4force-logo.png" alt="4Force Logo" style="height: 1.2rem; width: auto; opacity: 0.8; filter: drop-shadow(0 0 2px var(--neon-blue-glow));">
+            <span style="font-weight: 700; color: #ffffff; font-size: 0.95rem;">萬合天宜有限公司</span>
+        </div>
+        <div>地址：屏東縣屏東市興豐路 141-1 號</div>
+        <div>電話：08-7350179</div>
+        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <div>AAI專案主理人 Wesley Juan</div>
+            <div>0900-489-893</div>
+            <div><i class="fa-brands fa-line" style="color: #06C755; margin-right: 0.25rem;"></i>Line id: iamwilljuan</div>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4force lab. All rights reserved.</div>
     </footer>
 
     <!-- Frontend Core Scripting -->
@@ -1560,14 +1669,44 @@
             document.getElementById('consult-modal').style.display = 'none';
         }
         function submitConsultation() {
+            const nameVal = document.getElementById('consult-name').value.trim();
+            const companyVal = document.getElementById('consult-company').value.trim();
             const emailInput = document.getElementById('consult-email');
+            const descVal = document.getElementById('consult-desc').value.trim();
+
+            if (!nameVal) {
+                alert('請輸入姓名！');
+                return;
+            }
+            if (!companyVal) {
+                alert('請輸入公司 / 組織！');
+                return;
+            }
             if (!emailInput.value || !emailInput.value.includes('@')) {
                 alert('請輸入有效之聯絡信箱！');
                 return;
             }
-            alert('預約成功！4Force 顧問團隊將於 24 小時內與您聯繫，協助部署您的專屬圖譜。');
+
+            const subject = encodeURIComponent("4Force AAI 顧問簡報預約");
+            const body = encodeURIComponent(
+                `姓名：${nameVal}\n` +
+                `公司/組織：${companyVal}\n` +
+                `聯絡信箱：${emailInput.value}\n` +
+                `需求描述：\n${descVal}`
+            );
+
+            // Construct mailto link
+            const mailtoUrl = `mailto:info@4force.com.tw?subject=${subject}&body=${body}`;
+
+            // Trigger mailto link redirection
+            window.location.href = mailtoUrl;
+
             closeConsultModal();
+            // Clear inputs
+            document.getElementById('consult-name').value = '';
+            document.getElementById('consult-company').value = '';
             emailInput.value = '';
+            document.getElementById('consult-desc').value = '';
         }
 
         // Tab and Panel switching
@@ -2447,7 +2586,8 @@
             const repeating = {};
             edges.forEach(e => {
                 if (e.type === 'same_committee_member_repeated') {
-                    const name = e.properties.member;
+                    const name = e.properties?.member || null;
+                    if (!name) return;
                     repeating[name] = repeating[name] || new Set();
 
                     const caseA = nodes.find(n => n.id === e.source);
@@ -2696,7 +2836,7 @@
                     </ul>
 
                     <div style="font-size: 0.68rem; color: var(--text-muted); text-align: right; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 0.4rem; margin-top: 0.5rem; font-style: italic;">
-                        評分或贊成反對欄位若未在公開資料中提供，系統不推定其投票立場。
+                        評分或與會之特定立場若未在採購脈絡中提供，系統不推定其立場。
                     </div>
                 `;
                 container.appendChild(card);

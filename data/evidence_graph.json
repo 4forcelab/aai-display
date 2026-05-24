@@ -3598,5 +3598,7 @@
       "type": "same_case_multi_notice",
       "label": "同標案不同版本公告關聯"
     }
-  ]
+  ],
+  "schema_version": "1.0.0",
+  "generated_at": "2026-05-24T11:22:37.389170+00:00"
 }

@@ -1,35 +1,40 @@
 {
   "files": [
     {
+      "path": "assets/4force-logo.png",
+      "sha256": "f9dea7846380eab09f40eb62fb4187befc66da340e50ad55bddcbff7461595bf",
+      "size_bytes": 79464
+    },
+    {
       "path": "data/dashboard_data.json",
-      "sha256": "3d2910a0ae2a6894e1e3259ff732ccf8e1c4fe4af014ef2766dcfdd596fc5406",
-      "size_bytes": 151591
+      "sha256": "f6dc59147d68cdbb5f1d4fc69f15be08dd5afac7061abb230e57c622d0a740a9",
+      "size_bytes": 151674
     },
     {
       "path": "data/detail_results.json",
-      "sha256": "cd861ccdd88d736faed213c14d12b3eba19bc2c6042ab639d953a2286720209b",
-      "size_bytes": 428712
+      "sha256": "8d24f3848f695e20a08175baae7e2824a61e350be04e9d0fdffa505da86a95ba",
+      "size_bytes": 428795
     },
     {
       "path": "data/evidence_graph.json",
-      "sha256": "30bd4b9c1344c503e269a2adf7b56dd88f3bfc9239cf0939b32b7d6b81e6441b",
-      "size_bytes": 109086
+      "sha256": "34801baeb1eb4a0137a9306f70d28cfe79dea24e04e462a38e9911236c32fe04",
+      "size_bytes": 109169
     },
     {
       "path": "data/red_flag_data.json",
-      "sha256": "b805fb73afbea1b6ced531b720bc2721a753df28c947f1a6ce7fe198cbb6a19c",
-      "size_bytes": 9753
+      "sha256": "a7392ec1d25a51c75a5dfdf25480f0850fdea068e10f7827d0d8967743146462",
+      "size_bytes": 9836
     },
     {
       "path": "data/risk_signals.json",
-      "sha256": "230323e458d8b9c2562683c504424469688c864e0157a4ac5d984a5ed4c7b1bb",
-      "size_bytes": 29204
+      "sha256": "fb50607f12a8ebcda34567e0ee97a6416d5e0987198dcc965d236c9686e90cc1",
+      "size_bytes": 29287
     },
     {
       "path": "index.html",
-      "sha256": "f15931afbd4913edefe65ea97538048b274c133451fa88677bb0bbb198702475",
-      "size_bytes": 136481
+      "sha256": "57d86fb055148029d5cb56b91dcd73d90783dc12039a73b66968132e9c7a41b8",
+      "size_bytes": 143021
     }
   ],
-  "signature": "08ed8ff16b61eef6d63820551c4c364c85d71af4d4af5f500332da40ade03375"
+  "signature": "86d7c8f92cfd04d65ee3db633d5e2c31b55b73eaeeb16ded220f79ed5377e4fa"
 }
