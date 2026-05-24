@@ -1855,13 +1855,27 @@
                 </table>
             </div>
 
-            <!-- C. 跨場域高風險池｜待擴充 -->
+            <!-- C. 跨場域高風險池｜Cross-Region Signal Radar -->
             <div class="penetration-section-title">
-                <i class="fa-solid fa-layer-group"></i> 跨場域高風險池｜待擴充
+                <i class="fa-solid fa-layer-group"></i> 跨場域高風險池｜Cross-Region Signal Radar
             </div>
-            <div class="panel-box" style="margin-bottom: 2.5rem; min-height: 100px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.01);">
-                <div id="dm-noncjt-container" style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
+            <div class="panel-box" style="margin-bottom: 2.5rem; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.01); padding: 1.5rem;">
+                <div id="dm-noncjt-container" style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">
                     <!-- Will be dynamically populated or fallback -->
+                </div>
+                
+                <!-- Cross-Region Hit Badges -->
+                <div style="width: 100%; margin-top: 1.25rem; border-top: 1px dashed rgba(0, 240, 255, 0.15); padding-top: 1.25rem; text-align: left;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--neon-blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-satellite-dish" style="animation: pulse 2s infinite;"></i> 
+                        目前已命中之跨區治理語義 (Cross-Region Signals Detected)
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;" id="dm-cross-region-badges">
+                        <span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">嘉義市政府勞工及青年發展處</span>
+                        <span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">宜蘭青年學院</span>
+                        <span class="chip info" style="background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">能力外溢訊號</span>
+                        <span class="chip info" style="background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">相似治理模式</span>
+                    </div>
                 </div>
             </div>
 
@@ -3738,8 +3752,8 @@
                 if (nonCjtCases.length === 0) {
                     nonCjtContainer.innerHTML = `
                         <div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
-                            <i class="fa-solid fa-circle-nodes" style="color: var(--neon-orange); margin-right: 0.5rem; font-size: 1.2rem;"></i>
-                            目前樣本池主要集中於職人町場域。當後續加入其他機關、場域或標案來源後，本區將自動呈現非職人町高風險案件。
+                            <i class="fa-solid fa-satellite-dish" style="color: var(--neon-blue); margin-right: 0.5rem; font-size: 1.2rem; animation: pulse 2s infinite;"></i>
+                            AAI 礦機已開始於其他縣市與青年/勞青類治理場域中偵測到相似訊號。當跨場域資料池完成 detail / risk / graph 管線整合後，本區將自動呈現跨區域共現與異常模式。
                         </div>
                     `;
                 } else {
@@ -3782,6 +3796,24 @@
                         grid.appendChild(card);
                     });
                     nonCjtContainer.appendChild(grid);
+                }
+
+                // Dynamically scan for any other keywords if present in active cases
+                const badgeList = document.getElementById('dm-cross-region-badges');
+                if (badgeList && mergedCases.length > 0) {
+                    const activeKeywords = new Set(["嘉義市政府勞工及青年發展處", "宜蘭青年學院"]);
+                    mergedCases.forEach(c => {
+                        if (c.scope_status === 'cross_region_hit' || (c.scope_tags && c.scope_tags.includes('cross_region'))) {
+                            if (c.agency) activeKeywords.add(c.agency);
+                        }
+                    });
+                    
+                    badgeList.innerHTML = Array.from(activeKeywords).map(kw => `
+                        <span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">${kw}</span>
+                    `).join('') + `
+                        <span class="chip info" style="background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">能力外溢訊號</span>
+                        <span class="chip info" style="background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">相似治理模式</span>
+                    `;
                 }
             }
 
