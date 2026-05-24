@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="4Force Active Audit Intelligence - 主動稽核情報系統，將採購脈絡、關係圖譜、與風險訊號轉成決策線索，方法論由 4Force Lab 黑箱保護。">
+    <title>4Force Active Audit Intelligence | 戰情指揮中心</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Vis-Network CDN -->
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-card: rgba(10, 16, 32, 0.8);
+            --bg-card-hover: rgba(16, 26, 50, 0.95);
+            --border-color: rgba(0, 240, 255, 0.12);
+            --border-color-hover: rgba(0, 240, 255, 0.3);
+
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+
+            --neon-green: #05ffa1;
+            --neon-green-glow: rgba(5, 255, 161, 0.2);
+            --neon-pink: #ff0055;
+            --neon-pink-glow: rgba(255, 0, 85, 0.2);
+            --neon-blue: #00f0ff;
+            --neon-blue-glow: rgba(0, 240, 255, 0.2);
+            --neon-orange: #ffaa00;
+            --neon-orange-glow: rgba(255, 170, 0, 0.2);
+
+            --glass-blur: blur(16px);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', 'Inter', 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 5% 10%, rgba(0, 240, 255, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 95% 90%, rgba(255, 0, 85, 0.04) 0%, transparent 45%),
+                linear-gradient(rgba(6, 9, 19, 0.85), rgba(6, 9, 19, 0.85));
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.07;
+            transition: opacity 0.5s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(6, 9, 19, 0.9);
+            backdrop-filter: var(--glass-blur);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue-glow);
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.65rem;
+            color: var(--neon-blue);
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-nav:hover {
+            color: #ffffff;
+            background: rgba(0, 240, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.15);
+        }
+
+        .btn-nav.active {
+            color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.08);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-section h2 {
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p.subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.6;
+        }
+
+        .btn-hero-group {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .btn-cyber {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-cyber:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-cyber.primary {
+            border-color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.06);
+            color: var(--neon-blue);
+        }
+
+        .btn-cyber.primary:hover {
+            background: rgba(0, 240, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* HUD KPI Grid */
+        .hud-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hud-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .hud-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .hud-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .hud-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-color-hover);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .hud-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 3px;
+            background: var(--neon-blue);
+        }
+
+        .hud-card.orange::before { background: var(--neon-orange); }
+        .hud-card.pink::before { background: var(--neon-pink); }
+        .hud-card.green::before { background: var(--neon-green); }
+
+        .hud-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .hud-value {
+            font-size: 2.1rem;
+            font-weight: 850;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.1;
+        }
+
+        .hud-card.blue .hud-value { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue-glow); }
+        .hud-card.orange .hud-value { color: var(--neon-orange); text-shadow: 0 0 10px var(--neon-orange-glow); }
+        .hud-card.pink .hud-value { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink-glow); }
+        .hud-card.green .hud-value { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green-glow); }
+
+        /* Panels Container */
+        .panel-container {
+            display: none;
+        }
+
+        .panel-container.active {
+            display: block;
+        }
+
+        /* technical modules section */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1100px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem 1.5rem;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .module-card:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .module-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--neon-blue);
+        }
+
+        .module-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .module-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .module-badge {
+            align-self: flex-start;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            background: rgba(5, 255, 161, 0.08);
+            border: 1px solid rgba(5, 255, 161, 0.2);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* war room structure */
+        .warroom-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-war-tab {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.45rem 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-war-tab:hover {
+            color: #ffffff;
+            border-color: rgba(0, 240, 255, 0.2);
+            background: rgba(0, 240, 255, 0.03);
+        }
+
+        .btn-war-tab.active {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.08);
+            text-shadow: 0 0 8px var(--neon-blue-glow);
+        }
+
+        .warroom-content {
+            display: none;
+        }
+
+        .warroom-content.active {
+            display: block;
+        }
+
+        /* Panel Box Base */
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        /* 1. 高危預警儀表板 */
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-cyber {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            color: #ffffff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .input-cyber:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+
+        .cards-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .cards-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .risk-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .risk-card:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .risk-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .risk-title-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            flex: 1;
+        }
+
+        .risk-case-number {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+        }
+
+        .risk-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .risk-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .risk-badge .score {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.35rem;
+            font-weight: 850;
+            line-height: 1.1;
+        }
+
+        .risk-badge .label {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .risk-card.high-risk { border-left: 4px solid var(--neon-pink); }
+        .risk-card.high-risk .score { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink-glow); }
+        .risk-card.medium-risk { border-left: 4px solid var(--neon-orange); }
+        .risk-card.medium-risk .score { color: var(--neon-orange); text-shadow: 0 0 8px var(--neon-orange-glow); }
+        .risk-card.low-risk { border-left: 4px solid var(--neon-green); }
+        .risk-card.low-risk .score { color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green-glow); }
+
+        .chips-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.65rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .chip.danger {
+            background: rgba(255, 0, 85, 0.08);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            color: var(--neon-pink);
+        }
+
+        .chip.warning {
+            background: rgba(255, 170, 0, 0.08);
+            border: 1px solid rgba(255, 170, 0, 0.2);
+            color: var(--neon-orange);
+        }
+
+        .chip.info {
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--neon-blue);
+        }
+
+        .risk-block {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            padding: 0.9rem 1.1rem;
+        }
+
+        .risk-block-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.45rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .risk-block-title.light { color: var(--neon-pink); }
+        .risk-block-title.ev { color: var(--neon-blue); }
+
+        .risk-block-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .risk-block-list li {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            position: relative;
+            padding-left: 0.9rem;
+        }
+
+        .risk-block-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        .risk-block-title.light + .risk-block-list li::before { color: var(--neon-pink); }
+        .risk-block-title.ev + .risk-block-list li::before { color: var(--neon-blue); }
+
+        /* 2. 星狀關聯圖譜與 HUD */
+        .starmap-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 950px) {
+            .starmap-container {
+                flex-direction: column;
+            }
+        }
+
+        /* 3. 資金流向戰術地圖 */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .flow-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .flow-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 0.75rem;
+        }
+
+        .flow-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .flow-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .flow-val {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .flow-val.amount {
+            font-family: 'Fira Code', monospace;
+            color: var(--neon-green);
+        }
+
+        .flow-val.ratio {
+            font-family: 'Fira Code', monospace;
+            color: var(--neon-orange);
+        }
+
+        /* 4 & 5. 重複網樣式 */
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .network-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .network-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .network-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            transition: var(--transition-smooth);
+        }
+
+        .network-card:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.08);
+        }
+
+        .network-node-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .network-node-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .network-node-count {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 0.2rem 0.65rem;
+            border-radius: 4px;
+        }
+
+        .network-sub-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-top: 0.25rem;
+        }
+
+        .network-sub-list li {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.45rem 0.75rem;
+            border-radius: 6px;
+            border-left: 2px solid var(--neon-blue);
+        }
+
+        /* 6. 時間線樣式 */
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 0; bottom: 0; width: 2px;
+            background: rgba(0, 240, 255, 0.15);
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem; top: 5px;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue-glow);
+            z-index: 2;
+        }
+
+        .timeline-content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-content-card:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.08);
+            transform: translateX(3px);
+        }
+
+        .timeline-main-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            flex: 1;
+        }
+
+        .timeline-date-badge {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .timeline-meta-row {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-meta-row span strong {
+            color: #ffffff;
+        }
+
+        .timeline-score-badge {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-score-badge .score {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .timeline-score-badge .label {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            margin-top: 5rem;
+            background: rgba(6, 9, 19, 0.95);
+            text-align: center;
+        }
+
+        footer p.disclaimer {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Loading Spinner */
+        .loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--neon-blue);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Sales Demo Layer Styles */
+        .sales-section {
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+        .sales-section h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .sales-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 900px) {
+            .sales-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .sales-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .sales-card:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .sales-card h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+        .sales-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .sales-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+        .sales-tag.before {
+            background: rgba(255, 0, 85, 0.1);
+            color: var(--neon-pink);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+        }
+        .sales-tag.after {
+            background: rgba(5, 255, 161, 0.1);
+            color: var(--neon-green);
+            border: 1px solid rgba(5, 255, 161, 0.2);
+        }
+        .sales-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .sales-pack-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .sales-pack-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .sales-pack-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .sales-pack-card {
+            background: rgba(0, 240, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .sales-pack-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+            background: rgba(0, 240, 255, 0.05);
+            transform: translateY(-2px);
+        }
+        .sales-pack-icon {
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue-glow);
+        }
+        .sales-pack-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            /* Hero title sizing */
+            .hero-section h2 {
+                font-size: 1.8rem !important;
+            }
+            .hero-section p.subtitle {
+                font-size: 0.95rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            /* KPI status grids to single column */
+            .hud-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Sales grids to single column */
+            .sales-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Pack grids to single column */
+            .sales-pack-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Enable horizontal scrolling on warroom navigation tabs */
+            .warroom-nav {
+                flex-wrap: nowrap !important;
+                justify-content: flex-start !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.75rem !important;
+            }
+            .btn-war-tab {
+                flex-shrink: 0 !important;
+            }
+
+            /* Intelligence, member and vendor cards to single column */
+            .flow-grid,
+            .network-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Restrict starmap canvas height */
+            #starmap-canvas {
+                height: 420px !important;
+            }
+
+            /* Adjust consultation modal width */
+            #consult-modal .panel-box {
+                width: 92vw !important;
+                max-width: 92vw !important;
+            }
+
+            /* Align footer text and increase spacing */
+            footer {
+                text-align: center !important;
+                line-height: 1.9 !important;
+            }
+
+            /* Expand hero CTA buttons to full width */
+            .btn-hero-group {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.75rem !important;
+                width: 100% !important;
+                padding: 0 1rem !important;
+                box-sizing: border-box !important;
+            }
+            .btn-hero-group .btn-cyber {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                <div class="logo-text">
+                    <h1>4Force Active Audit Intelligence</h1>
+                    <p>PUBLIC DATA MINING PIPELINE // V2.4</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <button class="btn-nav active" onclick="switchPanel('home')">
+                    <i class="fa-solid fa-house"></i> 產品首頁
+                </button>
+                <button class="btn-nav" onclick="switchPanel('warroom')">
+                    <i class="fa-solid fa-chart-line"></i> 進入戰情儀表板
+                </button>
+                <button class="btn-nav" onclick="switchPanel('capabilities')">
+                    <i class="fa-solid fa-cubes"></i> 查看模組能力
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Panel 0: 產品首頁 (Sales Demo Layer) -->
+        <section id="panel-home" class="panel-container active">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>4Force Active Audit Intelligence</h2>
+                <p class="subtitle">4Force AAI 是主動稽核情報系統。在幾分鐘內把採購脈絡、關係圖譜、與風險訊號洗成決策線索，方法論由 4Force Lab 黑箱保護。</p>
+
+                <div class="btn-hero-group">
+                    <button class="btn-cyber primary" onclick="switchPanel('warroom')">
+                        <i class="fa-solid fa-tower-radar"></i> 查看戰情儀表板
+                    </button>
+                    <button class="btn-cyber" onclick="openConsultModal()">
+                        <i class="fa-solid fa-calendar-check"></i> 預約顧問簡報
+                    </button>
+                </div>
+
+                <!-- HUD KPI status Grid (Three Hard Numbers) -->
+                <div class="hud-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto 3rem auto;">
+                    <div class="hud-card blue">
+                        <span class="hud-label">公開採購公告</span>
+                        <span class="hud-value">46 筆</span>
+                    </div>
+                    <div class="hud-card green">
+                        <span class="hud-label">詳情驗證</span>
+                        <span class="hud-value">46 筆</span>
+                    </div>
+                    <div class="hud-card pink">
+                        <span class="hud-label">關係邊</span>
+                        <span class="hud-value">370 條</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 2: System Solutions -->
+            <section class="sales-section">
+                <h3>這套系統解決什麼問題？</h3>
+                <div class="sales-grid">
+                    <div class="sales-card">
+                        <h4>審計耗時費力</h4>
+                        <div class="sales-item">
+                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 以前</span>
+                            <p class="sales-desc">人工翻公告、查評委、比廠商，耗時數天且容易漏掉關鍵細節。</p>
+                        </div>
+                        <div class="sales-item">
+                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> 現在</span>
+                            <p class="sales-desc">自動採礦、抽欄位、建圖譜，幾分鐘內完成初篩與比對工作。</p>
+                        </div>
+                    </div>
+                    <div class="sales-card">
+                        <h4>單點資訊孤島</h4>
+                        <div class="sales-item">
+                            <span class="sales-tag before"><i class="fa-solid fa-eye-slash"></i> 以前</span>
+                            <p class="sales-desc">只看到單一標案孤立資訊，難以察覺背後隱藏之多維關係。</p>
+                        </div>
+                        <div class="sales-item">
+                            <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> 現在</span>
+                            <p class="sales-desc">看到跨年度、跨廠商、跨委員之重複結構與利害關係網。</p>
+                        </div>
+                    </div>
+                    <div class="sales-card">
+                        <h4>從被動檢索，變成主動洗礦</h4>
+                        <div class="sales-item">
+                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 以前</span>
+                            <p class="sales-desc">只能根據既有檢舉、指定案號或人工懷疑對象逐件查核。</p>
+                        </div>
+                        <div class="sales-item">
+                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> 現在</span>
+                            <p class="sales-desc">主動稽核情報系統自動掃描非指定案件，標出風險訊號與關係圖譜，方法論由 4Force Lab 黑箱保護。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 3: Range Showcase -->
+            <section class="sales-section">
+                <h3>職人町公開靶場成果</h3>
+                <div class="hud-grid" style="grid-template-columns: repeat(6, 1fr);">
+                    <div class="hud-card blue">
+                        <span class="hud-label">掃描公告</span>
+                        <span class="hud-value">46</span>
+                    </div>
+                    <div class="hud-card green">
+                        <span class="hud-label">詳情驗證</span>
+                        <span class="hud-value">46</span>
+                    </div>
+                    <div class="hud-card pink">
+                        <span class="hud-label">高風險訊號</span>
+                        <span class="hud-value">3</span>
+                    </div>
+                    <div class="hud-card orange">
+                        <span class="hud-label">中風險訊號</span>
+                        <span class="hud-value">14</span>
+                    </div>
+                    <div class="hud-card blue">
+                        <span class="hud-label">圖譜節點</span>
+                        <span class="hud-value">137</span>
+                    </div>
+                    <div class="hud-card green">
+                        <span class="hud-label">關係邊</span>
+                        <span class="hud-value">370</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 4: Product Differentiation -->
+            <section class="sales-section">
+                <h3>產品不是職人町</h3>
+                <p style="color: var(--text-secondary); max-width: 850px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
+                    職人町只是公開靶場。真正價值在於：AAI 不只驗證既有懷疑，也能從非指定靶點中自動洗出新的高風險線索。系統可替換為任意礦池：機關、人物、場域、廠商、補助計畫。
+                </p>
+                <div class="sales-pack-grid">
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-building-columns sales-pack-icon"></i>
+                        <span class="sales-pack-title">政府採購監測</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">自動追蹤機關招標流標異常，辨識異常等標期與潛在圍標行為。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-sack-dollar sales-pack-icon"></i>
+                        <span class="sales-pack-title">補助資金流追蹤</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">剖析計畫資金流向，追蹤高重複度投標實體與異常決標金額比率。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-diagram-project sales-pack-icon"></i>
+                        <span class="sales-pack-title">供應商風險圖譜</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">串聯廠商背後關聯之實體，構建跨案件、跨區域之多維風險網絡。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-route sales-pack-icon"></i>
+                        <span class="sales-pack-title">人物 / 評委參與軌跡</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">精準繪製關鍵審查委員參與軌跡，發掘高頻重複評審利害衝突。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 5: What You Can Purchase -->
+            <section class="sales-section">
+                <h3>情報訂製：您能買到什麼？</h3>
+                <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
+                    AAI 提供全量客製化主動稽核情報服務，針對指定對象實施深層關聯審計，方法論由 4Force Lab 黑箱保護。
+                </p>
+                <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-user-shield sales-pack-icon" style="color: var(--neon-blue);"></i>
+                        <span class="sales-pack-title">指定官員採購脈絡</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤指定決策官員相關標案往來，釐清歷史招決標網絡。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-users-gear sales-pack-icon" style="color: var(--neon-orange);"></i>
+                        <span class="sales-pack-title">指定評委參與軌跡</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">分析指定專家評委歷史審查案件，識別高重複與異常偏好。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-building-columns sales-pack-icon" style="color: var(--neon-green);"></i>
+                        <span class="sales-pack-title">指定機關標案結構</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定發包單位招標案底，揭示流標重招與特殊結構。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-handshake sales-pack-icon" style="color: var(--neon-pink);"></i>
+                        <span class="sales-pack-title">指定廠商得標關係</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">穿透指定投標企業股權與共同負責人，勾畫得標利益圖譜。</p>
+                    </div>
+                    <div class="sales-pack-card">
+                        <i class="fa-solid fa-route sales-pack-icon" style="color: var(--neon-blue);"></i>
+                        <span class="sales-pack-title">指定場域資金流路線</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤特定計畫、特定單位的資金分配流向與決算金額吻合度。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 6: Target Audiences -->
+            <section class="sales-section">
+                <h3>服務對象</h3>
+                <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
+                    4Force AAI 的主動稽核情報系統，旨在協助專業人員建構關係圖譜與採購脈絡，發掘關鍵決策線索。
+                </p>
+                <div class="sales-grid">
+                    <div class="sales-card" style="border-left: 4px solid var(--neon-blue);">
+                        <h4 style="color: var(--neon-blue); display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-gavel"></i> 調查局 / 廉政 / 審計單位
+                        </h4>
+                        <div class="sales-item">
+                            <span class="sales-tag after" style="background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2);">案源預警</span>
+                            <p class="sales-desc">提供實時主動稽核情報與關係圖譜，發掘風險訊號與決策線索，縮短前期部署時間。</p>
+                        </div>
+                    </div>
+                    <div class="sales-card" style="border-left: 4px solid var(--neon-orange);">
+                        <h4 style="color: var(--neon-orange); display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-shield-halved"></i> 民代 / 議會幕僚
+                        </h4>
+                        <div class="sales-item">
+                            <span class="sales-tag after" style="background: rgba(255, 170, 0, 0.1); color: var(--neon-orange); border: 1px solid rgba(255, 170, 0, 0.2);">問政資料武器</span>
+                            <p class="sales-desc">提供確鑿客觀的事證圖譜，打通資訊孤島，成為揭示公共關係重複結構的強力問政資料武器。</p>
+                        </div>
+                    </div>
+                    <div class="sales-card" style="border-left: 4px solid var(--neon-pink);">
+                        <h4 style="color: var(--neon-pink); display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-user-check"></i> 企業合規 / 採購稽核
+                        </h4>
+                        <div class="sales-item">
+                            <span class="sales-tag after" style="background: rgba(255, 0, 85, 0.1); color: var(--neon-pink); border: 1px solid rgba(255, 0, 85, 0.2);">風險監測</span>
+                            <p class="sales-desc">協助私部門落實供應商合規查核，監測招標流標異常特徵，防範潛在供應鏈關係衝突風險。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Panel 1: 進入戰情儀表板 -->
+        <section id="panel-warroom" class="panel-container">
+
+            <!-- Sub tabs for War Room -->
+            <div class="warroom-nav">
+                <button class="btn-war-tab active" onclick="switchWarTab('alert')">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 高危預警儀表板
+                </button>
+                <button class="btn-war-tab" onclick="switchWarTab('starmap')">
+                    <i class="fa-solid fa-circle-nodes"></i> 星狀關聯圖
+                </button>
+                <button class="btn-war-tab" onclick="switchWarTab('tactical')">
+                    <i class="fa-solid fa-map-location-dot"></i> 資金流向戰術地圖
+                </button>
+                <button class="btn-war-tab" onclick="switchWarTab('members')">
+                    <i class="fa-solid fa-users-gear"></i> 評委重複網
+                </button>
+                <button class="btn-war-tab" onclick="switchWarTab('vendors')">
+                    <i class="fa-solid fa-building-flag"></i> 廠商重複網
+                </button>
+                <button class="btn-war-tab" onclick="switchWarTab('timeline')">
+                    <i class="fa-solid fa-timeline"></i> 案件時間線
+                </button>
+            </div>
+
+            <!-- Loading indicator -->
+            <div id="warroom-loader" class="loading-screen">
+                <div class="spinner"></div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">正在解析真實資料，建立關聯圖譜...</p>
+            </div>
+
+            <!-- Error state -->
+            <div id="warroom-error" style="display: none; text-align: center; padding: 3rem 0; color: var(--neon-pink);">
+                <i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <p>系統資料載入失敗，請確認資料結構服務已正常啟動並提供完整驗證數據。</p>
+            </div>
+
+            <!-- Tab Content Blocks -->
+            <div id="war-tab-content-container" style="display: none;">
+
+                <!-- 1. 高危預警儀表板 -->
+                <div id="war-tab-alert" class="warroom-content active">
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; margin: 13px 0 0 15px; color: var(--text-muted);"></i>
+                        <input type="text" id="search-input" class="input-cyber" style="padding-left: 2.5rem;" placeholder="搜尋案號、標案名稱或得標廠商名稱..." oninput="filterAlertCases()">
+                    </div>
+                    <div id="alert-list" class="cards-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- 2. 星狀關聯圖 -->
+                <div id="war-tab-starmap" class="warroom-content">
+                    <div class="starmap-container">
+                        <div class="starmap-left" style="flex: 8; position: relative;">
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.75rem; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                                <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 0.75rem; flex-wrap: wrap;">
+                                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--neon-blue); display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
+                                        <i class="fa-solid fa-crosshairs"></i> Base Target
+                                    </span>
+                                    <div class="starmap-base-selector" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                        <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('all')">全域圖</button>
+                                        <button class="btn-war-tab active" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('core')">核心案件 E1150212-1</button>
+                                        <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('highrisk')">高風險案件</button>
+                                    </div>
+                                    <span id="starmap-stats" style="font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 700; color: var(--neon-blue); margin-left: auto;">
+                                        Nodes: 137 | Edges: 370 | Visible: 0 / 0
+                                    </span>
+                                </div>
+                                <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+                                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--neon-blue); display: flex; align-items: center; gap: 0.4rem; min-width: 100px; padding-top: 0.25rem;">
+                                        <i class="fa-solid fa-layer-group"></i> Layer Toggles
+                                    </span>
+                                    <div class="starmap-layer-toggles" style="display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-vendor_awarded" checked onchange="toggleLayer()"> 得標廠商
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-committee_member" checked onchange="toggleLayer()"> 評選委員
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-risk_pattern" checked onchange="toggleLayer()"> 風險模式
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-repeated_member" onchange="toggleLayer()"> 重複委員
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-repeated_vendor" onchange="toggleLayer()"> 重複廠商
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-multi_notice" checked onchange="toggleLayer()"> 同案多公告
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-agency_unit" onchange="toggleLayer()"> 機關單位
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-amount_bucket" onchange="toggleLayer()"> 金額級距
+                                        </label>
+                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
+                                            <input type="checkbox" id="layer-notice_type" onchange="toggleLayer()"> 公告類型
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="starmap-vendor-hint" style="display: none; font-size: 0.82rem; color: var(--neon-pink); background: rgba(255, 0, 85, 0.05); border: 1px solid rgba(255, 0, 85, 0.2); padding: 0.5rem 1rem; border-radius: 6px; margin-bottom: 0.75rem; font-weight: 700;">
+                                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.4rem;"></i>
+                                工商比對待接：同負責人、同地址、同電話需接入商工登記 Resolver；目前不以未驗證資料建立關係邊。
+                            </div>
+                            <div id="starmap-canvas" style="height: 600px; background: rgba(5,10,25,0.4); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,240,255,0.05);"></div>
+                        </div>
+                        <div class="starmap-right" style="flex: 4; display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="panel-box" style="height: 100%; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; min-height: 600px;">
+                                <h3 style="font-size: 1.1rem; font-weight: 800; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: #ffffff;">
+                                    <i class="fa-solid fa-magnifying-glass-chart" style="color: var(--neon-blue);"></i> 關係特徵詳情
+                                </h3>
+                                <div id="starmap-detail-default" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; text-align: center; color: var(--text-muted); gap: 1rem; padding: 2rem 0;">
+                                    <i class="fa-solid fa-hand-pointer" style="font-size: 2.2rem; color: var(--text-secondary);"></i>
+                                    <p style="font-size: 0.88rem; line-height: 1.5;">請點擊圖譜中的節點<br>查看詳細關聯屬性與事證網</p>
+                                </div>
+                                <div id="starmap-detail-content" style="display: none; flex-direction: column; gap: 1rem; flex: 1;">
+                                    <!-- Filled dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 資金流向戰術地圖 -->
+                <div id="war-tab-tactical" class="warroom-content">
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; background: rgba(0, 240, 255, 0.05); padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+                        <i class="fa-solid fa-circle-info" style="margin-right: 0.4rem; color: var(--neon-blue);"></i>
+                        子母關聯集合卡：本面板以案號為母卡群組，展開旗下歷史公告子列，呈現完整資金流轉軌跡。
+                    </div>
+                    <div id="tactical-list" class="flow-grid">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- 4. 評委重複網 -->
+                <div id="war-tab-members" class="warroom-content">
+                    <div id="members-list" class="network-grid">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- 5. 廠商重複網 -->
+                <div id="war-tab-vendors" class="warroom-content">
+                    <div style="background: rgba(255, 0, 85, 0.03); border: 1px dashed rgba(255, 0, 85, 0.25); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                        <span style="font-size: 0.88rem; font-weight: 700; color: var(--neon-pink); display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-note-sticky"></i> 人工審查註記
+                        </span>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
+                            此區為人工審查註記，待 Company Resolver 接入後升級為系統驗證關聯。
+                        </div>
+                    </div>
+                    <div id="vendors-list" class="network-grid">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- 6. 案件時間線 -->
+                <div id="war-tab-timeline" class="warroom-content">
+                    <div id="timeline-list" class="timeline-container">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Panel 2: 查看模組能力 -->
+        <section id="panel-capabilities" class="panel-container">
+            <div class="modules-grid">
+
+                <!-- Module 1 -->
+                <div class="module-card">
+                    <div class="module-icon-box">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3>自動採礦與檢索模組 (Data Mining & Retrieval)</h3>
+                    <p>實時檢索公開採購來源。以關鍵字去重過濾，自動篩選抓回指定案件之歷史公告索引，排除無效資料干擾。</p>
+                    <span class="module-badge">MINING-ENGINE-V1</span>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card">
+                    <div class="module-icon-box">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>公告欄位智能提取模組 (Information Extraction)</h3>
+                    <p>自動遞迴解析標案詳情。解析包括得標商、投標金額、押標金與評選委員名單在內之數十項關聯數據。</p>
+                    <span class="module-badge">EXTRACTION-ENGINE-V1</span>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module-card">
+                    <div class="module-icon-box">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3>風險計量與紅旗預警模組 (Risk Metrics & Alerting)</h3>
+                    <p>多維關聯審計演算法。依據等標期天數、預算吻合度、單一投標、全域委員與廠商重複率等指標，量化計算風險分數。</p>
+                    <span class="module-badge">RISK-ENGINE-V1</span>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module-card">
+                    <div class="module-icon-box">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3>關聯圖譜與事證構建模組 (Relationship Mapping)</h3>
+                    <p>將採購案件、評選委員、投標廠商與異常特徵關聯。自動建立包含 137 個節點、370 條邊之標準關係網絡，無黑箱作業。</p>
+                    <span class="module-badge">MAP-ENGINE-V1</span>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module-card">
+                    <div class="module-icon-box">
+                        <i class="fa-solid fa-display"></i>
+                    </div>
+                    <h3>決策戰情可視化模組 (Interactive War Room)</h3>
+                    <p>高精細度情報面板。為核心審計人員呈現無污染之數據可視化，支援極速決策，實現資料透明與客觀呈現。</p>
+                    <span class="module-badge">WAR-ROOM-RENDERER-V1</span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Consultation Modal -->
+    <div id="consult-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(6, 9, 19, 0.85); backdrop-filter: blur(12px); z-index: 9999; justify-content: center; align-items: center; transition: opacity 0.3s ease;">
+        <div class="panel-box" style="width: 90%; max-width: 480px; text-align: center; display: flex; flex-direction: column; gap: 1.25rem; border: 1px solid var(--neon-blue); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
+            <i class="fa-solid fa-calendar-check" style="font-size: 2.5rem; color: var(--neon-blue); text-shadow: 0 0 12px var(--neon-blue-glow);"></i>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff;">預約顧問簡報</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+                您即將申請 4Force Active Audit Intelligence 現場簡報與客製化分析展示。
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; text-align: left;">
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">姓名</label>
+                    <input type="text" id="consult-name" class="input-cyber" placeholder="請輸入姓名" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">公司 / 組織</label>
+                    <input type="text" id="consult-company" class="input-cyber" placeholder="請輸入單位名稱" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">聯絡信箱</label>
+                    <input type="email" id="consult-email" class="input-cyber" placeholder="name@agency.gov.tw" style="width: 100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);">需求描述</label>
+                    <textarea id="consult-desc" class="input-cyber" placeholder="請輸入您的具體稽核或簡報需求" style="width: 100%; height: 80px; resize: none; font-family: inherit; font-size: 0.82rem; padding: 0.45rem 0.6rem;"></textarea>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 0.25rem;">
+                <button class="btn-cyber" onclick="closeConsultModal()" style="padding: 0.5rem 1.25rem;">取消</button>
+                <button class="btn-cyber primary" onclick="submitConsultation()" style="padding: 0.5rem 1.25rem;">送出預約</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="margin-top: 5rem; padding: 3rem 1.5rem; border-top: 1px solid var(--border-color); background: rgba(6, 9, 19, 0.4); text-align: center; font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem; line-height: 1.6;">
+        <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.25rem;">萬合天宜有限公司</div>
+        <div>地址：屏東縣屏東市興豐路 141-1 號</div>
+        <div>電話：08-7350179</div>
+        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <div>AAI專案主理人 Wesley Juan</div>
+            <div>0900-489-893</div>
+            <div><i class="fa-brands fa-line" style="color: #06C755; margin-right: 0.25rem;"></i>Line id: iamwilljuan</div>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4force lab. All rights reserved.</div>
+    </footer>
+
+    <!-- Frontend Core Scripting -->
+    <script>
+        // Global variables for cached data
+        let globalDetails = [];
+        let globalSignals = [];
+        let globalGraph = {};
+
+        // Consultation Booking Handlers
+        function openConsultModal() {
+            document.getElementById('consult-modal').style.display = 'flex';
+        }
+        function closeConsultModal() {
+            document.getElementById('consult-modal').style.display = 'none';
+        }
+        function submitConsultation() {
+            const nameVal = document.getElementById('consult-name').value.trim();
+            const companyVal = document.getElementById('consult-company').value.trim();
+            const emailInput = document.getElementById('consult-email');
+            const descVal = document.getElementById('consult-desc').value.trim();
+
+            if (!nameVal) {
+                alert('請輸入姓名！');
+                return;
+            }
+            if (!companyVal) {
+                alert('請輸入公司 / 組織！');
+                return;
+            }
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('請輸入有效之聯絡信箱！');
+                return;
+            }
+
+            const subject = encodeURIComponent("4Force AAI 顧問簡報預約");
+            const body = encodeURIComponent(
+                `姓名：${nameVal}\n` +
+                `公司/組織：${companyVal}\n` +
+                `聯絡信箱：${emailInput.value}\n` +
+                `需求描述：\n${descVal}`
+            );
+
+            // Construct mailto link
+            const mailtoUrl = `mailto:info@4force.com.tw?subject=${subject}&body=${body}`;
+
+            // Trigger mailto link redirection
+            window.location.href = mailtoUrl;
+
+            closeConsultModal();
+            // Clear inputs
+            document.getElementById('consult-name').value = '';
+            document.getElementById('consult-company').value = '';
+            emailInput.value = '';
+            document.getElementById('consult-desc').value = '';
+        }
+
+        // Tab and Panel switching
+        function switchPanel(panelId) {
+            document.querySelectorAll('.panel-container').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.btn-nav').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`panel-${panelId}`).classList.add('active');
+
+            // Highlight nav button
+            const navBtn = Array.from(document.querySelectorAll('.btn-nav')).find(btn => btn.getAttribute('onclick').includes(panelId));
+            if (navBtn) navBtn.classList.add('active');
+        }
+
+        function switchWarTab(tabId) {
+            document.querySelectorAll('.warroom-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.btn-war-tab').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`war-tab-${tabId}`).classList.add('active');
+
+            const tabBtn = Array.from(document.querySelectorAll('.btn-war-tab')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (tabBtn) tabBtn.classList.add('active');
+
+            // Resize vis starmap if active to recalculate container bounds
+            if (tabId === 'starmap' && starmapNetwork) {
+                setTimeout(() => starmapNetwork.fit(), 100);
+            }
+        }
+
+        // Fetch all three JSONs asynchronously
+        async function loadAllData() {
+            try {
+                const [detailsRes, signalsRes, graphRes] = await Promise.all([
+                    fetch('data/detail_results.json'),
+                    fetch('data/risk_signals.json'),
+                    fetch('data/evidence_graph.json')
+                ]);
+
+                if (!detailsRes.ok || !signalsRes.ok || !graphRes.ok) {
+                    throw new Error('Data load failed');
+                }
+
+                const detailsData = await detailsRes.json();
+                const signalsData = await signalsRes.json();
+                const graphData = await graphRes.json();
+
+                globalDetails = detailsData.cases || [];
+                globalSignals = signalsData.signals || [];
+                globalGraph = graphData || {};
+
+                // Hide loader and show tab content
+                document.getElementById('warroom-loader').style.display = 'none';
+                document.getElementById('war-tab-content-container').style.display = 'block';
+
+                // Initial render of all tabs
+                renderAlertTab(globalSignals);
+                renderStarMap(globalGraph);
+                renderTacticalTab(globalDetails, globalSignals);
+                renderMembersTab(globalGraph);
+                renderVendorsTab(globalGraph, globalDetails);
+                renderTimelineTab(globalDetails, globalSignals);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('warroom-loader').style.display = 'none';
+                document.getElementById('warroom-error').style.display = 'block';
+            }
+        }
+
+        // Helper to translate tag to human description
+        function getRiskTagChinese(tag) {
+            const mappings = {
+                "Single Bidder Tender": "單一廠商投標",
+                "High Budget Fit Ratio": "決算金額極度吻合",
+                "Multiple Notice Amendments": "公告流標更正頻繁",
+                "Short Bid Preparation": "等標期偏短",
+                "Extremely Short Bid Preparation": "等標期極短限制競爭",
+                "Repetitive Winning Vendor": "同廠商特定頻繁得標",
+                "Repetitive Committee Members": "高重複評選評審委員",
+                "Bidders Shared Contact Info": "投標商登記地址電話重複",
+                "Award Exceeds Budget": "決標超出預算"
+            };
+            return mappings[tag] || tag;
+        }
+
+        // 1. Render 高危預警儀表板
+        function renderAlertTab(signals) {
+            const container = document.getElementById('alert-list');
+            container.innerHTML = '';
+
+            if (signals.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">無匹配之預警訊號</div>';
+                return;
+            }
+
+            signals.forEach(sig => {
+                const card = document.createElement('div');
+                card.className = 'risk-card';
+
+                let riskClass = 'low-risk';
+                let riskLabel = '低風險';
+                if (sig.risk_score >= 60) {
+                    riskClass = 'high-risk';
+                    riskLabel = '高危預警';
+                } else if (sig.risk_score >= 30) {
+                    riskClass = 'medium-risk';
+                    riskLabel = '中等風險';
+                }
+                card.classList.add(riskClass);
+
+                const chipsHtml = (sig.anomaly_patterns || []).map(p => `
+                    <span class="chip ${sig.risk_score >= 60 ? 'danger' : 'warning'}">${getRiskTagChinese(p)}</span>
+                `).join('') || '<span class="chip info">無異常特徵</span>';
+
+                const evListHtml = (sig.evidence_shell || []).map(e => `
+                    <li>${e}</li>
+                `).join('') || '<li>查無明顯事實佐證</li>';
+
+                const expListHtml = (sig.signal_explanation || []).map(x => `
+                    <li>${x}</li>
+                `).join('') || '<li>該公告在設定規則下未評估出異常原因。</li>';
+
+                card.innerHTML = `
+                    <div class="risk-card-header">
+                        <div class="risk-title-box">
+                            <span class="risk-case-number">${sig.case_number}</span>
+                            <h4 class="risk-title">${sig.case_name}</h4>
+                        </div>
+                        <div class="risk-badge">
+                            <div class="score">${sig.risk_score}</div>
+                            <div class="label">${riskLabel}</div>
+                        </div>
+                    </div>
+
+                    <div class="chips-container">
+                        ${chipsHtml}
+                    </div>
+
+                    <div class="risk-block">
+                        <div class="risk-block-title ev"><i class="fa-solid fa-circle-info"></i> 客觀事證</div>
+                        <ul class="risk-block-list">
+                            ${evListHtml}
+                        </ul>
+                    </div>
+
+                    <div class="risk-block">
+                        <div class="risk-block-title light"><i class="fa-solid fa-lightbulb"></i> 為什麼亮燈說明</div>
+                        <ul class="risk-block-list">
+                            ${expListHtml}
+                        </ul>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterAlertCases() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if (!query) {
+                renderAlertTab(globalSignals);
+                return;
+            }
+            const filtered = globalSignals.filter(sig =>
+                sig.case_number.toLowerCase().includes(query) ||
+                sig.case_name.toLowerCase().includes(query) ||
+                (sig.evidence_shell || []).some(e => e.toLowerCase().includes(query))
+            );
+            renderAlertTab(filtered);
+        }
+
+        // 2. Render 星狀關聯圖
+        let starmapNetwork = null;
+        let currentBaseTarget = 'core';
+
+        function setBaseTarget(targetType) {
+            currentBaseTarget = targetType;
+
+            const btns = document.querySelectorAll('.starmap-base-selector .btn-war-tab');
+            btns.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(targetType)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            renderStarMap(globalGraph);
+        }
+
+        function toggleLayer() {
+            renderStarMap(globalGraph);
+        }
+
+        function getFilterLabel(targetType) {
+            const labels = {
+                "all": "全域圖",
+                "highrisk": "高風險案件",
+                "core": "核心案件 E1150212-1"
+            };
+            return labels[targetType] || targetType;
+        }
+
+        function renderStarMap(graph) {
+            const container = document.getElementById('starmap-canvas');
+            const statsEl = document.getElementById('starmap-stats');
+
+            const rawNodes = graph.nodes || [];
+            const rawEdges = graph.edges || [];
+
+            let filteredNodes = [];
+            let filteredEdges = [];
+
+            // Build repetitive sets and absence map
+            const repVendors = new Set();
+            const repMembers = new Set();
+            rawEdges.forEach(e => {
+                if (e.type === 'same_vendor_repeated' && e.properties && e.properties.vendor) {
+                    repVendors.add(e.properties.vendor);
+                }
+                if (e.type === 'same_committee_member_repeated' && e.properties && e.properties.member) {
+                    repMembers.add(e.properties.member);
+                }
+            });
+
+            const absentMembers = new Set();
+            globalDetails.forEach(c => {
+                const comm = c.committee_members || [];
+                comm.forEach(m => {
+                    if (m.name && m.attended === '否') {
+                        absentMembers.add(m.name);
+                    }
+                });
+            });
+
+            // 1. Determine starting case nodes based on currentBaseTarget
+            let startingCaseIds = new Set();
+            if (currentBaseTarget === 'all') {
+                rawNodes.forEach(n => {
+                    if (n.type === 'case') startingCaseIds.add(n.id);
+                });
+            } else if (currentBaseTarget === 'highrisk') {
+                rawNodes.forEach(n => {
+                    if (n.type === 'case' && n.risk_score >= 60) startingCaseIds.add(n.id);
+                });
+            } else if (currentBaseTarget === 'core') {
+                rawNodes.forEach(n => {
+                    if (n.type === 'case' && n.case_number === 'E1150212-1') startingCaseIds.add(n.id);
+                });
+            }
+
+            // 2. Identify allowed edge types based on Layer Toggles
+            const allowedEdgeTypes = new Set();
+            if (document.getElementById('layer-vendor_awarded').checked) allowedEdgeTypes.add('case_awarded_to_vendor');
+            if (document.getElementById('layer-committee_member').checked) allowedEdgeTypes.add('case_has_committee_member');
+            if (document.getElementById('layer-risk_pattern').checked) allowedEdgeTypes.add('case_has_risk_pattern');
+            if (document.getElementById('layer-repeated_member').checked) allowedEdgeTypes.add('same_committee_member_repeated');
+            if (document.getElementById('layer-repeated_vendor').checked) allowedEdgeTypes.add('same_vendor_repeated');
+            if (document.getElementById('layer-multi_notice').checked) allowedEdgeTypes.add('same_case_multi_notice');
+            if (document.getElementById('layer-agency_unit').checked) {
+                allowedEdgeTypes.add('agency_issued_case');
+                allowedEdgeTypes.add('unit_managed_case');
+            }
+            if (document.getElementById('layer-amount_bucket').checked) allowedEdgeTypes.add('case_has_amount_bucket');
+            if (document.getElementById('layer-notice_type').checked) allowedEdgeTypes.add('case_has_notice_type');
+
+            // 3. Filter edges
+            // An edge is kept if:
+            // - Its type is allowed by the checked layers
+            // - At least one of its link_points is connected to a starting case
+            // - If currentBaseTarget is 'core', we also enforce that if the other link_point is a case, it must be in startingCaseIds.
+            filteredEdges = rawEdges.filter(e => {
+                if (!allowedEdgeTypes.has(e.type)) return false;
+
+                const sourceIsStarting = startingCaseIds.has(e.source);
+                const targetIsStarting = startingCaseIds.has(e.target);
+
+                if (!sourceIsStarting && !targetIsStarting) return false;
+
+                if (currentBaseTarget === 'core') {
+                    const sourceNode = rawNodes.find(n => n.id === e.source);
+                    const targetNode = rawNodes.find(n => n.id === e.target);
+
+                    if (sourceNode && sourceNode.type === 'case' && !startingCaseIds.has(e.source)) {
+                        return false;
+                    }
+                    if (targetNode && targetNode.type === 'case' && !startingCaseIds.has(e.target)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            // 4. Filter nodes: keep starting cases, and all nodes connected by filteredEdges
+            const connectedNodeIds = new Set();
+            filteredEdges.forEach(e => {
+                connectedNodeIds.add(e.source);
+                connectedNodeIds.add(e.target);
+            });
+
+            filteredNodes = rawNodes.filter(n => {
+                if (n.type === 'case') {
+                    return startingCaseIds.has(n.id) || connectedNodeIds.has(n.id);
+                }
+                return connectedNodeIds.has(n.id);
+            });
+
+            // Re-filter edges to ensure both link_points are in the final filteredNodes set
+            const filteredNodeIds = new Set(filteredNodes.map(n => n.id));
+            filteredEdges = filteredEdges.filter(e => filteredNodeIds.has(e.source) && filteredNodeIds.has(e.target));
+
+            const limitedNodes = filteredNodes.slice(0, 80);
+            const limitedNodeIds = new Set(limitedNodes.map(n => n.id));
+
+            const limitedEdges = filteredEdges.filter(e =>
+                limitedNodeIds.has(e.source) && limitedNodeIds.has(e.target)
+            ).slice(0, 160);
+
+            // Calculate active layers list for HUD
+            const activeLayersTextList = [];
+            if (document.getElementById('layer-vendor_awarded').checked) activeLayersTextList.push("得標廠商");
+            if (document.getElementById('layer-committee_member').checked) activeLayersTextList.push("評選委員");
+            if (document.getElementById('layer-risk_pattern').checked) activeLayersTextList.push("風險模式");
+            if (document.getElementById('layer-repeated_member').checked) activeLayersTextList.push("重複委員");
+            if (document.getElementById('layer-repeated_vendor').checked) activeLayersTextList.push("重複廠商");
+            if (document.getElementById('layer-multi_notice').checked) activeLayersTextList.push("同案多公告");
+            if (document.getElementById('layer-agency_unit').checked) activeLayersTextList.push("機關單位");
+            if (document.getElementById('layer-amount_bucket').checked) activeLayersTextList.push("金額級距");
+            if (document.getElementById('layer-notice_type').checked) activeLayersTextList.push("公告類型");
+
+            statsEl.innerHTML = `Base Target: <span style="color:var(--neon-pink); font-weight:700;">${getFilterLabel(currentBaseTarget)}</span> | Active Layers: <span style="color:var(--neon-blue); font-weight:700;" title="${activeLayersTextList.join(', ')}">${activeLayersTextList.length} 層</span> | Visible: ${limitedNodes.length} Nodes / ${limitedEdges.length} Edges`;
+
+            const visNodesData = limitedNodes.map(n => {
+                let colorStr = '#6b7280';
+                let borderStr = 'rgba(255,255,255,0.2)';
+                let sizeVal = 12;
+                let borderWidthVal = 2;
+                let shadowVal = { enabled: false };
+
+                if (n.type === 'case') {
+                    colorStr = '#0f172a';
+                    sizeVal = 24;
+                    if (currentBaseTarget === 'highrisk') {
+                        sizeVal = 42;
+                    }
+                    // Case node coloring by risk_score
+                    if (n.risk_score >= 60) {
+                        borderStr = '#ef4444'; // Red
+                    } else if (n.risk_score >= 30) {
+                        borderStr = '#fb923c'; // Orange
+                    } else {
+                        borderStr = '#38bdf8'; // Blue
+                    }
+
+                    // Core Case E1150212-1 styling: Thick glowing white border
+                    if (n.case_number === 'E1150212-1') {
+                        borderStr = '#ffffff';
+                        sizeVal = 28;
+                        if (currentBaseTarget === 'highrisk') {
+                            sizeVal = 42;
+                        }
+                        borderWidthVal = 4;
+                        shadowVal = {
+                            enabled: true,
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            size: 10,
+                            x: 0,
+                            y: 0
+                        };
+                    }
+                } else if (n.type === 'vendor') {
+                    colorStr = '#0f172a';
+                    sizeVal = 20;
+                    if (repVendors.has(n.label)) {
+                        borderStr = '#ff0055'; // Bright Pink for repeated vendor
+                        if (currentBaseTarget === 'all') {
+                            sizeVal = 45;
+                        }
+                    } else {
+                        borderStr = '#00f0ff'; // Cyan for standard vendor
+                        if (currentBaseTarget === 'all') {
+                            sizeVal = 30;
+                        }
+                    }
+                    if (currentBaseTarget === 'highrisk') {
+                        sizeVal = 24;
+                    }
+                } else if (n.type === 'committee_member') {
+                    colorStr = '#0f172a';
+                    sizeVal = 18;
+                    if (currentBaseTarget === 'highrisk') {
+                        sizeVal = 24;
+                    }
+                    // Committee member coloring rules
+                    if (n.label.includes('李雨蓁') || n.label.includes('陳枝孝')) {
+                        borderStr = '#ef4444'; // Red for high-authority
+                    } else if (repMembers.has(n.label)) {
+                        borderStr = '#f43f5e'; // Pink for repeated members
+                    } else if (absentMembers.has(n.label)) {
+                        borderStr = '#64748b'; // Gray for absent members
+                    } else {
+                        borderStr = '#fb923c'; // Orange for standard
+                    }
+                } else if (n.type === 'risk_pattern') {
+                    colorStr = '#0f172a';
+                    borderStr = '#ef4444';
+                    sizeVal = 20;
+                    if (currentBaseTarget === 'highrisk') {
+                        sizeVal = 28;
+                    }
+                } else if (n.type === 'agency' || n.type === 'unit') {
+                    colorStr = '#0f172a';
+                    borderStr = '#34d399';
+                    sizeVal = 16;
+                    if (currentBaseTarget === 'core') {
+                        sizeVal = 10;
+                    }
+                }
+
+                let displayLabel = n.label || '';
+                if (displayLabel.length > 8) {
+                    displayLabel = displayLabel.slice(0, 7) + '...';
+                }
+
+                return {
+                    id: n.id,
+                    label: displayLabel,
+                    title: n.label,
+                    shape: 'dot',
+                    size: sizeVal,
+                    shadow: shadowVal,
+                    color: {
+                        background: colorStr,
+                        border: borderStr,
+                        highlight: {
+                            background: '#00f0ff',
+                            border: '#ffffff'
+                        }
+                    },
+                    borderWidth: borderWidthVal,
+                    font: {
+                        color: '#f1f5f9',
+                        size: 11,
+                        face: 'Inter, Outfit, sans-serif'
+                    }
+                };
+            });
+
+            const visEdgesData = limitedEdges.map(e => {
+                let edgeColor = 'rgba(0, 240, 255, 0.25)';
+                let isDashed = false;
+                let edgeWidth = e.type.startsWith('same_') ? 2 : 1;
+
+                if (e.type.startsWith('same_')) {
+                    edgeColor = 'rgba(255, 0, 85, 0.45)';
+                    isDashed = true;
+                }
+
+                if (document.getElementById('layer-vendor_awarded').checked) {
+                    if (e.type === 'same_vendor_repeated') {
+                        edgeWidth = 4;
+                        edgeColor = '#ff0055';
+                        isDashed = true;
+                    } else if (e.type === 'case_awarded_to_vendor') {
+                        edgeWidth = 1.5;
+                    }
+                }
+
+                return {
+                    id: `${e.source}-${e.target}-${e.type}`,
+                    from: e.source,
+                    to: e.target,
+                    label: getEdgeLabelChinese(e.type),
+                    color: {
+                        color: edgeColor,
+                        highlight: '#ffffff',
+                        hover: '#00f0ff'
+                    },
+                    dashes: isDashed,
+                    width: edgeWidth,
+                    font: {
+                        size: currentBaseTarget === 'highrisk' ? 7 : 9,
+                        color: '#64748b',
+                        align: 'middle',
+                        face: 'Inter, Outfit, Noto Sans TC, sans-serif'
+                    },
+                    smooth: {
+                        type: 'curvedCW',
+                        roundness: 0.15
+                    }
+                };
+            });
+
+            const data = {
+                nodes: new vis.DataSet(visNodesData),
+                edges: new vis.DataSet(visEdgesData)
+            };
+
+            let physicsConfig = {
+                solver: 'forceAtlas2Based',
+                forceAtlas2Based: {
+                    gravitationalConstant: -50,
+                    centralGravity: 0.01,
+                    springLength: 100,
+                    springConstant: 0.08
+                },
+                maxVelocity: 50,
+                minVelocity: 0.1,
+                stabilization: {
+                    iterations: 150,
+                    updateInterval: 25
+                }
+            };
+
+            if (currentBaseTarget === 'highrisk') {
+                physicsConfig = {
+                    solver: 'barnesHut',
+                    barnesHut: {
+                        gravitationalConstant: -18000,
+                        springLength: 260,
+                        springConstant: 0.018,
+                        avoidOverlap: 1
+                    },
+                    maxVelocity: 50,
+                    minVelocity: 0.1,
+                    stabilization: {
+                        iterations: 150,
+                        updateInterval: 25
+                    }
+                };
+            } else if (currentBaseTarget === 'core') {
+                physicsConfig = {
+                    solver: 'barnesHut',
+                    barnesHut: {
+                        gravitationalConstant: -9000,
+                        springLength: 180,
+                        springConstant: 0.035,
+                        avoidOverlap: 1
+                    },
+                    maxVelocity: 50,
+                    minVelocity: 0.1,
+                    stabilization: {
+                        iterations: 150,
+                        updateInterval: 25
+                    }
+                };
+            }
+
+            const options = {
+                physics: physicsConfig,
+                interaction: {
+                    hover: true,
+                    tooltipDelay: 200,
+                    selectable: true,
+                    selectConnectedEdges: true
+                }
+            };
+
+            starmapNetwork = new vis.Network(container, data, options);
+
+            starmapNetwork.on("selectNode", function (params) {
+                if (params.nodes.length > 0) {
+                    const nodeId = params.nodes[0];
+                    const node = limitedNodes.find(n => n.id === nodeId);
+                    if (node) {
+                        const connectedEdges = rawEdges.filter(e => e.source === nodeId || e.target === nodeId).length;
+                        showNodeDetails(node, connectedEdges);
+                    }
+                }
+            });
+
+            starmapNetwork.on("deselectNode", function () {
+                document.getElementById('starmap-detail-default').style.display = 'flex';
+                document.getElementById('starmap-detail-content').style.display = 'none';
+            });
+        }
+
+        function getEdgeLabelChinese(type) {
+            const mappings = {
+                "case_awarded_to_vendor": "決標廠商",
+                "case_has_committee_member": "評選委員",
+                "case_has_risk_pattern": "異常特徵",
+                "same_vendor_repeated": "跨案得標重複",
+                "same_committee_member_repeated": "跨案重複任職評委",
+                "same_case_multi_notice": "同案不同公告"
+            };
+            return mappings[type] || type;
+        }
+
+        function showNodeDetails(node, edgesCount) {
+            const defaultEl = document.getElementById('starmap-detail-default');
+            const contentEl = document.getElementById('starmap-detail-content');
+
+            defaultEl.style.display = 'none';
+            contentEl.style.display = 'flex';
+
+            let typeBadgeHtml = '';
+            let contentBodyHtml = '';
+
+            if (node.type === 'case') {
+                let committeeCount = 0;
+                let vendorCount = 0;
+
+                if (globalGraph.edges) {
+                    globalGraph.edges.forEach(e => {
+                        if (e.source === node.id || e.target === node.id) {
+                            if (e.type === 'case_has_committee_member') committeeCount++;
+                            if (e.type === 'case_awarded_to_vendor') vendorCount++;
+                        }
+                    });
+                }
+
+                const anomalyList = node.anomaly_patterns || [];
+                const anomalyChips = anomalyList.map(p => `
+                    <li style="margin-bottom: 0.3rem;"><span class="chip danger" style="font-size: 0.72rem; padding: 0.1rem 0.4rem;">${getRiskTagChinese(p)}</span></li>
+                `).join('') || '<li style="color: var(--text-muted); font-size: 0.8rem;">無異常亮燈模式</li>';
+
+                typeBadgeHtml = '<span class="chip danger" style="background: rgba(0, 240, 255, 0.08); border-color: rgba(0, 240, 255, 0.2); color: var(--neon-blue);">標案公告</span>';
+                contentBodyHtml = `
+                    <div class="flow-row">
+                        <span class="flow-label">標案案號</span>
+                        <span class="flow-val" style="color: var(--neon-blue); font-family: 'Fira Code', monospace;">${node.case_number || '無'}</span>
+                    </div>
+                    <div class="flow-row">
+                        <span class="flow-label">風險評估分數</span>
+                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: ${node.risk_score >= 60 ? 'var(--neon-pink)' : (node.risk_score >= 30 ? 'var(--neon-orange)' : 'var(--neon-green)')}; font-weight: 850; font-size: 1.1rem;">
+                            ${node.risk_score} 分
+                        </span>
+                    </div>
+                    <div class="flow-row">
+                        <span class="flow-label">決標總金額</span>
+                        <span class="flow-val amount">${node.award_amount ? node.award_amount.toLocaleString() + ' 元' : '流標 / 未提供'}</span>
+                    </div>
+                    <div class="flow-row">
+                        <span class="flow-label">得標廠商</span>
+                        <span class="flow-val" style="color: var(--neon-green);">${node.winning_vendor || '流標 / 無'}</span>
+                    </div>
+                    <div class="flow-row">
+                        <span class="flow-label">關聯評委數</span>
+                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: var(--neon-orange);">${committeeCount} 位</span>
+                    </div>
+                    <div class="flow-row">
+                        <span class="flow-label">得標/投標商數</span>
+                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: var(--neon-green);">${vendorCount} 家</span>
+                    </div>
+                    <div style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem;">
+                        <span class="flow-label" style="display: block; margin-bottom: 0.4rem; font-weight: 800; color: var(--neon-pink);">亮燈原因</span>
+                        <ul style="list-style: none; padding-left: 0; margin: 0;">
+                            ${anomalyChips}
+                        </ul>
+                    </div>
+                `;
+            } else if (node.type === 'vendor') {
+                typeBadgeHtml = '<span class="chip danger" style="background: rgba(5, 255, 161, 0.08); border-color: rgba(5, 255, 161, 0.2); color: var(--neon-green);">投標廠商</span>';
+                let dataStatusHtml = '';
+                if (!node.owner && !node.tax_id) {
+                    dataStatusHtml = `<div style="font-size: 0.82rem; color: var(--neon-pink); margin-top: 0.5rem; font-weight: 700;">工商資料：未接入 Resolver</div>`;
+                }
+                contentBodyHtml = `
+                    <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem;">
+                        此節點代表參與政府標案之投標實體廠商。若廠商跨標案重複出現得標，圖譜將自動形成紅色虛線的關聯鏈。
+                    </div>
+                    ${dataStatusHtml}
+                `;
+            } else if (node.type === 'committee_member') {
+                typeBadgeHtml = '<span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border-color: rgba(255, 170, 0, 0.2); color: var(--neon-orange);">評選委員</span>';
+                contentBodyHtml = `
+                    <div class="flow-row">
+                        <span class="flow-label">委員現職/專長</span>
+                        <span class="flow-val" style="font-size: 0.8rem; text-align: right; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${node.profession || '未提供'}">${node.profession || '未提供'}</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-top: 0.5rem;">
+                        此節點代表外部或內部的專家評審委員。若委員跨標案重複任職審查，將觸發橘色虛線代表的高頻重複評委關係。
+                    </div>
+                `;
+            } else if (node.type === 'risk_pattern') {
+                typeBadgeHtml = '<span class="chip danger">風險異常特徵</span>';
+                contentBodyHtml = `
+                    <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem;">
+                        此節點代表該案件觸發的紅旗異常特徵（如單一廠商投標、高預算吻合度、超短等標期等客觀演算法訊號）。
+                    </div>
+                `;
+            } else {
+                typeBadgeHtml = '<span class="chip info">關聯邊界實體</span>';
+                contentBodyHtml = `
+                    <div class="flow-row">
+                        <span class="flow-label">實體類型</span>
+                        <span class="flow-val" style="text-transform: uppercase;">${node.type}</span>
+                    </div>
+                `;
+            }
+
+            contentEl.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 0.75rem;">
+                    <span style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">${node.label}</span>
+                    ${typeBadgeHtml}
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; flex: 1;">
+                    ${contentBodyHtml}
+                </div>
+
+                <div class="flow-row" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+                    <span class="flow-label">本案累計關聯邊數</span>
+                    <span class="flow-val" id="connected_edges_count" style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 800;">${edgesCount} 條邊</span>
+                </div>
+            `;
+        }
+
+        // 3. Render 資金流向戰術地圖
+        function renderTacticalTab(details, signals) {
+            const container = document.getElementById('tactical-list');
+            container.innerHTML = '';
+
+            function getProcurementMethodBadge(methodStr) {
+                if (!methodStr) return { text: '其他', full: '未提供' };
+                const cleanStr = methodStr.trim();
+                let label = '其他';
+                if (cleanStr.includes('限制性')) {
+                    label = '限制性招標';
+                } else if (cleanStr.includes('公開評選') || cleanStr.includes('公開徵求')) {
+                    label = '公開評選';
+                } else if (cleanStr.includes('公開招標')) {
+                    label = '公開招標';
+                } else if (cleanStr.includes('後續擴充')) {
+                    label = '後續擴充';
+                } else if (cleanStr.includes('決標')) {
+                    label = '決標公告';
+                } else if (cleanStr.includes('流標') || cleanStr.includes('廢標')) {
+                    label = '流標公告';
+                } else if (cleanStr.includes('更正')) {
+                    label = '更正公告';
+                }
+                return { text: label, full: cleanStr };
+            }
+
+            // Group announcements by case_number
+            const groups = {};
+            details.forEach((c, idx) => {
+                const caseNum = c.case_number;
+                if (!groups[caseNum]) {
+                    groups[caseNum] = {
+                        case_number: caseNum,
+                        title: c.title,
+                        announcements: []
+                    };
+                }
+                const sig = signals[idx] || {};
+                groups[caseNum].announcements.push({
+                    detail: c,
+                    signal: sig
+                });
+            });
+
+            Object.values(groups).forEach(group => {
+                let finalStatus = "資料不足";
+                let budgetAmount = 0;
+                let awardAmount = 0;
+                let hasAward = false;
+                let hasFlow = false;
+
+                group.announcements.forEach(a => {
+                    const c = a.detail;
+                    if (c.budget_amount) budgetAmount = Math.max(budgetAmount, c.budget_amount);
+                    if (c.award_amount) {
+                        awardAmount = Math.max(awardAmount, c.award_amount);
+                        hasAward = true;
+                    }
+                    if (c.procurement_method && (c.procurement_method.includes("流標") || c.procurement_method.includes("廢標"))) {
+                        hasFlow = true;
+                    }
+                    if (c.notice_type && (c.notice_type.includes("流標") || c.notice_type.includes("廢標"))) {
+                        hasFlow = true;
+                    }
+                });
+
+                if (hasAward) {
+                    finalStatus = "已決標";
+                } else if (hasFlow && group.announcements.length > 1) {
+                    finalStatus = "流標後再公告";
+                } else if (group.announcements.length > 2) {
+                    finalStatus = "多次更正";
+                }
+
+                // Badges
+                const badges = [];
+                if (hasFlow && hasAward) {
+                    badges.push(`<span class="chip danger" style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(255,0,85,0.15); border: 1px solid var(--neon-pink); line-height: 1;">流標後續決標</span>`);
+                }
+                if (group.announcements.length > 1) {
+                    badges.push(`<span class="chip warning" style="font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(255,170,0,0.15); border: 1px solid var(--neon-orange); line-height: 1;">多次公告</span>`);
+                }
+
+                const ratioText = (awardAmount && budgetAmount) ? `${((awardAmount/budgetAmount)*100).toFixed(2)}%` : '無法評估';
+
+                const card = document.createElement('div');
+                card.className = 'flow-card';
+                card.style.display = 'flex';
+                card.style.flexDirection = 'column';
+                card.style.gap = '1rem';
+
+                let childrenHtml = '';
+                group.announcements.forEach(a => {
+                    const c = a.detail;
+                    const sig = a.signal;
+                    const score = sig.risk_score || 0;
+                    const methodInfo = getProcurementMethodBadge(c.procurement_method);
+
+                    childrenHtml += `
+                        <div style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 0.6rem 0.85rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.8rem; margin-top: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.3rem; margin-bottom: 0.3rem;">
+                                <span style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700;">${c.award_date || c.tender_date || '未提供日期'}</span>
+                                <span class="chip ${score >= 60 ? 'danger' : (score >= 30 ? 'warning' : 'info')}" style="font-size: 0.65rem; padding: 0.05rem 0.4rem; line-height: 1;">分: ${score}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">公告類型:</span> <span style="color: #ffffff; font-weight: 600;">${c.notice_type || '招標公告'}</span></div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">預算金額:</span> <span style="font-family: 'Fira Code', monospace; color: var(--neon-green);">${c.budget_amount ? c.budget_amount.toLocaleString() + ' 元' : '未提供'}</span></div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">決標金額:</span> <span style="font-family: 'Fira Code', monospace; color: var(--neon-green);">${c.award_amount ? c.award_amount.toLocaleString() + ' 元' : '未決標'}</span></div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">得標廠商:</span> <span style="color: #ffffff;">${c.winning_vendor || '流標 / 無'}</span></div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;"><span style="color: var(--text-secondary);">招標方式:</span> <span class="chip info" title="${methodInfo.full}" style="font-size: 0.72rem; padding: 0.1rem 0.4rem; cursor: help; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); line-height: 1;">${methodInfo.text}</span></div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div style="border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 0.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="flow-val" style="font-weight: 800; font-size: 1.1rem; color: var(--neon-blue);">${group.case_number}</span>
+                            <span class="chip info" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${finalStatus}</span>
+                        </div>
+                        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                            ${badges.join('')}
+                        </div>
+                    </div>
+                    <div style="font-size: 0.95rem; font-weight: 700; color: #ffffff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${group.title}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; font-style: italic;">
+                        同一案號下的招標、流標、更正與決標公告已合併呈現。
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.4rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.02); padding: 0.75rem; border-radius: 8px;">
+                        <div class="flow-row">
+                            <span class="flow-label">總預算規模</span>
+                            <span class="flow-val amount">${budgetAmount ? budgetAmount.toLocaleString() + ' 元' : '無公開預算'}</span>
+                        </div>
+                        <div class="flow-row">
+                            <span class="flow-label">最終決標總額</span>
+                            <span class="flow-val amount">${awardAmount ? awardAmount.toLocaleString() + ' 元' : '流標 / 未決標'}</span>
+                        </div>
+                        <div class="flow-row">
+                            <span class="flow-label">決算與預算吻合度</span>
+                            <span class="flow-val ratio">${ratioText}</span>
+                        </div>
+                        <div class="flow-row">
+                            <span class="flow-label">歷史公告總筆數</span>
+                            <span class="flow-val" style="font-family: 'Fira Code', monospace; color: var(--neon-blue);">${group.announcements.length} 筆</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 0.25rem;">
+                        <span class="flow-label" style="display: block; margin-bottom: 0.5rem; font-weight: 800; color: var(--text-primary);"><i class="fa-solid fa-clock-rotate-left" style="color: var(--neon-blue); margin-right: 0.3rem;"></i>歷史公告子列：</span>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 250px; overflow-y: auto; padding-right: 0.25rem;">
+                            ${childrenHtml}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 4. Render 評委重複網
+        function renderMembersTab(graph) {
+            const container = document.getElementById('members-list');
+            container.innerHTML = '';
+
+            const edges = graph.edges || [];
+            const nodes = graph.nodes || [];
+
+            const repeating = {};
+            edges.forEach(e => {
+                if (e.type === 'same_committee_member_repeated') {
+                    const name = e.properties.member;
+                    repeating[name] = repeating[name] || new Set();
+
+                    const caseA = nodes.find(n => n.id === e.source);
+                    const caseB = nodes.find(n => n.id === e.target);
+                    if (caseA) repeating[name].add(`${caseA.case_number} ${caseA.case_name}`);
+                    if (caseB) repeating[name].add(`${caseB.case_number} ${caseB.case_name}`);
+                }
+            });
+
+            // Build a complete profile for each committee member by scanning globalDetails
+            const memberProfiles = {};
+            globalDetails.forEach(c => {
+                const comm = c.committee_members || [];
+                comm.forEach(m => {
+                    if (!m.name && !m.姓名) return;
+                    const name = m.name || m.姓名;
+                    if (!memberProfiles[name]) {
+                        memberProfiles[name] = {
+                            name: name,
+                            attendance: { attended: 0, absent: 0, undisclosed: 0 },
+                            cases: [],
+                            fieldsMap: {}
+                        };
+                    }
+
+                    // Dynamically parse complex fields from '與採購案相關之學經歷' to enrich the object
+                    if (m['與採購案相關之學經歷']) {
+                        const exp = m['與採購案相關之學經歷'];
+                        const orgMatch = exp.match(/服務機關\(構\)名稱：([^職稱\s]*)/);
+                        const titleMatch = exp.match(/職稱：([^所任\s]*)/);
+                        if (orgMatch && orgMatch[1]) m.organization = orgMatch[1].trim();
+                        if (titleMatch && titleMatch[1]) {
+                            m.position = titleMatch[1].trim();
+                            m.job_title = titleMatch[1].trim();
+                            m.職稱 = titleMatch[1].trim();
+                        }
+                    }
+
+                    // Collect all properties
+                    const targetKeys = ['role', 'title', 'job_title', 'position', 'organization', 'profession', 'specialty', '現職', '職稱', '服務機關', '備註', '職業', '與採購案相關之學經歷'];
+                    targetKeys.forEach(k => {
+                        let val = m[k];
+                        if (val && typeof val === 'string' && val.trim() !== '') {
+                            val = val.trim();
+                            if (!memberProfiles[name].fieldsMap[k]) {
+                                memberProfiles[name].fieldsMap[k] = new Set();
+                            }
+                            memberProfiles[name].fieldsMap[k].add(val);
+                        }
+                    });
+
+                    // Attendance tracking
+                    const attendedVal = m.attended || m.出席會議;
+                    if (attendedVal === '是' || m.present === true) {
+                        memberProfiles[name].attendance.attended++;
+                    } else if (attendedVal === '否' || m.present === false) {
+                        memberProfiles[name].attendance.absent++;
+                    } else {
+                        memberProfiles[name].attendance.undisclosed++;
+                    }
+
+                    memberProfiles[name].cases.push({
+                        case_number: c.case_number,
+                        title: c.title,
+                        attended: attendedVal,
+                        role: m.role || m.項次 || '出席狀態未公開'
+                    });
+                });
+            });
+
+            const keys = Object.keys(repeating);
+            if (keys.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">本小樣本批次中無重合評審委員之公告關係</div>';
+                return;
+            }
+
+            keys.forEach(name => {
+                const card = document.createElement('div');
+                card.className = 'network-card';
+
+                const profile = memberProfiles[name] || {
+                    name: name,
+                    attendance: { attended: 0, absent: 0, undisclosed: 0 },
+                    cases: [],
+                    fieldsMap: {}
+                };
+
+                // Classify Identity (身份分類) & Confidence (判定信心)
+                let category = "身份未公開";
+                let confidence = "低";
+                let confidenceColor = "var(--text-muted)";
+                let ruleMatched = "規則命中：無足夠分析欄位";
+
+                const valuesList = [];
+                Object.entries(profile.fieldsMap).forEach(([k, set]) => {
+                    set.forEach(v => {
+                        valuesList.push(v);
+                    });
+                });
+                const allValuesText = valuesList.join(' | ');
+
+                const hasGovAgency = /屏東縣政府|勞動處|勞動暨青年發展處|勞工處|勞青處|機關代表|公務機關|屏東縣政府勞動暨青年發展處/.test(allValuesText);
+                const hasChiefTitle = /處長|局長|首長|主管/.test(allValuesText);
+                const hasDeputyChiefTitle = /副處長|副局長|副首長/.test(allValuesText);
+                const hasOfficerTitle = /科長|承辦|公務員/.test(allValuesText);
+                const hasExpertTitle = /專家|學者|技師|教授|建築師|律師/.test(allValuesText);
+
+                if (name === "李雨蓁") {
+                    category = "主官 / 官派";
+                    confidence = "高";
+                    confidenceColor = "var(--neon-green)";
+                    ruleMatched = "規則命中：姓名白名單";
+                } else if ((hasChiefTitle || hasDeputyChiefTitle) && !hasGovAgency) {
+                    category = "可能官派";
+                    confidence = "中";
+                    confidenceColor = "var(--neon-orange)";
+                    ruleMatched = "規則命中：職稱含處長/副處長，但缺機關名稱";
+                } else if (hasGovAgency && (hasChiefTitle || hasDeputyChiefTitle)) {
+                    category = "主官 / 官派";
+                    confidence = "高";
+                    confidenceColor = "var(--neon-green)";
+                    ruleMatched = "規則命中：機關名稱與主官職稱雙重關聯";
+                } else if (hasGovAgency && hasOfficerTitle) {
+                    category = "官派代表";
+                    confidence = "高";
+                    confidenceColor = "var(--neon-green)";
+                    ruleMatched = "規則命中：機關與官派代表職稱關聯";
+                } else if (hasExpertTitle) {
+                    category = "外部專家";
+                    confidence = "高";
+                    confidenceColor = "var(--neon-green)";
+                    ruleMatched = "規則命中：外部專業特徵";
+                } else {
+                    category = "身份未公開";
+                    confidence = "低";
+                    confidenceColor = "var(--text-muted)";
+                    ruleMatched = "規則命中：無足夠分析欄位";
+                }
+
+                // Determine Current Position ("現職")
+                let currentPosition = "身份未公開";
+                if (name === "李雨蓁") {
+                    currentPosition = "屏東縣政府勞動暨青年發展處處長";
+                } else {
+                    const posCandidates = [];
+                    const checkKeys = ['position', 'job_title', '現職', '職稱', 'profession', '職業'];
+                    checkKeys.forEach(k => {
+                        if (profile.fieldsMap[k]) {
+                            profile.fieldsMap[k].forEach(v => posCandidates.push(v));
+                        }
+                    });
+                    if (posCandidates.length > 0) {
+                        currentPosition = Array.from(new Set(posCandidates)).join(' / ');
+                    }
+                }
+
+                // Determine Hit Source Fields
+                const hitSourceFields = [];
+                const checkSourceKeys = ['job_title', 'position', 'organization'];
+                checkSourceKeys.forEach(k => {
+                    if (profile.fieldsMap[k] && profile.fieldsMap[k].size > 0) {
+                        hitSourceFields.push(k);
+                    }
+                });
+                if (hitSourceFields.length === 0) {
+                    const checkOtherKeys = ['profession', '職業', '職稱', '現職', '與採購案相關之學經歷'];
+                    checkOtherKeys.forEach(k => {
+                        if (profile.fieldsMap[k] && profile.fieldsMap[k].size > 0) {
+                            hitSourceFields.push(k);
+                        }
+                    });
+                }
+                const matchedKeysString = hitSourceFields.join(' / ') || '無';
+
+                // Render Cases with custom badges
+                let casesHtml = '';
+                const uniqueCases = {};
+                profile.cases.forEach(item => {
+                    uniqueCases[`${item.case_number}-${item.title}`] = item;
+                });
+
+                Object.values(uniqueCases).forEach(item => {
+                    let bgStr = 'rgba(0, 240, 255, 0.08)';
+                    let colorStr = 'var(--neon-blue)';
+                    let statusLabel = '出席狀態未公開';
+
+                    const attendedVal = item.attended;
+                    if (attendedVal === '是') {
+                        bgStr = 'rgba(5, 255, 161, 0.12)';
+                        colorStr = 'var(--neon-green)';
+                        statusLabel = '出席';
+                    } else if (attendedVal === '否') {
+                        bgStr = 'rgba(100, 116, 139, 0.12)';
+                        colorStr = 'var(--text-muted)';
+                        statusLabel = '缺席';
+                    }
+
+                    casesHtml += `
+                        <li style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45; background: ${bgStr}; padding: 0.45rem 0.75rem; border-radius: 6px; border-left: 2px solid ${colorStr}; display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: #ffffff;">${item.case_number}</span>
+                                <span style="font-size: 0.65rem; color: ${colorStr}; font-weight: 700; text-transform: uppercase;">${statusLabel}</span>
+                            </div>
+                            <div style="font-size: 0.75rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${item.title}</div>
+                        </li>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="network-node-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.3rem; width: 100%;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="network-node-name"><i class="fa-solid fa-user-tie" style="color: var(--neon-orange); margin-right: 0.5rem;"></i>${name}</span>
+                                <span class="network-node-count" style="color: var(--neon-orange); background: rgba(255,170,0,0.06); border-color: rgba(255,170,0,0.2); font-size: 0.7rem; line-height: 1.2; margin: 0;">
+                                    ${category}
+                                </span>
+                            </div>
+                            <div style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4;">
+                                <div><span style="color: var(--text-muted);">身份：</span><span style="color: var(--neon-orange); font-weight: 700;">${category}</span></div>
+                                <div><span style="color: var(--text-muted);">現職：</span><span style="color: #ffffff; font-weight: 600;">${currentPosition}</span></div>
+                                <div><span style="color: var(--text-muted);">判定信心：</span><span style="color: ${confidenceColor}; font-weight: 700;">${confidence}</span></div>
+                                <div><span style="color: var(--text-muted);">規則命中：</span><span style="color: #ffffff; font-weight: 600;">${ruleMatched}</span></div>
+                                <div style="font-size: 0.65rem; margin-top: 0.1rem;"><span style="color: var(--text-muted); font-family: 'Fira Code', monospace;">資料來源欄位：</span><span style="color: var(--neon-blue); font-family: 'Fira Code', monospace;">${matchedKeysString}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; margin: 0.4rem 0; padding: 0.4rem; background: rgba(0,0,0,0.15); border-radius: 6px; border: 1px solid rgba(255,255,255,0.02);">
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">出席</div>
+                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-green);">${profile.attendance.attended} 次</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">缺席</div>
+                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-pink);">${profile.attendance.absent} 次</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">未公開</div>
+                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-blue);">${profile.attendance.undisclosed} 次</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 0.4rem;">與會標案軌跡：</div>
+                    <ul class="network-sub-list" style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; padding-right: 0.25rem;">
+                        ${casesHtml}
+                    </ul>
+
+                    <div style="font-size: 0.68rem; color: var(--text-muted); text-align: right; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 0.4rem; margin-top: 0.5rem; font-style: italic;">
+                        評分或與會之特定立場若未在採購脈絡中提供，系統不推定其立場。
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 5. Render 廠商重複網
+        function renderVendorsTab(graph, details) {
+            const container = document.getElementById('vendors-list');
+            container.innerHTML = '';
+
+            // A. Prepend Mother-Child Card for Lee Zong-Ni
+            const zongNiCard = document.createElement('div');
+            zongNiCard.className = 'network-card';
+            zongNiCard.style.border = '1px dashed rgba(255, 0, 85, 0.4)';
+            zongNiCard.style.background = 'rgba(255, 0, 85, 0.03)';
+            zongNiCard.style.boxShadow = '0 8px 32px 0 rgba(255, 0, 85, 0.05)';
+
+            zongNiCard.innerHTML = `
+                <div class="network-node-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <span class="network-node-name" style="color: var(--neon-pink); font-size: 0.95rem; font-weight: 700; white-space: nowrap;"><i class="fa-solid fa-user-gear" style="margin-right: 0.4rem;"></i>人工審查集合｜李宗霓</span>
+                        <span style="font-size: 0.72rem; color: var(--text-secondary);">關聯類型：同負責人</span>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">狀態：人工審查 / 待 Company Resolver 驗證</span>
+                        <span style="display: inline-block; margin-top: 0.25rem; font-size: 0.62rem; color: var(--text-muted); border: 1px dashed rgba(255,255,255,0.15); padding: 0.05rem 0.35rem; border-radius: 4px; background: rgba(255,255,255,0.02); width: fit-content;">
+                            不列入 verified graph
+                        </span>
+                    </div>
+                    <span class="chip danger" style="font-size: 0.6rem; padding: 0.05rem 0.25rem; background: rgba(255,0,85,0.08); border-color: rgba(255,0,85,0.2); color: var(--neon-pink); line-height: 1; white-space: nowrap; margin-top: 0.15rem;">
+                        人工審查
+                    </span>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 0.45rem; margin-bottom: 0.35rem;">關聯實體子卡：</div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 0.55rem 0.7rem; display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.75rem; position: relative;">
+                        <div style="font-weight: 700; color: #ffffff; display: flex; align-items: center; justify-content: space-between; padding-right: 4.5rem;">
+                            <span style="font-size: 0.78rem; word-break: break-all; white-space: normal;">1. 睿霓國際顧問有限公司</span>
+                            <span class="chip danger" style="position: absolute; top: 0.55rem; right: 0.7rem; font-family: 'Fira Code', monospace; color: var(--neon-pink); background: rgba(255,0,85,0.06); border-color: rgba(255,0,85,0.25); font-size: 0.65rem; padding: 0.05rem 0.35rem; line-height: 1.2;">E1150212-1</span>
+                        </div>
+                        <div style="color: var(--text-secondary); margin-top: 0.15rem;"><span style="color: var(--text-muted);">關聯標案：</span>E1150212-1</div>
+                        <div style="color: var(--text-secondary); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><span style="color: var(--text-muted);">標案名稱：</span>職人町經營管理勞務委託專業服務案</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 0.55rem 0.7rem; display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.75rem; position: relative;">
+                        <div style="font-weight: 700; color: #ffffff; display: flex; align-items: center; justify-content: space-between; padding-right: 4.5rem;">
+                            <span style="font-size: 0.78rem; word-break: break-all; white-space: normal;">2. 宗霓妝彩影像藝術社</span>
+                            <span class="chip danger" style="position: absolute; top: 0.55rem; right: 0.7rem; font-family: 'Fira Code', monospace; color: var(--neon-pink); background: rgba(255,0,85,0.06); border-color: rgba(255,0,85,0.25); font-size: 0.65rem; padding: 0.05rem 0.35rem; line-height: 1.2;">E1130206-1</span>
+                        </div>
+                        <div style="color: var(--text-secondary); margin-top: 0.15rem;"><span style="color: var(--text-muted);">關聯標案：</span>E1130206-1</div>
+                        <div style="color: var(--text-secondary); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><span style="color: var(--text-muted);">標案名稱：</span>113年度屏東縣職人町主題行銷活動勞務委託案</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(zongNiCard);
+
+            // B. Render won vendors
+            const vendorMap = {};
+            details.forEach(c => {
+                const vendor = c.winning_vendor;
+                if (vendor) {
+                    vendorMap[vendor] = vendorMap[vendor] || [];
+                    vendorMap[vendor].push(`${c.case_number} ${c.title}`);
+                }
+            });
+
+            const keys = Object.keys(vendorMap);
+            if (keys.length === 0) {
+                return;
+            }
+
+            keys.forEach(vendor => {
+                const list = vendorMap[vendor];
+                const card = document.createElement('div');
+                card.className = 'network-card';
+
+                const listHtml = list.map(item => `
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--neon-green); margin-right: 0.4rem;"></i>${item}</li>
+                `).join('');
+
+                const isRepeat = list.length >= 2;
+
+                let manualBadgeHtml = '';
+                if (vendor.includes('睿霓') || vendor.includes('宗霓')) {
+                    manualBadgeHtml = `<div style="margin-top: 0.4rem; background: rgba(255, 0, 85, 0.05); border: 1px dashed rgba(255, 0, 85, 0.25); border-radius: 4px; padding: 0.35rem 0.5rem; font-size: 0.72rem; color: var(--neon-pink); font-weight: 700; text-align: center;">人工審查註記：李宗霓關聯</div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="network-node-header">
+                        <span class="network-node-name"><i class="fa-solid fa-building" style="color: var(--neon-green); margin-right: 0.5rem;"></i>${vendor}</span>
+                        <span class="network-node-count" style="color: var(--neon-green); background: rgba(5,255,161,0.06); border-color: rgba(5,255,161,0.2);">
+                            得標 ${list.length} 次
+                        </span>
+                    </div>
+                    ${manualBadgeHtml}
+                    <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin-top: 0.45rem;">
+                        ${isRepeat ? '⚠️ 重複得標關聯細節：' : '單次得標標案記錄：'}
+                    </div>
+                    <ul class="network-sub-list">
+                        ${listHtml}
+                    </ul>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 6. Render 案件時間線
+        function renderTimelineTab(details, signals) {
+            const container = document.getElementById('timeline-list');
+            container.innerHTML = '';
+
+            const timelineData = details.map((c, idx) => {
+                const sig = signals[idx] || {};
+                return {
+                    dateStr: c.award_date || c.tender_date || '未知日期',
+                    title: c.title,
+                    case_number: c.case_number,
+                    vendor: c.winning_vendor || '流標 / 無決標',
+                    score: sig.risk_score || 0,
+                    amount: c.award_amount || c.budget_amount
+                };
+            }).filter(item => item.dateStr !== '未知日期');
+
+            timelineData.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+
+            if (timelineData.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 2rem;">無日期資訊可供排序繪製時間線</div>';
+                return;
+            }
+
+            timelineData.forEach(item => {
+                const block = document.createElement('div');
+                block.className = 'timeline-item';
+
+                block.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content-card">
+                        <div class="timeline-main-info">
+                            <span class="timeline-date-badge"><i class="fa-regular fa-clock" style="margin-right: 0.4rem;"></i>${item.dateStr}</span>
+                            <h4 class="timeline-title">${item.case_number} ${item.title}</h4>
+                            <div class="timeline-meta-row">
+                                <span>得標商: <strong style="color: var(--neon-green);">${item.vendor}</strong></span>
+                                <span>金額: <strong>${item.amount ? item.amount.toLocaleString() + ' 元' : '無'}</strong></span>
+                            </div>
+                        </div>
+                        <div class="timeline-score-badge">
+                            <span class="score" style="color: ${item.score >= 60 ? 'var(--neon-pink)' : (item.score >= 30 ? 'var(--neon-orange)' : 'var(--neon-green)')}">
+                                ${item.score}
+                            </span>
+                            <span class="label">分值</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(block);
+            });
+        }
+
+        // Run data load on startup
+        window.addEventListener('DOMContentLoaded', loadAllData);
+    </script>
+</body>
+</html>

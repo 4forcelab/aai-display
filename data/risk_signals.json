@@ -1,0 +1,767 @@
+{
+  "total_cases": 46,
+  "high_risk_count": 3,
+  "medium_risk_count": 14,
+  "low_risk_count": 29,
+  "uses_mock_data": false,
+  "legal_claims_made": false,
+  "signals": [
+    {
+      "signal_id": "risk-sig-E1150212-1-0",
+      "case_number": "E1150212-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "risk_score": 45,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "High Budget Fit Ratio"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 100.00% (決標: 2,000,000 元 / 預算: 2,000,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1150212-1-1",
+      "case_number": "E1150212-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 12 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1150114-1-2",
+      "case_number": "E1150114-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1150114-1-3",
+      "case_number": "E1150114-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Short Bid Preparation",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 7 天",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "等標期偏短（小於 10 天），時間較為緊迫，不利於新進廠商公平競爭。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1150114-1-4",
+      "case_number": "E1150114-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 11 天",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-164-E1140401-2-5",
+      "case_number": "164-E1140401-2",
+      "case_name": "職人町耐震補強工程",
+      "risk_score": 40,
+      "anomaly_patterns": [
+        "High Budget Fit Ratio",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 100.00% (決標: 13,190,000 元 / 預算: 13,190,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-164-E1140401-2-6",
+      "case_number": "164-E1140401-2",
+      "case_name": "職人町耐震補強工程",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Short Bid Preparation",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 7 天",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "等標期偏短（小於 10 天），時間較為緊迫，不利於新進廠商公平競爭。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-164-E1140401-2-7",
+      "case_number": "164-E1140401-2",
+      "case_name": "職人町耐震補強工程",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-164-E1140401-2-8",
+      "case_number": "164-E1140401-2",
+      "case_name": "職人町耐震補強工程",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 12 天",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1131220-1-9",
+      "case_number": "E1131220-1",
+      "case_name": "114年度屏東數位青創中心及職人町環境維護勞務委託案",
+      "risk_score": 65,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "High Budget Fit Ratio",
+        "Repetitive Winning Vendor"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 100.00% (決標: 980,190 元 / 預算: 980,190 元)",
+        "得標廠商於同主題案件中得標次數: 5 次",
+        "此案號累計公告次數: 1 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。",
+        "得標廠商「俊承工程企業行」在同主題標案中頻繁得標（達 3 次以上），有潛在的特定廠商偏好風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1130814-1-10",
+      "case_number": "E1130814-1",
+      "case_name": "職人町耐震補強工程委託設計監造技術服務案",
+      "risk_score": 20,
+      "anomaly_patterns": [
+        "Single Bidder Tender"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 98.45% (決標: 728,505 元 / 預算: 740,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1130814-1-11",
+      "case_number": "E1130814-1",
+      "case_name": "職人町耐震補強工程委託設計監造技術服務案",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation"
+      ],
+      "evidence_shell": [
+        "等標期為 4 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1130206-1-12",
+      "case_number": "E1130206-1",
+      "case_name": "113年度屏東縣職人町主題行銷活動勞務委託案",
+      "risk_score": 25,
+      "anomaly_patterns": [
+        "High Budget Fit Ratio"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 100.00% (決標: 600,000 元 / 預算: 600,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1130206-1-13",
+      "case_number": "E1130206-1",
+      "case_name": "113年度屏東縣職人町主題行銷活動勞務委託案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 12 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1121214-4-14",
+      "case_number": "E1121214-4",
+      "case_name": "113年度屏東數位青創中心及職人町環境維護勞務委託案",
+      "risk_score": 65,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "High Budget Fit Ratio",
+        "Repetitive Winning Vendor"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 100.00% (決標: 1,220,499 元 / 預算: 1,220,503 元)",
+        "得標廠商於同主題案件中得標次數: 5 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。",
+        "得標廠商「俊承工程企業行」在同主題標案中頻繁得標（達 3 次以上），有潛在的特定廠商偏好風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1121214-4-15",
+      "case_number": "E1121214-4",
+      "case_name": "113年度屏東數位青創中心及職人町環境維護勞務委託案",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Short Bid Preparation"
+      ],
+      "evidence_shell": [
+        "等標期為 7 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "等標期偏短（小於 10 天），時間較為緊迫，不利於新進廠商公平競爭。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1111201-1-16",
+      "case_number": "E1111201-1",
+      "case_name": "112年度屏東數位青創中心及職人町環境維護委託專業服務",
+      "risk_score": 25,
+      "anomaly_patterns": [
+        "Repetitive Winning Vendor",
+        "Repetitive Committee Members"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 98.97% (決標: 1,330,000 元 / 預算: 1,343,832 元)",
+        "得標廠商於同主題案件中得標次數: 5 次",
+        "高重複率之評選委員: 林雅文",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "得標廠商「俊承工程企業行」在同主題標案中頻繁得標（達 3 次以上），有潛在的特定廠商偏好風險。",
+        "多位評選委員在同主題標案中重複擔任評審（重複達 3 次以上），可能降低評選之多元性。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1111201-1-17",
+      "case_number": "E1111201-1",
+      "case_name": "112年度屏東數位青創中心及職人町環境維護委託專業服務",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 10 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1101209-3-18",
+      "case_number": "E1101209-3",
+      "case_name": "111年度屏東縣青創聚落及職人町環境維護委託專業服務",
+      "risk_score": 65,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "High Budget Fit Ratio",
+        "Repetitive Winning Vendor"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 99.07% (決標: 1,230,000 元 / 預算: 1,241,520 元)",
+        "得標廠商於同主題案件中得標次數: 5 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。",
+        "得標廠商「俊承工程企業行」在同主題標案中頻繁得標（達 3 次以上），有潛在的特定廠商偏好風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1101209-3-19",
+      "case_number": "E1101209-3",
+      "case_name": "111年度屏東縣青創聚落及職人町環境維護委託專業服務",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 10 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1100118-2-20",
+      "case_number": "E1100118-2",
+      "case_name": "110年屏東縣職人町行銷規劃及執行勞務委託案",
+      "risk_score": 25,
+      "anomaly_patterns": [
+        "High Budget Fit Ratio"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 100.00% (決標: 500,000 元 / 預算: 500,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-E1100118-2-21",
+      "case_number": "E1100118-2",
+      "case_name": "110年屏東縣職人町行銷規劃及執行勞務委託案",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation"
+      ],
+      "evidence_shell": [
+        "等標期為 6 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-164-1090211-1-22",
+      "case_number": "164-1090211-1",
+      "case_name": "108年屏東縣職人町防水工程",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "決標/預算比例為 77.47% (決標: 1,050,000 元 / 預算: 1,355,337 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-164-1090211-1-23",
+      "case_number": "164-1090211-1",
+      "case_name": "108年屏東縣職人町防水工程",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 12 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1080912-1-24",
+      "case_number": "E1080912-1",
+      "case_name": "屏東縣政府職人町鄰近國產署側牆面彩繪計畫",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "決標/預算比例為 98.62% (決標: 628,000 元 / 預算: 636,773 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-E1080912-1-25",
+      "case_number": "E1080912-1",
+      "case_name": "屏東縣政府職人町鄰近國產署側牆面彩繪計畫",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation"
+      ],
+      "evidence_shell": [
+        "等標期為 6 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-C1080118-1-26",
+      "case_number": "C1080118-1",
+      "case_name": "職人町夜間燈飾設計與擺設勞務委託案",
+      "risk_score": 35,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 97.14% (決標: 340,000 元 / 預算: 350,000 元)",
+        "得標廠商於同主題案件中得標次數: 2 次",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-C1080118-1-27",
+      "case_number": "C1080118-1",
+      "case_name": "職人町夜間燈飾設計與擺設勞務委託案",
+      "risk_score": 35,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 97.14% (決標: 340,000 元 / 預算: 350,000 元)",
+        "得標廠商於同主題案件中得標次數: 2 次",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-C1080118-1-28",
+      "case_number": "C1080118-1",
+      "case_name": "職人町夜間燈飾設計與擺設勞務委託案",
+      "risk_score": 45,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 4 天",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-A164-1071221-1-29",
+      "case_number": "A164-1071221-1",
+      "case_name": "「職人町-屏東縣青年創業聚落」耐震能力詳細評估委託技術服務",
+      "risk_score": 20,
+      "anomaly_patterns": [
+        "Single Bidder Tender"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 97.70% (決標: 905,000 元 / 預算: 926,280 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D107-1113-164-1-30",
+      "case_number": "D107-1113-164-1",
+      "case_name": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Repetitive Winning Vendor",
+        "Repetitive Committee Members"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 98.12% (決標: 1,570,000 元 / 預算: 1,600,000 元)",
+        "得標廠商於同主題案件中得標次數: 5 次",
+        "高重複率之評選委員: 林雅文, 林德輝",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "得標廠商「俊承工程企業行」在同主題標案中頻繁得標（達 3 次以上），有潛在的特定廠商偏好風險。",
+        "多位評選委員在同主題標案中重複擔任評審（重複達 3 次以上），可能降低評選之多元性。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-A164-1071221-1-31",
+      "case_number": "A164-1071221-1",
+      "case_name": "「職人町-屏東縣青年創業聚落」耐震能力詳細評估委託技術服務",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation"
+      ],
+      "evidence_shell": [
+        "等標期為 4 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D107-1113-164-1-32",
+      "case_number": "D107-1113-164-1",
+      "case_name": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 10 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-D107-0517-173-1-33",
+      "case_number": "D107-0517-173-1",
+      "case_name": "屏東職人町牆面彩繪設計規劃及執行勞務採購案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "決標/預算比例為 95.83% (決標: 1,150,000 元 / 預算: 1,200,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-D107-0517-173-1-34",
+      "case_number": "D107-0517-173-1",
+      "case_name": "屏東職人町牆面彩繪設計規劃及執行勞務採購案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 11 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-D107-0206-164-1-35",
+      "case_number": "D107-0206-164-1",
+      "case_name": "屏東縣107年度青創聚落及職人町營運勞務委託案",
+      "risk_score": 30,
+      "anomaly_patterns": [
+        "High Budget Fit Ratio",
+        "Repetitive Committee Members"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 99.41% (決標: 2,485,350 元 / 預算: 2,500,000 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "高重複率之評選委員: 林德輝",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。",
+        "多位評選委員在同主題標案中重複擔任評審（重複達 3 次以上），可能降低評選之多元性。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-163-1070323-36",
+      "case_number": "163-1070323",
+      "case_name": "職人町-屏東縣青年創業聚落環境改善工程",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 86.72% (決標: 11,780,000 元 / 預算: 13,583,847 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-163-1070323-37",
+      "case_number": "163-1070323",
+      "case_name": "職人町-屏東縣青年創業聚落環境改善工程",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-163-1070323-38",
+      "case_number": "163-1070323",
+      "case_name": "職人町-屏東縣青年創業聚落環境改善工程",
+      "risk_score": 45,
+      "anomaly_patterns": [
+        "Extremely Short Bid Preparation",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 5 天",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-163-1070323-39",
+      "case_number": "163-1070323",
+      "case_name": "職人町-屏東縣青年創業聚落環境改善工程",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 14 天",
+        "此案號累計公告次數: 4 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D107-0206-164-1-40",
+      "case_number": "D107-0206-164-1",
+      "case_name": "屏東縣107年度青創聚落及職人町營運勞務委託案",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 13 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    },
+    {
+      "signal_id": "risk-sig-D106-0927-164-1-41",
+      "case_number": "D106-0927-164-1",
+      "case_name": "「職人町-屏東縣青年創業聚落環境改善工程」委託規劃設計監造案",
+      "risk_score": 25,
+      "anomaly_patterns": [
+        "Repetitive Committee Members",
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "決標/預算比例為 98.37% (決標: 1,017,472 元 / 預算: 1,034,352 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "高重複率之評選委員: 林德輝, 林雅文",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "多位評選委員在同主題標案中重複擔任評審（重複達 3 次以上），可能降低評選之多元性。",
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D106-0927-164-1-42",
+      "case_number": "D106-0927-164-1",
+      "case_name": "「職人町-屏東縣青年創業聚落環境改善工程」委託規劃設計監造案",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 12 天",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D106-0927-164-1-43",
+      "case_number": "D106-0927-164-1",
+      "case_name": "「職人町-屏東縣青年創業聚落環境改善工程」委託規劃設計監造案",
+      "risk_score": 15,
+      "anomaly_patterns": [
+        "Multiple Notice Amendments"
+      ],
+      "evidence_shell": [
+        "等標期為 14 天",
+        "此案號累計公告次數: 3 次"
+      ],
+      "signal_explanation": [
+        "同一案號累計公告達 3 次以上（含招標、流標、決標等），顯示招標過程較為曲折或流標頻繁。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D106-0704-164-1-44",
+      "case_number": "D106-0704-164-1",
+      "case_name": "屏東縣106年職人町改造王暨職人百工創意設計大賽計畫",
+      "risk_score": 25,
+      "anomaly_patterns": [
+        "Single Bidder Tender",
+        "Repetitive Committee Members"
+      ],
+      "evidence_shell": [
+        "投標廠商僅有 1 家",
+        "決標/預算比例為 97.34% (決標: 1,300,000 元 / 預算: 1,335,564 元)",
+        "得標廠商於同主題案件中得標次數: 1 次",
+        "高重複率之評選委員: 林德輝",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": [
+        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
+        "多位評選委員在同主題標案中重複擔任評審（重複達 3 次以上），可能降低評選之多元性。"
+      ]
+    },
+    {
+      "signal_id": "risk-sig-D106-0704-164-1-45",
+      "case_number": "D106-0704-164-1",
+      "case_name": "屏東縣106年職人町改造王暨職人百工創意設計大賽計畫",
+      "risk_score": 0,
+      "anomaly_patterns": [],
+      "evidence_shell": [
+        "等標期為 10 天",
+        "此案號累計公告次數: 2 次"
+      ],
+      "signal_explanation": []
+    }
+  ]
+}

@@ -1,0 +1,3131 @@
+{
+  "project_name": "屏東公共政策監督雷達",
+  "last_updated": "2026-05-23 14:03:20",
+  "statistics": {
+    "safe_cases_count": 15,
+    "citizen_signals_count": 3,
+    "average_citizen_satisfaction": 1.3,
+    "deduplicated_cases_count": 15
+  },
+  "deduplication_summary": {
+    "original_cases_count": 21,
+    "final_cases_count": 15,
+    "duplicates_removed_count": 6
+  },
+  "duplicates_removed": [
+    {
+      "removed_case_id": "CASE-WASH-20260523-013",
+      "kept_case_id": "CASE-WASH-20260523-015",
+      "title": "屏東表揚112位模範勞工與移工 周春米致敬基層力量",
+      "reason": "同等優先級之重複案件，保留較新/預設版本",
+      "removed_last_updated": "2026-05-23",
+      "kept_last_updated": "2026-05-23"
+    },
+    {
+      "removed_case_id": "CASE-WASH-20260522-015",
+      "kept_case_id": "CASE-WASH-20260523-015",
+      "title": "屏東表揚112位模範勞工與移工 周春米致敬基層力量",
+      "reason": "無採購診斷資料 (procurement_diagnostics)",
+      "removed_last_updated": "2026-05-22",
+      "kept_last_updated": "2026-05-23"
+    },
+    {
+      "removed_case_id": "CASE-WASH-20260522-012",
+      "kept_case_id": "CASE-WASH-20260523-010",
+      "title": "屏東縣後備旅勤務召集訓練 厚植動員戰力 | 青年日報",
+      "reason": "無採購診斷資料 (procurement_diagnostics)",
+      "removed_last_updated": "2026-05-22",
+      "kept_last_updated": "2026-05-23"
+    },
+    {
+      "removed_case_id": "CASE-WASH-20260522-010",
+      "kept_case_id": "CASE-WASH-20260523-008",
+      "title": "屏東縣社會優秀青年遴選出爐 16位在地傑出青年獲選",
+      "reason": "無採購診斷資料 (procurement_diagnostics)",
+      "removed_last_updated": "2026-05-22",
+      "kept_last_updated": "2026-05-23"
+    },
+    {
+      "removed_case_id": "CASE-WASH-20260522-013",
+      "kept_case_id": "CASE-WASH-20260523-009",
+      "title": "屏東縣青年志工創意服務方案競賽 最高獎金三萬元",
+      "reason": "無採購診斷資料 (procurement_diagnostics)",
+      "removed_last_updated": "2026-05-22",
+      "kept_last_updated": "2026-05-23"
+    },
+    {
+      "removed_case_id": "CASE-WASH-20260522-001",
+      "kept_case_id": "CASE-WASH-20260523-001",
+      "title": "屏東縣政府AI推動策略委託專業規劃案",
+      "reason": "無採購診斷資料 (procurement_diagnostics)",
+      "removed_last_updated": "2026-05-22",
+      "kept_last_updated": "2026-05-23"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "CASE-WASH-20260522-014",
+      "title": "屏東表揚模範勞工社會楷模組蔡武雄助弱勢修屋| 地方",
+      "topic": "勞工",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-22",
+      "source": "合法新聞來源 (中央社 CNA)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiX0FVX3lxTFB2dWdWcnRQemZPLWRiTEZUd0VyUVhIY1pVNlR1eTZFYnBPSGhjdXpIS1IxRDllRGlOX0NiS0c2ZFI0UnBBZjdLSVY5NzhXc0FHVzZBd1VBbFF4MjZXdW9R?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 40,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "屏東表揚模範勞工社會楷模組蔡武雄助弱勢修屋| 地方&nbsp;&nbsp;中央社 CNA"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "對於媒體報導的疑慮，相關單位是否有具體澄清與說明？"
+      ],
+      "council_question": [
+        "針對媒體報導指出的政策問題，縣府是否有具體改善措施？"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東表揚模範勞工社會楷模組蔡武雄助弱勢修屋| 地方&nbsp;&nbsp;中央社 CNA",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 64,
+        "source_integrity_score": 60,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:17",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFB2dWdWcnRQemZPLWRiTEZUd0VyUVhIY1pVNlR1eTZFYnBPSGhjdXpIS1IxRDllRGlOX0NiS0c2ZFI0UnBBZjdLSVY5NzhXc0FHVzZBd1VBbFF4MjZXdW9R?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 40,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：勞工"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：勞工"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260523-002",
+      "title": "115年度屏東縣青年創生空間活化與品牌推廣勞務採購案",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "date_range": "2026-05-20",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/A1150518-2"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 60,
+      "issue_score": 60,
+      "status": "draft",
+      "tags": [
+        "山海文創股份有限公司"
+      ],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "招標單位：屏東縣政府勞動暨青年發展處，預算：4800000元，招標方式：限制性招標(經公開評選或公開徵求)，公告日期：2026-05-20"
+      ],
+      "inferences": [
+        "評估投標結構：限制性招標(經公開評選或公開徵求) 預算規模 4800000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單",
+        "請公開成果驗收指標與驗收文件內容"
+      ],
+      "public_question": [
+        "這項採購案從公告到截止只有 7 天，這麼短的時間，一般沒有內線消息的廠商根本來不及準備好企劃書投標吧？",
+        "為什麼這個標案最後只有一家廠商投標就得標了？是不是規格被綁標，還是有其他原因讓別的廠商不敢來標？",
+        "這案子花了那麼多納稅人的錢，最後竟然只要交照片、幾篇報導或辦辦活動就結案，根本看不出實質效益在哪裡！",
+        "這案子用限制性招標，不開放公開競爭，到底為什麼不能公開招標讓大家公平競爭？"
+      ],
+      "council_question": [
+        "本案公告到截止僅 7 天，請問是否足以讓非既有廠商準備完整企劃書？是否有特定護航之嫌？",
+        "本案僅一家投標即決標，請問機關如何確認市場競爭充分？投標規格是否有綁標之嫌？",
+        "本案成果如何驗收？是否有量化成效，而非僅以照片、活動紀錄、宣傳粉專按讚數或新聞稿結案？",
+        "本案採限制性招標，排除公開競爭，請說明採此招標方式的法定必要性與評選公正性。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府勞動暨青年發展處，預算：4800000元，招標方式：限制性招標(經公開評選或公開徵求)，公告日期：2026-05-20",
+      "potential_signals": "評估投標結構：限制性招標(經公開評選或公開徵求) 預算規模 4800000元",
+      "ai_review": {
+        "review_score": 98,
+        "source_integrity_score": 100,
+        "signal_detection_score": 95,
+        "duplicate_probability": 0.05,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:23",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/A1150518-2",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "AVAILABLE",
+          "label": "已取得案號",
+          "meaning": "已順利取得本案之招標案號：A1150518-2。",
+          "next_action": "維持系統檔案儲存。"
+        },
+        "agency": {
+          "status": "AVAILABLE",
+          "label": "已取得涉及機關",
+          "meaning": "本案涉及招標或監督機關為：屏東縣政府勞動暨青年發展處。",
+          "next_action": "持續追蹤該機關相關採購案。"
+        },
+        "procurement_method": {
+          "status": "AVAILABLE",
+          "label": "已取得招標方式",
+          "meaning": "本案招標方式為：限制性招標(經公開評選或公開徵求)。",
+          "next_action": "依此招標方式進行合理性審查。"
+        },
+        "award_method": {
+          "status": "PENDING_VERIFICATION",
+          "label": "決標方式待補查",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        },
+        "budget_amount": {
+          "status": "AVAILABLE",
+          "label": "已取得預算金額",
+          "meaning": "本案預算金額為：4,800,000元。",
+          "next_action": "依此預算規模審查執行效益與產出比例。"
+        },
+        "publish_date": {
+          "status": "AVAILABLE",
+          "label": "已取得公告日期",
+          "meaning": "本案已於 2026-05-20 公告招標。",
+          "next_action": "持續追蹤截止投標與開標程序。"
+        },
+        "deadline_date": {
+          "status": "AVAILABLE",
+          "label": "已取得截止日期",
+          "meaning": "本案截止投標日期為：2026-05-27。",
+          "next_action": "依此期限查核備標期是否符合法定最低天數。"
+        },
+        "award_date": {
+          "status": "PENDING_VERIFICATION",
+          "label": "決標日期待確認",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        },
+        "bidding_days": {
+          "status": "AVAILABLE",
+          "label": "已計算備標天數",
+          "meaning": "本案備標天數計算為 7 天。",
+          "next_action": "查核備標天數是否過短，評估是否有特定護航之嫌。"
+        },
+        "bidder_count": {
+          "status": "AVAILABLE",
+          "label": "已取得投標家數",
+          "meaning": "本案投標廠商共計 1 家。",
+          "next_action": "查核競爭度是否充足，評估是否有陪標或串標風險。"
+        },
+        "winning_vendor": {
+          "status": "AVAILABLE",
+          "label": "已取得得標廠商",
+          "meaning": "本案得標廠商為：山海文創股份有限公司。",
+          "next_action": "持續追蹤該得標廠商之履約表現與政府採購歷史實績。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_DISCLOSED",
+          "label": "委員名單未公開",
+          "meaning": "本案依法或依招標決定，評選委員名單於決標前或決標後均未公開。",
+          "next_action": "請議員調閱評選委員會名單與學者專家比例，防範利益輸送。"
+        },
+        "acceptance_disclosed": {
+          "status": "PENDING_VERIFICATION",
+          "label": "待查證驗收狀態",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 60,
+          "factors": [
+            {
+              "key": "is_restricted_tender",
+              "label": "限制性招標",
+              "points": 20,
+              "reason": "採購方式屬經公開評選或公開徵求之限制性招標，排除公開競爭"
+            },
+            {
+              "key": "is_single_bidder",
+              "label": "單一投標",
+              "points": 20,
+              "reason": "投標廠商僅有一家即決標，缺乏市場競爭性"
+            },
+            {
+              "key": "committee_undisclosed",
+              "label": "評選委員未公開",
+              "points": 15,
+              "reason": "本案評選委員會名單與背景未公開，資訊透明度較低"
+            },
+            {
+              "key": "short_bidding_period",
+              "label": "備標天數過短",
+              "points": 15,
+              "reason": "公告至截止投標天數僅 7 天，少於 10 天，有潛在限制競爭疑慮"
+            },
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 60,
+          "factors": [
+            {
+              "key": "budget_1m",
+              "label": "預算金額達百萬",
+              "points": 10,
+              "reason": "預算金額達 4,800,000 元，具備一定公帑規模"
+            },
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            },
+            {
+              "key": "public_question_concrete",
+              "label": "大眾提問具體化",
+              "points": 10,
+              "reason": "本案所提大眾質疑問題具體、深入且非通用模板"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 55,
+          "current": 50,
+          "delta": -5
+        },
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 60,
+          "delta": 10
+        }
+      ],
+      "discoveries": [
+        "限制性招標",
+        "公開評選",
+        "單一投標",
+        "委員未公開",
+        "備標期過短"
+      ],
+      "signal_delta": 10
+    },
+    {
+      "case_id": "CASE-WASH-20260522-002",
+      "title": "《我回來了-做一部作品給自己的靈魂！》",
+      "topic": "預算透明",
+      "district": "全縣",
+      "agency": "屏東縣政府",
+      "date_range": "2026-05-22",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/B095-1150521-01"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 20,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "招標單位：屏東縣政府，預算：900,000元，招標方式：決標公告，公告日期：2026-05-22"
+      ],
+      "inferences": [
+        "評估投標結構：決標公告 預算規模 900,000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單"
+      ],
+      "public_question": [
+        "請問此項標案是否能公開其預算執行成效？"
+      ],
+      "council_question": [
+        "請機關說明此項標案的執行細節與長期效益評估。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府，預算：900,000元，招標方式：決標公告，公告日期：2026-05-22",
+      "potential_signals": "評估投標結構：決標公告 預算規模 900,000元",
+      "ai_review": {
+        "review_score": 80,
+        "source_integrity_score": 100,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.03,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:18",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/B095-1150521-01",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 20,
+          "factors": [
+            {
+              "key": "topic_transparency",
+              "label": "預算透明議題",
+              "points": 10,
+              "reason": "議題分類屬於公共預算透明度監控範疇"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260523-003",
+      "title": "115年屏東農業物產館二樓商業營運代管服務案",
+      "topic": "經濟",
+      "district": "全縣",
+      "agency": "屏東縣政府農業處",
+      "date_range": "2026-04-25",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/P1150422-1"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 40,
+      "status": "draft",
+      "tags": [
+        "綠意股份有限公司"
+      ],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "招標單位：屏東縣政府農業處，預算：1800000元，招標方式：公開取得報價單或企劃書，公告日期：2026-04-25"
+      ],
+      "inferences": [
+        "評估投標結構：公開取得報價單或企劃書 預算規模 1800000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單",
+        "請公開本案評選委員名單與專業背景",
+        "請公開成果驗收指標與驗收文件內容"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府農業處，預算：1800000元，招標方式：公開取得報價單或企劃書，公告日期：2026-04-25",
+      "potential_signals": "評估投標結構：公開取得報價單或企劃書 預算規模 1800000元",
+      "ai_review": {
+        "review_score": 64,
+        "source_integrity_score": 100,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.03,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:18",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/P1150422-1",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "AVAILABLE",
+          "label": "已取得案號",
+          "meaning": "已順利取得本案之招標案號：P1150422-1。",
+          "next_action": "維持系統檔案儲存。"
+        },
+        "agency": {
+          "status": "AVAILABLE",
+          "label": "已取得涉及機關",
+          "meaning": "本案涉及招標或監督機關為：屏東縣政府農業處。",
+          "next_action": "持續追蹤該機關相關採購案。"
+        },
+        "procurement_method": {
+          "status": "AVAILABLE",
+          "label": "已取得招標方式",
+          "meaning": "本案招標方式為：公開取得報價單或企劃書。",
+          "next_action": "依此招標方式進行合理性審查。"
+        },
+        "award_method": {
+          "status": "AVAILABLE",
+          "label": "已取得決標方式",
+          "meaning": "本案決標方式為：準用最有利標。",
+          "next_action": "依此決標方式審查評選程序與公正性。"
+        },
+        "budget_amount": {
+          "status": "AVAILABLE",
+          "label": "已取得預算金額",
+          "meaning": "本案預算金額為：1,800,000元。",
+          "next_action": "依此預算規模審查執行效益與產出比例。"
+        },
+        "publish_date": {
+          "status": "AVAILABLE",
+          "label": "已取得公告日期",
+          "meaning": "本案已於 2026-04-25 公告招標。",
+          "next_action": "持續追蹤截止投標與開標程序。"
+        },
+        "deadline_date": {
+          "status": "AVAILABLE",
+          "label": "已取得截止日期",
+          "meaning": "本案截止投標日期為：2026-05-10。",
+          "next_action": "依此期限查核備標期是否符合法定最低天數。"
+        },
+        "award_date": {
+          "status": "PENDING_VERIFICATION",
+          "label": "決標日期待確認",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        },
+        "bidding_days": {
+          "status": "AVAILABLE",
+          "label": "已計算備標天數",
+          "meaning": "本案備標天數計算為 15 天。",
+          "next_action": "查核備標天數是否過短，評估是否有特定護航之嫌。"
+        },
+        "bidder_count": {
+          "status": "AVAILABLE",
+          "label": "已取得投標家數",
+          "meaning": "本案投標廠商共計 2 家。",
+          "next_action": "查核競爭度是否充足，評估是否有陪標或串標風險。"
+        },
+        "winning_vendor": {
+          "status": "AVAILABLE",
+          "label": "已取得得標廠商",
+          "meaning": "本案得標廠商為：綠意股份有限公司。",
+          "next_action": "持續追蹤該得標廠商之履約表現與政府採購歷史實績。"
+        },
+        "committee_disclosed": {
+          "status": "PENDING_VERIFICATION",
+          "label": "待人工核對評選委員",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        },
+        "acceptance_disclosed": {
+          "status": "PENDING_VERIFICATION",
+          "label": "待查證驗收狀態",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 40,
+          "factors": [
+            {
+              "key": "budget_1m",
+              "label": "預算金額達百萬",
+              "points": 10,
+              "reason": "預算金額達 1,800,000 元，具備一定公帑規模"
+            },
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：經濟"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：物產館"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 25,
+          "current": 15,
+          "delta": -10
+        },
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 15,
+          "current": 0,
+          "delta": -15
+        }
+      ],
+      "discoveries": [
+        "公開評選",
+        "限制性招標"
+      ],
+      "signal_delta": -15
+    },
+    {
+      "case_id": "CASE-WASH-20260522-003",
+      "title": "「屏東縣河川流域等畜牧場廢水及廢棄物資源再利用輔導專案辦公室」",
+      "topic": "預算透明",
+      "district": "全縣",
+      "agency": "屏東縣政府",
+      "date_range": "2026-03-06",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/A028-1150305-1"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 35,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "招標單位：屏東縣政府，預算：2,000,000元，招標方式：經公開評選或公開徵求之限制性招標，公告日期：2026-03-06"
+      ],
+      "inferences": [
+        "評估投標結構：經公開評選或公開徵求之限制性招標 預算規模 2,000,000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單"
+      ],
+      "public_question": [
+        "請問此項標案是否能公開其預算執行成效？"
+      ],
+      "council_question": [
+        "請機關說明此項標案的執行細節與長期效益評估。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府，預算：2,000,000元，招標方式：經公開評選或公開徵求之限制性招標，公告日期：2026-03-06",
+      "potential_signals": "評估投標結構：經公開評選或公開徵求之限制性招標 預算規模 2,000,000元",
+      "ai_review": {
+        "review_score": 80,
+        "source_integrity_score": 100,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.04,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:36",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/A028-1150305-1",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 35,
+          "factors": [
+            {
+              "key": "topic_transparency",
+              "label": "預算透明議題",
+              "points": 10,
+              "reason": "議題分類屬於公共預算透明度監控範疇"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：廢水"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260523-015",
+      "title": "屏東表揚112位模範勞工與移工 周春米致敬基層力量",
+      "topic": "勞工",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (Yahoo新聞)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi1AJBVV95cUxOc3pURDdraS1NUnpQYXdGMXJ0dTZsWXRkbERyUDJ5bi13dW1pcjcxMjdVNTdwTzM2UmozTmF1dE5ESTNhN245N0tvVElHMHhVZ1ZlcWlBZ1B4YUIyZW1DVlVqZnI3R01jSmZuSGdQbXVMV3F3Q1FKOGFvd1F2QWh1V0U1U05LVlBLbWJtRm9kZk1hdGNJZUllVTR3MWdVWjNZdEZfTzc5WjVKeEl0cXhmMlgycU5vdjZ1S3BrZDJlQ2N5d1RxWGhZT01vNWhiVEJXMDd5SkZXbWY0QUdIZjktSkhnLXpjSm9jYW5Ic2I4VkgxZlJQTUQ5X0pZc1BLNWQ0VUIzUWxSNEN4WGdacXkwNkxiWnFBbEtNdUdYcGo5R3ROSngwRkRZZGQ4Nlo3OUF5MlgxNDYxbUtOT2JwcnVSVnpjWmJFUmtCMlQwY0ltQngyUHFU?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 30,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "屏東表揚112位模範勞工與移工 周春米致敬基層力量&nbsp;&nbsp;Yahoo新聞"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東表揚112位模範勞工與移工 周春米致敬基層力量&nbsp;&nbsp;Yahoo新聞",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:18",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMi1AJBVV95cUxOc3pURDdraS1NUnpQYXdGMXJ0dTZsWXRkbERyUDJ5bi13dW1pcjcxMjdVNTdwTzM2UmozTmF1dE5ESTNhN245N0tvVElHMHhVZ1ZlcWlBZ1B4YUIyZW1DVlVqZnI3R01jSmZuSGdQbXVMV3F3Q1FKOGFvd1F2QWh1V0U1U05LVlBLbWJtRm9kZk1hdGNJZUllVTR3MWdVWjNZdEZfTzc5WjVKeEl0cXhmMlgycU5vdjZ1S3BrZDJlQ2N5d1RxWGhZT01vNWhiVEJXMDd5SkZXbWY0QUdIZjktSkhnLXpjSm9jYW5Ic2I4VkgxZlJQTUQ5X0pZc1BLNWQ0VUIzUWxSNEN4WGdacXkwNkxiWnFBbEtNdUdYcGo5R3ROSngwRkRZZGQ4Nlo3OUF5MlgxNDYxbUtOT2JwcnVSVnpjWmJFUmtCMlQwY0ltQngyUHFU?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 30,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：勞工"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：勞工"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260523-012",
+      "title": "人口越少房價越兇！屏東這小鎮6年狂漲7成 高雄客跨區買房",
+      "topic": "人口",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (自由時報)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzTERITlBpaUkyRTF3dFB4YjU4RXFROGlwbEdhRldoZU5GclNHUXNoX1NZVXhfR0ZXQjlQUXNNc0piYS1HNjJ5Mkpha1U5aUhS?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 0,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "人口越少房價越兇！屏東這小鎮6年狂漲7成 高雄客跨區買房&nbsp;&nbsp;自由時報"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "人口越少房價越兇！屏東這小鎮6年狂漲7成 高雄客跨區買房&nbsp;&nbsp;自由時報",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:18",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzTERITlBpaUkyRTF3dFB4YjU4RXFROGlwbEdhRldoZU5GclNHUXNoX1NZVXhfR0ZXQjlQUXNNc0piYS1HNjJ5Mkpha1U5aUhS?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 0,
+          "factors": []
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260523-010",
+      "title": "屏東縣後備旅勤務召集訓練 厚植動員戰力 | 青年日報",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (LINE TODAY)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9iQUFXVHVUcVBnOS0zSGl2M1Bvb3c1YjBXLTFDTTJ0ODJnNTV0ZEtqQUdKRzktTWlUTGZPY2JUUTZMemR1N1IxWXA5NmY4TUFTMUNqS3pn?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 30,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "屏東縣後備旅勤務召集訓練 厚植動員戰力 | 青年日報&nbsp;&nbsp;LINE TODAY"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東縣後備旅勤務召集訓練 厚植動員戰力 | 青年日報&nbsp;&nbsp;LINE TODAY",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:18",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9iQUFXVHVUcVBnOS0zSGl2M1Bvb3c1YjBXLTFDTTJ0ODJnNTV0ZEtqQUdKRzktTWlUTGZPY2JUUTZMemR1N1IxWXA5NmY4TUFTMUNqS3pn?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 30,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260522-004",
+      "title": "新園工業用地及新園產業園區開發專案管理委託技術服務",
+      "topic": "經濟",
+      "district": "全縣",
+      "agency": "屏東縣政府",
+      "date_range": "2026-03-03",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/E1150302-1"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 40,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "招標單位：屏東縣政府，預算：28,000,000元，招標方式：經公開評選或公開徵求之限制性招標，公告日期：2026-03-03"
+      ],
+      "inferences": [
+        "評估投標結構：經公開評選或公開徵求之限制性招標 預算規模 28,000,000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單"
+      ],
+      "public_question": [
+        "請問此項標案是否能公開其預算執行成效？"
+      ],
+      "council_question": [
+        "請機關說明此項標案的執行細節與長期效益評估。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府，預算：28,000,000元，招標方式：經公開評選或公開徵求之限制性招標，公告日期：2026-03-03",
+      "potential_signals": "評估投標結構：經公開評選或公開徵求之限制性招標 預算規模 28,000,000元",
+      "ai_review": {
+        "review_score": 80,
+        "source_integrity_score": 100,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.03,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:32",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/E1150302-1",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 40,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：經濟"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：產業園區"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260523-008",
+      "title": "屏東縣社會優秀青年遴選出爐 16位在地傑出青年獲選",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (視傳媒)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMibkFVX3lxTFAwRFMyQ25tT1BvNTZQRlNHbXNRUTgtbkdlcjZZVUJDdlNIbzlDQmpIeWgtR0M5MmpUOFBkTjl2c2k3QjBGTEM2S3B1cUJxVnZkb0VWRXJHN3ctVnhtN3NoajVwekFKQWF4MVlZbjJ3?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 30,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "屏東縣社會優秀青年遴選出爐 16位在地傑出青年獲選&nbsp;&nbsp;視傳媒"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東縣社會優秀青年遴選出爐 16位在地傑出青年獲選&nbsp;&nbsp;視傳媒",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:23",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFAwRFMyQ25tT1BvNTZQRlNHbXNRUTgtbkdlcjZZVUJDdlNIbzlDQmpIeWgtR0M5MmpUOFBkTjl2c2k3QjBGTEM2S3B1cUJxVnZkb0VWRXJHN3ctVnhtN3NoajVwekFKQWF4MVlZbjJ3?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 30,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260523-009",
+      "title": "屏東縣青年志工創意服務方案競賽 最高獎金三萬元",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (中華新聞雲／中華日報)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4zSXlsenAzc2RVZTIwcC1EZFhxdVJ5N2x5RW9tQ0RsNTVvQ0ZaU0xMMElhSzhRMTl2WDIyX2FZVW9WWDBlX2lWTlhCVF9VcDYwR1E?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 30,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "屏東縣青年志工創意服務方案競賽 最高獎金三萬元&nbsp;&nbsp;中華新聞雲／中華日報"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東縣青年志工創意服務方案競賽 最高獎金三萬元&nbsp;&nbsp;中華新聞雲／中華日報",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:17",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4zSXlsenAzc2RVZTIwcC1EZFhxdVJ5N2x5RW9tQ0RsNTVvQ0ZaU0xMMElhSzhRMTl2WDIyX2FZVW9WWDBlX2lWTlhCVF9VcDYwR1E?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 30,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260522-005",
+      "title": "2026屏東聖誕節文宣製作及執行勞務採購案",
+      "topic": "預算透明",
+      "district": "全縣",
+      "agency": "屏東縣政府",
+      "date_range": "2026-05-22",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/C1150521-1"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 35,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "招標單位：屏東縣政府，預算：1,490,000元，招標方式：公開取得報價單或企劃書，公告日期：2026-05-22"
+      ],
+      "inferences": [
+        "評估投標結構：公開取得報價單或企劃書 預算規模 1,490,000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單"
+      ],
+      "public_question": [
+        "請問此項標案是否能公開其預算執行成效？"
+      ],
+      "council_question": [
+        "請機關說明此項標案的執行細節與長期效益評估。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府，預算：1,490,000元，招標方式：公開取得報價單或企劃書，公告日期：2026-05-22",
+      "potential_signals": "評估投標結構：公開取得報價單或企劃書 預算規模 1,490,000元",
+      "ai_review": {
+        "review_score": 80,
+        "source_integrity_score": 100,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.06,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:35",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/C1150521-1",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 35,
+          "factors": [
+            {
+              "key": "topic_transparency",
+              "label": "預算透明議題",
+              "points": 10,
+              "reason": "議題分類屬於公共預算透明度監控範疇"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：聖誕, 文宣"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260522-011",
+      "title": "屏東縣「青年志工創意服務競賽」最高獎金3萬元 邀請學子熱血挑戰",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-22",
+      "source": "合法新聞來源 (波新聞)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1zSEtfMXpkWllGamRVbTRCQ0dkdkpnVk9ocHdSX1YtVUMwZXhzc3QyOEczRWRwYnljSFJFNE5TNW9oc0RFRUZ2WmdJN19uMVc3MXBaTmRvNGo2ZmtSdXJBMnp3OA?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 40,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-22",
+      "facts": [
+        "屏東縣「青年志工創意服務競賽」最高獎金3萬元 邀請學子熱血挑戰&nbsp;&nbsp;波新聞"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "對於媒體報導的疑慮，相關單位是否有具體澄清與說明？"
+      ],
+      "council_question": [
+        "針對媒體報導指出的政策問題，縣府是否有具體改善措施？"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東縣「青年志工創意服務競賽」最高獎金3萬元 邀請學子熱血挑戰&nbsp;&nbsp;波新聞",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 64,
+        "source_integrity_score": 60,
+        "signal_detection_score": 50,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:23",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1zSEtfMXpkWllGamRVbTRCQ0dkdkpnVk9ocHdSX1YtVUMwZXhzc3QyOEczRWRwYnljSFJFNE5TNW9oc0RFRUZ2WmdJN19uMVc3MXBaTmRvNGo2ZmtSdXJBMnp3OA?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": []
+        },
+        "issue_score": {
+          "total": 40,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            },
+            {
+              "key": "council_question_concrete",
+              "label": "質詢問題具體化",
+              "points": 10,
+              "reason": "本案提供之議員質詢要點具體、具備實質監督價值且非通用模板"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 50,
+          "current": 0,
+          "delta": -50
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -50
+    },
+    {
+      "case_id": "CASE-WASH-20260523-011",
+      "title": "屏東縣「青年志工創意服務競賽」 最高獎金3萬元邀請您熱血挑戰",
+      "topic": "青年",
+      "district": "全縣",
+      "agency": "未知機關",
+      "date_range": "2026-05-23",
+      "source": "合法新聞來源 (ENN台灣電報)",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiOkFVX3lxTFBVVkg4Q1ZiU2F4X1Q2SEhIRktOS1NMa2otZ3g1aDFuQzBWNEh4M29GejJxUVVpeGRIYkE?oc=5"
+      ],
+      "source_count": 1,
+      "source_type": "news",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 30,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "屏東縣「青年志工創意服務競賽」 最高獎金3萬元邀請您熱血挑戰&nbsp;&nbsp;ENN台灣電報"
+      ],
+      "inferences": [
+        "社會與政策反應、民間質疑或民代監督線索"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "查證該媒體報導之原始出處與採訪對象可信度",
+        "查對縣府相關處室之回應新聞稿或聲明"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "屏東縣「青年志工創意服務競賽」 最高獎金3萬元邀請您熱血挑戰&nbsp;&nbsp;ENN台灣電報",
+      "potential_signals": "社會與政策反應、民間質疑或民代監督線索",
+      "ai_review": {
+        "review_score": 48,
+        "source_integrity_score": 60,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.0,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:36",
+        "results": [
+          {
+            "url": "https://news.google.com/rss/articles/CBMiOkFVX3lxTFBVVkg4Q1ZiU2F4X1Q2SEhIRktOS1NMa2otZ3g1aDFuQzBWNEh4M29GejJxUVVpeGRIYkE?oc=5",
+            "domain": "news.google.com",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "agency": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "procurement_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_method": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "budget_amount": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "publish_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "deadline_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "award_date": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidding_days": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "bidder_count": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "winning_vendor": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "committee_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        },
+        "acceptance_disclosed": {
+          "status": "NOT_APPLICABLE",
+          "label": "不適用",
+          "meaning": "本案非屬標準官方政府採購標案，或缺乏採購診斷資料，因此該診斷項目不適用。",
+          "next_action": "無需執行採購診斷追蹤。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 30,
+          "factors": [
+            {
+              "key": "topic_core",
+              "label": "核心關注議題",
+              "points": 15,
+              "reason": "議題分類為核心政策監督範疇：青年"
+            },
+            {
+              "key": "keyword_match",
+              "label": "關鍵詞匹配",
+              "points": 15,
+              "reason": "標題或內容包含大眾民意高度關注之關鍵字詞：青年"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [],
+      "signal_delta": -10
+    },
+    {
+      "case_id": "CASE-WASH-20260523-001",
+      "title": "屏東縣政府AI推動策略委託專業規劃案",
+      "topic": "預算透明",
+      "district": "全縣",
+      "agency": "屏東縣政府",
+      "date_range": "2026-05-22",
+      "source": "政府電子採購網",
+      "source_urls": [
+        "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/E1150521-1"
+      ],
+      "source_count": 1,
+      "source_type": "official",
+      "generated_by_ai": false,
+      "citation_notes": [],
+      "evidence_level": "中",
+      "inference_level": "中",
+      "signal_score": 0,
+      "issue_score": 20,
+      "status": "draft",
+      "tags": [],
+      "last_updated": "2026-05-23",
+      "facts": [
+        "招標單位：屏東縣政府，預算：1000000元，招標方式：公開取得報價單或企劃書公告，公告日期：2026-05-22"
+      ],
+      "inferences": [
+        "評估投標結構：公開取得報價單或企劃書公告 預算規模 1000000元"
+      ],
+      "opinions": [],
+      "red_flags": [],
+      "verification_needed": [
+        "核對政府電子採購網之原始公告招標文件",
+        "追蹤後續投標家數與決標廠商名單",
+        "請公開成果驗收指標與驗收文件內容"
+      ],
+      "public_question": [
+        "這項公帑預算案是否有具體的成效指標？是否能公開其最終的驗收成果供大眾檢視？"
+      ],
+      "council_question": [
+        "請機關詳細說明此項預算的執行進度、驗收標準，以及對屏東縣民帶來的實質政策效益。"
+      ],
+      "documents": [
+        "標案公告文件"
+      ],
+      "summary": "招標單位：屏東縣政府，預算：1000000元，招標方式：公開取得報價單或企劃書公告，公告日期：2026-05-22",
+      "potential_signals": "評估投標結構：公開取得報價單或企劃書公告 預算規模 1000000元",
+      "ai_review": {
+        "review_score": 64,
+        "source_integrity_score": 100,
+        "signal_detection_score": 10,
+        "duplicate_probability": 0.03,
+        "confidence_score": 100,
+        "publish_recommendation": "needs_human_verification",
+        "review_notes": "⚠ [來源未驗證] 來源 URL 可開，但網域不屬於官方信賴白名單，需人工確認其與案例主題之關聯性。"
+      },
+      "human_review": {
+        "reviewer": "pending",
+        "review_status": "pending",
+        "review_notes": "等待人工複審核實中。",
+        "decision": "hold",
+        "next_action": "watch"
+      },
+      "source_validation_status": "reachable_unverified",
+      "source_validation": {
+        "checked_at": "2026-05-23 03:48:35",
+        "results": [
+          {
+            "url": "https://ronnywang.github.io/pcc-viewer/index.html#case/3.76.53/E1150521-1",
+            "domain": "ronnywang.github.io",
+            "http_status": 200,
+            "trusted_domain": false,
+            "validation_status": "reachable_unverified",
+            "note": "URL 可正常連線，但網域非官方可信網域，內容與關聯性需人工確認。"
+          }
+        ],
+        "overall_status": "reachable_unverified"
+      },
+      "procurement_diagnostics_status": {
+        "job_number": {
+          "status": "AVAILABLE",
+          "label": "已取得案號",
+          "meaning": "已順利取得本案之招標案號：E1150521-1。",
+          "next_action": "維持系統檔案儲存。"
+        },
+        "agency": {
+          "status": "AVAILABLE",
+          "label": "已取得涉及機關",
+          "meaning": "本案涉及招標或監督機關為：屏東縣政府。",
+          "next_action": "持續追蹤該機關相關採購案。"
+        },
+        "procurement_method": {
+          "status": "AVAILABLE",
+          "label": "已取得招標方式",
+          "meaning": "本案招標方式為：公開取得報價單或企劃書公告。",
+          "next_action": "依此招標方式進行合理性審查。"
+        },
+        "award_method": {
+          "status": "NOT_YET_AWARDED",
+          "label": "尚未決標",
+          "meaning": "本案尚未公告決標結果，無法確認最終採行之決標方式。",
+          "next_action": "追蹤後續決標公告與評選標準。"
+        },
+        "budget_amount": {
+          "status": "AVAILABLE",
+          "label": "已取得預算金額",
+          "meaning": "本案預算金額為：1,000,000元。",
+          "next_action": "依此預算規模審查執行效益與產出比例。"
+        },
+        "publish_date": {
+          "status": "AVAILABLE",
+          "label": "已取得公告日期",
+          "meaning": "本案已於 2026-05-22 公告招標。",
+          "next_action": "持續追蹤截止投標與開標程序。"
+        },
+        "deadline_date": {
+          "status": "AVAILABLE",
+          "label": "已取得截止日期",
+          "meaning": "本案截止投標日期為：2026-06-02。",
+          "next_action": "依此期限查核備標期是否符合法定最低天數。"
+        },
+        "award_date": {
+          "status": "NOT_YET_AWARDED",
+          "label": "尚未決標",
+          "meaning": "本案目前可能仍在招標程序中，尚未產生決標日期。",
+          "next_action": "追蹤後續決標公告與簽約時程。"
+        },
+        "bidding_days": {
+          "status": "AVAILABLE",
+          "label": "已計算備標天數",
+          "meaning": "本案備標天數計算為 11 天。",
+          "next_action": "查核備標天數是否過短，評估是否有特定護航之嫌。"
+        },
+        "bidder_count": {
+          "status": "AVAILABLE",
+          "label": "已取得投標家數",
+          "meaning": "本案投標廠商共計 3 家。",
+          "next_action": "查核競爭度是否充足，評估是否有陪標或串標風險。"
+        },
+        "winning_vendor": {
+          "status": "NOT_YET_AWARDED",
+          "label": "尚未決標",
+          "meaning": "本案目前可能仍處於招標或評選階段，尚未公告得標廠商。",
+          "next_action": "追蹤後續決標公告與得標廠商名單。"
+        },
+        "committee_disclosed": {
+          "status": "AVAILABLE",
+          "label": "評選委員已公開",
+          "meaning": "本案評選委員會名單與背景已完整公開。",
+          "next_action": "對委員專業背景與潛在利益衝突進行交叉比對審查。"
+        },
+        "acceptance_disclosed": {
+          "status": "PENDING_VERIFICATION",
+          "label": "待查證驗收狀態",
+          "meaning": "目前系統查無此欄位，亦無法排除是否為尚未公告或政府不予公開，需啟動人工查證流程。",
+          "next_action": "調閱該標案於政府電子採購網之原始公告檔案進行人工核對。"
+        }
+      },
+      "score_breakdown": {
+        "signal_score": {
+          "total": 0,
+          "factors": [
+            {
+              "key": "untrusted_source",
+              "label": "非信任來源減分",
+              "points": -10,
+              "reason": "來源驗證狀態非官方信任白名單，降低異常訊號可信度"
+            }
+          ]
+        },
+        "issue_score": {
+          "total": 20,
+          "factors": [
+            {
+              "key": "budget_1m",
+              "label": "預算金額達百萬",
+              "points": 10,
+              "reason": "預算金額達 1,000,000 元，具備一定公帑規模"
+            },
+            {
+              "key": "topic_transparency",
+              "label": "預算透明議題",
+              "points": 10,
+              "reason": "議題分類屬於公共預算透明度監控範疇"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "date": "2026-05-23",
+          "event": "signal changed",
+          "previous": 10,
+          "current": 0,
+          "delta": -10
+        }
+      ],
+      "discoveries": [
+        "公開評選"
+      ],
+      "signal_delta": -10
+    }
+  ],
+  "citizen_signals": [
+    {
+      "intake_id": "INTAKE-20260522235239",
+      "issue_type": "物產館開門但空無一人",
+      "district": "長治鄉",
+      "topic": "經濟",
+      "satisfaction": 1,
+      "description": "我星期六帶小孩去農業物產館，裡面除了一位代管看門的警衛外，根本沒有任何小農在營業，2億的大樓變成養蚊子的倉庫，非常痛心！",
+      "submitted_at": "2026-05-22 23:52:39",
+      "trust_level": "Level 1"
+    },
+    {
+      "intake_id": "INTAKE-20260522235239",
+      "issue_type": "青創培力標案流於形式",
+      "district": "屏東市",
+      "topic": "青年",
+      "satisfaction": 2,
+      "description": "去聽了幾場縣府青年培訓課，主辦的協會講師根本沒有實業經驗，整堂課都在講廢話發便當，聽完也沒有拿到任何輔導媒合，是在消化預算嗎？",
+      "submitted_at": "2026-05-22 23:52:39",
+      "trust_level": "Level 2"
+    },
+    {
+      "intake_id": "INTAKE-20260522235239",
+      "issue_type": "職人町休園工程拖延",
+      "district": "屏東市",
+      "topic": "青年",
+      "satisfaction": 1,
+      "description": "我是職人町的前進駐店家。2025年政府說要做耐震工程，把我們全部趕走。結果施工拖了快十個月，我們的店面生計直接完蛋，好幾家都倒閉了，現在開園了也租約快到了，根本是官僚殺人！",
+      "submitted_at": "2026-05-22 23:52:39",
+      "trust_level": "Level 3"
+    }
+  ]
+}
