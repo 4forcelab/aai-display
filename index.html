@@ -861,6 +861,161 @@
             border-left: 2px solid var(--neon-blue);
         }
 
+        
+        /* Governance Node Profile */
+        .gov-profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            min-height: 500px;
+        }
+        @media (max-width: 900px) {
+            .gov-profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .gov-node-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+        .gov-node-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .gov-node-item:hover {
+            background: rgba(0, 240, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        .gov-node-item.active {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+        .gov-node-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .gov-node-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+        .gov-profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            backdrop-filter: var(--glass-blur);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .gov-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1.5rem;
+        }
+        .gov-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .gov-info h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+        .gov-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .gov-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .gov-stat-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .gov-stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Fira Code', monospace;
+            color: var(--neon-green);
+            margin-bottom: 0.3rem;
+        }
+        .gov-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .gov-section h3 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .gov-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 14px;
+            background: var(--neon-blue);
+            border-radius: 2px;
+        }
+        .gov-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .gov-list-item {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .gov-vendor-name {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .gov-vendor-count {
+            color: var(--neon-orange);
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+        }
+
         /* 6. 時間線樣式 */
         .timeline-container {
             position: relative;
@@ -1560,7 +1715,7 @@
                     <i class="fa-solid fa-map-location-dot"></i> 資金流向戰術地圖
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('members')">
-                    <i class="fa-solid fa-users-gear"></i> 評委重複網
+                    <i class="fa-solid fa-users-gear"></i> 治理節點檔案
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('vendors')">
                     <i class="fa-solid fa-building-flag"></i> 廠商重複網
@@ -1683,10 +1838,18 @@
                     </div>
                 </div>
 
-                <!-- 4. 評委重複網 -->
+                <!-- 4. Governance Node Profile (治理節點輪廓) -->
                 <div id="war-tab-members" class="warroom-content">
-                    <div id="members-list" class="network-grid">
-                        <!-- Filled by JS -->
+                    <div class="gov-profile-container">
+                        <div class="gov-node-list" id="gov-node-list">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <div class="gov-profile-card" id="gov-profile-card">
+                            <div style="text-align:center; padding: 4rem 2rem; color: var(--text-muted);">
+                                <i class="fa-solid fa-user-shield" style="font-size: 3rem; opacity: 0.2; margin-bottom: 1rem;"></i>
+                                <p>請選擇左側治理節點以檢視情報分析</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2999,271 +3162,145 @@
             });
         }
 
-        // 4. Render 評委重複網
+        // 4. Render 治理節點輪廓 (Governance Node Profile)
         function renderMembersTab(graph) {
-            const container = document.getElementById('members-list');
-            container.innerHTML = '';
-
-            const edges = graph.edges || [];
-            const nodes = graph.nodes || [];
-
-            const repeating = {};
-            edges.forEach(e => {
-                if (e.type === 'same_committee_member_repeated') {
-                    const name = e.properties?.member || null;
-                    if (!name) return;
-                    repeating[name] = repeating[name] || new Set();
-
-                    const caseA = nodes.find(n => n.id === e.source);
-                    const caseB = nodes.find(n => n.id === e.target);
-                    if (caseA) repeating[name].add(`${caseA.case_number} ${caseA.case_name}`);
-                    if (caseB) repeating[name].add(`${caseB.case_number} ${caseB.case_name}`);
-                }
-            });
-
-            // Build a complete profile for each committee member by scanning globalDetails
+            const listContainer = document.getElementById('gov-node-list');
+            const cardContainer = document.getElementById('gov-profile-card');
+            if (!listContainer || !cardContainer) return;
+            
+            listContainer.innerHTML = '';
+            
+            // Build profiles for all committee members
             const memberProfiles = {};
+            
             globalDetails.forEach(c => {
                 const comm = c.committee_members || [];
+                
+                // Get the winning vendor for Vendor Co-occurrence
+                const vendors = c.bidders || [];
+                const winning_vendors = vendors; // Fallback to bidders if winning_vendor not explicitly array, but let's use c.winning_vendor
+                let winner = c.winning_vendor || (vendors.length > 0 ? vendors[0] : '無決標廠商');
+                
                 comm.forEach(m => {
                     if (!m.name && !m.姓名) return;
                     const name = m.name || m.姓名;
+                    
                     if (!memberProfiles[name]) {
                         memberProfiles[name] = {
                             name: name,
-                            attendance: { attended: 0, absent: 0, undisclosed: 0 },
+                            totalAmount: 0,
                             cases: [],
-                            fieldsMap: {}
+                            vendors: {},
+                            crossRegion: 0
                         };
                     }
-
-                    // Dynamically parse complex fields from '與採購案相關之學經歷' to enrich the object
-                    if (m['與採購案相關之學經歷']) {
-                        const exp = m['與採購案相關之學經歷'];
-                        const orgMatch = exp.match(/服務機關\(構\)名稱：([^職稱\s]*)/);
-                        const titleMatch = exp.match(/職稱：([^所任\s]*)/);
-                        if (orgMatch && orgMatch[1]) m.organization = orgMatch[1].trim();
-                        if (titleMatch && titleMatch[1]) {
-                            m.position = titleMatch[1].trim();
-                            m.job_title = titleMatch[1].trim();
-                            m.職稱 = titleMatch[1].trim();
-                        }
+                    
+                    // Capacity
+                    memberProfiles[name].totalAmount += (c.award_amount || 0);
+                    memberProfiles[name].cases.push(c.case_number);
+                    
+                    // Vendor Co-occurrence
+                    if (winner !== '無決標廠商' && winner !== 'null') {
+                        memberProfiles[name].vendors[winner] = (memberProfiles[name].vendors[winner] || 0) + 1;
                     }
-
-                    // Collect all properties
-                    const targetKeys = ['role', 'title', 'job_title', 'position', 'organization', 'profession', 'specialty', '現職', '職稱', '服務機關', '備註', '職業', '與採購案相關之學經歷'];
-                    targetKeys.forEach(k => {
-                        let val = m[k];
-                        if (val && typeof val === 'string' && val.trim() !== '') {
-                            val = val.trim();
-                            if (!memberProfiles[name].fieldsMap[k]) {
-                                memberProfiles[name].fieldsMap[k] = new Set();
-                            }
-                            memberProfiles[name].fieldsMap[k].add(val);
-                        }
-                    });
-
-                    // Attendance tracking
-                    const attendedVal = m.attended || m.出席會議;
-                    if (attendedVal === '是' || m.present === true) {
-                        memberProfiles[name].attendance.attended++;
-                    } else if (attendedVal === '否' || m.present === false) {
-                        memberProfiles[name].attendance.absent++;
-                    } else {
-                        memberProfiles[name].attendance.undisclosed++;
+                    
+                    // Spillover (Check if this case is cross_region in risk signals)
+                    // (Assuming globalSignals contains risk signals matching case)
+                    // As fallback, we count if cross_region_hit risk pattern exists for the case.
+                    if (c.anomaly_patterns && c.anomaly_patterns.includes('cross_region_hit')) {
+                        memberProfiles[name].crossRegion += 1;
                     }
-
-                    memberProfiles[name].cases.push({
-                        case_number: c.case_number,
-                        title: c.title,
-                        attended: attendedVal,
-                        role: m.role || m.項次 || '出席狀態未公開'
-                    });
                 });
             });
-
-            const keys = Object.keys(repeating);
-            if (keys.length === 0) {
-                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">本小樣本批次中無重合評審委員之公告關係</div>';
+            
+            // Look into graph edges for cross_region signals if any (from scope_status)
+            const casesInGraph = graph.nodes ? graph.nodes.filter(n => n.type === 'case') : [];
+            const crossRegionCases = new Set(casesInGraph.filter(n => n.scope_status === 'cross_region_hit').map(n => n.case_number));
+            
+            Object.values(memberProfiles).forEach(p => {
+                let crossCount = 0;
+                p.cases.forEach(c => {
+                    if (crossRegionCases.has(c)) crossCount++;
+                });
+                p.crossRegion = Math.max(p.crossRegion, crossCount);
+            });
+            
+            const profiles = Object.values(memberProfiles).sort((a, b) => b.cases.length - a.cases.length);
+            
+            if (profiles.length === 0) {
+                listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">查無評委節點資料</div>';
                 return;
             }
-
-            keys.forEach(name => {
-                const card = document.createElement('div');
-                card.className = 'network-card';
-
-                const profile = memberProfiles[name] || {
-                    name: name,
-                    attendance: { attended: 0, absent: 0, undisclosed: 0 },
-                    cases: [],
-                    fieldsMap: {}
-                };
-
-                // Classify Identity (身份分類) & Confidence (判定信心)
-                let category = "身份未公開";
-                let confidence = "低";
-                let confidenceColor = "var(--text-muted)";
-                let ruleMatched = "規則命中：無足夠分析欄位";
-
-                const valuesList = [];
-                Object.entries(profile.fieldsMap).forEach(([k, set]) => {
-                    set.forEach(v => {
-                        valuesList.push(v);
-                    });
-                });
-                const allValuesText = valuesList.join(' | ');
-
-                const hasGovAgency = /屏東縣政府|勞動處|勞動暨青年發展處|勞工處|勞青處|機關代表|公務機關|屏東縣政府勞動暨青年發展處/.test(allValuesText);
-                const hasChiefTitle = /處長|局長|首長|主管/.test(allValuesText);
-                const hasDeputyChiefTitle = /副處長|副局長|副首長/.test(allValuesText);
-                const hasOfficerTitle = /科長|承辦|公務員/.test(allValuesText);
-                const hasExpertTitle = /專家|學者|技師|教授|建築師|律師/.test(allValuesText);
-
-                if (name === "李雨蓁") {
-                    category = "主官 / 官派";
-                    confidence = "高";
-                    confidenceColor = "var(--neon-green)";
-                    ruleMatched = "規則命中：姓名白名單";
-                } else if ((hasChiefTitle || hasDeputyChiefTitle) && !hasGovAgency) {
-                    category = "可能官派";
-                    confidence = "中";
-                    confidenceColor = "var(--neon-orange)";
-                    ruleMatched = "規則命中：職稱含處長/副處長，但缺機關名稱";
-                } else if (hasGovAgency && (hasChiefTitle || hasDeputyChiefTitle)) {
-                    category = "主官 / 官派";
-                    confidence = "高";
-                    confidenceColor = "var(--neon-green)";
-                    ruleMatched = "規則命中：機關名稱與主官職稱雙重關聯";
-                } else if (hasGovAgency && hasOfficerTitle) {
-                    category = "官派代表";
-                    confidence = "高";
-                    confidenceColor = "var(--neon-green)";
-                    ruleMatched = "規則命中：機關與官派代表職稱關聯";
-                } else if (hasExpertTitle) {
-                    category = "外部專家";
-                    confidence = "高";
-                    confidenceColor = "var(--neon-green)";
-                    ruleMatched = "規則命中：外部專業特徵";
-                } else {
-                    category = "身份未公開";
-                    confidence = "低";
-                    confidenceColor = "var(--text-muted)";
-                    ruleMatched = "規則命中：無足夠分析欄位";
-                }
-
-                // Determine Current Position ("現職")
-                let currentPosition = "身份未公開";
-                if (name === "李雨蓁") {
-                    currentPosition = "屏東縣政府勞動暨青年發展處處長";
-                } else {
-                    const posCandidates = [];
-                    const checkKeys = ['position', 'job_title', '現職', '職稱', 'profession', '職業'];
-                    checkKeys.forEach(k => {
-                        if (profile.fieldsMap[k]) {
-                            profile.fieldsMap[k].forEach(v => posCandidates.push(v));
-                        }
-                    });
-                    if (posCandidates.length > 0) {
-                        currentPosition = Array.from(new Set(posCandidates)).join(' / ');
-                    }
-                }
-
-                // Determine Hit Source Fields
-                const hitSourceFields = [];
-                const checkSourceKeys = ['job_title', 'position', 'organization'];
-                checkSourceKeys.forEach(k => {
-                    if (profile.fieldsMap[k] && profile.fieldsMap[k].size > 0) {
-                        hitSourceFields.push(k);
-                    }
-                });
-                if (hitSourceFields.length === 0) {
-                    const checkOtherKeys = ['profession', '職業', '職稱', '現職', '與採購案相關之學經歷'];
-                    checkOtherKeys.forEach(k => {
-                        if (profile.fieldsMap[k] && profile.fieldsMap[k].size > 0) {
-                            hitSourceFields.push(k);
-                        }
-                    });
-                }
-                const matchedKeysString = hitSourceFields.join(' / ') || '無';
-
-                // Render Cases with custom badges
-                let casesHtml = '';
-                const uniqueCases = {};
-                profile.cases.forEach(item => {
-                    uniqueCases[`${item.case_number}-${item.title}`] = item;
-                });
-
-                Object.values(uniqueCases).forEach(item => {
-                    let bgStr = 'rgba(0, 240, 255, 0.08)';
-                    let colorStr = 'var(--neon-blue)';
-                    let statusLabel = '出席狀態未公開';
-
-                    const attendedVal = item.attended;
-                    if (attendedVal === '是') {
-                        bgStr = 'rgba(5, 255, 161, 0.12)';
-                        colorStr = 'var(--neon-green)';
-                        statusLabel = '出席';
-                    } else if (attendedVal === '否') {
-                        bgStr = 'rgba(100, 116, 139, 0.12)';
-                        colorStr = 'var(--text-muted)';
-                        statusLabel = '缺席';
-                    }
-
-                    casesHtml += `
-                        <li style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45; background: ${bgStr}; padding: 0.45rem 0.75rem; border-radius: 6px; border-left: 2px solid ${colorStr}; display: flex; flex-direction: column; gap: 0.2rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-weight: 700; color: #ffffff;">${item.case_number}</span>
-                                <span style="font-size: 0.65rem; color: ${colorStr}; font-weight: 700; text-transform: uppercase;">${statusLabel}</span>
-                            </div>
-                            <div style="font-size: 0.75rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${item.title}</div>
-                        </li>
-                    `;
-                });
-
-                card.innerHTML = `
-                    <div class="network-node-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <div style="display: flex; flex-direction: column; gap: 0.3rem; width: 100%;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span class="network-node-name"><i class="fa-solid fa-user-tie" style="color: var(--neon-orange); margin-right: 0.5rem;"></i>${name}</span>
-                                <span class="network-node-count" style="color: var(--neon-orange); background: rgba(255,170,0,0.06); border-color: rgba(255,170,0,0.2); font-size: 0.7rem; line-height: 1.2; margin: 0;">
-                                    ${category}
-                                </span>
-                            </div>
-                            <div style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4;">
-                                <div><span style="color: var(--text-muted);">身份：</span><span style="color: var(--neon-orange); font-weight: 700;">${category}</span></div>
-                                <div><span style="color: var(--text-muted);">現職：</span><span style="color: #ffffff; font-weight: 600;">${currentPosition}</span></div>
-                                <div><span style="color: var(--text-muted);">判定信心：</span><span style="color: ${confidenceColor}; font-weight: 700;">${confidence}</span></div>
-                                <div><span style="color: var(--text-muted);">規則命中：</span><span style="color: #ffffff; font-weight: 600;">${ruleMatched}</span></div>
-                                <div style="font-size: 0.65rem; margin-top: 0.1rem;"><span style="color: var(--text-muted); font-family: 'Fira Code', monospace;">資料來源欄位：</span><span style="color: var(--neon-blue); font-family: 'Fira Code', monospace;">${matchedKeysString}</span></div>
-                            </div>
-                        </div>
+            
+            // Format money helper
+            const formatMoney = (val) => {
+                if (val >= 100000000) return (val / 100000000).toFixed(2) + ' 億';
+                if (val >= 10000) return (val / 10000).toFixed(0) + ' 萬';
+                return val.toLocaleString();
+            };
+            
+            profiles.forEach((p, index) => {
+                const item = document.createElement('div');
+                item.className = 'gov-node-item';
+                item.innerHTML = `
+                    <div>
+                        <div class="gov-node-name">${p.name}</div>
+                        <div class="gov-node-meta">參與 ${p.cases.length} 案</div>
                     </div>
-
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; margin: 0.4rem 0; padding: 0.4rem; background: rgba(0,0,0,0.15); border-radius: 6px; border: 1px solid rgba(255,255,255,0.02);">
-                        <div>
-                            <div style="font-size: 0.65rem; color: var(--text-muted);">出席</div>
-                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-green);">${profile.attendance.attended} 次</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 0.65rem; color: var(--text-muted);">缺席</div>
-                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-pink);">${profile.attendance.absent} 次</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 0.65rem; color: var(--text-muted);">未公開</div>
-                            <div style="font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 800; color: var(--neon-blue);">${profile.attendance.undisclosed} 次</div>
-                        </div>
-                    </div>
-
-                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 0.4rem;">與會標案軌跡：</div>
-                    <ul class="network-sub-list" style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; padding-right: 0.25rem;">
-                        ${casesHtml}
-                    </ul>
-
-                    <div style="font-size: 0.68rem; color: var(--text-muted); text-align: right; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 0.4rem; margin-top: 0.5rem; font-style: italic;">
-                        評分或與會之特定立場若未在採購脈絡中提供，系統不推定其立場。
-                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
                 `;
-                container.appendChild(card);
+                
+                item.onclick = () => {
+                    document.querySelectorAll('.gov-node-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Render Profile Card
+                    const vendorHTML = Object.entries(p.vendors)
+                        .sort((a, b) => b[1] - a[1])
+                        .map(([v, count]) => `
+                            <div class="gov-list-item">
+                                <span class="gov-vendor-name">${v}</span>
+                                <span class="gov-vendor-count">${count} 次</span>
+                            </div>
+                        `).join('');
+                        
+                    cardContainer.innerHTML = `
+                        <div class="gov-profile-header">
+                            <div class="gov-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="gov-info">
+                                <h2>${p.name}</h2>
+                                <p>Governance Node Profile</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gov-stats">
+                            <div class="gov-stat-box">
+                                <div class="gov-stat-value">${p.cases.length}</div>
+                                <div class="gov-stat-label">Capacity (案件數)</div>
+                            </div>
+                            <div class="gov-stat-box">
+                                <div class="gov-stat-value">${formatMoney(p.totalAmount)}</div>
+                                <div class="gov-stat-label">Total Budget (影響金額)</div>
+                            </div>
+                            <div class="gov-stat-box">
+                                <div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>
+                                <div class="gov-stat-label">Spillover (外溢命中)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="gov-section">
+                            <h3>Vendor Co-occurrence (廠商共現密度)</h3>
+                            <div class="gov-list">
+                                ${vendorHTML || '<div style="color:var(--text-muted); font-size:0.85rem;">尚無得標廠商共現資料</div>'}
+                            </div>
+                        </div>
+                    `;
+                };
+                
+                listContainer.appendChild(item);
+                
+                // Auto select first
+                if (index === 0) item.click();
             });
         }
 
