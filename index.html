@@ -1138,7 +1138,7 @@
             }
         }
 
-        /* 職人町穿透報告樣式 */
+        /* 治理節點穿透報告樣式 */
         .penetration-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1238,7 +1238,7 @@
                     <i class="fa-solid fa-chart-line"></i> 進入戰情儀表板
                 </button>
                 <button class="btn-nav" onclick="switchPanel('penetration')">
-                    <i class="fa-solid fa-compass"></i> 職人町穿透報告
+                    <i class="fa-solid fa-compass"></i> 治理節點穿透報告
                 </button>
                 <button class="btn-nav" onclick="switchPanel('daily-mine')">
                     <i class="fa-solid fa-calendar-day"></i> 本輪礦機戰果
@@ -1272,15 +1272,15 @@
                 <!-- HUD KPI status Grid (Three Hard Numbers) -->
                 <div class="hud-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto 3rem auto;">
                     <div class="hud-card blue">
-                        <span class="hud-label">公開採購公告</span>
+                        <span class="hud-label">Governance Signal 覆蓋</span>
                         <span class="hud-value">46 筆</span>
                     </div>
                     <div class="hud-card green">
-                        <span class="hud-label">詳情驗證</span>
+                        <span class="hud-label">Decision-grade 驗證</span>
                         <span class="hud-value">46 筆</span>
                     </div>
                     <div class="hud-card pink">
-                        <span class="hud-label">關係邊</span>
+                        <span class="hud-label">Entity Relation 邊</span>
                         <span class="hud-value">370 條</span>
                     </div>
                 </div>
@@ -1291,36 +1291,36 @@
                 <h3>這套系統解決什麼問題？</h3>
                 <div class="sales-grid">
                     <div class="sales-card">
-                        <h4>審計耗時費力</h4>
+                        <h4>審計週期壓縮</h4>
                         <div class="sales-item">
-                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 以前</span>
-                            <p class="sales-desc">人工翻公告、查評委、比廠商，耗時數天且容易漏掉關鍵細節。</p>
+                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 傳統方式</span>
+                            <p class="sales-desc">人工逐案審閱公告、評委名單與得標廠商，耗時數天，易遺漏跨案關聯線索。</p>
                         </div>
                         <div class="sales-item">
-                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> 現在</span>
-                            <p class="sales-desc">自動採礦、抽欄位、建圖譜，幾分鐘內完成初篩與比對工作。</p>
-                        </div>
-                    </div>
-                    <div class="sales-card">
-                        <h4>單點資訊孤島</h4>
-                        <div class="sales-item">
-                            <span class="sales-tag before"><i class="fa-solid fa-eye-slash"></i> 以前</span>
-                            <p class="sales-desc">只看到單一標案孤立資訊，難以察覺背後隱藏之多維關係。</p>
-                        </div>
-                        <div class="sales-item">
-                            <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> 現在</span>
-                            <p class="sales-desc">看到跨年度、跨廠商、跨委員之重複結構與利害關係網。</p>
+                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> AAI v2.3+</span>
+                            <p class="sales-desc">Signal Mining Engine 自動擷取治理訊號、建立語意索引、輸出 decision-grade 關聯線索，分鐘級完成初篩。</p>
                         </div>
                     </div>
                     <div class="sales-card">
-                        <h4>從被動檢索，變成主動洗礦</h4>
+                        <h4>資訊孤島突破</h4>
                         <div class="sales-item">
-                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 以前</span>
-                            <p class="sales-desc">只能根據既有檢舉、指定案號或人工懷疑對象逐件查核。</p>
+                            <span class="sales-tag before"><i class="fa-solid fa-eye-slash"></i> 傳統方式</span>
+                            <p class="sales-desc">單一標案視角，難以感知跨案件、跨年度之重複結構與潛在利害衝突。</p>
                         </div>
                         <div class="sales-item">
-                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> 現在</span>
-                            <p class="sales-desc">主動稽核情報系統自動掃描非指定案件，標出風險訊號與關係圖譜，方法論由 4Force Lab 黑箱保護。</p>
+                            <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> AAI v2.4+</span>
+                            <p class="sales-desc">Entity Relation Mapper 自動構建跨案件、跨廠商、跨委員之多維治理關係圖譜，呈現系統性重複結構。</p>
+                        </div>
+                    </div>
+                    <div class="sales-card">
+                        <h4>從被動查核到主動情報</h4>
+                        <div class="sales-item">
+                            <span class="sales-tag before"><i class="fa-solid fa-clock-rotate-left"></i> 傳統方式</span>
+                            <p class="sales-desc">依賴既有檢舉線索或人工懷疑對象，逐件被動查核，無法主動發現未知風險。</p>
+                        </div>
+                        <div class="sales-item">
+                            <span class="sales-tag after"><i class="fa-solid fa-bolt"></i> AAI v2.1+</span>
+                            <p class="sales-desc">Risk Distribution Model 主動掃描非指定對象，輸出 anomaly distribution 訊號，辨識系統自動標出之高頻重複結構。</p>
                         </div>
                     </div>
                 </div>
@@ -1328,30 +1328,30 @@
 
             <!-- Screen 3: Range Showcase -->
             <section class="sales-section">
-                <h3>職人町公開靶場成果</h3>
+                <h3>公開靶場實戰部署成果</h3>
                 <div class="hud-grid" style="grid-template-columns: repeat(6, 1fr);">
                     <div class="hud-card blue">
-                        <span class="hud-label">掃描公告</span>
+                        <span class="hud-label">Governance Signal</span>
                         <span class="hud-value">46</span>
                     </div>
                     <div class="hud-card green">
-                        <span class="hud-label">詳情驗證</span>
+                        <span class="hud-label">Decision-grade 驗證</span>
                         <span class="hud-value">46</span>
                     </div>
                     <div class="hud-card pink">
-                        <span class="hud-label">高風險訊號</span>
+                        <span class="hud-label">Anomaly Distribution 高</span>
                         <span class="hud-value">3</span>
                     </div>
                     <div class="hud-card orange">
-                        <span class="hud-label">中風險訊號</span>
+                        <span class="hud-label">Anomaly Distribution 中</span>
                         <span class="hud-value">14</span>
                     </div>
                     <div class="hud-card blue">
-                        <span class="hud-label">圖譜節點</span>
+                        <span class="hud-label">Entity Relation 節點</span>
                         <span class="hud-value">137</span>
                     </div>
                     <div class="hud-card green">
-                        <span class="hud-label">關係邊</span>
+                        <span class="hud-label">Entity Relation 邊</span>
                         <span class="hud-value">370</span>
                     </div>
                 </div>
@@ -1359,65 +1359,65 @@
 
             <!-- Screen 4: Product Differentiation -->
             <section class="sales-section">
-                <h3>產品不是職人町</h3>
+                <h3>Intelligence Module Stack</h3>
                 <p style="color: var(--text-secondary); max-width: 850px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    職人町只是公開靶場。真正價值在於：AAI 不只驗證既有懷疑，也能從非指定靶點中自動洗出新的高風險線索。系統可替換為任意礦池：機關、人物、場域、廠商、補助計畫。
+                    AAI 的核心能力不依附於特定場域。任意機關、人物、廠商或補助計畫均可作為情報礦池切入點。以下為目前已部署之 field-deployable intelligence modules。
                 </p>
                 <div class="sales-pack-grid">
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-building-columns sales-pack-icon"></i>
-                        <span class="sales-pack-title">政府採購監測</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">自動追蹤機關招標流標異常，辨識異常等標期與潛在圍標行為。</p>
+                        <span class="sales-pack-title">Signal Mining Engine v2.3</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">自動擷取公開採購治理訊號，覆蓋招標流標異常、等標期壓力與公告節奏分析。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-sack-dollar sales-pack-icon"></i>
-                        <span class="sales-pack-title">補助資金流追蹤</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">剖析計畫資金流向，追蹤高重複度投標實體與異常決標金額比率。</p>
+                        <span class="sales-pack-title">Risk Distribution Model v2.4</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">輸出 anomaly distribution 分層訊號，自動標記單一投標、高契合比率與決標結構異常。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-diagram-project sales-pack-icon"></i>
-                        <span class="sales-pack-title">供應商風險圖譜</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">串聯廠商背後關聯之實體，構建跨案件、跨區域之多維風險網絡。</p>
+                        <span class="sales-pack-title">Entity Relation Mapper v2.2</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">構建跨案件、跨區域多維治理關係圖譜，識別廠商重複結構與跨域實體共現模式。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon"></i>
-                        <span class="sales-pack-title">人物 / 評委參與軌跡</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">精準繪製關鍵審查委員參與軌跡，發掘高頻重複評審利害衝突。</p>
+                        <span class="sales-pack-title">Semantic Extraction Layer v2.1</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">語意抽取評選委員參與軌跡，發掘高頻重複評審共現與治理節點利害結構。</p>
                     </div>
                 </div>
             </section>
 
             <!-- Screen 5: What You Can Purchase -->
             <section class="sales-section">
-                <h3>情報訂製：您能買到什麼？</h3>
+                <h3>Decision Intelligence Dashboard v2.5</h3>
                 <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    AAI 提供全量客製化主動稽核情報服務，針對指定對象實施深層關聯審計，方法論由 4Force Lab 黑箱保護。
+                    AAI 提供全量客製化主動稽核情報服務，針對指定對象輸出 decision-grade 關聯圖譜與治理訊號報告，方法論由 4Force Lab 黑箱保護。
                 </p>
                 <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-user-shield sales-pack-icon" style="color: var(--neon-blue);"></i>
-                        <span class="sales-pack-title">指定官員採購脈絡</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤指定決策官員相關標案往來，釐清歷史招決標網絡。</p>
+                        <span class="sales-pack-title">治理人物情報包</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">針對指定決策人物輸出採購脈絡圖譜，呈現歷史招決標關聯結構與治理節點共現紀錄。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-users-gear sales-pack-icon" style="color: var(--neon-orange);"></i>
-                        <span class="sales-pack-title">指定評委參與軌跡</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">分析指定專家評委歷史審查案件，識別高重複與異常偏好。</p>
+                        <span class="sales-pack-title">評選委員軌跡情報包</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">深層分析指定評委歷史評選案件，識別高頻共現結構、偏好模式與潛在利害衝突節點。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-building-columns sales-pack-icon" style="color: var(--neon-green);"></i>
-                        <span class="sales-pack-title">指定機關標案結構</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定發包單位招標案底，揭示流標重招與特殊結構。</p>
+                        <span class="sales-pack-title">機關採購結構情報包</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定發包機關完整標案底層結構，輸出流標重招異常分布與採購節奏分析。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-handshake sales-pack-icon" style="color: var(--neon-pink);"></i>
-                        <span class="sales-pack-title">指定廠商得標關係</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">穿透指定投標企業股權與共同負責人，勾畫得標利益圖譜。</p>
+                        <span class="sales-pack-title">供應商實體圖譜情報包</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">構建指定廠商跨案件得標關係圖譜，呈現共同實體關聯結構與區域性重複得標分布。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon" style="color: var(--neon-blue);"></i>
-                        <span class="sales-pack-title">指定場域資金流路線</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤特定計畫、特定單位的資金分配流向與決算金額吻合度。</p>
+                        <span class="sales-pack-title">場域資金流情報包</span>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤特定場域計畫資金分配流向，輸出決算金額吻合度分析與跨年度資金路徑圖譜。</p>
                     </div>
                 </div>
             </section>
@@ -1522,7 +1522,7 @@
                                     </span>
                                     <div class="starmap-base-selector" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                                         <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('all')">全域圖</button>
-                                        <button class="btn-war-tab active" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('core')">核心案件 E1150212-1</button>
+                                        <button id="btn-core-target" class="btn-war-tab active" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('core')">最高風險案件</button>
                                         <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('highrisk')">高風險案件</button>
                                     </div>
                                     <span id="starmap-stats" style="font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 700; color: var(--neon-blue); margin-left: auto;">
@@ -1688,12 +1688,12 @@
             </div>
         </section>
 
-        <!-- Panel 3: 職人町穿透報告 -->
+        <!-- Panel 3: 治理節點穿透報告 -->
         <section id="panel-penetration" class="panel-container">
             <div class="hero-section" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">職人町場域穿透報告</h2>
+                <h2 id="penetration-panel-title" style="font-size: 2.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--neon-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">本輪治理場域穿透報告</h2>
                 <p class="subtitle" style="max-width: 900px; margin-bottom: 1.5rem;">
-                    本報告透過已淨化的公開採購資料，客觀呈現職人町特定場域採購線、委員會評審共現以及備標天數壓力。
+                    本報告透過已淨化的公開採購資料，客觀呈現本輪樣本池特定場域採購線、委員會評審共現以及備標天數壓力。
                     <span style="display: block; font-size: 0.85rem; color: var(--neon-orange); margin-top: 0.5rem; font-weight: 600;">
                         ⚠ 聲明：本系統僅呈現公開資料結構，不作任何法律定性或主觀指控。
                     </span>
@@ -1705,9 +1705,9 @@
                 <!-- Will be dynamically populated -->
             </div>
 
-            <!-- B. 李雨蓁關聯線 -->
+            <!-- B. 高頻評選節點關聯線（動態） -->
             <div class="penetration-section-title">
-                <i class="fa-solid fa-circle-nodes"></i> 主管角色與評選委員關聯分析
+                <i class="fa-solid fa-circle-nodes"></i> 高頻評選節點關聯分析
             </div>
             <div class="panel-box" style="margin-bottom: 2rem;">
                 <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
@@ -1717,14 +1717,14 @@
                                 <i class="fa-solid fa-user-tie"></i>
                             </div>
                             <div>
-                                <h4 style="font-size: 1.1rem; font-weight: 800; color: #ffffff;">關鍵節點：李雨蓁 (處長)</h4>
-                                <span style="font-size: 0.75rem; color: var(--text-secondary); background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px;">
-                                    官派 / 主管角色 (勞動暨青年發展處處長)
+                                <h4 id="p-top-member-title" style="font-size: 1.1rem; font-weight: 800; color: #ffffff;">高頻共現評選節點</h4>
+                                <span id="p-top-member-role" style="font-size: 0.75rem; color: var(--text-secondary); background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px;">
+                                    評選委員 / 身份分析中
                                 </span>
                             </div>
                         </div>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
-                            在職人町場域採購脈絡中，李雨蓁處長作為主辦單位首長，其名字在多個標案的評選委員會名單中與投標廠商形成**公開資料共現**。
+                        <p id="p-top-member-desc" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            在本輪樣本池採購脈絡中，高頻共現節點作為多個標案評選委員，其名字在評選委員會名單中與投標廠商形成公開資料共現。
                         </p>
                         <div id="p-association-status" style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
                             <!-- Will be dynamically populated -->
@@ -2042,11 +2042,11 @@
                 globalSignals = signalsData.signals || [];
                 globalGraph = graphData || {};
 
-                // Inject active pool display name into panel title and note
+                // Inject active pool display name into panel titles and notes
                 const activePoolName = detailsData.active_pool_display_name
                     || signalsData.active_pool_display_name
                     || graphData.active_pool_display_name
-                    || '職人町樣本池';
+                    || '本輪樣本池';
                 const dmTitle = document.getElementById('dm-panel-title');
                 if (dmTitle) {
                     dmTitle.textContent = `本輪礦機戰果｜${activePoolName}`;
@@ -2054,6 +2054,18 @@
                 const dmNote = document.getElementById('dm-panel-pool-note');
                 if (dmNote) {
                     dmNote.textContent = `ℹ 說明：目前本輪資料以「${activePoolName}」為主要樣本池。後續可替換或擴充為其他場域資料包。`;
+                }
+                // Inject active pool name into penetration panel title
+                const penTitle = document.getElementById('penetration-panel-title');
+                if (penTitle) {
+                    penTitle.textContent = `${activePoolName}｜治理節點穿透報告`;
+                }
+                // Compute top risk case for star graph dynamic core target
+                const sortedSignals = [...(signalsData.signals || [])].sort((a, b) => (b.risk_score || 0) - (a.risk_score || 0));
+                window._topRiskCaseNumber = sortedSignals.length > 0 ? sortedSignals[0].case_number : null;
+                if (!window._topRiskCaseNumber && graphData.nodes) {
+                    const firstCase = (graphData.nodes || []).find(n => n.type === 'case');
+                    window._topRiskCaseNumber = firstCase ? firstCase.case_number : null;
                 }
 
                 // Hide loader and show tab content
@@ -2205,7 +2217,7 @@
             const labels = {
                 "all": "全域圖",
                 "highrisk": "高風險案件",
-                "core": "核心案件 E1150212-1"
+                "core": "最高風險案件"
             };
             return labels[targetType] || targetType;
         }
@@ -2253,8 +2265,9 @@
                     if (n.type === 'case' && n.risk_score >= 60) startingCaseIds.add(n.id);
                 });
             } else if (currentBaseTarget === 'core') {
+                const topCase = window._topRiskCaseNumber;
                 rawNodes.forEach(n => {
-                    if (n.type === 'case' && n.case_number === 'E1150212-1') startingCaseIds.add(n.id);
+                    if (n.type === 'case' && (topCase ? n.case_number === topCase : true)) startingCaseIds.add(n.id);
                 });
             }
 
@@ -3420,7 +3433,7 @@
             if (hudContainer) {
                 hudContainer.innerHTML = `
                     <div class="hud-card blue">
-                        <span class="hud-label">職人町相關案件數</span>
+                        <span class="hud-label">本輪樣本池案件數</span>
                         <span class="hud-value">${totalCasesCount} <span style="font-size: 1rem; font-weight: 500;">案</span></span>
                     </div>
                     <div class="hud-card green">
@@ -3438,15 +3451,38 @@
                 `;
             }
 
-            // 2. Render Association (Li Yu-Chen)
+            // 2. Render Association (Dynamic Top Committee Member)
             const edges = graph.edges || [];
             const nodes = graph.nodes || [];
-            const lyNodes = new Set();
-            
-            edges.forEach(e => {
-                if (e.source === 'member-李雨蓁') lyNodes.add(e.target);
-                if (e.target === 'member-李雨蓁') lyNodes.add(e.source);
+
+            // Find top committee member dynamically from detail_results
+            const memberCaseCount = {};
+            details.forEach(c => {
+                (c.committee_members || []).forEach(m => {
+                    if (m.name) memberCaseCount[m.name] = (memberCaseCount[m.name] || 0) + 1;
+                });
             });
+            const topMemberName = Object.entries(memberCaseCount).sort((a, b) => b[1] - a[1])[0]?.[0] || null;
+            const topMemberId = topMemberName ? `member-${topMemberName}` : null;
+
+            // Update B section header dynamically
+            const topMemberTitleEl = document.getElementById('p-top-member-title');
+            const topMemberRoleEl = document.getElementById('p-top-member-role');
+            const topMemberDescEl = document.getElementById('p-top-member-desc');
+            if (topMemberName) {
+                if (topMemberTitleEl) topMemberTitleEl.textContent = `關鍵節點：${topMemberName}`;
+                const caseCount = memberCaseCount[topMemberName];
+                if (topMemberRoleEl) topMemberRoleEl.textContent = `高頻評選委員 / 出現 ${caseCount} 個標案`;
+                if (topMemberDescEl) topMemberDescEl.textContent = `在本輪樣本池採購脈絡中，${topMemberName} 作為高頻共現節點，其姓名在多個標案的評選委員會名單中與投標廠商形成公開資料共現。`;
+            }
+
+            const lyNodes = new Set();
+            if (topMemberId) {
+                edges.forEach(e => {
+                    if (e.source === topMemberId) lyNodes.add(e.target);
+                    if (e.target === topMemberId) lyNodes.add(e.source);
+                });
+            }
 
             const associatedCases = [];
             lyNodes.forEach(nodeId => {
@@ -3461,11 +3497,11 @@
             
             if (listEl) {
                 listEl.innerHTML = '';
-                if (associatedCases.length === 0) {
+                if (associatedCases.length === 0 || !topMemberName) {
                     if (statusEl) statusEl.innerHTML = '目前公開資料僅能呈現節點共現，尚不足以推論實質關係。';
                     listEl.innerHTML = '<div style="color: var(--text-muted); padding: 1rem; font-style: italic;">目前公開資料僅能呈現節點共現，尚不足以推論實質關係。</div>';
                 } else {
-                    if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-circle-info" style="color: var(--neon-blue); margin-right: 0.25rem;"></i>數據分析提示：李雨蓁處長在上述多個職人町標案中，與得標廠商有多次招標評選的**公開資料共現**紀錄。';
+                    if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-circle-info" style="color: var(--neon-blue); margin-right: 0.25rem;"></i>數據分析提示：${topMemberName} 在本輪樣本池多個標案中，與得標廠商有多次招標評選的公開資料共現紀錄。`;
                     
                     associatedCases.forEach(ac => {
                         const card = document.createElement('div');
