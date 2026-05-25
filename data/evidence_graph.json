@@ -1,1156 +1,284 @@
 {
-  "graph_id": "pcc-public_source-evidence-graph-v1",
-  "source_detail_file": "research/raw/pcc_public_source/pingtung_labor_youth_detail_results_full.json",
-  "source_signal_file": "research/raw/pcc_public_source/pingtung_labor_youth_risk_signals_full.json",
-  "case_count": 13,
-  "node_count": 59,
-  "edge_count": 98,
-  "vendor_count": 8,
-  "committee_member_count": 16,
+  "graph_id": "manual-official-procurement-graph-v2.9E",
+  "source_detail_file": "manual_samples/v2_9_E_official_procurement_mining_dataset.csv",
+  "source_signal_file": "manual_official_procurement_signals_from_source_backed_fields",
+  "case_count": 5,
+  "node_count": 9,
+  "edge_count": 8,
+  "vendor_count": 3,
+  "committee_member_count": 0,
   "risk_pattern_count": 4,
   "high_risk_count": 0,
-  "medium_risk_count": 5,
-  "low_risk_count": 8,
+  "medium_risk_count": 0,
+  "low_risk_count": 5,
   "uses_mock_data": false,
   "legal_claims_made": false,
   "nodes": [
     {
-      "id": "case-E1131205-2-1-0",
-      "type": "case",
-      "label": "115年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作勞務採購契約後續擴充案",
-      "case_number": "E1131205-2-1",
-      "case_name": "115年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作勞務採購契約後續擴充案",
-      "award_amount": 1600000,
-      "award_date": "2025-12-29",
-      "procurement_method": null,
-      "winning_vendor": "寶儷工程有限公司",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "agency-屏東縣政府",
-      "type": "agency",
-      "label": "屏東縣政府"
-    },
-    {
-      "id": "unit-屏東縣政府",
-      "type": "unit",
-      "label": "屏東縣政府"
-    },
-    {
-      "id": "vendor-寶儷工程有限公司",
-      "type": "vendor",
-      "label": "寶儷工程有限公司"
-    },
-    {
-      "id": "risk-Single Bidder Tender",
-      "type": "risk_pattern",
-      "label": "Single Bidder Tender"
-    },
-    {
-      "id": "risk-High Budget Fit Ratio",
-      "type": "risk_pattern",
-      "label": "High Budget Fit Ratio"
-    },
-    {
-      "id": "amount-amount-1m-to-5m",
-      "type": "amount_bucket",
-      "label": "金額100萬至500萬"
-    },
-    {
-      "id": "notice-決標公告",
-      "type": "notice_type",
-      "label": "決標公告"
-    },
-    {
-      "id": "case-E1131209-3-1-1",
-      "type": "case",
-      "label": "屏東縣政府勞動暨青年發展處115年度電腦設備租賃採購後續擴充案",
-      "case_number": "E1131209-3-1",
-      "case_name": "屏東縣政府勞動暨青年發展處115年度電腦設備租賃採購後續擴充案",
-      "award_amount": 553344,
-      "award_date": "2025-12-18",
-      "procurement_method": null,
-      "winning_vendor": "詮翊電腦股份有限公司",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-勞動暨青年發展處",
-      "type": "unit",
-      "label": "勞動暨青年發展處"
-    },
-    {
-      "id": "vendor-詮翊電腦股份有限公司",
-      "type": "vendor",
-      "label": "詮翊電腦股份有限公司"
-    },
-    {
-      "id": "amount-amount-under-1m",
-      "type": "amount_bucket",
-      "label": "金額低於100萬"
-    },
-    {
-      "id": "case-E1131205-2-2",
-      "type": "case",
-      "label": "114年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作",
-      "case_number": "E1131205-2",
-      "case_name": "114年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作",
-      "award_amount": 1600000,
-      "award_date": "2025-01-03",
-      "procurement_method": "經公開評選或公開徵求之限制性招標",
-      "winning_vendor": "寶儷工程有限公司",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-勞動暨青年發展處勞工行政科胡秀卿",
-      "type": "unit",
-      "label": "勞動暨青年發展處勞工行政科胡秀卿"
-    },
-    {
-      "id": "member-李崇垓",
-      "type": "committee_member",
-      "label": "李崇垓"
-    },
-    {
-      "id": "member-謝連德",
-      "type": "committee_member",
-      "label": "謝連德"
-    },
-    {
-      "id": "member-賴進興",
-      "type": "committee_member",
-      "label": "賴進興"
-    },
-    {
-      "id": "member-李雨蓁",
-      "type": "committee_member",
-      "label": "李雨蓁"
-    },
-    {
-      "id": "member-黃韋仁",
-      "type": "committee_member",
-      "label": "黃韋仁"
-    },
-    {
-      "id": "case-E1131209-3-3",
-      "type": "case",
-      "label": "屏東縣政府勞動暨青年發展處114年度電腦設備租賃採購案",
-      "case_number": "E1131209-3",
-      "case_name": "屏東縣政府勞動暨青年發展處114年度電腦設備租賃採購案",
-      "award_amount": 553344,
-      "award_date": "2024-12-31",
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": "詮翊電腦股份有限公司",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-勞動暨青年發展處勞工行政科王聖程",
-      "type": "unit",
-      "label": "勞動暨青年發展處勞工行政科王聖程"
-    },
-    {
-      "id": "case-115126-4",
-      "type": "case",
-      "label": "嘉義市政府115年度勞工及青年發展處公務電腦及設備維護案",
-      "case_number": "115126",
-      "case_name": "嘉義市政府115年度勞工及青年發展處公務電腦及設備維護案",
-      "award_amount": null,
-      "award_date": null,
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": null,
-      "risk_score": 15,
-      "anomaly_patterns": [
-        "Short Bid Preparation"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "id": "agency-嘉義市政府",
-      "type": "agency",
-      "label": "嘉義市政府"
-    },
-    {
-      "id": "unit-勞工及青年發展處",
-      "type": "unit",
-      "label": "勞工及青年發展處"
-    },
-    {
-      "id": "risk-Short Bid Preparation",
-      "type": "risk_pattern",
-      "label": "Short Bid Preparation"
-    },
-    {
-      "id": "notice-公開取得報價單或企劃書公告",
-      "type": "notice_type",
-      "label": "公開取得報價單或企劃書公告"
-    },
-    {
-      "id": "case-115098-5",
-      "type": "case",
-      "label": "嘉義市政府勞工及青年發展處115年度清潔維護管理工作",
-      "case_number": "115098",
-      "case_name": "嘉義市政府勞工及青年發展處115年度清潔維護管理工作",
-      "award_amount": 414320,
-      "award_date": "2026-03-25",
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": "宇捷清潔有限公司",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "id": "vendor-宇捷清潔有限公司",
-      "type": "vendor",
-      "label": "宇捷清潔有限公司"
-    },
-    {
-      "id": "case-E1150128-3-6",
-      "type": "case",
-      "label": "115年屏東青航站(青年學院)社群營運服務案",
-      "case_number": "E1150128-3",
-      "case_name": "115年屏東青航站(青年學院)社群營運服務案",
-      "award_amount": null,
-      "award_date": null,
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": null,
-      "risk_score": 30,
-      "anomaly_patterns": [
-        "Extremely Short Bid Preparation"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-屏東縣政府勞動暨青年發展處青年事務科何翊華",
-      "type": "unit",
-      "label": "屏東縣政府勞動暨青年發展處青年事務科何翊華"
-    },
-    {
-      "id": "risk-Extremely Short Bid Preparation",
-      "type": "risk_pattern",
-      "label": "Extremely Short Bid Preparation"
-    },
-    {
-      "id": "case-LASL108019-7",
-      "type": "case",
-      "label": "109年度宜蘭青年交流中心暨宜蘭青年學院計畫",
-      "case_number": "LASL108019",
-      "case_name": "109年度宜蘭青年交流中心暨宜蘭青年學院計畫",
-      "award_amount": 421250,
-      "award_date": "2019-12-31",
-      "procurement_method": null,
-      "winning_vendor": "台灣好室有限公司",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "id": "agency-宜蘭縣政府",
-      "type": "agency",
-      "label": "宜蘭縣政府"
-    },
-    {
-      "id": "unit-勞工處",
-      "type": "unit",
-      "label": "勞工處"
-    },
-    {
-      "id": "vendor-台灣好室有限公司",
-      "type": "vendor",
-      "label": "台灣好室有限公司"
-    },
-    {
-      "id": "case-C1080110-4-8",
-      "type": "case",
-      "label": "108年度青年學院PIT進階創業實戰課程",
-      "case_number": "C1080110-4",
-      "case_name": "108年度青年學院PIT進階創業實戰課程",
-      "award_amount": 650000,
-      "award_date": "2019-03-05",
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": "泛科知識股份有限公司",
-      "risk_score": 25,
-      "anomaly_patterns": [
-        "High Budget Fit Ratio"
-      ],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-勞工處青年學院專案辦公室",
-      "type": "unit",
-      "label": "勞工處青年學院專案辦公室"
-    },
-    {
-      "id": "vendor-泛科知識股份有限公司",
-      "type": "vendor",
-      "label": "泛科知識股份有限公司"
-    },
-    {
-      "id": "case-D107-1113-164-1-9",
-      "type": "case",
-      "label": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
-      "case_number": "D107-1113-164-1",
-      "case_name": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
-      "award_amount": 1570000,
-      "award_date": "2019-01-15",
-      "procurement_method": "限制性招標(經公開評選或公開徵求)",
-      "winning_vendor": "俊承工程企業行",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_status": "graph_from_verified_detail",
-      "legal_claims_made": false,
-      "uses_mock_data": false,
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "id": "unit-青年學院專案辦公室",
-      "type": "unit",
-      "label": "青年學院專案辦公室"
-    },
-    {
-      "id": "vendor-俊承工程企業行",
-      "type": "vendor",
-      "label": "俊承工程企業行"
-    },
-    {
-      "id": "member-許瑞娟",
-      "type": "committee_member",
-      "label": "許瑞娟"
-    },
-    {
-      "id": "member-陳明吉",
-      "type": "committee_member",
-      "label": "陳明吉"
-    },
-    {
-      "id": "member-林雅文",
-      "type": "committee_member",
-      "label": "林雅文"
-    },
-    {
-      "id": "member-林德輝",
-      "type": "committee_member",
-      "label": "林德輝"
-    },
-    {
-      "id": "member-于宗永",
-      "type": "committee_member",
-      "label": "于宗永"
-    },
-    {
-      "id": "case-E1141127-4-10",
+      "id": "case-E1141127-4-1",
       "type": "case",
       "label": "115年屏東數位青創中心營運管理委託專業服務案",
       "case_number": "E1141127-4",
       "case_name": "115年屏東數位青創中心營運管理委託專業服務案",
       "award_amount": 3000000,
-      "award_date": "2025-12-23",
+      "budget_amount": 3000000,
+      "announcement_date": "2025-11-27",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2025-12-28",
+      "bid_preparation_days": "UNKNOWN",
       "procurement_method": "經公開評選或公開徵求之限制性招標",
       "winning_vendor": "階梯影像製作有限公司",
-      "risk_score": 45,
+      "risk_score": 10,
       "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
+        "Official Public Procurement Record",
+        "FIELD_PARTIAL",
+        "Winning Vendor Observed",
+        "Budget Award Amount Observed"
       ],
-      "evidence_status": "graph_from_verified_detail",
+      "evidence_status": "official_record_observed",
       "legal_claims_made": false,
       "uses_mock_data": false,
       "pool_id": "pingtung_labor_youth",
       "scope_tags": [
-        "primary_geo"
+        "official_public_record",
+        "pingtung_labor_youth"
       ],
       "scope_status": "in_scope"
     },
     {
-      "id": "unit-屏東縣政府勞動暨青年發展處青年事務科林宜慧",
-      "type": "unit",
-      "label": "屏東縣政府勞動暨青年發展處青年事務科林宜慧"
+      "id": "agency-屏東縣政府勞動暨青年發展處",
+      "type": "agency",
+      "label": "屏東縣政府勞動暨青年發展處",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
     },
     {
       "id": "vendor-階梯影像製作有限公司",
       "type": "vendor",
-      "label": "階梯影像製作有限公司"
-    },
-    {
-      "id": "member-黃照貴",
-      "type": "committee_member",
-      "label": "黃照貴"
-    },
-    {
-      "id": "member-徐偉智",
-      "type": "committee_member",
-      "label": "徐偉智"
-    },
-    {
-      "id": "member-林美賢",
-      "type": "committee_member",
-      "label": "林美賢"
-    },
-    {
-      "id": "member-張俊陽",
-      "type": "committee_member",
-      "label": "張俊陽"
-    },
-    {
-      "id": "member-李傳昇",
-      "type": "committee_member",
-      "label": "李傳昇"
-    },
-    {
-      "id": "member-謝蕙蓮",
-      "type": "committee_member",
-      "label": "謝蕙蓮"
-    },
-    {
-      "id": "case-164-E1140512-1-11",
-      "type": "case",
-      "label": "屏東數位青創中心屋頂女兒牆護欄裝修設工程",
-      "case_number": "164-E1140512-1",
-      "case_name": "屏東數位青創中心屋頂女兒牆護欄裝修設工程",
-      "award_amount": 731882,
-      "award_date": "2025-05-27",
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": "冠銘土木包工業有限公司",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_status": "graph_from_verified_detail",
+      "label": "階梯影像製作有限公司",
       "legal_claims_made": false,
       "uses_mock_data": false,
       "pool_id": "pingtung_labor_youth",
       "scope_tags": [
-        "primary_geo"
+        "official_public_record",
+        "pingtung_labor_youth"
       ],
       "scope_status": "in_scope"
     },
     {
-      "id": "vendor-冠銘土木包工業有限公司",
-      "type": "vendor",
-      "label": "冠銘土木包工業有限公司"
-    },
-    {
-      "id": "case-E1131220-1-12",
+      "id": "case-E1150212-1-2",
       "type": "case",
-      "label": "114年度屏東數位青創中心及職人町環境維護勞務委託案",
-      "case_number": "E1131220-1",
-      "case_name": "114年度屏東數位青創中心及職人町環境維護勞務委託案",
-      "award_amount": 980190,
-      "award_date": "2025-01-09",
-      "procurement_method": "公開取得報價單或企劃書",
-      "winning_vendor": "俊承工程企業行",
-      "risk_score": 45,
+      "label": "職人町經營管理勞務委託專業服務案",
+      "case_number": "E1150212-1",
+      "case_name": "職人町經營管理勞務委託專業服務案",
+      "award_amount": 2000000,
+      "budget_amount": 2000000,
+      "announcement_date": "2026-02-13",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "2026-02-26",
+      "award_date": "2026-03-12",
+      "bid_preparation_days": "UNKNOWN",
+      "procurement_method": "經公開評選或公開徵求之限制性招標",
+      "winning_vendor": "睿霓國際顧問有限公司",
+      "risk_score": 10,
       "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
+        "Official Public Procurement Record",
+        "FIELD_PARTIAL",
+        "Winning Vendor Observed",
+        "Budget Award Amount Observed"
       ],
-      "evidence_status": "graph_from_verified_detail",
+      "evidence_status": "official_record_observed",
       "legal_claims_made": false,
       "uses_mock_data": false,
       "pool_id": "pingtung_labor_youth",
       "scope_tags": [
-        "primary_geo"
+        "official_public_record",
+        "pingtung_labor_youth"
       ],
       "scope_status": "in_scope"
     },
     {
-      "id": "unit-勞動暨青年發展處青年事務科陳憶婷",
-      "type": "unit",
-      "label": "勞動暨青年發展處青年事務科陳憶婷"
+      "id": "vendor-睿霓國際顧問有限公司",
+      "type": "vendor",
+      "label": "睿霓國際顧問有限公司",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
+    },
+    {
+      "id": "case-E1150128-2-3",
+      "type": "case",
+      "label": "115年度青農即戰力人才培育計畫勞務委託案",
+      "case_number": "E1150128-2",
+      "case_name": "115年度青農即戰力人才培育計畫勞務委託案",
+      "award_amount": 950000,
+      "budget_amount": 950000,
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2026-03-02",
+      "bid_preparation_days": "UNKNOWN",
+      "procurement_method": "公開取得報價單或企劃書",
+      "winning_vendor": "UNKNOWN",
+      "risk_score": 10,
+      "anomaly_patterns": [
+        "Official Public Procurement Record",
+        "FIELD_PARTIAL",
+        "Budget Award Amount Observed"
+      ],
+      "evidence_status": "official_record_observed",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
+    },
+    {
+      "id": "case-E1140324-1-4",
+      "type": "case",
+      "label": "114年度屏東縣大專青年地方創生見習行動計畫勞務委託案",
+      "case_number": "E1140324-1",
+      "case_name": "114年度屏東縣大專青年地方創生見習行動計畫勞務委託案",
+      "award_amount": 496335,
+      "budget_amount": 496335,
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2025-04-15",
+      "bid_preparation_days": "UNKNOWN",
+      "procurement_method": "UNKNOWN",
+      "winning_vendor": "UNKNOWN",
+      "risk_score": 10,
+      "anomaly_patterns": [
+        "Official Public Procurement Record",
+        "FIELD_PARTIAL",
+        "Budget Award Amount Observed"
+      ],
+      "evidence_status": "official_record_observed",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
+    },
+    {
+      "id": "case-E1140409-6-5",
+      "type": "case",
+      "label": "114年屏東青年就創業輔導中心委託專業服務案",
+      "case_number": "E1140409-6",
+      "case_name": "114年屏東青年就創業輔導中心委託專業服務案",
+      "award_amount": 6096470,
+      "budget_amount": 6096470,
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2026-02-05",
+      "bid_preparation_days": "UNKNOWN",
+      "procurement_method": "經公開評選或公開徵求之限制性招標",
+      "winning_vendor": "三恆一樹行銷有限公司",
+      "risk_score": 10,
+      "anomaly_patterns": [
+        "Official Public Procurement Record",
+        "FIELD_PARTIAL",
+        "Winning Vendor Observed",
+        "Budget Award Amount Observed"
+      ],
+      "evidence_status": "official_record_observed",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
+    },
+    {
+      "id": "vendor-三恆一樹行銷有限公司",
+      "type": "vendor",
+      "label": "三恆一樹行銷有限公司",
+      "legal_claims_made": false,
+      "uses_mock_data": false,
+      "pool_id": "pingtung_labor_youth",
+      "scope_tags": [
+        "official_public_record",
+        "pingtung_labor_youth"
+      ],
+      "scope_status": "in_scope"
     }
   ],
   "edges": [
     {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1131205-2-1-0",
+      "source": "agency-屏東縣政府勞動暨青年發展處",
+      "target": "case-E1141127-4-1",
       "type": "agency_issued_case",
       "label": "發布標案"
     },
     {
-      "source": "unit-屏東縣政府",
-      "target": "case-E1131205-2-1-0",
-      "type": "unit_managed_case",
-      "label": "管理標案"
+      "source": "vendor-階梯影像製作有限公司",
+      "target": "case-E1141127-4-1",
+      "type": "vendor_awarded_case",
+      "label": "得標"
     },
     {
-      "source": "case-E1131205-2-1-0",
-      "target": "vendor-寶儷工程有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1131205-2-1-0",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131205-2-1-0",
-      "target": "risk-High Budget Fit Ratio",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131205-2-1-0",
-      "target": "amount-amount-1m-to-5m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1131205-2-1-0",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1131209-3-1-1",
+      "source": "agency-屏東縣政府勞動暨青年發展處",
+      "target": "case-E1150212-1-2",
       "type": "agency_issued_case",
       "label": "發布標案"
     },
     {
-      "source": "unit-勞動暨青年發展處",
-      "target": "case-E1131209-3-1-1",
-      "type": "unit_managed_case",
-      "label": "管理標案"
+      "source": "vendor-睿霓國際顧問有限公司",
+      "target": "case-E1150212-1-2",
+      "type": "vendor_awarded_case",
+      "label": "得標"
     },
     {
-      "source": "case-E1131209-3-1-1",
-      "target": "vendor-詮翊電腦股份有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1131209-3-1-1",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131209-3-1-1",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1131209-3-1-1",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1131205-2-2",
+      "source": "agency-屏東縣政府勞動暨青年發展處",
+      "target": "case-E1150128-2-3",
       "type": "agency_issued_case",
       "label": "發布標案"
     },
     {
-      "source": "unit-勞動暨青年發展處勞工行政科胡秀卿",
-      "target": "case-E1131205-2-2",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "vendor-寶儷工程有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "member-李崇垓",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "member-謝連德",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "member-賴進興",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "member-李雨蓁",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "member-黃韋仁",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "amount-amount-1m-to-5m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1131209-3-3",
+      "source": "agency-屏東縣政府勞動暨青年發展處",
+      "target": "case-E1140324-1-4",
       "type": "agency_issued_case",
       "label": "發布標案"
     },
     {
-      "source": "unit-勞動暨青年發展處勞工行政科王聖程",
-      "target": "case-E1131209-3-3",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-E1131209-3-3",
-      "target": "vendor-詮翊電腦股份有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1131209-3-3",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131209-3-3",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1131209-3-3",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-嘉義市政府",
-      "target": "case-115126-4",
+      "source": "agency-屏東縣政府勞動暨青年發展處",
+      "target": "case-E1140409-6-5",
       "type": "agency_issued_case",
       "label": "發布標案"
     },
     {
-      "source": "unit-勞工及青年發展處",
-      "target": "case-115126-4",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-115126-4",
-      "target": "risk-Short Bid Preparation",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-115126-4",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-115126-4",
-      "target": "notice-公開取得報價單或企劃書公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-嘉義市政府",
-      "target": "case-115098-5",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-勞工及青年發展處",
-      "target": "case-115098-5",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-115098-5",
-      "target": "vendor-宇捷清潔有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-115098-5",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-115098-5",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1150128-3-6",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-屏東縣政府勞動暨青年發展處青年事務科何翊華",
-      "target": "case-E1150128-3-6",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-E1150128-3-6",
-      "target": "risk-Extremely Short Bid Preparation",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1150128-3-6",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1150128-3-6",
-      "target": "notice-公開取得報價單或企劃書公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-宜蘭縣政府",
-      "target": "case-LASL108019-7",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-勞工處",
-      "target": "case-LASL108019-7",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-LASL108019-7",
-      "target": "vendor-台灣好室有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-LASL108019-7",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-LASL108019-7",
-      "target": "risk-High Budget Fit Ratio",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-LASL108019-7",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-LASL108019-7",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-C1080110-4-8",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-勞工處青年學院專案辦公室",
-      "target": "case-C1080110-4-8",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-C1080110-4-8",
-      "target": "vendor-泛科知識股份有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-C1080110-4-8",
-      "target": "risk-High Budget Fit Ratio",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-C1080110-4-8",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-C1080110-4-8",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-D107-1113-164-1-9",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-青年學院專案辦公室",
-      "target": "case-D107-1113-164-1-9",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "vendor-俊承工程企業行",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "member-許瑞娟",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "member-陳明吉",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "member-林雅文",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "member-林德輝",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "member-于宗永",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "amount-amount-1m-to-5m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1141127-4-10",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-屏東縣政府勞動暨青年發展處青年事務科林宜慧",
-      "target": "case-E1141127-4-10",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "vendor-階梯影像製作有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-黃照貴",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-徐偉智",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-林美賢",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-張俊陽",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-李雨蓁",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-李傳昇",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "member-謝蕙蓮",
-      "type": "case_has_committee_member",
-      "label": "含有評選委員"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "risk-High Budget Fit Ratio",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "amount-amount-1m-to-5m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1141127-4-10",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-164-E1140512-1-11",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-屏東縣政府勞動暨青年發展處青年事務科何翊華",
-      "target": "case-164-E1140512-1-11",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-164-E1140512-1-11",
-      "target": "vendor-冠銘土木包工業有限公司",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-164-E1140512-1-11",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-164-E1140512-1-11",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "agency-屏東縣政府",
-      "target": "case-E1131220-1-12",
-      "type": "agency_issued_case",
-      "label": "發布標案"
-    },
-    {
-      "source": "unit-勞動暨青年發展處青年事務科陳憶婷",
-      "target": "case-E1131220-1-12",
-      "type": "unit_managed_case",
-      "label": "管理標案"
-    },
-    {
-      "source": "case-E1131220-1-12",
-      "target": "vendor-俊承工程企業行",
-      "type": "case_awarded_to_vendor",
-      "label": "決標予廠商"
-    },
-    {
-      "source": "case-E1131220-1-12",
-      "target": "risk-Single Bidder Tender",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131220-1-12",
-      "target": "risk-High Budget Fit Ratio",
-      "type": "case_has_risk_pattern",
-      "label": "觸發異常風險模式"
-    },
-    {
-      "source": "case-E1131220-1-12",
-      "target": "amount-amount-under-1m",
-      "type": "case_has_amount_bucket",
-      "label": "歸屬採購金額區間"
-    },
-    {
-      "source": "case-E1131220-1-12",
-      "target": "notice-決標公告",
-      "type": "case_has_notice_type",
-      "label": "公告類型"
-    },
-    {
-      "source": "case-E1131205-2-1-0",
-      "target": "case-E1131205-2-2",
-      "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (寶儷工程有限公司)",
-      "properties": {
-        "vendor": "寶儷工程有限公司"
-      }
-    },
-    {
-      "source": "case-E1131209-3-1-1",
-      "target": "case-E1131209-3-3",
-      "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (詮翊電腦股份有限公司)",
-      "properties": {
-        "vendor": "詮翊電腦股份有限公司"
-      }
-    },
-    {
-      "source": "case-D107-1113-164-1-9",
-      "target": "case-E1131220-1-12",
-      "type": "same_vendor_repeated",
-      "label": "同廠商得標關聯 (俊承工程企業行)",
-      "properties": {
-        "vendor": "俊承工程企業行"
-      }
-    },
-    {
-      "source": "case-E1131205-2-2",
-      "target": "case-E1141127-4-10",
-      "type": "same_committee_member_repeated",
-      "label": "同委員評審關聯 (李雨蓁)",
-      "properties": {
-        "member": "李雨蓁"
-      }
+      "source": "vendor-三恆一樹行銷有限公司",
+      "target": "case-E1140409-6-5",
+      "type": "vendor_awarded_case",
+      "label": "得標"
     }
   ],
-  "schema_version": "1.0.0",
-  "generated_at": "2026-05-24T16:45:23.754313+00:00",
   "active_pool_id": "pingtung_labor_youth",
   "active_pool_display_name": "屏東勞青處採購池",
-  "active_pool_scope_note": "第二採購池，涵蓋屏東縣政府勞動暨青年發展處及周邊青年、勞動、青創類採購標案，並保留跨縣市外溢訊號。",
-  "active_pool_generated_from": "pingtung_labor_youth_detail_results + pingtung_labor_youth_risk_signals + pingtung_labor_youth_evidence_graph"
+  "active_pool_scope_note": "v2.9-E 官方採購資料清單，僅呈現 PCC / 政府公開來源可支持之客觀欄位；未支持欄位保留 UNKNOWN。",
+  "active_pool_generated_from": "v2_9_E_official_procurement_mining_dataset.csv",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-05-25T23:44:21.229210+08:00"
 }
