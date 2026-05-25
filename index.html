@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="4Force Active Audit Intelligence - 主動稽核情報系統，將採購脈絡、關係圖譜、與風險訊號轉成決策線索，方法論由 4Force Lab 黑箱保護。">
     <title>4Force Active Audit Intelligence | 戰情指揮中心</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1863,7 +1864,12 @@
                 <div id="war-tab-members" class="warroom-content">
                     <div class="gov-profile-container">
                         <div style="display:flex; flex-direction:column; gap:1rem; max-height: 600px;">
-                            <div id="gov-filter-chips" class="chips-container" style="padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); overflow-x: auto; flex-wrap: nowrap; padding-top: 0.2rem;"></div>
+                            <div style="padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label for="gov-identity-select" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">身份篩選 Identity Filter</label>
+                                <select id="gov-identity-select" style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; font-size: 0.9rem; outline: none; cursor: pointer;">
+                                    <!-- Rendered by JS -->
+                                </select>
+                            </div>
                             <div class="gov-node-list" id="gov-node-list" style="max-height: calc(600px - 50px);">
                                 <!-- Rendered by JS -->
                             </div>
@@ -3190,11 +3196,11 @@
         function renderMembersTab(graph) {
             const listContainer = document.getElementById('gov-node-list');
             const cardContainer = document.getElementById('gov-profile-card');
-            const chipsContainer = document.getElementById('gov-filter-chips');
+            const filterSelect = document.getElementById('gov-identity-select');
             if (!listContainer || !cardContainer) return;
             
             listContainer.innerHTML = '';
-            if (chipsContainer) chipsContainer.innerHTML = '';
+            if (filterSelect) filterSelect.innerHTML = '';
             
             const memberProfiles = {};
             const vendorProfiles = {};
@@ -3212,7 +3218,8 @@
                         cases: [],
                         totalAmount: 0,
                         vendors: {},      // for co-occurring members/agencies
-                        crossRegion: 0
+                        crossRegion: 0,
+                        titles: new Set(['得標 / 關聯廠商'])
                     };
                 }
             });
@@ -3270,7 +3277,7 @@
 
                     const keys = ['role', 'title', 'job_title', 'position', 'organization', 'profession', 'specialty', '現職', '職稱', '服務機關', '備註', '職業', '與採購案相關之學經歷'];
                     keys.forEach(k => {
-                        if (m[k] && typeof m[k] === 'string') {
+                        if (m[k] && typeof m[k] === 'string' && m[k].trim() !== '') {
                             memberProfiles[name].titles.add(m[k]);
                         }
                     });
@@ -3287,6 +3294,7 @@
                 } else {
                     p.identity = '外聘委員 External Committee Member';
                     p.badgeClass = 'external';
+                    if (p.titles.size === 0) p.titles.add('評選 / 審查節點');
                 }
             });
             
@@ -3321,7 +3329,7 @@
                 return val.toLocaleString();
             };
             
-            // Render Chips
+            // Render Select Filter
             const counts = {
                 'All': profiles.length,
                 '官員 Official': profiles.filter(p => p.identity === '官員 Official').length,
@@ -3332,28 +3340,19 @@
             
             let activeFilter = 'All';
             
-            const renderChips = () => {
-                if (!chipsContainer) return;
-                chipsContainer.innerHTML = '';
+            if (filterSelect) {
                 Object.entries(counts).forEach(([key, count]) => {
-                    const chip = document.createElement('div');
-                    let badgeClass = 'other';
-                    if (key === 'All') badgeClass = 'other';
-                    else if (key.includes('官員')) badgeClass = 'official';
-                    else if (key.includes('廠商')) badgeClass = 'vendor';
-                    else if (key.includes('外聘')) badgeClass = 'external';
-                    
-                    chip.className = `chip chip-filter ${badgeClass} ${activeFilter === key ? 'active' : ''}`;
-                    chip.style.marginRight = '0.5rem';
-                    chip.innerHTML = `${key.split(' ')[0]} ${count}`;
-                    chip.onclick = () => {
-                        activeFilter = key;
-                        renderChips();
-                        renderList();
-                    };
-                    chipsContainer.appendChild(chip);
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.textContent = `${key} ${count}`;
+                    filterSelect.appendChild(opt);
                 });
-            };
+                
+                filterSelect.onchange = (e) => {
+                    activeFilter = e.target.value;
+                    renderList();
+                };
+            }
             
             // Render List
             const renderList = () => {
@@ -3369,12 +3368,39 @@
                 filtered.forEach((p, index) => {
                     const item = document.createElement('div');
                     item.className = 'gov-node-item';
+                    
+                    // Determine single role string to display
+                    let displayRole = '';
+                    if (p.titles && p.titles.size > 0) {
+                        displayRole = Array.from(p.titles)[0]; // Just grab first for succinctness
+                    }
+                    if (!displayRole) {
+                        if (p.identity === '廠商 Vendor') {
+                            displayRole = '得標 / 關聯廠商';
+                        } else if (p.identity === '官員 Official') {
+                            displayRole = '官員 Official';
+                        } else if (p.identity === '外聘委員 External Committee Member') {
+                            displayRole = '評選 / 審查節點';
+                        } else {
+                            displayRole = '其他治理節點';
+                        }
+                    }
+                    
                     item.innerHTML = `
-                        <div>
-                            <div class="gov-node-name">${p.name}</div>
-                            <div class="gov-node-meta">參與 ${p.cases.length} 案</div>
+                        <div style="width: 100%;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem;">
+                                <div class="gov-node-name">${p.name}</div>
+                                <span class="gov-badge ${p.badgeClass}" style="margin-top: 0; padding: 0.15rem 0.4rem; font-size: 0.65rem;">${p.identity.split(' ')[0]}</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem;">
+                                <i class="fa-solid fa-briefcase" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                                <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${displayRole}</span>
+                            </div>
+                            <div class="gov-node-meta" style="display: flex; justify-content: space-between;">
+                                <span>參與 ${p.cases.length} 案</span>
+                                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted);"></i>
+                            </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
                     `;
                     
                     item.onclick = () => {
@@ -3391,6 +3417,12 @@
                             `).join('');
                             
                         const coOccurTitle = p.type === 'vendor' ? '共現委員 / 共現機關 Co-occurrence' : '廠商共現密度 Vendor Co-occurrence';
+                        
+                        // Prepare Cross-region display
+                        let signalDisplay = `<div class="gov-stat-value" style="color:var(--text-muted); font-size:0.9rem; line-height:2.2;">未偵測<br/>No signal detected</div>`;
+                        if (p.crossRegion > 0) {
+                            signalDisplay = `<div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>`;
+                        }
                             
                         cardContainer.innerHTML = `
                             <div class="gov-profile-header">
@@ -3398,6 +3430,7 @@
                                 <div class="gov-info">
                                     <h2>${p.name}</h2>
                                     <span class="gov-badge ${p.badgeClass}">${p.identity}</span>
+                                    <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">${displayRole}</div>
                                 </div>
                             </div>
                             
@@ -3410,9 +3443,9 @@
                                     <div class="gov-stat-value">${formatMoney(p.totalAmount)}</div>
                                     <div class="gov-stat-label">影響金額<br/>Total Budget Exposure</div>
                                 </div>
-                                <div class="gov-stat-box">
-                                    <div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>
-                                    <div class="gov-stat-label">外溢命中<br/>Spillover Hits</div>
+                                <div class="gov-stat-box" title="該治理節點所關聯案件中，出現跨縣市、跨機關、非本池核心來源但與本池有治理關聯的訊號數。">
+                                    ${signalDisplay}
+                                    <div class="gov-stat-label">跨區 / 跨機關訊號<br/>Cross-region / Cross-agency Signals</div>
                                 </div>
                             </div>
                             
@@ -3430,7 +3463,6 @@
                 });
             };
             
-            renderChips();
             renderList();
         }
 
