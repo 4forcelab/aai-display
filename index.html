@@ -3328,6 +3328,133 @@
                 if (val >= 10000) return (val / 10000).toFixed(0) + ' 萬';
                 return val.toLocaleString();
             };
+
+            // Requirement C: Governance Level Mapping Function
+            const getGovLevel = (role) => {
+                if (!role) return '治理節點';
+                if (/縣長|副縣長|秘書長/.test(role)) {
+                    return '縣府高階決策層';
+                }
+                if (/處長|局長/.test(role)) {
+                    return '局處首長級';
+                }
+                if (/科長|課長|主任/.test(role)) {
+                    return '中階主管級';
+                }
+                if (/承辦|科員/.test(role)) {
+                    return '執行承辦層';
+                }
+                return '治理節點';
+            };
+
+            // Build Lookup dictionary for existing profiles
+            const profileLookup = {};
+            profiles.forEach(pr => { profileLookup[pr.name] = pr; });
+
+            // Requirement B: Retrieve co-occurrence detail classification
+            const getCoOccurInfo = (v) => {
+                // 1. Check if name exists in profiles
+                if (profileLookup[v]) {
+                    const found = profileLookup[v];
+                    let role = '';
+                    if (found.titles && found.titles.size > 0) {
+                        role = Array.from(found.titles)[0];
+                    }
+                    if (!role) {
+                        if (found.identity === '廠商 Vendor') {
+                            role = '得標 / 關聯廠商';
+                        } else if (found.identity === '官員 Official') {
+                            role = '官員 Official';
+                        } else if (found.identity === '外聘委員 External Committee Member') {
+                            role = '評選 / 審查節點';
+                        } else {
+                            role = '其他治理節點';
+                        }
+                    }
+                    
+                    let badgeClass = found.badgeClass;
+                    let levelText = '';
+                    if (found.identity === '官員 Official') {
+                        levelText = getGovLevel(role);
+                    }
+                    
+                    return {
+                        identity: found.identity,
+                        role: role,
+                        badgeClass: badgeClass,
+                        level: levelText
+                    };
+                }
+                
+                // 2. Check if it's a vendor in graphNodes
+                const isGraphVendor = graphNodes.some(n => n.type === 'vendor' && (n.label === v || n.id === `vendor-${v}` || n.id === v));
+                if (isGraphVendor) {
+                    return {
+                        identity: '廠商 Vendor',
+                        role: '得標 / 關聯廠商',
+                        badgeClass: 'vendor',
+                        level: ''
+                    };
+                }
+                
+                // 3. Check if it's an agency
+                const isAgency = /政府|縣府|局|處|所|中心|機關/.test(v);
+                if (isAgency) {
+                    return {
+                        identity: '機關 Agency',
+                        role: '主辦 / 採購機關',
+                        badgeClass: 'other',
+                        level: ''
+                    };
+                }
+                
+                // 4. Try looking up in cases committee_members
+                let foundTitle = '';
+                let foundMember = null;
+                for (const c of casesArray) {
+                    const comm = c.committee_members || [];
+                    foundMember = comm.find(m => (m.name || m.姓名) === v);
+                    if (foundMember) {
+                        const keys = ['role', 'title', 'job_title', 'position', 'organization', 'profession', 'specialty', '現職', '職稱', '服務機關', '備註', '職業', '與採購案相關之學經歷'];
+                        for (const k of keys) {
+                            if (foundMember[k] && typeof foundMember[k] === 'string' && foundMember[k].trim() !== '') {
+                                foundTitle = foundMember[k];
+                                break;
+                            }
+                        }
+                    }
+                    if (foundTitle) break;
+                }
+                
+                if (foundMember || foundTitle) {
+                    const officialRegex = /處長|局長|科長|承辦|課長|主任|秘書|縣府|局處|機關/;
+                    if (officialRegex.test(foundTitle || '')) {
+                        const role = foundTitle || '官員 Official';
+                        return {
+                            identity: '官員 Official',
+                            role: role,
+                            badgeClass: 'official',
+                            level: getGovLevel(role)
+                        };
+                    } else {
+                        const role = foundTitle || '評選 / 審查節點';
+                        return {
+                            identity: '外聘委員 External Committee Member',
+                            role: role,
+                            badgeClass: 'external',
+                            level: ''
+                        };
+                    }
+                }
+                
+                // 5. Fallback to other
+                return {
+                    identity: '其他 Other',
+                    role: '其他治理節點',
+                    badgeClass: 'other',
+                    level: ''
+                };
+            };
             
             // Render Select Filter
             const counts = {
@@ -3385,6 +3512,13 @@
                             displayRole = '其他治理節點';
                         }
                     }
+
+                    // Requirement C: Left-side Name Card Governance Level
+                    let govLevelHTML = '';
+                    if (p.identity === '官員 Official') {
+                        const lvl = getGovLevel(displayRole);
+                        govLevelHTML = `<span class="gov-badge official" style="font-size:0.6rem; padding:0.05rem 0.35rem; margin-top: 0; margin-left:0.4rem; border-color: rgba(5, 255, 161, 0.3); background: rgba(5, 255, 161, 0.05); color: var(--neon-green);">${lvl}</span>`;
+                    }
                     
                     item.innerHTML = `
                         <div style="width: 100%;">
@@ -3394,7 +3528,8 @@
                             </div>
                             <div style="font-size: 0.75rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem;">
                                 <i class="fa-solid fa-briefcase" style="color: var(--text-muted); font-size: 0.7rem;"></i>
-                                <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${displayRole}</span>
+                                <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px;">${displayRole}</span>
+                                ${govLevelHTML}
                             </div>
                             <div class="gov-node-meta" style="display: flex; justify-content: space-between;">
                                 <span>參與 ${p.cases.length} 案</span>
@@ -3407,14 +3542,27 @@
                         document.querySelectorAll('.gov-node-item').forEach(el => el.classList.remove('active'));
                         item.classList.add('active');
                         
+                        // Requirement B: Co-occurrence tags and roles
                         const coOccurHTML = Object.entries(p.vendors)
                             .sort((a, b) => b[1] - a[1])
-                            .map(([v, count]) => `
-                                <div class="gov-list-item">
-                                    <span class="gov-vendor-name">${v}</span>
-                                    <span class="gov-vendor-count">${count} 次</span>
-                                </div>
-                            `).join('');
+                            .map(([v, count]) => {
+                                const info = getCoOccurInfo(v);
+                                const badgeLabel = info.identity.split(' ')[0];
+                                const levelBadge = info.level ? `<span class="gov-badge official" style="font-size:0.58rem; padding:0.05rem 0.25rem; margin-top: 0; margin-left:0.3rem; border-color: rgba(5, 255, 161, 0.3); background: rgba(5, 255, 161, 0.05); color: var(--neon-green);">${info.level}</span>` : '';
+                                return `
+                                    <div class="gov-list-item" style="display:flex; flex-direction:column; align-items:flex-start; gap:0.2rem; padding: 0.5rem 0.8rem;">
+                                        <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                                            <span class="gov-vendor-name" style="font-weight:600; color:#fff;">${v}</span>
+                                            <span class="gov-vendor-count" style="font-size:0.75rem; color:var(--text-muted);">${count} 次共現</span>
+                                        </div>
+                                        <div style="display:flex; align-items:center; gap:0.3rem; width:100%; font-size:0.7rem; color:var(--text-secondary); margin-top:0.1rem;">
+                                            <span class="gov-badge ${info.badgeClass}" style="font-size:0.6rem; padding:0.05rem 0.3rem; margin-top: 0; line-height:1.2;">${badgeLabel}</span>
+                                            ${levelBadge}
+                                            <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px;">${info.role}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('');
                             
                         const coOccurTitle = p.type === 'vendor' ? '共現委員 / 共現機關 Co-occurrence' : '廠商共現密度 Vendor Co-occurrence';
                         
@@ -3423,13 +3571,54 @@
                         if (p.crossRegion > 0) {
                             signalDisplay = `<div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>`;
                         }
+
+                        // Requirement A: Related Cases rendering
+                        const anomalyLabelMap = {
+                            cross_region_hit: '跨區訊號',
+                            related_agency_hit: '關聯機關訊號',
+                            same_committee_member_repeated: '治理節點重複',
+                            high_budget_exposure: '高金額曝險',
+                            time_compression: '時間壓縮'
+                        };
+
+                        const relatedCasesHTML = casesArray
+                            .filter(c => p.cases.includes(c.case_number))
+                            .map(c => {
+                                const badgeLabel = p.type === 'vendor' ? '得標 / 關聯廠商' : '參與 / 關聯節點';
+                                const anomalyBadges = (c.anomaly_patterns || [])
+                                    .map(pat => {
+                                        const label = anomalyLabelMap[pat] || '其他訊號';
+                                        return `<span class="gov-badge other" style="font-size:0.6rem; padding: 0.1rem 0.35rem; margin-left:0.3rem; margin-top: 0; border-color: rgba(255, 0, 85, 0.3); background: rgba(255, 0, 85, 0.05); color: var(--neon-pink);">${label}</span>`;
+                                    })
+                                    .join('');
+                                return `
+                                    <div class="gov-list-item" style="display:flex; flex-direction:column; align-items:flex-start; gap:0.25rem; padding: 0.6rem 0.8rem;">
+                                        <div style="display:flex; justify-content:space-between; width:100%; align-items:flex-start;">
+                                            <div style="font-weight:600; font-size:0.85rem; color:#fff; word-break:break-all;">
+                                                [${c.case_number}] ${c.title}
+                                            </div>
+                                        </div>
+                                        <div style="display:flex; justify-content:space-between; width:100%; font-size:0.75rem; color:var(--text-secondary); margin-top:0.15rem;">
+                                            <span>機關: ${c.agency}</span>
+                                            <span>金額: ${formatMoney(c.award_amount || 0)}</span>
+                                        </div>
+                                        <div style="display:flex; align-items:center; margin-top:0.2rem; width: 100%;">
+                                            <span class="gov-badge ${p.badgeClass}" style="font-size:0.65rem; padding: 0.1rem 0.35rem; margin-top: 0;">${badgeLabel}</span>
+                                            ${anomalyBadges}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('');
                             
                         cardContainer.innerHTML = `
                             <div class="gov-profile-header">
                                 <div class="gov-avatar"><i class="fa-solid fa-user-shield"></i></div>
                                 <div class="gov-info">
                                     <h2>${p.name}</h2>
-                                    <span class="gov-badge ${p.badgeClass}">${p.identity}</span>
+                                    <div style="display: flex; gap: 0.4rem; align-items: center;">
+                                        <span class="gov-badge ${p.badgeClass}" style="margin-top: 0;">${p.identity}</span>
+                                        ${p.identity === '官員 Official' ? `<span class="gov-badge official" style="margin-top: 0; border-color: rgba(5, 255, 161, 0.3); background: rgba(5, 255, 161, 0.05); color: var(--neon-green); font-size:0.7rem;">${getGovLevel(displayRole)}</span>` : ''}
+                                    </div>
                                     <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">${displayRole}</div>
                                 </div>
                             </div>
@@ -3452,7 +3641,14 @@
                             <div class="gov-section">
                                 <h3>${coOccurTitle}</h3>
                                 <div class="gov-list">
-                                    ${coOccurHTML || '<div style="color:var(--text-muted); font-size:0.85rem;">尚無共現資料</div>'}
+                                    ${coOccurHTML || '<div style="color:var(--text-muted); font-size:0.85rem; padding:0.5rem 0;">尚無共現資料</div>'}
+                                </div>
+                            </div>
+
+                            <div class="gov-section">
+                                <h3>關聯案件 Related Cases</h3>
+                                <div class="gov-list">
+                                    ${relatedCasesHTML || '<div style="color:var(--text-muted); font-size:0.85rem; padding:0.5rem 0;">尚無關聯案件</div>'}
                                 </div>
                             </div>
                         `;
