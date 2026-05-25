@@ -1308,11 +1308,26 @@
             font-size: 1.8rem;
             color: var(--neon-blue);
             text-shadow: 0 0 8px var(--neon-blue-glow);
+            height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .sales-pack-title {
-            font-size: 1.05rem;
+            font-size: 1.0rem;
             font-weight: 800;
             color: #ffffff;
+            min-height: 2.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.35;
+        }
+        .sales-pack-desc-wrap {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
         }
 
         @media (max-width: 768px) {
@@ -1646,58 +1661,58 @@
                 <div class="sales-pack-grid">
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-building-columns sales-pack-icon"></i>
-                        <span class="sales-pack-title">Signal Mining Engine v2.3</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">擷取公開採購與治理資料中的異常訊號，包含招標重啟、單一投標、公告節奏與等標期壓力等觀察點。</p>
+                        <span class="sales-pack-title">Signal Mining Engine｜SME v1.3β</span>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">擷取公開採購與治理資料中的異常訊號，包含招標重啟、單一投標、公告節奏與等標期壓力等觀察點。</p></div>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-sack-dollar sales-pack-icon"></i>
-                        <span class="sales-pack-title">Risk Distribution Model v2.4</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">將案件訊號轉換為分層風險分布，協助快速辨識高集中度、高重複性與高關聯性的標案群。</p>
+                        <span class="sales-pack-title">Risk Distribution Model｜RDM v1.4β</span>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">將案件訊號轉換為分層風險分布，協助快速辨識高集中度、高重複性與高關聯性的標案群。</p></div>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-diagram-project sales-pack-icon"></i>
-                        <span class="sales-pack-title">Entity Relation Mapper v2.2</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立跨案件、跨區域的治理關係圖譜，呈現廠商、機關、人物與標案之間的共現結構。</p>
+                        <span class="sales-pack-title">Entity Relation Mapper｜ERM v1.2β</span>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立跨案件、跨區域的治理關係圖譜，呈現廠商、機關、人物與標案之間的共現結構。</p></div>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon"></i>
-                        <span class="sales-pack-title">Semantic Extraction Layer v2.1</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">從公開文字資料中抽取人物、職稱、機關與案件脈絡，輔助建立治理節點檔案與關聯線索。</p>
+                        <span class="sales-pack-title">Semantic Extraction Layer｜SEL v1.1β</span>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">從公開文字資料中抽取人物、職稱、機關與案件脈絡，輔助建立治理節點檔案與關聯線索。</p></div>
                     </div>
                 </div>
             </section>
 
             <!-- Screen 5: What You Can Purchase -->
             <section class="sales-section">
-                <h3>Decision Intelligence Dashboard v2.5</h3>
+                <h3>Decision Intelligence Dashboard｜DID v1.5β</h3>
                 <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.05rem;">
                     將資料礦池轉換為可視化情報儀表板，輸出 decision-grade 關聯圖譜、治理訊號與簡報型觀察結論。核心方法與模型由 4FORCE LAB 非公開技術流程保護。
                 </p>
-                <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 100%; overflow: hidden;">
-                    <div class="sales-pack-card">
+                <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 100%; overflow: hidden; align-items: stretch;">
+                    <div class="sales-pack-card" style="justify-content: flex-start;">
                         <i class="fa-solid fa-user-shield sales-pack-icon" style="color: var(--neon-blue);"></i>
                         <span class="sales-pack-title">治理人物情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">針對指定治理人物建立採購脈絡圖譜，呈現歷史標案關聯、職務脈絡與節點共現紀錄。</p>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">針對指定治理人物建立採購脈絡圖譜，呈現歷史標案關聯、職務脈絡與節點共現紀錄。</p></div>
                     </div>
-                    <div class="sales-pack-card">
+                    <div class="sales-pack-card" style="justify-content: flex-start;">
                         <i class="fa-solid fa-users-gear sales-pack-icon" style="color: var(--neon-orange);"></i>
                         <span class="sales-pack-title">評選委員軌跡情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">分析指定評選委員之歷史參與案件，觀察高頻共現結構、評選節點分布與關聯風險線索。</p>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">分析指定評選委員之歷史參與案件，觀察高頻共現結構、評選節點分布與關聯風險線索。</p></div>
                     </div>
-                    <div class="sales-pack-card">
+                    <div class="sales-pack-card" style="justify-content: flex-start;">
                         <i class="fa-solid fa-building-columns sales-pack-icon" style="color: var(--neon-green);"></i>
                         <span class="sales-pack-title">機關採購結構情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定機關標案資料，輸出流標重招分布、採購節奏、金額集中度與案件結構觀察。</p>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定機關標案資料，輸出流標重招分布、採購節奏、金額集中度與案件結構觀察。</p></div>
                     </div>
-                    <div class="sales-pack-card">
+                    <div class="sales-pack-card" style="justify-content: flex-start;">
                         <i class="fa-solid fa-handshake sales-pack-icon" style="color: var(--neon-pink);"></i>
                         <span class="sales-pack-title">供應商實體圖譜情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立指定廠商跨案件得標與關聯圖譜，呈現共同實體、區域分布與重複得標樣態。</p>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立指定廠商跨案件得標與關聯圖譜，呈現共同實體、區域分布與重複得標樣態。</p></div>
                     </div>
-                    <div class="sales-pack-card">
+                    <div class="sales-pack-card" style="justify-content: flex-start;">
                         <i class="fa-solid fa-route sales-pack-icon" style="color: var(--neon-blue);"></i>
                         <span class="sales-pack-title">場域資金流情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤指定場域或計畫資金路徑，整理預算、決算、採購金額與跨年度資金配置觀察。</p>
+                        <div class="sales-pack-desc-wrap"><p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤指定場域或計畫資金路徑，整理預算、決算、採購金額與跨年度資金配置觀察。</p></div>
                     </div>
                 </div>
             </section>
@@ -2337,6 +2352,27 @@
 
             // Scroll to top on main nav switch
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Anomaly pattern card expand / collapse
+        function togglePatternExpand(cardId) {
+            const extra = document.getElementById(`extra-${cardId}`);
+            const btn = document.getElementById(`btn-${cardId}`);
+            if (!extra || !btn) return;
+            const expanded = extra.style.display === 'flex';
+            if (expanded) {
+                extra.style.display = 'none';
+                btn.textContent = btn.textContent.replace('收合 / Collapse', '展開全部 / Show all' + btn.textContent.match(/\(\d+ 筆\)/)?.[0] || '');
+                // Rebuild label
+                const match = btn.getAttribute('data-count');
+                btn.textContent = `展開全部 / Show all (${match} 筆)`;
+            } else {
+                extra.style.display = 'flex';
+                extra.style.flexDirection = 'column';
+                const match = btn.textContent.match(/\d+/)?.[0] || '';
+                btn.setAttribute('data-count', match);
+                btn.textContent = `收合 / Collapse`;
+            }
         }
 
         function switchWarTab(tabId) {
@@ -4445,14 +4481,25 @@
                     });
                     
                     const count = matchingCases.length;
-                    
-                    const representationHtml = matchingCases.slice(0, 3).map(c => `
-                        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(255,255,255,0.03); padding-bottom: 0.2rem;">
-                            <span style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700; margin-right: 0.5rem; white-space: nowrap;">${c.case_number}</span>
-                            <span style="text-align: right; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; flex: 1; min-width: 0;" title="${c.case_name}">${c.case_name}</span>
+                    const PREVIEW_COUNT = 2;
+                    const allCases = matchingCases;
+                    const previewCases = allCases.slice(0, PREVIEW_COUNT);
+                    const extraCases = allCases.slice(PREVIEW_COUNT);
+                    const hasExtra = extraCases.length > 0;
+
+                    const renderCaseRow = (c) => `
+                        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; display: flex; align-items: flex-start; gap: 0.4rem; border-bottom: 1px dashed rgba(255,255,255,0.03); padding-bottom: 0.2rem; overflow: hidden;">
+                            <span style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700; white-space: nowrap; flex-shrink: 0;">${c.case_number}</span>
+                            <span style="word-break: break-all; overflow-wrap: break-word; min-width: 0; flex: 1;" title="${c.case_name}">${c.case_name}</span>
                         </div>
-                    `).join('') || '<div style="font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.35rem;">無代表案件</div>';
+                    `;
+
+                    const previewHtml = previewCases.map(renderCaseRow).join('') 
+                        || '<div style="font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.35rem;">無代表案件</div>';
                     
+                    const extraHtml = hasExtra ? extraCases.map(renderCaseRow).join('') : '';
+                    const cardId = `pattern-card-${cat.title.replace(/\s/g, '-')}`;
+
                     const card = document.createElement('div');
                     card.className = 'module-card';
                     card.innerHTML = `
@@ -4469,8 +4516,16 @@
                         <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.75rem;">
                             <div style="font-size: 0.75rem; font-weight: 700; color: var(--neon-blue); text-transform: uppercase;">代表案件:</div>
                             <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.25rem;">
-                                ${representationHtml}
+                                ${previewHtml}
                             </div>
+                            ${hasExtra ? `
+                            <div id="extra-${cardId}" style="display: none; flex-direction: column; gap: 0.25rem; margin-top: 0;">
+                                ${extraHtml}
+                            </div>
+                            <button onclick="togglePatternExpand('${cardId}')" id="btn-${cardId}"
+                                style="margin-top: 0.6rem; background: none; border: 1px solid rgba(0,240,255,0.2); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.72rem; color: var(--neon-blue); cursor: pointer; transition: all 0.2s; width: 100%;">
+                                展開全部 / Show all (${extraCases.length} 筆)
+                            </button>` : ''}
                         </div>
                     `;
                     patternWall.appendChild(card);
