@@ -2354,25 +2354,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Anomaly pattern card expand / collapse
-        function togglePatternExpand(cardId) {
-            const extra = document.getElementById(`extra-${cardId}`);
-            const btn = document.getElementById(`btn-${cardId}`);
-            if (!extra || !btn) return;
-            const expanded = extra.style.display === 'flex';
-            if (expanded) {
-                extra.style.display = 'none';
-                btn.textContent = btn.textContent.replace('收合 / Collapse', '展開全部 / Show all' + btn.textContent.match(/\(\d+ 筆\)/)?.[0] || '');
-                // Rebuild label
-                const match = btn.getAttribute('data-count');
-                btn.textContent = `展開全部 / Show all (${match} 筆)`;
-            } else {
-                extra.style.display = 'flex';
-                extra.style.flexDirection = 'column';
-                const match = btn.textContent.match(/\d+/)?.[0] || '';
-                btn.setAttribute('data-count', match);
-                btn.textContent = `收合 / Collapse`;
+        // Anomaly pattern card: navigate to Governance Node Profile tab and show case context notice
+        function navigateToCaseInMembers(caseId) {
+            // 1. Switch to warroom panel
+            switchPanel('warroom');
+            // 2. Switch to members tab inside warroom
+            switchWarTab('members');
+            // 3. Show a context notice banner at top of gov-node-list
+            const noticeId = 'gov-case-context-notice';
+            let notice = document.getElementById(noticeId);
+            if (!notice) {
+                notice = document.createElement('div');
+                notice.id = noticeId;
+                notice.style.cssText = 'padding: 0.5rem 0.75rem; background: rgba(0,240,255,0.06); border: 1px solid rgba(0,240,255,0.2); border-radius: 6px; font-size: 0.8rem; color: var(--neon-blue); line-height: 1.5; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;';
+                const container = document.getElementById('war-tab-members');
+                const nodeList = document.getElementById('gov-node-list');
+                if (container && nodeList) {
+                    nodeList.parentNode.insertBefore(notice, nodeList);
+                }
             }
+            notice.innerHTML = `<i class="fa-solid fa-circle-info" style="margin-top:0.1rem; flex-shrink:0;"></i><span>目前檢視案件：<strong style="font-family:'Fira Code',monospace;">${caseId}</strong><br>請於治理節點列表查看相關人員、廠商與機關</span>`;
         }
 
         function switchWarTab(tabId) {
@@ -4479,26 +4480,26 @@
                     const matchingCases = mergedCases.filter(c => {
                         return (c.anomaly_patterns || []).some(pat => cat.keys.includes(pat));
                     });
-                    
+
                     const count = matchingCases.length;
-                    const PREVIEW_COUNT = 2;
-                    const allCases = matchingCases;
-                    const previewCases = allCases.slice(0, PREVIEW_COUNT);
-                    const extraCases = allCases.slice(PREVIEW_COUNT);
-                    const hasExtra = extraCases.length > 0;
+                    const CHIP_SHOW = 3;
+                    const visibleCases = matchingCases.slice(0, CHIP_SHOW);
+                    const remaining = count - CHIP_SHOW;
 
-                    const renderCaseRow = (c) => `
-                        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; display: flex; align-items: flex-start; gap: 0.4rem; border-bottom: 1px dashed rgba(255,255,255,0.03); padding-bottom: 0.2rem; overflow: hidden;">
-                            <span style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700; white-space: nowrap; flex-shrink: 0;">${c.case_number}</span>
-                            <span style="word-break: break-all; overflow-wrap: break-word; min-width: 0; flex: 1;" title="${c.case_name}">${c.case_name}</span>
-                        </div>
-                    `;
-
-                    const previewHtml = previewCases.map(renderCaseRow).join('') 
-                        || '<div style="font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.35rem;">無代表案件</div>';
-                    
-                    const extraHtml = hasExtra ? extraCases.map(renderCaseRow).join('') : '';
-                    const cardId = `pattern-card-${cat.title.replace(/\s/g, '-')}`;
+                    // Compact case ID chips only — no full titles
+                    const chipHtml = visibleCases.length > 0
+                        ? visibleCases.map(c => `
+                            <span onclick="navigateToCaseInMembers('${c.case_number}')"
+                                title="${c.case_name || c.case_number}"
+                                style="display: inline-block; font-family: 'Fira Code', monospace; font-size: 0.7rem; font-weight: 700; color: var(--neon-blue); background: rgba(0,240,255,0.06); border: 1px solid rgba(0,240,255,0.2); border-radius: 4px; padding: 0.15rem 0.45rem; cursor: pointer; white-space: nowrap; transition: background 0.15s;"
+                                onmouseover="this.style.background='rgba(0,240,255,0.14)'"
+                                onmouseout="this.style.background='rgba(0,240,255,0.06)'"
+                            >${c.case_number}</span>
+                          `).join('')
+                          + (remaining > 0
+                              ? `<span style="display: inline-block; font-size: 0.7rem; color: var(--text-muted); padding: 0.15rem 0.3rem;">另 ${remaining} 案</span>`
+                              : '')
+                        : '<span style="font-size: 0.75rem; color: var(--text-muted); font-style: italic;">無代表案件</span>';
 
                     const card = document.createElement('div');
                     card.className = 'module-card';
@@ -4514,18 +4515,10 @@
                         <h3 style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">${cat.title}</h3>
                         <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.5rem;">${cat.desc}</p>
                         <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.75rem;">
-                            <div style="font-size: 0.75rem; font-weight: 700; color: var(--neon-blue); text-transform: uppercase;">代表案件:</div>
-                            <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.25rem;">
-                                ${previewHtml}
+                            <div style="font-size: 0.7rem; font-weight: 700; color: var(--neon-blue); text-transform: uppercase; margin-bottom: 0.4rem;">代表案件：</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center;">
+                                ${chipHtml}
                             </div>
-                            ${hasExtra ? `
-                            <div id="extra-${cardId}" style="display: none; flex-direction: column; gap: 0.25rem; margin-top: 0;">
-                                ${extraHtml}
-                            </div>
-                            <button onclick="togglePatternExpand('${cardId}')" id="btn-${cardId}"
-                                style="margin-top: 0.6rem; background: none; border: 1px solid rgba(0,240,255,0.2); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.72rem; color: var(--neon-blue); cursor: pointer; transition: all 0.2s; width: 100%;">
-                                展開全部 / Show all (${extraCases.length} 筆)
-                            </button>` : ''}
                         </div>
                     `;
                     patternWall.appendChild(card);
