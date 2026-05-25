@@ -863,6 +863,27 @@
 
         
         /* Governance Node Profile */
+        .gov-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+        .gov-badge.official { background: rgba(5, 255, 161, 0.1); color: var(--neon-green); border: 1px solid rgba(5, 255, 161, 0.3); }
+        .gov-badge.vendor { background: rgba(255, 170, 0, 0.1); color: var(--neon-orange); border: 1px solid rgba(255, 170, 0, 0.3); }
+        .gov-badge.external { background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.3); }
+        .gov-badge.other { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); border: 1px solid rgba(255, 255, 255, 0.15); }
+        
+        .chip-filter {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .chip-filter:hover { opacity: 0.8; }
+        .chip-filter.active { box-shadow: 0 0 8px currentColor; }
+
         .gov-profile-container {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -1841,8 +1862,11 @@
                 <!-- 4. Governance Node Profile (治理節點輪廓) -->
                 <div id="war-tab-members" class="warroom-content">
                     <div class="gov-profile-container">
-                        <div class="gov-node-list" id="gov-node-list">
-                            <!-- Rendered by JS -->
+                        <div style="display:flex; flex-direction:column; gap:1rem; max-height: 600px;">
+                            <div id="gov-filter-chips" class="chips-container" style="padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); overflow-x: auto; flex-wrap: nowrap; padding-top: 0.2rem;"></div>
+                            <div class="gov-node-list" id="gov-node-list" style="max-height: calc(600px - 50px);">
+                                <!-- Rendered by JS -->
+                            </div>
                         </div>
                         <div class="gov-profile-card" id="gov-profile-card">
                             <div style="text-align:center; padding: 4rem 2rem; color: var(--text-muted);">
@@ -3166,20 +3190,56 @@
         function renderMembersTab(graph) {
             const listContainer = document.getElementById('gov-node-list');
             const cardContainer = document.getElementById('gov-profile-card');
+            const chipsContainer = document.getElementById('gov-filter-chips');
             if (!listContainer || !cardContainer) return;
             
             listContainer.innerHTML = '';
+            if (chipsContainer) chipsContainer.innerHTML = '';
             
-            // Build profiles for all committee members
             const memberProfiles = {};
+            const vendorProfiles = {};
             
-            globalDetails.forEach(c => {
+            // Collect vendors from graph.nodes
+            const graphNodes = graph.nodes || [];
+            graphNodes.forEach(n => {
+                if (n.type === 'vendor') {
+                    const vName = n.label || n.id.replace('vendor-', '');
+                    vendorProfiles[vName] = {
+                        name: vName,
+                        type: 'vendor',
+                        identity: '廠商 Vendor',
+                        badgeClass: 'vendor',
+                        cases: [],
+                        totalAmount: 0,
+                        vendors: {},      // for co-occurring members/agencies
+                        crossRegion: 0
+                    };
+                }
+            });
+
+            // Parse cases to build capacity & co-occurrence
+            const casesArray = globalDetails || [];
+            casesArray.forEach(c => {
                 const comm = c.committee_members || [];
+                const winner = c.winning_vendor || ((c.bidders && c.bidders.length > 0) ? c.bidders[0] : '無決標廠商');
+                const agency = c.agency || '未知機關';
                 
-                // Get the winning vendor for Vendor Co-occurrence
-                const vendors = c.bidders || [];
-                const winning_vendors = vendors; // Fallback to bidders if winning_vendor not explicitly array, but let's use c.winning_vendor
-                let winner = c.winning_vendor || (vendors.length > 0 ? vendors[0] : '無決標廠商');
+                // Add case to vendor profile if it matches the winner
+                if (winner !== '無決標廠商' && vendorProfiles[winner]) {
+                    vendorProfiles[winner].cases.push(c.case_number);
+                    vendorProfiles[winner].totalAmount += (c.award_amount || 0);
+                    
+                    // Add co-occurring agency
+                    vendorProfiles[winner].vendors[agency] = (vendorProfiles[winner].vendors[agency] || 0) + 1;
+                    
+                    // Add co-occurring members
+                    comm.forEach(m => {
+                        const mName = m.name || m.姓名;
+                        if (mName) {
+                            vendorProfiles[winner].vendors[mName] = (vendorProfiles[winner].vendors[mName] || 0) + 1;
+                        }
+                    });
+                }
                 
                 comm.forEach(m => {
                     if (!m.name && !m.姓名) return;
@@ -3188,36 +3248,58 @@
                     if (!memberProfiles[name]) {
                         memberProfiles[name] = {
                             name: name,
-                            totalAmount: 0,
+                            type: 'committee_member',
                             cases: [],
+                            totalAmount: 0,
                             vendors: {},
-                            crossRegion: 0
+                            crossRegion: 0,
+                            titles: new Set()
                         };
                     }
                     
-                    // Capacity
                     memberProfiles[name].totalAmount += (c.award_amount || 0);
                     memberProfiles[name].cases.push(c.case_number);
                     
-                    // Vendor Co-occurrence
                     if (winner !== '無決標廠商' && winner !== 'null') {
                         memberProfiles[name].vendors[winner] = (memberProfiles[name].vendors[winner] || 0) + 1;
                     }
                     
-                    // Spillover (Check if this case is cross_region in risk signals)
-                    // (Assuming globalSignals contains risk signals matching case)
-                    // As fallback, we count if cross_region_hit risk pattern exists for the case.
                     if (c.anomaly_patterns && c.anomaly_patterns.includes('cross_region_hit')) {
                         memberProfiles[name].crossRegion += 1;
                     }
+
+                    const keys = ['role', 'title', 'job_title', 'position', 'organization', 'profession', 'specialty', '現職', '職稱', '服務機關', '備註', '職業', '與採購案相關之學經歷'];
+                    keys.forEach(k => {
+                        if (m[k] && typeof m[k] === 'string') {
+                            memberProfiles[name].titles.add(m[k]);
+                        }
+                    });
                 });
             });
             
-            // Look into graph edges for cross_region signals if any (from scope_status)
-            const casesInGraph = graph.nodes ? graph.nodes.filter(n => n.type === 'case') : [];
-            const crossRegionCases = new Set(casesInGraph.filter(n => n.scope_status === 'cross_region_hit').map(n => n.case_number));
-            
+            // Classify Committee Members
+            const officialRegex = /處長|局長|科長|承辦|課長|主任|秘書|縣府|局處|機關/;
             Object.values(memberProfiles).forEach(p => {
+                let allText = Array.from(p.titles).join(' ');
+                if (officialRegex.test(allText)) {
+                    p.identity = '官員 Official';
+                    p.badgeClass = 'official';
+                } else {
+                    p.identity = '外聘委員 External Committee Member';
+                    p.badgeClass = 'external';
+                }
+            });
+            
+            // Merge all profiles
+            let profiles = [ ...Object.values(memberProfiles), ...Object.values(vendorProfiles) ];
+            
+            // Filter out zero case profiles
+            profiles = profiles.filter(p => p.cases.length > 0);
+            
+            // CrossRegion from graph logic
+            const casesInGraph = graphNodes.filter(n => n.type === 'case');
+            const crossRegionCases = new Set(casesInGraph.filter(n => n.scope_status === 'cross_region_hit').map(n => n.case_number));
+            profiles.forEach(p => {
                 let crossCount = 0;
                 p.cases.forEach(c => {
                     if (crossRegionCases.has(c)) crossCount++;
@@ -3225,83 +3307,131 @@
                 p.crossRegion = Math.max(p.crossRegion, crossCount);
             });
             
-            const profiles = Object.values(memberProfiles).sort((a, b) => b.cases.length - a.cases.length);
+            // Sort by case length
+            profiles.sort((a, b) => b.cases.length - a.cases.length);
             
             if (profiles.length === 0) {
-                listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">查無評委節點資料</div>';
+                listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">查無治理節點資料</div>';
                 return;
             }
             
-            // Format money helper
             const formatMoney = (val) => {
                 if (val >= 100000000) return (val / 100000000).toFixed(2) + ' 億';
                 if (val >= 10000) return (val / 10000).toFixed(0) + ' 萬';
                 return val.toLocaleString();
             };
             
-            profiles.forEach((p, index) => {
-                const item = document.createElement('div');
-                item.className = 'gov-node-item';
-                item.innerHTML = `
-                    <div>
-                        <div class="gov-node-name">${p.name}</div>
-                        <div class="gov-node-meta">參與 ${p.cases.length} 案</div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
-                `;
-                
-                item.onclick = () => {
-                    document.querySelectorAll('.gov-node-item').forEach(el => el.classList.remove('active'));
-                    item.classList.add('active');
+            // Render Chips
+            const counts = {
+                'All': profiles.length,
+                '官員 Official': profiles.filter(p => p.identity === '官員 Official').length,
+                '廠商 Vendor': profiles.filter(p => p.identity === '廠商 Vendor').length,
+                '外聘委員 External Committee Member': profiles.filter(p => p.identity === '外聘委員 External Committee Member').length,
+                '其他 Other': profiles.filter(p => p.identity === '其他 Other').length
+            };
+            
+            let activeFilter = 'All';
+            
+            const renderChips = () => {
+                if (!chipsContainer) return;
+                chipsContainer.innerHTML = '';
+                Object.entries(counts).forEach(([key, count]) => {
+                    const chip = document.createElement('div');
+                    let badgeClass = 'other';
+                    if (key === 'All') badgeClass = 'other';
+                    else if (key.includes('官員')) badgeClass = 'official';
+                    else if (key.includes('廠商')) badgeClass = 'vendor';
+                    else if (key.includes('外聘')) badgeClass = 'external';
                     
-                    // Render Profile Card
-                    const vendorHTML = Object.entries(p.vendors)
-                        .sort((a, b) => b[1] - a[1])
-                        .map(([v, count]) => `
-                            <div class="gov-list-item">
-                                <span class="gov-vendor-name">${v}</span>
-                                <span class="gov-vendor-count">${count} 次</span>
-                            </div>
-                        `).join('');
-                        
-                    cardContainer.innerHTML = `
-                        <div class="gov-profile-header">
-                            <div class="gov-avatar"><i class="fa-solid fa-user-tie"></i></div>
-                            <div class="gov-info">
-                                <h2>${p.name}</h2>
-                                <p>Governance Node Profile</p>
-                            </div>
+                    chip.className = `chip chip-filter ${badgeClass} ${activeFilter === key ? 'active' : ''}`;
+                    chip.style.marginRight = '0.5rem';
+                    chip.innerHTML = `${key.split(' ')[0]} ${count}`;
+                    chip.onclick = () => {
+                        activeFilter = key;
+                        renderChips();
+                        renderList();
+                    };
+                    chipsContainer.appendChild(chip);
+                });
+            };
+            
+            // Render List
+            const renderList = () => {
+                listContainer.innerHTML = '';
+                const filtered = activeFilter === 'All' ? profiles : profiles.filter(p => p.identity === activeFilter);
+                
+                if (filtered.length === 0) {
+                    listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">無符合條件之節點</div>';
+                    cardContainer.innerHTML = `<div style="text-align:center; padding: 4rem 2rem; color: var(--text-muted);"><p>請選擇左側節點</p></div>`;
+                    return;
+                }
+                
+                filtered.forEach((p, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gov-node-item';
+                    item.innerHTML = `
+                        <div>
+                            <div class="gov-node-name">${p.name}</div>
+                            <div class="gov-node-meta">參與 ${p.cases.length} 案</div>
                         </div>
-                        
-                        <div class="gov-stats">
-                            <div class="gov-stat-box">
-                                <div class="gov-stat-value">${p.cases.length}</div>
-                                <div class="gov-stat-label">Capacity (案件數)</div>
-                            </div>
-                            <div class="gov-stat-box">
-                                <div class="gov-stat-value">${formatMoney(p.totalAmount)}</div>
-                                <div class="gov-stat-label">Total Budget (影響金額)</div>
-                            </div>
-                            <div class="gov-stat-box">
-                                <div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>
-                                <div class="gov-stat-label">Spillover (外溢命中)</div>
-                            </div>
-                        </div>
-                        
-                        <div class="gov-section">
-                            <h3>Vendor Co-occurrence (廠商共現密度)</h3>
-                            <div class="gov-list">
-                                ${vendorHTML || '<div style="color:var(--text-muted); font-size:0.85rem;">尚無得標廠商共現資料</div>'}
-                            </div>
-                        </div>
+                        <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
                     `;
-                };
-                
-                listContainer.appendChild(item);
-                
-                // Auto select first
-                if (index === 0) item.click();
-            });
+                    
+                    item.onclick = () => {
+                        document.querySelectorAll('.gov-node-item').forEach(el => el.classList.remove('active'));
+                        item.classList.add('active');
+                        
+                        const coOccurHTML = Object.entries(p.vendors)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([v, count]) => `
+                                <div class="gov-list-item">
+                                    <span class="gov-vendor-name">${v}</span>
+                                    <span class="gov-vendor-count">${count} 次</span>
+                                </div>
+                            `).join('');
+                            
+                        const coOccurTitle = p.type === 'vendor' ? '共現委員 / 共現機關 Co-occurrence' : '廠商共現密度 Vendor Co-occurrence';
+                            
+                        cardContainer.innerHTML = `
+                            <div class="gov-profile-header">
+                                <div class="gov-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                                <div class="gov-info">
+                                    <h2>${p.name}</h2>
+                                    <span class="gov-badge ${p.badgeClass}">${p.identity}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="gov-stats">
+                                <div class="gov-stat-box">
+                                    <div class="gov-stat-value">${p.cases.length}</div>
+                                    <div class="gov-stat-label">參與案件數<br/>Case Capacity</div>
+                                </div>
+                                <div class="gov-stat-box">
+                                    <div class="gov-stat-value">${formatMoney(p.totalAmount)}</div>
+                                    <div class="gov-stat-label">影響金額<br/>Total Budget Exposure</div>
+                                </div>
+                                <div class="gov-stat-box">
+                                    <div class="gov-stat-value" style="color:var(--neon-blue);">${p.crossRegion}</div>
+                                    <div class="gov-stat-label">外溢命中<br/>Spillover Hits</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gov-section">
+                                <h3>${coOccurTitle}</h3>
+                                <div class="gov-list">
+                                    ${coOccurHTML || '<div style="color:var(--text-muted); font-size:0.85rem;">尚無共現資料</div>'}
+                                </div>
+                            </div>
+                        `;
+                    };
+                    
+                    listContainer.appendChild(item);
+                    if (index === 0) item.click();
+                });
+            };
+            
+            renderChips();
+            renderList();
         }
 
         // 5. Render 廠商重複網
