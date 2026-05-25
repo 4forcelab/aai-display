@@ -728,7 +728,7 @@
         .risk-block-title.light + .risk-block-list li::before { color: var(--neon-pink); }
         .risk-block-title.ev + .risk-block-list li::before { color: var(--neon-blue); }
 
-        /* 2. 星狀關聯圖譜與 HUD */
+        /* 2. 採購池總覽與 HUD */
         .starmap-container {
             display: flex;
             gap: 1.5rem;
@@ -739,6 +739,210 @@
             .starmap-container {
                 flex-direction: column;
             }
+        }
+
+        /* 2.5. 採購池總覽 Pool Hub View */
+        .poolhub-section {
+            background: rgba(10, 16, 32, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poolhub-section-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-left: 4px solid var(--neon-blue);
+            padding-left: 0.75rem;
+        }
+
+        .poolhub-disclaimer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.4;
+        }
+
+        .poolhub-coverage-notice {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .poolhub-two-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .poolhub-two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .vendor-recurrence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .vendor-recurrence-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: var(--transition-smooth);
+        }
+
+        .vendor-recurrence-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.05);
+        }
+
+        .vendor-recurrence-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .vendor-recurrence-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .vendor-recurrence-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(255, 170, 0, 0.1);
+            color: var(--neon-orange);
+            border: 1px solid rgba(255, 170, 0, 0.2);
+        }
+
+        .vendor-recurrence-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .vendor-recurrence-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .vendor-recurrence-bar-fill {
+            height: 100%;
+            background: var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue-glow);
+        }
+
+        .gov-recurrence-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .gov-recurrence-item {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr 1fr;
+            align-items: center;
+            font-size: 0.85rem;
+            gap: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .gov-recurrence-item:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .gov-recurrence-item.highlighted {
+            border-color: rgba(255, 0, 85, 0.3);
+            background: rgba(255, 0, 85, 0.03);
+        }
+
+        .agency-bar-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .agency-bar-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .agency-bar-fill-bg {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .agency-bar-fill {
+            height: 100%;
+            background: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        .crossboundary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .crossboundary-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 0, 85, 0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: var(--transition-smooth);
+        }
+
+        .crossboundary-card:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.1);
         }
 
         /* 3. 資金流向戰術地圖 */
@@ -877,7 +1081,7 @@
             border-left: 2px solid var(--neon-blue);
         }
 
-        
+
         /* Governance Node Profile */
         .gov-badge {
             display: inline-block;
@@ -891,7 +1095,7 @@
         .gov-badge.vendor { background: rgba(255, 170, 0, 0.1); color: var(--neon-orange); border: 1px solid rgba(255, 170, 0, 0.3); }
         .gov-badge.external { background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.3); }
         .gov-badge.other { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); border: 1px solid rgba(255, 255, 255, 0.15); }
-        
+
         .chip-filter {
             cursor: pointer;
             transition: all 0.2s ease;
@@ -1499,7 +1703,7 @@
             <div class="logo-section" style="position: relative;">
                 <!-- Subtle glow behind logo -->
                 <div style="position: absolute; top: 50%; left: 1rem; width: 45px; height: 45px; background: var(--neon-blue); filter: blur(28px); opacity: 0.5; transform: translateY(-50%); pointer-events: none;"></div>
-                
+
                 <img src="assets/4force-logo.png" alt="4Force Logo" class="logo-image" style="position: relative; z-index: 1;">
                 <div class="logo-text">
                     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
@@ -1507,7 +1711,7 @@
                         <span style="font-family: 'Fira Code', monospace; font-size: 0.65rem; padding: 0.15rem 0.4rem; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: var(--neon-blue); border-radius: 4px; font-weight: 700; letter-spacing: 0.05em;">v2.5.3</span>
                     </div>
                     <p style="margin-bottom: 0.5rem; font-weight: 600;">AAI SIGNAL ENGINE // v2.5.3</p>
-                    
+
                     <!-- Small Status Chips -->
                     <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem;">
                         <span style="font-size: 0.55rem; color: var(--neon-green); background: rgba(5, 255, 161, 0.08); border: 1px solid rgba(5, 255, 161, 0.2); padding: 0.15rem 0.35rem; border-radius: 3px; font-family: 'Fira Code', monospace; letter-spacing: 0.05em;">
@@ -1764,7 +1968,7 @@
                     <i class="fa-solid fa-triangle-exclamation"></i> 高危預警儀表板
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('starmap')">
-                    <i class="fa-solid fa-circle-nodes"></i> 星狀關聯圖
+                    <i class="fa-solid fa-chart-pie"></i> 採購池總覽
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('tactical')">
                     <i class="fa-solid fa-map-location-dot"></i> 資金流向戰術地圖
@@ -1806,78 +2010,69 @@
                     </div>
                 </div>
 
-                <!-- 2. 星狀關聯圖 -->
+                <!-- 2. 採購池總覽 (v2.7 Pool Hub View — replaces old starmap) -->
                 <div id="war-tab-starmap" class="warroom-content">
-                    <div class="starmap-container">
-                        <div class="starmap-left" style="flex: 8; position: relative;">
-                            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.75rem; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                                <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 0.75rem; flex-wrap: wrap;">
-                                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--neon-blue); display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
-                                        <i class="fa-solid fa-crosshairs"></i> Base Target
-                                    </span>
-                                    <div class="starmap-base-selector" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                        <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('all')">全域圖</button>
-                                        <button id="btn-core-target" class="btn-war-tab active" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('core')">最高風險案件</button>
-                                        <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;" onclick="setBaseTarget('highrisk')">高風險案件</button>
-                                    </div>
-                                    <span id="starmap-stats" style="font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 700; color: var(--neon-blue); margin-left: auto;">
-                                        Nodes: 137 | Edges: 370 | Visible: 0 / 0
-                                    </span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-                                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--neon-blue); display: flex; align-items: center; gap: 0.4rem; min-width: 100px; padding-top: 0.25rem;">
-                                        <i class="fa-solid fa-layer-group"></i> Layer Toggles
-                                    </span>
-                                    <div class="starmap-layer-toggles" style="display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-vendor_awarded" checked onchange="toggleLayer()"> 得標廠商
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-committee_member" checked onchange="toggleLayer()"> 評選委員
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-risk_pattern" checked onchange="toggleLayer()"> 風險模式
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-repeated_member" onchange="toggleLayer()"> 重複委員
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-repeated_vendor" onchange="toggleLayer()"> 重複廠商
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-multi_notice" checked onchange="toggleLayer()"> 同案多公告
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-agency_unit" onchange="toggleLayer()"> 機關單位
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-amount_bucket" onchange="toggleLayer()"> 金額級距
-                                        </label>
-                                        <label class="cyber-checkbox-label" style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #f1f5f9; cursor: pointer; user-select: none;">
-                                            <input type="checkbox" id="layer-notice_type" onchange="toggleLayer()"> 公告類型
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="starmap-vendor-hint" style="display: none; font-size: 0.82rem; color: var(--neon-pink); background: rgba(255, 0, 85, 0.05); border: 1px solid rgba(255, 0, 85, 0.2); padding: 0.5rem 1rem; border-radius: 6px; margin-bottom: 0.75rem; font-weight: 700;">
-                                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.4rem;"></i>
-                                工商比對待接：同負責人、同地址、同電話需接入商工登記 Resolver；目前不以未驗證資料建立關係邊。
-                            </div>
-                            <div id="starmap-canvas" style="height: 600px; background: rgba(5,10,25,0.4); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,240,255,0.05);"></div>
+                    <!-- A. Pool Summary HUD -->
+                    <div class="hud-grid" id="ph-hud-grid" style="grid-template-columns: repeat(6, 1fr); margin-bottom: 2rem;">
+                        <!-- JS-rendered: 6 HUD cards -->
+                    </div>
+
+                    <!-- B. Vendor Recurrence -->
+                    <div class="poolhub-section">
+                        <div class="poolhub-section-title">
+                            <i class="fa-solid fa-building"></i> 廠商重複出現索引
                         </div>
-                        <div class="starmap-right" style="flex: 4; display: flex; flex-direction: column; gap: 1rem;">
-                            <div class="panel-box" style="height: 100%; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; min-height: 600px;">
-                                <h3 style="font-size: 1.1rem; font-weight: 800; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: #ffffff;">
-                                    <i class="fa-solid fa-magnifying-glass-chart" style="color: var(--neon-blue);"></i> 關係特徵詳情
-                                </h3>
-                                <div id="starmap-detail-default" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; text-align: center; color: var(--text-muted); gap: 1rem; padding: 2rem 0;">
-                                    <i class="fa-solid fa-hand-pointer" style="font-size: 2.2rem; color: var(--text-secondary);"></i>
-                                    <p style="font-size: 0.88rem; line-height: 1.5;">請點擊圖譜中的節點<br>查看詳細關聯屬性與事證網</p>
-                                </div>
-                                <div id="starmap-detail-content" style="display: none; flex-direction: column; gap: 1rem; flex: 1;">
-                                    <!-- Filled dynamically -->
-                                </div>
+                        <p class="poolhub-disclaimer">
+                            以下為 sanitized pack 中各廠商得標出現次數與可歸屬金額，僅供觀察，不作定性推斷。
+                        </p>
+                        <div class="vendor-recurrence-grid" id="ph-vendor-grid">
+                            <!-- JS-rendered -->
+                        </div>
+                    </div>
+
+                    <!-- C. Governance Node Recurrence -->
+                    <div class="poolhub-section">
+                        <div class="poolhub-section-title">
+                            <i class="fa-solid fa-users-gear"></i> 治理節點觀察索引
+                        </div>
+                        <div id="ph-gov-coverage" class="poolhub-coverage-notice">
+                            <!-- JS-rendered: coverage notice -->
+                        </div>
+                        <div class="gov-recurrence-list" id="ph-gov-list">
+                            <!-- JS-rendered -->
+                        </div>
+                    </div>
+
+                    <!-- D. Agency Concentration + Anomaly Distribution -->
+                    <div class="poolhub-two-col">
+                        <div class="poolhub-section" style="margin-bottom: 0;">
+                            <div class="poolhub-section-title">
+                                <i class="fa-solid fa-landmark"></i> 機關集中度
                             </div>
+                            <div id="ph-agency-bars">
+                                <!-- JS-rendered -->
+                            </div>
+                        </div>
+                        <div class="poolhub-section" style="margin-bottom: 0;">
+                            <div class="poolhub-section-title">
+                                <i class="fa-solid fa-border-all"></i> 異常訊號分布
+                            </div>
+                            <div id="ph-anomaly-wall">
+                                <!-- JS-rendered -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E. Cross-boundary Signals -->
+                    <div class="poolhub-section" style="margin-top: 2rem;">
+                        <div class="poolhub-section-title">
+                            <i class="fa-solid fa-satellite-dish"></i> 跨區外溢訊號
+                        </div>
+                        <p class="poolhub-disclaimer" style="margin-bottom: 1rem;">
+                            此處呈現發標機關非主要發標地（屏東縣）之跨區處外溢案件，便於觀察跨機關/跨區域之相似治理模式。
+                        </p>
+                        <div class="crossboundary-grid" id="ph-crossboundary-grid">
+                            <!-- JS-rendered -->
                         </div>
                     </div>
                 </div>
@@ -2174,11 +2369,11 @@
                 <div id="dm-noncjt-container" style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">
                     <!-- Will be dynamically populated or fallback -->
                 </div>
-                
+
                 <!-- Cross-Region Hit Badges -->
                 <div style="width: 100%; margin-top: 1.25rem; border-top: 1px dashed rgba(0, 240, 255, 0.15); padding-top: 1.25rem; text-align: left;">
                     <div style="font-size: 0.8rem; font-weight: 700; color: var(--neon-blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-satellite-dish" style="animation: pulse 2s infinite;"></i> 
+                        <i class="fa-solid fa-satellite-dish" style="animation: pulse 2s infinite;"></i>
                         目前已命中之跨區治理語義 (Cross-Region Signals Detected)
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;" id="dm-cross-region-badges">
@@ -2237,7 +2432,7 @@
     <!-- Footer -->
     <!-- Footer / Conversion Layer -->
     <footer style="margin-top: 5rem; padding: 4rem 1.5rem; border-top: 1px solid var(--border-color); background: rgba(6, 9, 19, 0.7); backdrop-filter: blur(8px); text-align: center; color: var(--text-secondary); display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
-        
+
         <div style="max-width: 800px; width: 100%;">
             <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
                 <i class="fa-solid fa-satellite-dish" style="color: var(--neon-blue);"></i> AAI Strategy Desk
@@ -2245,7 +2440,7 @@
             <p style="font-size: 0.95rem; margin-bottom: 2.5rem; line-height: 1.6;">
                 Governance Signal Consultation & Active Audit Intelligence Briefing
             </p>
-            
+
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <a href="tel:0900489893" style="text-decoration: none;">
                     <div class="btn-cyber primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; min-width: max-content;">
@@ -2271,7 +2466,7 @@
                 <span style="font-weight: 700; color: #ffffff; font-size: 1rem; letter-spacing: 0.05em;">萬合天宜有限公司｜4FORCE LAB</span>
             </div>
             <div style="font-size: 0.85rem; color: var(--text-primary);">AAI 專案主理人 Wesley Juan / 0900-489-893</div>
-            
+
             <div style="max-width: 680px; text-align: justify; font-size: 0.78rem; line-height: 1.6; color: var(--text-secondary); background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 8px; margin-top: 0.5rem; margin-bottom: 0.5rem;">
                 <p style="margin: 0;">
                     AAI Active Audit Intelligence 是 4FORCE LAB 旗下治理訊號與主動稽核情報產品。<br/><br/>
@@ -2279,7 +2474,7 @@
                     本系統基於公開資料、serverless / edge-ready 架構與可追溯資料封包運作，提供治理觀察、風險提示與策略簡報使用。AAI 不作成法律或行政認定，所有判讀以公開資料脈絡與後續人工審查為準。
                 </p>
             </div>
-            
+
             <div style="font-size: 0.75rem; color: var(--text-muted);">© 2025–2026 4Force Lab. All rights reserved.</div>
         </div>
     </footer>
@@ -2385,10 +2580,7 @@
             const tabBtn = Array.from(document.querySelectorAll('.btn-war-tab')).find(btn => btn.getAttribute('onclick').includes(tabId));
             if (tabBtn) tabBtn.classList.add('active');
 
-            // Resize vis starmap if active to recalculate container bounds
-            if (tabId === 'starmap' && starmapNetwork) {
-                setTimeout(() => starmapNetwork.fit(), 100);
-            }
+            // v2.7: starmap resize removed — Pool Hub View has no vis.js dependency
         }
 
         // Fetch all three JSONs asynchronously
@@ -2444,7 +2636,8 @@
 
                 // Initial render of all tabs
                 renderAlertTab(globalSignals);
-                renderStarMap(globalGraph);
+                // v2.7: replaced renderStarMap with renderPoolHubTab
+                renderPoolHubTab(globalGraph, globalDetails, globalSignals);
                 renderTacticalTab(globalDetails, globalSignals);
                 renderMembersTab(globalGraph);
                 renderVendorsTab(globalGraph, globalDetails);
@@ -2560,544 +2753,338 @@
             renderAlertTab(filtered);
         }
 
-        // 2. Render 星狀關聯圖
+        // 2. Render Pool Hub View (v2.7 — replaces old starmap)
+        function renderPoolHubTab(graph, details, signals) {
+            // A. Pool Summary HUD
+            const totalCases = details.length;
+            const totalAmount = details.reduce((sum, c) => sum + (c.award_amount || 0), 0);
+            const nullAmountCount = details.filter(c => c.award_amount === null).length;
+
+            const medHighRiskCount = signals.filter(s => s.risk_score >= 30).length;
+
+            const uniqueVendors = new Set(details.map(c => c.winning_vendor).filter(v => v));
+            const vendorCount = uniqueVendors.size;
+
+            const crossBoundaryCases = details.filter(c => c.agency_name && !c.agency_name.includes('屏東'));
+            const crossBoundaryCount = crossBoundaryCases.length;
+
+            // Calculate repeated members (appearing in more than 1 case)
+            const memberCounts = {};
+            details.forEach(c => {
+                if (c.committee_members) {
+                    c.committee_members.forEach(m => {
+                        if (m.name) {
+                            memberCounts[m.name] = (memberCounts[m.name] || 0) + 1;
+                        }
+                    });
+                }
+            });
+            const repeatedMembersCount = Object.keys(memberCounts).filter(name => memberCounts[name] > 1).length;
+
+            const formatAmount = (num) => {
+                return 'NT$ ' + num.toLocaleString('zh-TW');
+            };
+
+            const hudGrid = document.getElementById('ph-hud-grid');
+            if (hudGrid) {
+                hudGrid.innerHTML = `
+                    <div class="hud-card blue">
+                        <div class="hud-value">${totalCases}</div>
+                        <div class="hud-label">案件總數</div>
+                    </div>
+                    <div class="hud-card green">
+                        <div class="hud-value" style="font-size: 1.15rem; word-break: break-all; padding: 0.5rem 0;">${formatAmount(totalAmount)}</div>
+                        <div class="hud-label">已決標總金額${nullAmountCount > 0 ? `<br><span style="font-size:0.7rem; color:var(--neon-orange);">（含 ${nullAmountCount} 件尚未決標案）</span>` : ''}</div>
+                    </div>
+                    <div class="hud-card pink">
+                        <div class="hud-value">${medHighRiskCount}</div>
+                        <div class="hud-label">高訊號觀測案件</div>
+                    </div>
+                    <div class="hud-card orange">
+                        <div class="hud-value">${vendorCount}</div>
+                        <div class="hud-label">投標得標廠商</div>
+                    </div>
+                    <div class="hud-card pink">
+                        <div class="hud-value">${crossBoundaryCount}</div>
+                        <div class="hud-label">跨區外溢案件</div>
+                    </div>
+                    <div class="hud-card blue">
+                        <div class="hud-value">${repeatedMembersCount}</div>
+                        <div class="hud-label">重複評選委員</div>
+                    </div>
+                `;
+            }
+
+            // B. Vendor Recurrence
+            const vendorCounts = {};
+            const vendorAmounts = {};
+            const vendorCases = {};
+            const vendorNullAmount = {};
+            details.forEach(c => {
+                const v = c.winning_vendor;
+                if (!v) return;
+                vendorCounts[v] = (vendorCounts[v] || 0) + 1;
+                if (c.award_amount === null) {
+                    vendorNullAmount[v] = (vendorNullAmount[v] || 0) + 1;
+                } else {
+                    vendorAmounts[v] = (vendorAmounts[v] || 0) + c.award_amount;
+                }
+                if (!vendorCases[v]) vendorCases[v] = [];
+                vendorCases[v].push(c);
+            });
+
+            const sortedVendors = Object.keys(vendorCounts).sort((a, b) => {
+                if (vendorCounts[b] !== vendorCounts[a]) {
+                    return vendorCounts[b] - vendorCounts[a];
+                }
+                return (vendorAmounts[b] || 0) - (vendorAmounts[a] || 0);
+            });
+
+            const vendorGrid = document.getElementById('ph-vendor-grid');
+            if (vendorGrid) {
+                vendorGrid.innerHTML = '';
+                if (sortedVendors.length === 0) {
+                    vendorGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 1rem;">無廠商得標數據</div>';
+                } else {
+                    sortedVendors.forEach(v => {
+                        const count = vendorCounts[v];
+                        const amount = vendorAmounts[v] || 0;
+                        const nullCount = vendorNullAmount[v] || 0;
+
+                        // Calculate percentage of total amount
+                        const pct = totalAmount > 0 ? ((amount / totalAmount) * 100).toFixed(1) : 0;
+
+                        const casesHtml = vendorCases[v].map(c => `
+                            <span class="chip info" style="cursor: pointer; margin: 0.15rem;" onclick="navigateToCaseInMembers('${c.case_number}')" title="點擊檢視治理節點">
+                                ${c.case_number}
+                            </span>
+                        `).join('');
+
+                        const card = document.createElement('div');
+                        card.className = 'vendor-recurrence-card';
+                        card.innerHTML = `
+                            <div class="vendor-recurrence-card-header">
+                                <span class="vendor-recurrence-name">${v}</span>
+                                <span class="vendor-recurrence-badge">出現 ${count} 案</span>
+                            </div>
+                            <div class="vendor-recurrence-stats">
+                                <span>得標累計金額</span>
+                                <span style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-blue);">
+                                    ${formatAmount(amount)}
+                                </span>
+                            </div>
+                            <div class="vendor-recurrence-stats" style="font-size: 0.75rem; margin-top: -0.25rem;">
+                                <span>佔已知總金額比</span>
+                                <span>${pct}%</span>
+                            </div>
+                            <div class="vendor-recurrence-bar">
+                                <div class="vendor-recurrence-bar-fill" style="width: ${pct}%"></div>
+                            </div>
+                            ${nullCount > 0 ? `<div style="font-size: 0.72rem; color: var(--neon-orange); margin-top: -0.2rem;"><i class="fa-solid fa-triangle-exclamation"></i> 含 ${nullCount} 件未決標/未提供金額標的</div>` : ''}
+                            <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem;">
+                                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;">關聯案件：</div>
+                                <div style="display: flex; flex-wrap: wrap;">
+                                    ${casesHtml}
+                                </div>
+                            </div>
+                        `;
+                        vendorGrid.appendChild(card);
+                    });
+                }
+            }
+
+            // C. Governance Node Recurrence
+            const memberDetails = {};
+            let totalScannedCasesWithMembers = 0;
+            details.forEach(c => {
+                if (c.committee_members && c.committee_members.length > 0) {
+                    totalScannedCasesWithMembers++;
+                    c.committee_members.forEach(m => {
+                        if (!m.name) return;
+                        if (!memberDetails[m.name]) {
+                            memberDetails[m.name] = {
+                                name: m.name,
+                                count: 0,
+                                cases: [],
+                                roles: []
+                            };
+                        }
+                        memberDetails[m.name].count++;
+                        memberDetails[m.name].cases.push(c);
+                        const desc = `${c.case_number} (${m.profession || '委員'} · ${m.attended === '是' ? '出席' : '未出席'})`;
+                        memberDetails[m.name].roles.push(desc);
+                    });
+                }
+            });
+
+            // Coverage notice HTML
+            const govCoverage = document.getElementById('ph-gov-coverage');
+            if (govCoverage) {
+                govCoverage.innerHTML = `
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>樣本涵蓋率說明：依據公開評選委員資料（共 ${totalScannedCasesWithMembers} / ${totalCases} 案已提供委員名單）進行聚合，僅呈現客觀重複出現事實，不作定性推斷。</span>
+                `;
+            }
+
+            const sortedMembers = Object.values(memberDetails).sort((a, b) => {
+                if (b.count !== a.count) {
+                    return b.count - a.count;
+                }
+                return a.name.localeCompare(b.name, 'zh-TW');
+            });
+
+            const govList = document.getElementById('ph-gov-list');
+            if (govList) {
+                govList.innerHTML = '';
+                if (sortedMembers.length === 0) {
+                    govList.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 1rem;">無委員重複出現數據</div>';
+                } else {
+                    sortedMembers.forEach(m => {
+                        const isHighlighted = m.count > 1;
+                        const casesHtml = m.cases.map(c => `
+                            <span class="chip ${isHighlighted ? 'danger' : 'info'}" style="cursor: pointer; margin: 0.1rem;" onclick="navigateToCaseInMembers('${c.case_number}')" title="點擊跳轉治理節點檔案">
+                                ${c.case_number}
+                            </span>
+                        `).join('');
+
+                        const item = document.createElement('div');
+                        item.className = 'gov-recurrence-item' + (isHighlighted ? ' highlighted' : '');
+                        item.innerHTML = `
+                            <div style="font-weight: 700; color: ${isHighlighted ? 'var(--neon-pink)' : '#f1f5f9'}; display: flex; align-items: center; gap: 0.4rem;">
+                                <i class="fa-solid ${isHighlighted ? 'fa-user-shield' : 'fa-user'}"></i>
+                                ${m.name}
+                                ${isHighlighted ? '<span style="font-size:0.7rem; padding:0.05rem 0.25rem; background:rgba(255,0,85,0.1); border:1px solid rgba(255,0,85,0.2); border-radius:3px; color:var(--neon-pink);">重複觀察</span>' : ''}
+                            </div>
+                            <div style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-blue);">${m.count} 次會議</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.2rem;">
+                                ${casesHtml}
+                            </div>
+                            <div style="font-size: 0.78rem; color: var(--text-secondary); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${m.roles.join(', ')}">
+                                ${m.roles[0]} ${m.roles.length > 1 ? `等 ${m.roles.length} 案` : ''}
+                            </div>
+                        `;
+                        govList.appendChild(item);
+                    });
+                }
+            }
+
+            // D. Agency Concentration
+            const agencyCounts = {};
+            details.forEach(c => {
+                if (c.agency_name) {
+                    agencyCounts[c.agency_name] = (agencyCounts[c.agency_name] || 0) + 1;
+                }
+            });
+            const sortedAgencies = Object.keys(agencyCounts).sort((a, b) => agencyCounts[b] - agencyCounts[a]);
+            const agencyBars = document.getElementById('ph-agency-bars');
+            if (agencyBars) {
+                agencyBars.innerHTML = '';
+                sortedAgencies.forEach(ag => {
+                    const count = agencyCounts[ag];
+                    const pct = totalCases > 0 ? ((count / totalCases) * 100).toFixed(1) : 0;
+                    const row = document.createElement('div');
+                    row.className = 'agency-bar-row';
+                    row.innerHTML = `
+                        <div class="agency-bar-info">
+                            <span style="font-weight: 700; color: #f1f5f9;">${ag}</span>
+                            <span style="font-family: 'Fira Code', monospace; color: var(--neon-green); font-weight: 700;">${count} 案 (${pct}%)</span>
+                        </div>
+                        <div class="agency-bar-fill-bg">
+                            <div class="agency-bar-fill" style="width: ${pct}%"></div>
+                        </div>
+                    `;
+                    agencyBars.appendChild(row);
+                });
+            }
+
+            // E. Anomaly Distribution
+            const patternCounts = {};
+            signals.forEach(s => {
+                if (s.anomaly_patterns) {
+                    s.anomaly_patterns.forEach(p => {
+                        patternCounts[p] = (patternCounts[p] || 0) + 1;
+                    });
+                }
+            });
+            const sortedPatterns = Object.keys(patternCounts).sort((a, b) => patternCounts[b] - patternCounts[a]);
+            const anomalyWall = document.getElementById('ph-anomaly-wall');
+            if (anomalyWall) {
+                anomalyWall.innerHTML = '';
+                if (sortedPatterns.length === 0) {
+                    anomalyWall.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 1rem;">無匹配之風險訊號特徵</div>';
+                } else {
+                    sortedPatterns.forEach(p => {
+                        const count = patternCounts[p];
+                        const cnName = getRiskTagChinese(p);
+                        const row = document.createElement('div');
+                        row.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background: rgba(15,23,42,0.4); border-radius: 6px; margin-bottom: 0.5rem; border: 1px solid rgba(255,255,255,0.02); font-size: 0.85rem;';
+                        row.innerHTML = `
+                            <span style="font-weight: 600; color: #cbd5e1;"><i class="fa-solid fa-triangle-exclamation" style="color: var(--neon-orange); margin-right: 0.4rem;"></i>${cnName}</span>
+                            <span class="chip warning" style="font-family: 'Fira Code', monospace; font-weight: 700; margin: 0; min-width: 45px; text-align: center;">${count} 件</span>
+                        `;
+                        anomalyWall.appendChild(row);
+                    });
+                }
+            }
+
+            // F. Cross-boundary Signals
+            const crossGrid = document.getElementById('ph-crossboundary-grid');
+            if (crossGrid) {
+                crossGrid.innerHTML = '';
+                if (crossBoundaryCases.length === 0) {
+                    crossGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 1.5rem;">無跨區外溢命中案件</div>';
+                } else {
+                    crossBoundaryCases.forEach(c => {
+                        const sig = signals.find(s => s.case_number === c.case_number) || {};
+                        const riskLabel = (sig.risk_score || 0) >= 60 ? '高危預警' : ((sig.risk_score || 0) >= 30 ? '中等風險' : '低風險');
+                        const riskClass = (sig.risk_score || 0) >= 60 ? 'danger' : ((sig.risk_score || 0) >= 30 ? 'warning' : 'info');
+                        const tagsHtml = (sig.scope_tags || ['cross_region_hit']).map(t => `<span class="chip ${riskClass}" style="font-size:0.7rem; padding:0.1rem 0.3rem;">${t}</span>`).join(' ');
+
+                        const card = document.createElement('div');
+                        card.className = 'crossboundary-card';
+                        card.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;">
+                                <span style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-pink);">${c.case_number}</span>
+                                <span class="chip ${riskClass}" style="margin: 0;">${riskLabel} (${sig.risk_score || 0})</span>
+                            </div>
+                            <div style="font-size: 0.9rem; font-weight: 700; color: #f1f5f9; line-height: 1.4;">${c.case_name}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.25rem;">
+                                <div><i class="fa-solid fa-landmark" style="margin-right: 0.4rem; width: 14px;"></i>主辦機關：${c.agency_name}</div>
+                                <div><i class="fa-solid fa-building" style="margin-right: 0.4rem; width: 14px;"></i>得標廠商：${c.winning_vendor || '尚未決標'}</div>
+                                ${c.award_amount ? `<div><i class="fa-solid fa-coins" style="margin-right: 0.4rem; width: 14px;"></i>決標金額：${formatAmount(c.award_amount)}</div>` : '<div><i class="fa-solid fa-coins" style="margin-right: 0.4rem; width: 14px;"></i>決標金額：未決標/未提供</div>'}
+                            </div>
+                            <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center;">
+                                <span style="font-size: 0.72rem; color: var(--text-muted); margin-right: 0.2rem;">外溢標記：</span>
+                                ${tagsHtml}
+                            </div>
+                            <button class="btn-war-tab" style="font-size: 0.75rem; padding: 0.3rem; margin-top: 0.5rem; width: 100%; text-align: center; border-radius: 4px;" onclick="navigateToCaseInMembers('${c.case_number}')">
+                                <i class="fa-solid fa-arrow-up-right-from-square" style="margin-right: 0.3rem;"></i>檢視治理節點檔案
+                            </button>
+                        `;
+                        crossGrid.appendChild(card);
+                    });
+                }
+            }
+        }
+
+        // Stub out starmap variables and functions as requested
         let starmapNetwork = null;
         let currentBaseTarget = 'core';
 
         function setBaseTarget(targetType) {
-            currentBaseTarget = targetType;
-
-            const btns = document.querySelectorAll('.starmap-base-selector .btn-war-tab');
-            btns.forEach(btn => {
-                if (btn.getAttribute('onclick').includes(targetType)) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            renderStarMap(globalGraph);
+            return;
         }
 
         function toggleLayer() {
-            renderStarMap(globalGraph);
+            return;
         }
 
         function getFilterLabel(targetType) {
-            const labels = {
-                "all": "全域圖",
-                "highrisk": "高風險案件",
-                "core": "最高風險案件"
-            };
-            return labels[targetType] || targetType;
+            return '';
         }
 
         function renderStarMap(graph) {
-            const container = document.getElementById('starmap-canvas');
-            const statsEl = document.getElementById('starmap-stats');
-
-            const rawNodes = graph.nodes || [];
-            const rawEdges = graph.edges || [];
-
-            let filteredNodes = [];
-            let filteredEdges = [];
-
-            // Build repetitive sets and absence map
-            const repVendors = new Set();
-            const repMembers = new Set();
-            rawEdges.forEach(e => {
-                if (e.type === 'same_vendor_repeated' && e.properties && e.properties.vendor) {
-                    repVendors.add(e.properties.vendor);
-                }
-                if (e.type === 'same_committee_member_repeated' && e.properties && e.properties.member) {
-                    repMembers.add(e.properties.member);
-                }
-            });
-
-            const absentMembers = new Set();
-            globalDetails.forEach(c => {
-                const comm = c.committee_members || [];
-                comm.forEach(m => {
-                    if (m.name && m.attended === '否') {
-                        absentMembers.add(m.name);
-                    }
-                });
-            });
-
-            // 1. Determine starting case nodes based on currentBaseTarget
-            let startingCaseIds = new Set();
-            if (currentBaseTarget === 'all') {
-                rawNodes.forEach(n => {
-                    if (n.type === 'case') startingCaseIds.add(n.id);
-                });
-            } else if (currentBaseTarget === 'highrisk') {
-                rawNodes.forEach(n => {
-                    if (n.type === 'case' && n.risk_score >= 60) startingCaseIds.add(n.id);
-                });
-            } else if (currentBaseTarget === 'core') {
-                const topCase = window._topRiskCaseNumber;
-                rawNodes.forEach(n => {
-                    if (n.type === 'case' && (topCase ? n.case_number === topCase : true)) startingCaseIds.add(n.id);
-                });
-            }
-
-            // 2. Identify allowed edge types based on Layer Toggles
-            const allowedEdgeTypes = new Set();
-            if (document.getElementById('layer-vendor_awarded').checked) allowedEdgeTypes.add('case_awarded_to_vendor');
-            if (document.getElementById('layer-committee_member').checked) allowedEdgeTypes.add('case_has_committee_member');
-            if (document.getElementById('layer-risk_pattern').checked) allowedEdgeTypes.add('case_has_risk_pattern');
-            if (document.getElementById('layer-repeated_member').checked) allowedEdgeTypes.add('same_committee_member_repeated');
-            if (document.getElementById('layer-repeated_vendor').checked) allowedEdgeTypes.add('same_vendor_repeated');
-            if (document.getElementById('layer-multi_notice').checked) allowedEdgeTypes.add('same_case_multi_notice');
-            if (document.getElementById('layer-agency_unit').checked) {
-                allowedEdgeTypes.add('agency_issued_case');
-                allowedEdgeTypes.add('unit_managed_case');
-            }
-            if (document.getElementById('layer-amount_bucket').checked) allowedEdgeTypes.add('case_has_amount_bucket');
-            if (document.getElementById('layer-notice_type').checked) allowedEdgeTypes.add('case_has_notice_type');
-
-            // 3. Filter edges
-            // An edge is kept if:
-            // - Its type is allowed by the checked layers
-            // - At least one of its link_points is connected to a starting case
-            // - If currentBaseTarget is 'core', we also enforce that if the other link_point is a case, it must be in startingCaseIds.
-            filteredEdges = rawEdges.filter(e => {
-                if (!allowedEdgeTypes.has(e.type)) return false;
-
-                const sourceIsStarting = startingCaseIds.has(e.source);
-                const targetIsStarting = startingCaseIds.has(e.target);
-
-                if (!sourceIsStarting && !targetIsStarting) return false;
-
-                if (currentBaseTarget === 'core') {
-                    const sourceNode = rawNodes.find(n => n.id === e.source);
-                    const targetNode = rawNodes.find(n => n.id === e.target);
-
-                    if (sourceNode && sourceNode.type === 'case' && !startingCaseIds.has(e.source)) {
-                        return false;
-                    }
-                    if (targetNode && targetNode.type === 'case' && !startingCaseIds.has(e.target)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-
-            // 4. Filter nodes: keep starting cases, and all nodes connected by filteredEdges
-            const connectedNodeIds = new Set();
-            filteredEdges.forEach(e => {
-                connectedNodeIds.add(e.source);
-                connectedNodeIds.add(e.target);
-            });
-
-            filteredNodes = rawNodes.filter(n => {
-                if (n.type === 'case') {
-                    return startingCaseIds.has(n.id) || connectedNodeIds.has(n.id);
-                }
-                return connectedNodeIds.has(n.id);
-            });
-
-            // Re-filter edges to ensure both link_points are in the final filteredNodes set
-            const filteredNodeIds = new Set(filteredNodes.map(n => n.id));
-            filteredEdges = filteredEdges.filter(e => filteredNodeIds.has(e.source) && filteredNodeIds.has(e.target));
-
-            const limitedNodes = filteredNodes.slice(0, 80);
-            const limitedNodeIds = new Set(limitedNodes.map(n => n.id));
-
-            const limitedEdges = filteredEdges.filter(e =>
-                limitedNodeIds.has(e.source) && limitedNodeIds.has(e.target)
-            ).slice(0, 160);
-
-            // Calculate active layers list for HUD
-            const activeLayersTextList = [];
-            if (document.getElementById('layer-vendor_awarded').checked) activeLayersTextList.push("得標廠商");
-            if (document.getElementById('layer-committee_member').checked) activeLayersTextList.push("評選委員");
-            if (document.getElementById('layer-risk_pattern').checked) activeLayersTextList.push("風險模式");
-            if (document.getElementById('layer-repeated_member').checked) activeLayersTextList.push("重複委員");
-            if (document.getElementById('layer-repeated_vendor').checked) activeLayersTextList.push("重複廠商");
-            if (document.getElementById('layer-multi_notice').checked) activeLayersTextList.push("同案多公告");
-            if (document.getElementById('layer-agency_unit').checked) activeLayersTextList.push("機關單位");
-            if (document.getElementById('layer-amount_bucket').checked) activeLayersTextList.push("金額級距");
-            if (document.getElementById('layer-notice_type').checked) activeLayersTextList.push("公告類型");
-
-            statsEl.innerHTML = `Base Target: <span style="color:var(--neon-pink); font-weight:700;">${getFilterLabel(currentBaseTarget)}</span> | Active Layers: <span style="color:var(--neon-blue); font-weight:700;" title="${activeLayersTextList.join(', ')}">${activeLayersTextList.length} 層</span> | Visible: ${limitedNodes.length} Nodes / ${limitedEdges.length} Edges`;
-
-            const visNodesData = limitedNodes.map(n => {
-                let colorStr = '#6b7280';
-                let borderStr = 'rgba(255,255,255,0.2)';
-                let sizeVal = 12;
-                let borderWidthVal = 2;
-                let shadowVal = { enabled: false };
-
-                if (n.type === 'case') {
-                    colorStr = '#0f172a';
-                    sizeVal = 24;
-                    if (currentBaseTarget === 'highrisk') {
-                        sizeVal = 42;
-                    }
-                    // Case node coloring by risk_score
-                    if (n.risk_score >= 60) {
-                        borderStr = '#ef4444'; // Red
-                    } else if (n.risk_score >= 30) {
-                        borderStr = '#fb923c'; // Orange
-                    } else {
-                        borderStr = '#38bdf8'; // Blue
-                    }
-
-                    // Core Case E1150212-1 styling: Thick glowing white border
-                    if (n.case_number === 'E1150212-1') {
-                        borderStr = '#ffffff';
-                        sizeVal = 28;
-                        if (currentBaseTarget === 'highrisk') {
-                            sizeVal = 42;
-                        }
-                        borderWidthVal = 4;
-                        shadowVal = {
-                            enabled: true,
-                            color: 'rgba(255, 255, 255, 0.8)',
-                            size: 10,
-                            x: 0,
-                            y: 0
-                        };
-                    }
-                } else if (n.type === 'vendor') {
-                    colorStr = '#0f172a';
-                    sizeVal = 20;
-                    if (repVendors.has(n.label)) {
-                        borderStr = '#ff0055'; // Bright Pink for repeated vendor
-                        if (currentBaseTarget === 'all') {
-                            sizeVal = 45;
-                        }
-                    } else {
-                        borderStr = '#00f0ff'; // Cyan for standard vendor
-                        if (currentBaseTarget === 'all') {
-                            sizeVal = 30;
-                        }
-                    }
-                    if (currentBaseTarget === 'highrisk') {
-                        sizeVal = 24;
-                    }
-                } else if (n.type === 'committee_member') {
-                    colorStr = '#0f172a';
-                    sizeVal = 18;
-                    if (currentBaseTarget === 'highrisk') {
-                        sizeVal = 24;
-                    }
-                    // Committee member coloring rules
-                    if (n.label.includes('李雨蓁') || n.label.includes('陳枝孝')) {
-                        borderStr = '#ef4444'; // Red for high-authority
-                    } else if (repMembers.has(n.label)) {
-                        borderStr = '#f43f5e'; // Pink for repeated members
-                    } else if (absentMembers.has(n.label)) {
-                        borderStr = '#64748b'; // Gray for absent members
-                    } else {
-                        borderStr = '#fb923c'; // Orange for standard
-                    }
-                } else if (n.type === 'risk_pattern') {
-                    colorStr = '#0f172a';
-                    borderStr = '#ef4444';
-                    sizeVal = 20;
-                    if (currentBaseTarget === 'highrisk') {
-                        sizeVal = 28;
-                    }
-                } else if (n.type === 'agency' || n.type === 'unit') {
-                    colorStr = '#0f172a';
-                    borderStr = '#34d399';
-                    sizeVal = 16;
-                    if (currentBaseTarget === 'core') {
-                        sizeVal = 10;
-                    }
-                }
-
-                let displayLabel = n.label || '';
-                if (displayLabel.length > 8) {
-                    displayLabel = displayLabel.slice(0, 7) + '...';
-                }
-
-                return {
-                    id: n.id,
-                    label: displayLabel,
-                    title: n.label,
-                    shape: 'dot',
-                    size: sizeVal,
-                    shadow: shadowVal,
-                    color: {
-                        background: colorStr,
-                        border: borderStr,
-                        highlight: {
-                            background: '#00f0ff',
-                            border: '#ffffff'
-                        }
-                    },
-                    borderWidth: borderWidthVal,
-                    font: {
-                        color: '#f1f5f9',
-                        size: 11,
-                        face: 'Inter, Outfit, sans-serif'
-                    }
-                };
-            });
-
-            const visEdgesData = limitedEdges.map(e => {
-                let edgeColor = 'rgba(0, 240, 255, 0.25)';
-                let isDashed = false;
-                let edgeWidth = e.type.startsWith('same_') ? 2 : 1;
-
-                if (e.type.startsWith('same_')) {
-                    edgeColor = 'rgba(255, 0, 85, 0.45)';
-                    isDashed = true;
-                }
-
-                if (document.getElementById('layer-vendor_awarded').checked) {
-                    if (e.type === 'same_vendor_repeated') {
-                        edgeWidth = 4;
-                        edgeColor = '#ff0055';
-                        isDashed = true;
-                    } else if (e.type === 'case_awarded_to_vendor') {
-                        edgeWidth = 1.5;
-                    }
-                }
-
-                return {
-                    id: `${e.source}-${e.target}-${e.type}`,
-                    from: e.source,
-                    to: e.target,
-                    label: getEdgeLabelChinese(e.type),
-                    color: {
-                        color: edgeColor,
-                        highlight: '#ffffff',
-                        hover: '#00f0ff'
-                    },
-                    dashes: isDashed,
-                    width: edgeWidth,
-                    font: {
-                        size: currentBaseTarget === 'highrisk' ? 7 : 9,
-                        color: '#64748b',
-                        align: 'middle',
-                        face: 'Inter, Outfit, Noto Sans TC, sans-serif'
-                    },
-                    smooth: {
-                        type: 'curvedCW',
-                        roundness: 0.15
-                    }
-                };
-            });
-
-            const data = {
-                nodes: new vis.DataSet(visNodesData),
-                edges: new vis.DataSet(visEdgesData)
-            };
-
-            let physicsConfig = {
-                solver: 'forceAtlas2Based',
-                forceAtlas2Based: {
-                    gravitationalConstant: -50,
-                    centralGravity: 0.01,
-                    springLength: 100,
-                    springConstant: 0.08
-                },
-                maxVelocity: 50,
-                minVelocity: 0.1,
-                stabilization: {
-                    iterations: 150,
-                    updateInterval: 25
-                }
-            };
-
-            if (currentBaseTarget === 'highrisk') {
-                physicsConfig = {
-                    solver: 'barnesHut',
-                    barnesHut: {
-                        gravitationalConstant: -18000,
-                        springLength: 260,
-                        springConstant: 0.018,
-                        avoidOverlap: 1
-                    },
-                    maxVelocity: 50,
-                    minVelocity: 0.1,
-                    stabilization: {
-                        iterations: 150,
-                        updateInterval: 25
-                    }
-                };
-            } else if (currentBaseTarget === 'core') {
-                physicsConfig = {
-                    solver: 'barnesHut',
-                    barnesHut: {
-                        gravitationalConstant: -9000,
-                        springLength: 180,
-                        springConstant: 0.035,
-                        avoidOverlap: 1
-                    },
-                    maxVelocity: 50,
-                    minVelocity: 0.1,
-                    stabilization: {
-                        iterations: 150,
-                        updateInterval: 25
-                    }
-                };
-            }
-
-            const options = {
-                physics: physicsConfig,
-                interaction: {
-                    hover: true,
-                    tooltipDelay: 200,
-                    selectable: true,
-                    selectConnectedEdges: true
-                }
-            };
-
-            starmapNetwork = new vis.Network(container, data, options);
-
-            starmapNetwork.on("selectNode", function (params) {
-                if (params.nodes.length > 0) {
-                    const nodeId = params.nodes[0];
-                    const node = limitedNodes.find(n => n.id === nodeId);
-                    if (node) {
-                        const connectedEdges = rawEdges.filter(e => e.source === nodeId || e.target === nodeId).length;
-                        showNodeDetails(node, connectedEdges);
-                    }
-                }
-            });
-
-            starmapNetwork.on("deselectNode", function () {
-                document.getElementById('starmap-detail-default').style.display = 'flex';
-                document.getElementById('starmap-detail-content').style.display = 'none';
-            });
-        }
-
-        function getEdgeLabelChinese(type) {
-            const mappings = {
-                "case_awarded_to_vendor": "決標廠商",
-                "case_has_committee_member": "評選委員",
-                "case_has_risk_pattern": "異常特徵",
-                "same_vendor_repeated": "跨案得標重複",
-                "same_committee_member_repeated": "跨案重複任職評委",
-                "same_case_multi_notice": "同案不同公告"
-            };
-            return mappings[type] || type;
-        }
-
-        function showNodeDetails(node, edgesCount) {
-            const defaultEl = document.getElementById('starmap-detail-default');
-            const contentEl = document.getElementById('starmap-detail-content');
-
-            defaultEl.style.display = 'none';
-            contentEl.style.display = 'flex';
-
-            let typeBadgeHtml = '';
-            let contentBodyHtml = '';
-
-            if (node.type === 'case') {
-                let committeeCount = 0;
-                let vendorCount = 0;
-
-                if (globalGraph.edges) {
-                    globalGraph.edges.forEach(e => {
-                        if (e.source === node.id || e.target === node.id) {
-                            if (e.type === 'case_has_committee_member') committeeCount++;
-                            if (e.type === 'case_awarded_to_vendor') vendorCount++;
-                        }
-                    });
-                }
-
-                const anomalyList = node.anomaly_patterns || [];
-                const anomalyChips = anomalyList.map(p => `
-                    <li style="margin-bottom: 0.3rem;"><span class="chip danger" style="font-size: 0.72rem; padding: 0.1rem 0.4rem;">${getRiskTagChinese(p)}</span></li>
-                `).join('') || '<li style="color: var(--text-muted); font-size: 0.8rem;">無異常亮燈模式</li>';
-
-                typeBadgeHtml = '<span class="chip danger" style="background: rgba(0, 240, 255, 0.08); border-color: rgba(0, 240, 255, 0.2); color: var(--neon-blue);">標案公告</span>';
-                contentBodyHtml = `
-                    <div class="flow-row">
-                        <span class="flow-label">標案案號</span>
-                        <span class="flow-val" style="color: var(--neon-blue); font-family: 'Fira Code', monospace;">${node.case_number || '無'}</span>
-                    </div>
-                    <div class="flow-row">
-                        <span class="flow-label">風險評估分數</span>
-                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: ${node.risk_score >= 60 ? 'var(--neon-pink)' : (node.risk_score >= 30 ? 'var(--neon-orange)' : 'var(--neon-green)')}; font-weight: 850; font-size: 1.1rem;">
-                            ${node.risk_score} 分
-                        </span>
-                    </div>
-                    <div class="flow-row">
-                        <span class="flow-label">決標總金額</span>
-                        <span class="flow-val amount">${node.award_amount ? node.award_amount.toLocaleString() + ' 元' : '流標 / 未提供'}</span>
-                    </div>
-                    <div class="flow-row">
-                        <span class="flow-label">得標廠商</span>
-                        <span class="flow-val" style="color: var(--neon-green);">${node.winning_vendor || '流標 / 無'}</span>
-                    </div>
-                    <div class="flow-row">
-                        <span class="flow-label">關聯評委數</span>
-                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: var(--neon-orange);">${committeeCount} 位</span>
-                    </div>
-                    <div class="flow-row">
-                        <span class="flow-label">得標/投標商數</span>
-                        <span class="flow-val" style="font-family: 'Fira Code', monospace; color: var(--neon-green);">${vendorCount} 家</span>
-                    </div>
-                    <div style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem;">
-                        <span class="flow-label" style="display: block; margin-bottom: 0.4rem; font-weight: 800; color: var(--neon-pink);">亮燈原因</span>
-                        <ul style="list-style: none; padding-left: 0; margin: 0;">
-                            ${anomalyChips}
-                        </ul>
-                    </div>
-                `;
-            } else if (node.type === 'vendor') {
-                typeBadgeHtml = '<span class="chip danger" style="background: rgba(5, 255, 161, 0.08); border-color: rgba(5, 255, 161, 0.2); color: var(--neon-green);">投標廠商</span>';
-                let dataStatusHtml = '';
-                if (!node.owner && !node.tax_id) {
-                    dataStatusHtml = `<div style="font-size: 0.82rem; color: var(--neon-pink); margin-top: 0.5rem; font-weight: 700;">工商資料：未接入 Resolver</div>`;
-                }
-                contentBodyHtml = `
-                    <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem;">
-                        此節點代表參與政府標案之投標實體廠商。若廠商跨標案重複出現得標，圖譜將自動形成紅色虛線的關聯鏈。
-                    </div>
-                    ${dataStatusHtml}
-                `;
-            } else if (node.type === 'committee_member') {
-                typeBadgeHtml = '<span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border-color: rgba(255, 170, 0, 0.2); color: var(--neon-orange);">評選委員</span>';
-                contentBodyHtml = `
-                    <div class="flow-row">
-                        <span class="flow-label">委員現職/專長</span>
-                        <span class="flow-val" style="font-size: 0.8rem; text-align: right; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${node.profession || '未提供'}">${node.profession || '未提供'}</span>
-                    </div>
-                    <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-top: 0.5rem;">
-                        此節點代表外部或內部的專家評審委員。若委員跨標案重複任職審查，將觸發橘色虛線代表的高頻重複評委關係。
-                    </div>
-                `;
-            } else if (node.type === 'risk_pattern') {
-                typeBadgeHtml = '<span class="chip danger">風險異常特徵</span>';
-                contentBodyHtml = `
-                    <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem;">
-                        此節點代表該案件觸發的紅旗異常特徵（如單一廠商投標、高預算吻合度、超短等標期等客觀演算法訊號）。
-                    </div>
-                `;
-            } else {
-                typeBadgeHtml = '<span class="chip info">關聯邊界實體</span>';
-                contentBodyHtml = `
-                    <div class="flow-row">
-                        <span class="flow-label">實體類型</span>
-                        <span class="flow-val" style="text-transform: uppercase;">${node.type}</span>
-                    </div>
-                `;
-            }
-
-            contentEl.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 0.75rem;">
-                    <span style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">${node.label}</span>
-                    ${typeBadgeHtml}
-                </div>
-
-                <div style="display: flex; flex-direction: column; gap: 0.75rem; flex: 1;">
-                    ${contentBodyHtml}
-                </div>
-
-                <div class="flow-row" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-                    <span class="flow-label">本案累計關聯邊數</span>
-                    <span class="flow-val" id="connected_edges_count" style="font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 800;">${edgesCount} 條邊</span>
-                </div>
-            `;
+            return;
         }
 
         // 3. Render 資金流向戰術地圖
@@ -3265,13 +3252,13 @@
             const cardContainer = document.getElementById('gov-profile-card');
             const filterSelect = document.getElementById('gov-identity-select');
             if (!listContainer || !cardContainer) return;
-            
+
             listContainer.innerHTML = '';
             if (filterSelect) filterSelect.innerHTML = '';
-            
+
             const memberProfiles = {};
             const vendorProfiles = {};
-            
+
             // Collect vendors from graph.nodes
             const graphNodes = graph.nodes || [];
             graphNodes.forEach(n => {
@@ -3297,15 +3284,15 @@
                 const comm = c.committee_members || [];
                 const winner = c.winning_vendor || ((c.bidders && c.bidders.length > 0) ? c.bidders[0] : '無決標廠商');
                 const agency = c.agency || '未知機關';
-                
+
                 // Add case to vendor profile if it matches the winner
                 if (winner !== '無決標廠商' && vendorProfiles[winner]) {
                     vendorProfiles[winner].cases.push(c.case_number);
                     vendorProfiles[winner].totalAmount += (c.award_amount || 0);
-                    
+
                     // Add co-occurring agency
                     vendorProfiles[winner].vendors[agency] = (vendorProfiles[winner].vendors[agency] || 0) + 1;
-                    
+
                     // Add co-occurring members
                     comm.forEach(m => {
                         const mName = m.name || m.姓名;
@@ -3314,11 +3301,11 @@
                         }
                     });
                 }
-                
+
                 comm.forEach(m => {
                     if (!m.name && !m.姓名) return;
                     const name = m.name || m.姓名;
-                    
+
                     if (!memberProfiles[name]) {
                         memberProfiles[name] = {
                             name: name,
@@ -3330,14 +3317,14 @@
                             titles: new Set()
                         };
                     }
-                    
+
                     memberProfiles[name].totalAmount += (c.award_amount || 0);
                     memberProfiles[name].cases.push(c.case_number);
-                    
+
                     if (winner !== '無決標廠商' && winner !== 'null') {
                         memberProfiles[name].vendors[winner] = (memberProfiles[name].vendors[winner] || 0) + 1;
                     }
-                    
+
                     if (c.anomaly_patterns && c.anomaly_patterns.includes('cross_region_hit')) {
                         memberProfiles[name].crossRegion += 1;
                     }
@@ -3350,7 +3337,7 @@
                     });
                 });
             });
-            
+
             // Classify Committee Members
             const officialRegex = /處長|局長|科長|承辦|課長|主任|秘書|縣府|局處|機關/;
             Object.values(memberProfiles).forEach(p => {
@@ -3364,13 +3351,13 @@
                     if (p.titles.size === 0) p.titles.add('評選 / 審查節點');
                 }
             });
-            
+
             // Merge all profiles
             let profiles = [ ...Object.values(memberProfiles), ...Object.values(vendorProfiles) ];
-            
+
             // Filter out zero case profiles
             profiles = profiles.filter(p => p.cases.length > 0);
-            
+
             // CrossRegion from graph logic
             const casesInGraph = graphNodes.filter(n => n.type === 'case');
             const crossRegionCases = new Set(casesInGraph.filter(n => n.scope_status === 'cross_region_hit').map(n => n.case_number));
@@ -3381,15 +3368,15 @@
                 });
                 p.crossRegion = Math.max(p.crossRegion, crossCount);
             });
-            
+
             // Sort by case length
             profiles.sort((a, b) => b.cases.length - a.cases.length);
-            
+
             if (profiles.length === 0) {
                 listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">查無治理節點資料</div>';
                 return;
             }
-            
+
             const formatMoney = (val) => {
                 if (val >= 100000000) return (val / 100000000).toFixed(2) + ' 億';
                 if (val >= 10000) return (val / 10000).toFixed(0) + ' 萬';
@@ -3438,13 +3425,13 @@
                             role = '其他治理節點';
                         }
                     }
-                    
+
                     let badgeClass = found.badgeClass;
                     let levelText = '';
                     if (found.identity === '官員 Official') {
                         levelText = getGovLevel(role);
                     }
-                    
+
                     return {
                         identity: found.identity,
                         role: role,
@@ -3452,7 +3439,7 @@
                         level: levelText
                     };
                 }
-                
+
                 // 2. Check if it's a vendor in graphNodes
                 const isGraphVendor = graphNodes.some(n => n.type === 'vendor' && (n.label === v || n.id === `vendor-${v}` || n.id === v));
                 if (isGraphVendor) {
@@ -3463,7 +3450,7 @@
                         level: ''
                     };
                 }
-                
+
                 // 3. Check if it's an agency
                 const isAgency = /政府|縣府|局|處|所|中心|機關/.test(v);
                 if (isAgency) {
@@ -3474,7 +3461,7 @@
                         level: ''
                     };
                 }
-                
+
                 // 4. Try looking up in cases committee_members
                 let foundTitle = '';
                 let foundMember = null;
@@ -3492,7 +3479,7 @@
                     }
                     if (foundTitle) break;
                 }
-                
+
                 if (foundMember || foundTitle) {
                     const officialRegex = /處長|局長|科長|承辦|課長|主任|秘書|縣府|局處|機關/;
                     if (officialRegex.test(foundTitle || '')) {
@@ -3513,7 +3500,7 @@
                         };
                     }
                 }
-                
+
                 // 5. Fallback to other
                 return {
                     identity: '其他 Other',
@@ -3522,7 +3509,7 @@
                     level: ''
                 };
             };
-            
+
             // Render Select Filter
             const counts = {
                 'All': profiles.length,
@@ -3531,9 +3518,9 @@
                 '外聘委員 External Committee Member': profiles.filter(p => p.identity === '外聘委員 External Committee Member').length,
                 '其他 Other': profiles.filter(p => p.identity === '其他 Other').length
             };
-            
+
             let activeFilter = 'All';
-            
+
             if (filterSelect) {
                 Object.entries(counts).forEach(([key, count]) => {
                     const opt = document.createElement('option');
@@ -3541,28 +3528,28 @@
                     opt.textContent = `${key} ${count}`;
                     filterSelect.appendChild(opt);
                 });
-                
+
                 filterSelect.onchange = (e) => {
                     activeFilter = e.target.value;
                     renderList();
                 };
             }
-            
+
             // Render List
             const renderList = () => {
                 listContainer.innerHTML = '';
                 const filtered = activeFilter === 'All' ? profiles : profiles.filter(p => p.identity === activeFilter);
-                
+
                 if (filtered.length === 0) {
                     listContainer.innerHTML = '<div style="color:var(--text-muted); padding:1rem;">無符合條件之節點</div>';
                     cardContainer.innerHTML = `<div style="text-align:center; padding: 4rem 2rem; color: var(--text-muted);"><p>請選擇左側節點</p></div>`;
                     return;
                 }
-                
+
                 filtered.forEach((p, index) => {
                     const item = document.createElement('div');
                     item.className = 'gov-node-item';
-                    
+
                     // Determine single role string to display
                     let displayRole = '';
                     if (p.titles && p.titles.size > 0) {
@@ -3586,7 +3573,7 @@
                         const lvl = getGovLevel(displayRole);
                         govLevelHTML = `<span class="gov-badge official" style="font-size:0.6rem; padding:0.05rem 0.35rem; margin-top: 0; margin-left:0.4rem; border-color: rgba(5, 255, 161, 0.3); background: rgba(5, 255, 161, 0.05); color: var(--neon-green);">${lvl}</span>`;
                     }
-                    
+
                     item.innerHTML = `
                         <div style="width: 100%;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem;">
@@ -3604,11 +3591,11 @@
                             </div>
                         </div>
                     `;
-                    
+
                     item.onclick = () => {
                         document.querySelectorAll('.gov-node-item').forEach(el => el.classList.remove('active'));
                         item.classList.add('active');
-                        
+
                         // Requirement B: Co-occurrence tags and roles
                         const coOccurHTML = Object.entries(p.vendors)
                             .sort((a, b) => b[1] - a[1])
@@ -3630,9 +3617,9 @@
                                     </div>
                                 `;
                             }).join('');
-                            
+
                         const coOccurTitle = p.type === 'vendor' ? '共現委員 / 共現機關 Co-occurrence' : '廠商共現密度 Vendor Co-occurrence';
-                        
+
                         // Prepare Cross-region display
                         let signalDisplay = `<div class="gov-stat-value" style="color:var(--text-muted); font-size:0.9rem; line-height:2.2;">未偵測<br/>No signal detected</div>`;
                         if (p.crossRegion > 0) {
@@ -3676,7 +3663,7 @@
                                     </div>
                                 `;
                             }).join('');
-                            
+
                         cardContainer.innerHTML = `
                             <div class="gov-profile-header">
                                 <div class="gov-avatar"><i class="fa-solid fa-user-shield"></i></div>
@@ -3689,7 +3676,7 @@
                                     <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">${displayRole}</div>
                                 </div>
                             </div>
-                            
+
                             <div class="gov-stats">
                                 <div class="gov-stat-box">
                                     <div class="gov-stat-value">${p.cases.length}</div>
@@ -3704,7 +3691,7 @@
                                     <div class="gov-stat-label">跨區 / 跨機關訊號<br/>Cross-region / Cross-agency Signals</div>
                                 </div>
                             </div>
-                            
+
                             <div class="gov-section">
                                 <h3>${coOccurTitle}</h3>
                                 <div class="gov-list">
@@ -3720,12 +3707,12 @@
                             </div>
                         `;
                     };
-                    
+
                     listContainer.appendChild(item);
                     if (index === 0) item.click();
                 });
             };
-            
+
             renderList();
         }
 
@@ -3922,21 +3909,21 @@
                 const raw = c.raw_detail || {};
                 const cnum = c.case_number || raw['已公告資料:標案案號'];
                 if (!cnum) return;
-                
+
                 const noticeDateStr = raw['已公告資料:原公告日期'] || null;
                 const refDateStr = raw['已公告資料:截止投標時間'] || raw['已公告資料:截止投標日'] || raw['已公告資料:開標時間'] || null;
-                
+
                 const nDate = parseTaiwanDate(noticeDateStr);
                 const rDate = parseTaiwanDate(refDateStr);
                 let prepDays = null;
                 if (nDate && rDate) {
                     prepDays = Math.round((rDate - nDate) / (1000 * 60 * 60 * 24));
                 }
-                
+
                 // Match from graph nodes to enrich risk_score and anomaly_patterns
                 let gRisk = 0;
                 const gPatterns = new Set();
-                
+
                 (graph.nodes || []).forEach(gn => {
                     if (gn.type === 'case' && gn.case_number === cnum) {
                         const score = gn.risk_score || 0;
@@ -3951,7 +3938,7 @@
                 if (prepDays !== null && prepDays <= 10) {
                     gPatterns.add("Short Tender Window");
                 }
-                
+
                 if (!uniqueCases[cnum] || (uniqueCases[cnum].prepDays === null && prepDays !== null)) {
                     uniqueCases[cnum] = {
                         case_number: cnum,
@@ -3971,11 +3958,11 @@
             // 1. Gather stats
             const caseList = Object.values(uniqueCases);
             const totalCasesCount = caseList.length || 20;
-            
+
             let totalAmt = 0;
             let highRiskCount = 0;
             let shortPrepCount = 0;
-            
+
             const awardCases = new Set();
             (graph.nodes || []).forEach(n => {
                 if (n.type === 'case' && n.award_amount) {
@@ -3986,7 +3973,7 @@
                     }
                 }
             });
-            
+
             caseList.forEach(c => {
                 if (c.risk_score >= 40) {
                     highRiskCount++;
@@ -4066,7 +4053,7 @@
 
             const statusEl = document.getElementById('p-association-status');
             const listEl = document.getElementById('p-association-list');
-            
+
             if (listEl) {
                 listEl.innerHTML = '';
                 if (associatedCases.length === 0 || !topMemberName) {
@@ -4074,7 +4061,7 @@
                     listEl.innerHTML = '<div style="color: var(--text-muted); padding: 1rem; font-style: italic;">目前公開資料僅能呈現節點共現，尚不足以推論實質關係。</div>';
                 } else {
                     if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-circle-info" style="color: var(--neon-blue); margin-right: 0.25rem;"></i>數據分析提示：${topMemberName} 在本輪樣本池多個標案中，與得標廠商有多次招標評選的公開資料共現紀錄。`;
-                    
+
                     associatedCases.forEach(ac => {
                         const card = document.createElement('div');
                         card.style.background = 'rgba(255, 255, 255, 0.02)';
@@ -4085,9 +4072,9 @@
                         card.style.justifyContent = 'space-between';
                         card.style.alignItems = 'center';
                         card.style.gap = '1rem';
-                        
+
                         const scoreColor = ac.risk_score >= 40 ? 'var(--neon-pink)' : (ac.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
-                        
+
                         const acChipsHtml = (ac.anomaly_patterns || []).map(p => `
                             <span class="chip ${ac.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block; margin-top: 0.25rem;">${getPenetrationRiskTagChinese(p)}</span>
                         `).join('') || '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; display: inline-block; margin-top: 0.25rem;">未標記</span>';
@@ -4097,7 +4084,7 @@
                                 <div style="font-family: \'Fira Code\', monospace; font-size: 0.75rem; color: var(--neon-blue); font-weight: 700;">${ac.case_number}</div>
                                 <div style="font-size: 0.88rem; font-weight: 700; color: #ffffff; margin-top: 0.15rem;">${ac.case_name || ac.label}</div>
                                 <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem;">
-                                    得標商: <strong style="color: var(--neon-green);">${ac.winning_vendor || '未公佈'}</strong> | 
+                                    得標商: <strong style="color: var(--neon-green);">${ac.winning_vendor || '未公佈'}</strong> |
                                     金額: <strong>${ac.award_amount ? ac.award_amount.toLocaleString() + ' 元' : '未刊登'}</strong>
                                 </div>
                                 <div style="margin-top: 0.35rem; display: flex; flex-wrap: wrap; gap: 0.25rem;">
@@ -4132,7 +4119,7 @@
                 } else {
                     shortPrepCases.forEach(c => {
                         const tr = document.createElement('tr');
-                        
+
                         const chipsHtml = (c.anomaly_patterns || []).map(p => `
                             <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem;">${getPenetrationRiskTagChinese(p)}</span>
                         `).join('') || '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem;">未標記</span>';
@@ -4173,13 +4160,13 @@
             }
 
             const caseMap = {};
-            
+
             // 1. First pass: details
             details.forEach(c => {
                 const raw = c.raw_detail || {};
                 const cnum = c.case_number || raw['已公告資料:標案案號'];
                 if (!cnum) return;
-                
+
                 if (!caseMap[cnum]) {
                     caseMap[cnum] = {
                         case_number: cnum,
@@ -4208,7 +4195,7 @@
             (signals || []).forEach(sig => {
                 const cnum = sig.case_number;
                 if (!cnum) return;
-                
+
                 if (!caseMap[cnum]) {
                     caseMap[cnum] = {
                         case_number: cnum,
@@ -4274,19 +4261,19 @@
             if (dmHudContainer) {
                 const highRiskCount = mergedCases.filter(c => c.risk_score >= 40).length;
                 const edgeCount = graph.edge_count || 370;
-                
+
                 let patternHitCount = 0;
                 mergedCases.forEach(c => {
                     patternHitCount += (c.anomaly_patterns || []).length;
                 });
-                
+
                 const rawTime = graph.generated_at || (details[0] && details[0].last_updated) || '2026-05-24T21:29:52+08:00';
                 let displayTime = rawTime;
                 try {
                     displayTime = new Date(rawTime).toLocaleString('zh-TW', { hour12: false });
                 } catch(e) {}
                 const schemaVer = graph.schema_version || '1.0.0';
-                
+
                 dmHudContainer.innerHTML = `
                     <div class="hud-card blue">
                         <span class="hud-label">本輪稽核案件數</span>
@@ -4312,7 +4299,7 @@
             if (top10Container) {
                 top10Container.innerHTML = '';
                 const top10Cases = [...mergedCases].sort((a, b) => b.risk_score - a.risk_score).slice(0, 10);
-                
+
                 if (top10Cases.length === 0) {
                     top10Container.innerHTML = `
                         <tr>
@@ -4325,28 +4312,28 @@
                     top10Cases.forEach((c, index) => {
                         const tr = document.createElement('tr');
                         const scoreColor = c.risk_score >= 40 ? 'var(--neon-pink)' : (c.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
-                        
+
                         const narrativePatterns = (c.anomaly_patterns || []).map(p => getDailyMineRiskTagNarrative(p));
                         const uniqueNarratives = Array.from(new Set(narrativePatterns));
-                        
+
                         let chipsHtml = '';
                         if (uniqueNarratives.length === 0) {
                             chipsHtml = '<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block;">待補充分析</span>';
                         } else {
                             const majorNarratives = uniqueNarratives.slice(0, 3);
                             const remainingCount = uniqueNarratives.length - 3;
-                            
+
                             chipsHtml = majorNarratives.map(n => `
                                 <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; margin-right: 0.25rem; display: inline-block;">${n}</span>
                             `).join('');
-                            
+
                             if (remainingCount > 0) {
                                 chipsHtml += `<span class="chip info" style="font-size: 0.65rem; padding: 0.1rem 0.4rem; display: inline-block;">+${remainingCount}</span>`;
                             }
                         }
-                        
+
                         const displayBudget = c.award_amount ? `${c.award_amount.toLocaleString()} 元` : '未決標/未刊登';
-                        
+
                         tr.innerHTML = `
                             <td style="text-align: center; font-weight: 800; color: var(--text-secondary); font-size: 1.1rem;">${index + 1}</td>
                             <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--neon-blue);">${c.case_number || '無'}</td>
@@ -4370,7 +4357,7 @@
                     const name = (c.case_name || '').toLowerCase();
                     return !name.includes('職人町') && !name.includes('chih-jen');
                 });
-                
+
                 if (nonCjtCases.length === 0) {
                     nonCjtContainer.innerHTML = `
                         <div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; padding: 1.5rem 0;">
@@ -4386,10 +4373,10 @@
                         const card = document.createElement('div');
                         card.className = 'risk-card';
                         const scoreColor = c.risk_score >= 40 ? 'var(--neon-pink)' : (c.risk_score >= 20 ? 'var(--neon-orange)' : 'var(--neon-green)');
-                        
+
                         const narrativePatterns = (c.anomaly_patterns || []).map(p => getDailyMineRiskTagNarrative(p));
                         const uniqueNarratives = Array.from(new Set(narrativePatterns));
-                        
+
                         let chipsHtml = '';
                         if (uniqueNarratives.length === 0) {
                             chipsHtml = '<span class="chip info">待補充分析</span>';
@@ -4398,7 +4385,7 @@
                                 <span class="chip ${c.risk_score >= 40 ? 'danger' : 'warning'}">${n}</span>
                             `).join('');
                         }
-                        
+
                         card.innerHTML = `
                             <div class="risk-card-header">
                                 <div class="risk-title-box">
@@ -4429,7 +4416,7 @@
                             if (c.agency) activeKeywords.add(c.agency);
                         }
                     });
-                    
+
                     badgeList.innerHTML = Array.from(activeKeywords).map(kw => `
                         <span class="chip warning" style="background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.3); font-size: 0.75rem; padding: 0.35rem 0.75rem;">${kw}</span>
                     `).join('') + `
