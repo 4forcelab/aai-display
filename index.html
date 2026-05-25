@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="4Force Active Audit Intelligence - 主動稽核情報系統，將採購脈絡、關係圖譜、與風險訊號轉成決策線索，方法論由 4Force Lab 黑箱保護。">
+    <meta name="description" content="4Force Active Audit Intelligence - 主動稽核情報系統，將公開採購資料轉換為可閱讀、可追溯、可簡報的治理訊號，用於場域健檢、風險提示與策略判讀。由 4FORCE LAB 非公開技術流程保護。">
     <title>4Force Active Audit Intelligence | 戰情指揮中心</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
@@ -316,14 +316,16 @@
         /* HUD KPI Grid */
         .hud-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 1.25rem;
             margin-bottom: 3rem;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         @media (max-width: 1024px) {
             .hud-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             }
         }
         @media (max-width: 640px) {
@@ -386,6 +388,9 @@
         /* Panels Container */
         .panel-container {
             display: none;
+            overflow: hidden;
+            max-width: 100%;
+            min-width: 0;
         }
 
         .panel-container.active {
@@ -395,13 +400,15 @@
         /* technical modules section */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         @media (max-width: 1100px) {
             .modules-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             }
         }
         @media (max-width: 640px) {
@@ -1528,7 +1535,7 @@
             <!-- Hero Section -->
             <section class="hero-section">
                 <h2>4Force Active Audit Intelligence</h2>
-                <p class="subtitle">4Force AAI 是主動稽核情報系統。在幾分鐘內把採購脈絡、關係圖譜、與風險訊號洗成決策線索，方法論由 4Force Lab 黑箱保護。</p>
+                <p class="subtitle">4Force AAI 是主動稽核情報系統。將公開採購資料轉換為可閱讀、可追溯、可簡報的治理訊號，用於場域健檢、風險提示與策略判讀。核心方法由 4FORCE LAB 非公開技術流程保護。</p>
 
                 <div class="btn-hero-group">
                     <button class="btn-cyber primary" onclick="switchPanel('warroom')">
@@ -1575,7 +1582,7 @@
                         <h4>資訊孤島突破</h4>
                         <div class="sales-item">
                             <span class="sales-tag before"><i class="fa-solid fa-eye-slash"></i> 傳統方式</span>
-                            <p class="sales-desc">單一標案視角，難以感知跨案件、跨年度之重複結構與潛在利害衝突。</p>
+                            <p class="sales-desc">單一標案視角，難以感知跨案件、跨年度之重複結構與關聯風險訊號。</p>
                         </div>
                         <div class="sales-item">
                             <span class="sales-tag after"><i class="fa-solid fa-circle-nodes"></i> AAI v2.5+</span>
@@ -1630,29 +1637,32 @@
             <!-- Screen 4: Product Differentiation -->
             <section class="sales-section">
                 <h3>Intelligence Module Stack</h3>
-                <p style="color: var(--text-secondary); max-width: 850px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    AAI 的核心能力不依附於特定場域。任意機關、人物、廠商或補助計畫均可作為情報礦池切入點。以下為目前已部署之 field-deployable intelligence modules。
+                <p style="color: var(--text-secondary); max-width: 850px; margin: 0 auto 1rem auto; line-height: 1.6; font-size: 1.05rem;">
+                    AAI 不綁定單一場域，可依指定機關、人物、廠商、標案群或補助計畫建立情報礦池。系統將公開資料轉換為可閱讀、可追溯、可簡報的治理訊號，用於場域健檢、風險提示與策略判讀。
+                </p>
+                <p style="color: var(--text-muted); max-width: 850px; margin: 0 auto 2.5rem auto; font-size: 0.88rem; font-style: italic; line-height: 1.5;">
+                    Field-deployable intelligence modules are configured by target pool, evidence source, and briefing purpose.
                 </p>
                 <div class="sales-pack-grid">
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-building-columns sales-pack-icon"></i>
                         <span class="sales-pack-title">Signal Mining Engine v2.3</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">自動擷取公開採購治理訊號，覆蓋招標流標異常、等標期壓力與公告節奏分析。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">擷取公開採購與治理資料中的異常訊號，包含招標重啟、單一投標、公告節奏與等標期壓力等觀察點。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-sack-dollar sales-pack-icon"></i>
                         <span class="sales-pack-title">Risk Distribution Model v2.4</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">輸出 anomaly distribution 分層訊號，自動標記單一投標、高契合比率與決標結構異常。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">將案件訊號轉換為分層風險分布，協助快速辨識高集中度、高重複性與高關聯性的標案群。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-diagram-project sales-pack-icon"></i>
                         <span class="sales-pack-title">Entity Relation Mapper v2.2</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">構建跨案件、跨區域多維治理關係圖譜，識別廠商重複結構與跨域實體共現模式。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立跨案件、跨區域的治理關係圖譜，呈現廠商、機關、人物與標案之間的共現結構。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon"></i>
                         <span class="sales-pack-title">Semantic Extraction Layer v2.1</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">語意抽取評選委員參與軌跡，發掘高頻重複評審共現與治理節點利害結構。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">從公開文字資料中抽取人物、職稱、機關與案件脈絡，輔助建立治理節點檔案與關聯線索。</p>
                     </div>
                 </div>
             </section>
@@ -1660,34 +1670,34 @@
             <!-- Screen 5: What You Can Purchase -->
             <section class="sales-section">
                 <h3>Decision Intelligence Dashboard v2.5</h3>
-                <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.1rem;">
-                    AAI 提供全量客製化主動稽核情報服務，針對指定對象輸出 decision-grade 關聯圖譜與治理訊號報告，方法論由 4Force Lab 黑箱保護。
+                <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-size: 1.05rem;">
+                    將資料礦池轉換為可視化情報儀表板，輸出 decision-grade 關聯圖譜、治理訊號與簡報型觀察結論。核心方法與模型由 4FORCE LAB 非公開技術流程保護。
                 </p>
-                <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+                <div class="sales-pack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 100%; overflow: hidden;">
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-user-shield sales-pack-icon" style="color: var(--neon-blue);"></i>
                         <span class="sales-pack-title">治理人物情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">針對指定決策人物輸出採購脈絡圖譜，呈現歷史招決標關聯結構與治理節點共現紀錄。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">針對指定治理人物建立採購脈絡圖譜，呈現歷史標案關聯、職務脈絡與節點共現紀錄。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-users-gear sales-pack-icon" style="color: var(--neon-orange);"></i>
                         <span class="sales-pack-title">評選委員軌跡情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">深層分析指定評委歷史評選案件，識別高頻共現結構、偏好模式與潛在利害衝突節點。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">分析指定評選委員之歷史參與案件，觀察高頻共現結構、評選節點分布與關聯風險線索。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-building-columns sales-pack-icon" style="color: var(--neon-green);"></i>
                         <span class="sales-pack-title">機關採購結構情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定發包機關完整標案底層結構，輸出流標重招異常分布與採購節奏分析。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">掃描指定機關標案資料，輸出流標重招分布、採購節奏、金額集中度與案件結構觀察。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-handshake sales-pack-icon" style="color: var(--neon-pink);"></i>
                         <span class="sales-pack-title">供應商實體圖譜情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">構建指定廠商跨案件得標關係圖譜，呈現共同實體關聯結構與區域性重複得標分布。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">建立指定廠商跨案件得標與關聯圖譜，呈現共同實體、區域分布與重複得標樣態。</p>
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon" style="color: var(--neon-blue);"></i>
                         <span class="sales-pack-title">場域資金流情報包</span>
-                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤特定場域計畫資金分配流向，輸出決算金額吻合度分析與跨年度資金路徑圖譜。</p>
+                        <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤指定場域或計畫資金路徑，整理預算、決算、採購金額與跨年度資金配置觀察。</p>
                     </div>
                 </div>
             </section>
@@ -2324,6 +2334,9 @@
             // Highlight nav button
             const navBtn = Array.from(document.querySelectorAll('.btn-nav')).find(btn => btn.getAttribute('onclick').includes(panelId));
             if (navBtn) navBtn.classList.add('active');
+
+            // Scroll to top on main nav switch
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function switchWarTab(tabId) {
