@@ -550,6 +550,8 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         @media (max-width: 900px) {
@@ -569,6 +571,7 @@
             flex-direction: column;
             gap: 1rem;
             transition: var(--transition-smooth);
+            min-width: 0;
         }
 
         .risk-card:hover {
@@ -582,6 +585,7 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 1rem;
+            min-width: 0;
         }
 
         .risk-title-box {
@@ -589,6 +593,7 @@
             flex-direction: column;
             gap: 0.35rem;
             flex: 1;
+            min-width: 0;
         }
 
         .risk-case-number {
@@ -603,6 +608,9 @@
             font-weight: 800;
             color: #ffffff;
             line-height: 1.4;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .risk-badge {
@@ -2214,31 +2222,40 @@
             </p>
             
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
-                <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
+                <a href="tel:0900489893" style="text-decoration: none;">
                     <div class="btn-cyber primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; min-width: max-content;">
-                        <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i> 啟動治理訊號健檢
+                        <i class="fa-solid fa-phone" style="font-size: 1.1rem;"></i> 啟動治理訊號健檢
                     </div>
                 </a>
                 <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
                     <div class="btn-cyber" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-color: var(--neon-green); color: var(--neon-green); min-width: max-content;">
-                        <i class="fa-solid fa-tower-radar"></i> 申請場域情報分析
+                        <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i> 申請場域情報分析
                     </div>
                 </a>
-                <a href="https://line.me/ti/p/~iamwilljuan" target="_blank" style="text-decoration: none;">
+                <a href="mailto:info@4force.com.tw" style="text-decoration: none;">
                     <div class="btn-cyber" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-color: #7c3aed; color: #b794f6; min-width: max-content;">
-                        <i class="fa-solid fa-headset"></i> 聯絡 AAI 戰情室
+                        <i class="fa-solid fa-envelope" style="font-size: 1.1rem;"></i> 聯絡 AAI 戰情室
                     </div>
                 </a>
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 2rem; width: 100%; max-width: 600px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.8rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 2rem; width: 100%; max-width: 680px;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <img src="assets/4force-logo.png" alt="4Force Logo" style="height: 1.3rem; width: auto; opacity: 0.8; filter: drop-shadow(0 0 2px var(--neon-blue-glow));">
-                <span style="font-weight: 700; color: #ffffff; font-size: 1rem; letter-spacing: 0.05em;">萬合天宜有限公司</span>
+                <span style="font-weight: 700; color: #ffffff; font-size: 1rem; letter-spacing: 0.05em;">萬合天宜有限公司｜4FORCE LAB</span>
             </div>
-            <div style="font-size: 0.85rem;">AAI 專案主理人 Wesley Juan / 0900-489-893</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4Force Lab. All rights reserved.</div>
+            <div style="font-size: 0.85rem; color: var(--text-primary);">AAI 專案主理人 Wesley Juan / 0900-489-893</div>
+            
+            <div style="max-width: 680px; text-align: justify; font-size: 0.78rem; line-height: 1.6; color: var(--text-secondary); background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 8px; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                <p style="margin: 0;">
+                    AAI Active Audit Intelligence 是 4FORCE LAB 旗下治理訊號與主動稽核情報產品。<br/><br/>
+                    系統採「前台展示層、淨化資料包、核心分析流程」分離設計；公開頁面僅呈現經處理後的 signal pack，不暴露資料處理方法、訊號生成邏輯與情報模型。<br/><br/>
+                    本系統基於公開資料、serverless / edge-ready 架構與可追溯資料封包運作，提供治理觀察、風險提示與策略簡報使用。AAI 不作成法律或行政認定，所有判讀以公開資料脈絡與後續人工審查為準。
+                </p>
+            </div>
+            
+            <div style="font-size: 0.75rem; color: var(--text-muted);">© 2025–2026 4Force Lab. All rights reserved.</div>
         </div>
     </footer>
 
