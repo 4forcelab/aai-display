@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v2.9-B2.2 True API Observed Frame Dry Fit</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --border: rgba(255,255,255,0.1);
+            --text: #f8fafc;
+            --text-sec: #94a3b8;
+            --accent: #3b82f6;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, sans-serif;
+            margin: 0; padding: 2rem;
+            line-height: 1.5;
+        }
+        h1 { margin-top: 0; color: #a78bfa; }
+        .note {
+            background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444;
+            padding: 1rem; margin-bottom: 2rem; font-size: 0.9rem;
+        }
+        .note ul { margin: 0.5rem 0 0 1.5rem; padding: 0; }
+        .badge {
+            display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px;
+            font-size: 0.75rem; font-family: monospace; white-space: nowrap;
+        }
+        .b-layer { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .b-parse { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .b-parse-err { background: rgba(245, 158, 11, 0.2); color: #fbd38d; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .b-fall { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4); }
+        .b-fall-req { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .b-legal { background: rgba(139, 92, 246, 0.2); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.4); }
+        .b-veri { background: rgba(16, 185, 129, 0.1); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .b-group { background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 0.25rem; font-size: 0.65rem; }
+
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+        select { background: var(--bg); color: var(--text); border: 1px solid var(--border); padding: 0.5rem; border-radius: 4px; font-size: 0.8rem; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        th, td { padding: 0.75rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+        th { position: sticky; top: 0; background: var(--surface); color: var(--text-sec); font-size: 0.75rem; font-weight: normal; z-index:10; }
+        th strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.2rem; }
+        tr:hover td { background: rgba(255,255,255,0.05); }
+        
+        .val-col { max-width: 250px; white-space: normal; word-break: break-all; line-height: 1.4; }
+        .ref-col { max-width: 150px; white-space: normal; }
+        
+        a.src-link { color: #60a5fa; text-decoration: none; font-weight: 600; }
+        a.src-link:hover { text-decoration: underline; color: #93c5fd; }
+
+        /* Case Identity Band styling */
+        .case-band-container { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        .case-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1rem 1.5rem; border-radius: 8px; }
+        .case-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+        .case-id { font-family: monospace; color: var(--accent); font-weight: bold; font-size: 1.1rem; }
+        .case-title { font-size: 1.25rem; font-weight: bold; color: #fff; margin-top: 0.25rem; }
+        .case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .case-metric { display: flex; flex-direction: column; }
+        .case-metric-label { font-size: 0.7rem; color: var(--text-sec); text-transform: uppercase; margin-bottom: 0.25rem; }
+        .case-metric-val { font-size: 0.9rem; font-weight: 500; }
+        
+        .section-header { margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .section-title { font-size: 1.2rem; font-weight: bold; color: #fff; }
+        .section-desc { font-size: 0.8rem; color: var(--text-sec); margin-top: 0.25rem; }
+    </style>
+    <script>
+        window.G36A42_PREVIEW_DATA = [
+  {
+    "case_number": "E1131212-3",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "title",
+    "field_value": "114年屏東數位青創中心營運管理委託專業服務案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "award_amount",
+    "field_value": "3,000,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "winning_vendor",
+    "field_value": "階梯影像製作有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "vendor_code",
+    "field_value": "85114031",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "award_date",
+    "field_value": "113/12/31",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1131212-3",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1131212-3",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:43.182289",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250103&fn=BDM-1-70771971.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "title",
+    "field_value": "114年度屏東縣大專青年地方創生見習行動計畫勞務委託案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "procurement_method",
+    "field_value": "公開取得報價單或企劃書",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "award_amount",
+    "field_value": "496,335元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "winning_vendor",
+    "field_value": "開闊策略文化創意有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "vendor_code",
+    "field_value": "89134832",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "award_date",
+    "field_value": "114/04/15",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1140324-1",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1140324-1",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:45.305084",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20250416&fn=BDM-1-70853765.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "title",
+    "field_value": "115年屏東數位青創中心營運管理委託專業服務案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "award_amount",
+    "field_value": "3,000,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "winning_vendor",
+    "field_value": "階梯影像製作有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "vendor_code",
+    "field_value": "85114031",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "award_date",
+    "field_value": "114/12/23",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1141127-4",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141127-4",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:47.294323",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "title",
+    "field_value": "115年度青少年職涯探索暨就業促進計畫委託專業服務案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "procurement_method",
+    "field_value": "公開取得報價單或企劃書",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "award_amount",
+    "field_value": "1,407,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "winning_vendor",
+    "field_value": "三恆一樹行銷有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "vendor_code",
+    "field_value": "54977701",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "award_date",
+    "field_value": "114/12/31",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1141216-3",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1141216-3",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:49.380393",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260105&fn=BDM-1-71074836.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "title",
+    "field_value": "115年職業訓練計畫",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "award_amount",
+    "field_value": "9,755,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "winning_vendor",
+    "field_value": "國立屏東科技大學",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "vendor_code",
+    "field_value": "91004103",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "award_date",
+    "field_value": "115/03/10",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1150108-2",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150108-2",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:51.455061",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260317&fn=BDM-1-71131255.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "title",
+    "field_value": "115年度青農即戰力人才培育計畫勞務委託案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "procurement_method",
+    "field_value": "公開取得報價單或企劃書",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "award_amount",
+    "field_value": "950,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "winning_vendor",
+    "field_value": "開闊策略文化創意有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "vendor_code",
+    "field_value": "89134832",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "award_date",
+    "field_value": "115/02/26",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1150128-2",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150128-2",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:53.499379",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260302&fn=BDM-1-71120433.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "title",
+    "field_value": "職人町經營管理勞務委託專業服務案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "award_amount",
+    "field_value": "2,000,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "winning_vendor",
+    "field_value": "睿霓國際顧問有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "vendor_code",
+    "field_value": "60354889",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "award_date",
+    "field_value": "115/03/10",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1150212-1",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150212-1",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:55.596989",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260312&fn=BDM-1-71128010.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "title",
+    "field_value": "115年「我們生活節」傳統戲曲活動勞務委託",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "award_amount",
+    "field_value": "4,250,000元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "winning_vendor",
+    "field_value": "三恆一樹行銷有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "vendor_code",
+    "field_value": "54977701",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "award_date",
+    "field_value": "115/03/26",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1150303-1",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150303-1",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:57.694266",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260330&fn=BDM-1-71141573.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "source_ref",
+    "field_value": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "agency",
+    "field_value": "屏東縣政府",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "title",
+    "field_value": "115年度青年創業輔導與品牌多元行銷計畫委託專業服務案",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "procurement_method",
+    "field_value": "經公開評選或公開徵求之限制性招標",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "award_amount",
+    "field_value": "4,393,064元",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "winning_vendor",
+    "field_value": "三恆一樹行銷有限公司",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "vendor_code",
+    "field_value": "54977701",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "award_date",
+    "field_value": "115/04/28",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "payload_type",
+    "field_value": "決標公告",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "request_url",
+    "field_value": "https://pcc-api.openfun.app/api/tender?unit_id=3.76.53&job_number=E1150409-1",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  },
+  {
+    "case_number": "E1150409-1",
+    "field_name": "fetched_at",
+    "field_value": "2026-05-26T15:34:59.676786",
+    "source_layer": "API_OBSERVED_FRAME",
+    "extraction_method": "API_DETAIL_RAW_PAYLOAD_MAP",
+    "parse_status": "SUCCESS",
+    "fallback_status": "NOT_REQUIRED",
+    "source_ref": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20260430&fn=BDM-1-71166666.xml",
+    "confidence_note": "Direct mapping from JSON API payload.",
+    "verification_status": "OFFICIAL_API_OBSERVED",
+    "legal_status": "NOT_GENERATED",
+    "claim_type": "PROCUREMENT_OBSERVED_FIELD",
+    "source_type": "PUBLIC_API_OBSERVED"
+  }
+];
+    </script>
+</head>
+<body>
+    <h1>TRUE API_OBSERVED_FRAME Review Layer</h1>
+    <div class="note">
+        <strong>Strict Doctrine:</strong>
+        <ul>
+            <li>這是由 raw API detail payload 產生的 TRUE API_OBSERVED_FRAME。<br><span style="color:var(--text-sec);font-size:0.8rem">This is TRUE API_OBSERVED_FRAME generated from raw API detail payload.</span></li>
+            <li>此版本取代舊 G36A summary-based sample。<br><span style="color:var(--text-sec);font-size:0.8rem">This supersedes the old G36A summary-based sample.</span></li>
+            <li>案件識別帶由 TRUE API_OBSERVED_FRAME rows 前端推導，不改動 core row model。<br><span style="color:var(--text-sec);font-size:0.8rem">Case Identity Band is display-derived from TRUE API_OBSERVED_FRAME rows and does not mutate the core row model.</span></li>
+            <li>這不是 Hybrid；Hybrid reconciliation 屬於 G37。<br><span style="color:var(--text-sec);font-size:0.8rem">This is not Hybrid; Hybrid reconciliation belongs to G37.</span></li>
+            <li>legal_conclusion = NOT_GENERATED，系統不生成法律結論。</li>
+            <li>No score / no index / no production frontend.</li>
+        </ul>
+    </div>
+
+    <div class="filter-bar">
+        <select id="flt-case"><option value="ALL">All Cases</option></select>
+        <select id="flt-field"><option value="ALL">All Fields</option></select>
+        <select id="flt-group">
+            <option value="ALL">全部特徵 / All Features</option>
+            <option value="Source">來源 / Source</option>
+            <option value="Identity">識別 / Identity</option>
+            <option value="Procurement">採購 / Procurement</option>
+            <option value="Money">金額 / Money</option>
+            <option value="Vendor">廠商 / Vendor</option>
+            <option value="Timeline">時間 / Timeline</option>
+            <option value="Metadata">中繼資料 / Metadata</option>
+        </select>
+        <select id="flt-parse"><option value="ALL">All Parse Status</option></select>
+        <select id="flt-veri"><option value="ALL">All Verification Status</option></select>
+        <select id="flt-legal"><option value="ALL">All Legal Status</option></select>
+        <button onclick="apply()" style="padding:0.5rem 1rem; background:var(--accent); color:#fff; border:none; border-radius:4px; cursor:pointer;">Apply Filters</button>
+    </div>
+
+    <div id="case-band" class="case-band-container"></div>
+
+    <div class="section-header">
+        <div class="section-title">特徵列 / Feature Rows</div>
+        <div class="section-desc">
+            每一列代表同一案件中的一個觀測特徵欄位。<br>
+            Each row represents one observed feature extracted from TRUE API_OBSERVED_FRAME.
+        </div>
+    </div>
+
+    <div style="overflow-x:auto; width: 100%; max-width: 100vw;">
+    <table style="min-width: 1600px;">
+        <thead>
+            <tr>
+                <th><strong>案號</strong>Case Number</th>
+                <th><strong>欄位</strong>Field</th>
+                <th><strong>欄位值</strong>Value</th>
+                <th><strong>來源層</strong>Source Layer</th>
+                <th><strong>來源類型</strong>Source Type</th>
+                <th><strong>抽取方法</strong>Extraction Method</th>
+                <th><strong>解析狀態</strong>Parse Status</th>
+                <th><strong>補件狀態</strong>Fallback Status</th>
+                <th><strong>驗證狀態</strong>Verification Status</th>
+                <th><strong>法律狀態</strong>Legal Status</th>
+                <th><strong>指稱類型</strong>Claim Type</th>
+                <th><strong>信心註記</strong>Confidence Note</th>
+                <th><strong>來源連結</strong>Source Ref</th>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    </div>
+
+    <script>
+        const data = window.G36A42_PREVIEW_DATA;
+        
+        const fieldLabels = {
+            'source_ref': '來源網址 / Source Ref',
+            'agency': '機關 / Agency',
+            'title': '標案名稱 / Title',
+            'procurement_method': '採購方式 / Procurement Method',
+            'award_amount': '決標金額 / Award Amount',
+            'winning_vendor': '得標廠商 / Winning Vendor',
+            'vendor_code': '廠商代碼 / Vendor Code',
+            'award_date': '決標日期 / Award Date',
+            'payload_type': 'Payload 類型 / Payload Type',
+            'request_url': '請求網址 / Request URL',
+            'fetched_at': '抓取時間 / Fetched At'
+        };
+
+        const fieldGroups = {
+            'source_ref': 'Source',
+            'request_url': 'Source',
+            'agency': 'Identity',
+            'title': 'Identity',
+            'procurement_method': 'Procurement',
+            'award_amount': 'Money',
+            'winning_vendor': 'Vendor',
+            'vendor_code': 'Vendor',
+            'award_date': 'Timeline',
+            'fetched_at': 'Timeline',
+            'payload_type': 'Metadata'
+        };
+
+        const fieldGroupLabels = {
+            'Source': '來源 / Source',
+            'Identity': '識別 / Identity',
+            'Procurement': '採購 / Procurement',
+            'Money': '金額 / Money',
+            'Vendor': '廠商 / Vendor',
+            'Timeline': '時間 / Timeline',
+            'Metadata': '中繼資料 / Metadata'
+        };
+
+        function pickField(rows, caseNumber, fieldName) {
+            const match = rows.find(r => r.case_number === caseNumber && r.field_name === fieldName && r.field_value && r.field_value !== 'UNKNOWN');
+            return match ? match.field_value : 'UNKNOWN';
+        }
+
+        function buildCaseIdentityMap(filteredRows) {
+            const cases = [...new Set(filteredRows.map(r => r.case_number))];
+            const map = {};
+            cases.forEach(c => {
+                // Always scan the FULL dataset to build the card, even if rows are filtered out
+                // Because we want the Identity Band to remain correct for the case.
+                const caseData = data.filter(r => r.case_number === c);
+                map[c] = {
+                    title: pickField(caseData, c, 'title'),
+                    agency: pickField(caseData, c, 'agency'),
+                    award_amount: pickField(caseData, c, 'award_amount'),
+                    winning_vendor: pickField(caseData, c, 'winning_vendor'),
+                    procurement_method: pickField(caseData, c, 'procurement_method'),
+                    award_date: pickField(caseData, c, 'award_date'),
+                    source_ref: pickField(caseData, c, 'source_ref')
+                };
+            });
+            return map;
+        }
+
+        function renderCaseBand(filteredRows) {
+            const map = buildCaseIdentityMap(filteredRows);
+            const container = document.getElementById('case-band');
+            
+            const html = Object.keys(map).map(c => {
+                const d = map[c];
+                return `
+                <div class="case-card">
+                    <div class="case-card-header">
+                        <div class="case-id">案號 / Case Number: ${c}</div>
+                    </div>
+                    <div class="case-title">案件名稱 / Case Title: ${d.title === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.title}</div>
+                    <div class="case-grid">
+                        <div class="case-metric">
+                            <span class="case-metric-label">機關 / Agency</span>
+                            <span class="case-metric-val">${d.agency === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.agency}</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="case-metric-label">採購方式 / Procurement Method</span>
+                            <span class="case-metric-val">${d.procurement_method === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.procurement_method}</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="case-metric-label">決標金額 / Award Amount</span>
+                            <span class="case-metric-val" style="color:var(--accent);font-weight:bold;">${d.award_amount === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.award_amount}</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="case-metric-label">得標廠商 / Winning Vendor</span>
+                            <span class="case-metric-val">${d.winning_vendor === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.winning_vendor}</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="case-metric-label">決標日期 / Award Date</span>
+                            <span class="case-metric-val">${d.award_date === 'UNKNOWN' ? '<span class="muted">UNKNOWN</span>' : d.award_date}</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="case-metric-label">來源 / Source</span>
+                            <span class="case-metric-val">${formatRef(d.source_ref)}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = html;
+        }
+        
+        function getBadgeClass(val, type) {
+            if (!val) return 'badge';
+            if (type === 'layer') return 'badge b-layer';
+            if (type === 'parse') return val === 'EXTRACTED' || val === 'PARSED' ? 'badge b-parse' : 'badge b-parse-err';
+            if (type === 'fall') return val === 'NOT_REQUIRED' ? 'badge b-fall' : 'badge b-fall-req';
+            if (type === 'legal') return 'badge b-legal';
+            if (type === 'veri') return 'badge b-veri';
+            return 'badge';
+        }
+
+        function formatRef(ref) {
+            if (!ref || ref === 'UNKNOWN') return `<span style="color:var(--text-sec)">UNKNOWN</span>`;
+            if (ref.startsWith('http')) {
+                return `<a class="src-link" href="${ref}" target="_blank" title="${ref}">開啟來源<br><span style="font-size:0.7rem; font-weight:normal">Open Source</span></a>`;
+            }
+            return `<span style="font-family:monospace; font-size:0.7rem">${ref}</span>`;
+        }
+        
+        function formatVal(v, fname) {
+            if (!v || v === 'UNKNOWN') return `<span style="color:var(--text-sec)">UNKNOWN</span>`;
+            if (fname === 'source_ref' && v.startsWith('http')) {
+                return `<a class="src-link" href="${v}" target="_blank" title="${v}">開啟來源<br><span style="font-size:0.7rem; font-weight:normal">Open Source</span></a>`;
+            }
+            return v;
+        }
+
+        function init() {
+            const cases = [...new Set(data.map(r => r.case_number))];
+            const fields = [...new Set(data.map(r => r.field_name))];
+            const parses = [...new Set(data.map(r => r.parse_status))];
+            const veris = [...new Set(data.map(r => r.verification_status))];
+            const legals = [...new Set(data.map(r => r.legal_status))];
+
+            const fc = document.getElementById('flt-case');
+            cases.forEach(c => fc.innerHTML += `<option value="${c}">${c}</option>`);
+            
+            const ff = document.getElementById('flt-field');
+            fields.forEach(f => ff.innerHTML += `<option value="${f}">${fieldLabels[f] || f}</option>`);
+            
+            const fp = document.getElementById('flt-parse');
+            parses.forEach(p => fp.innerHTML += `<option value="${p}">${p}</option>`);
+
+            const fv = document.getElementById('flt-veri');
+            veris.forEach(v => fv.innerHTML += `<option value="${v}">${v}</option>`);
+
+            const fl = document.getElementById('flt-legal');
+            legals.forEach(l => fl.innerHTML += `<option value="${l}">${l}</option>`);
+
+            render(data);
+        }
+
+        function render(arr) {
+            renderCaseBand(arr);
+
+            document.getElementById('tb').innerHTML = arr.map(r => {
+                const fg = fieldGroups[r.field_name];
+                const fgLocal = fg ? fieldGroupLabels[fg] : null;
+                const fgHtml = fgLocal ? `<div class="badge b-group">${fgLocal}</div>` : '';
+                const fl = fieldLabels[r.field_name] || r.field_name;
+                
+                return `
+                <tr>
+                    <td style="font-family:monospace; font-weight:bold;">${r.case_number || ''}</td>
+                    <td>
+                        ${fgHtml}
+                        <div style="font-weight:600; color:#a78bfa; margin-top:0.25rem">${fl.split(' / ')[0]}</div>
+                        <div style="font-size:0.7rem; color:var(--text-sec); font-family:monospace">${r.field_name}</div>
+                    </td>
+                    <td class="val-col">${formatVal(r.field_value, r.field_name)}</td>
+                    <td><span class="${getBadgeClass(r.source_layer, 'layer')}">${r.source_layer || ''}</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.1);">${r.source_type || ''}</span></td>
+                    <td style="font-family:monospace">${r.extraction_method || ''}</td>
+                    <td><span class="${getBadgeClass(r.parse_status, 'parse')}">${r.parse_status || ''}</span></td>
+                    <td><span class="${getBadgeClass(r.fallback_status, 'fall')}">${r.fallback_status || ''}</span></td>
+                    <td><span class="${getBadgeClass(r.verification_status, 'veri')}">${r.verification_status || ''}</span></td>
+                    <td><span class="${getBadgeClass(r.legal_status, 'legal')}">${r.legal_status || ''}</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.05);">${r.claim_type || ''}</span></td>
+                    <td style="font-size:0.7rem; color:var(--text-sec)">${r.confidence_note || ''}</td>
+                    <td class="ref-col">${formatRef(r.source_ref)}</td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        function apply() {
+            const c = document.getElementById('flt-case').value;
+            const f = document.getElementById('flt-field').value;
+            const fg = document.getElementById('flt-group').value;
+            const p = document.getElementById('flt-parse').value;
+            const v = document.getElementById('flt-veri').value;
+            const l = document.getElementById('flt-legal').value;
+            
+            const filtered = data.filter(r => {
+                if (c !== 'ALL' && r.case_number !== c) return false;
+                if (f !== 'ALL' && r.field_name !== f) return false;
+                if (fg !== 'ALL' && fieldGroups[r.field_name] !== fg) return false;
+                if (p !== 'ALL' && r.parse_status !== p) return false;
+                if (v !== 'ALL' && r.verification_status !== v) return false;
+                if (l !== 'ALL' && r.legal_status !== l) return false;
+                return true;
+            });
+            render(filtered);
+        }
+
+        document.addEventListener("DOMContentLoaded", init);
+    </script>
+</body>
+</html>
