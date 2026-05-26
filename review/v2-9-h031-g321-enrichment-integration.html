@@ -7,7 +7,8 @@
     <style>
         :root {
             --bg-color: #0f172a;
-            --surface: rgba(30, 41, 59, 0.7);
+            --surface: rgba(30, 41, 59, 1);
+            --surface-hover: rgba(51, 65, 85, 1);
             --border: rgba(255, 255, 255, 0.1);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
@@ -42,7 +43,7 @@
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         h1 {
@@ -92,6 +93,22 @@
             border-radius: 2px;
         }
 
+        .help-note {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--info);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .help-note p {
+            margin-bottom: 0.5rem;
+        }
+        .help-note p:last-child {
+            margin-bottom: 0;
+        }
+
         .grid-kpi {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -101,7 +118,6 @@
 
         .kpi-card {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 1.5rem;
@@ -133,7 +149,6 @@
 
         .panel {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 1.5rem;
@@ -162,21 +177,29 @@
 
         .data-table-wrapper {
             overflow-x: auto;
+            overflow-y: hidden;
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: var(--radius);
+            max-width: 100%;
+            position: relative;
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 1200px; /* Ensure horizontal scroll on small screens */
         }
 
         .data-table th, .data-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border);
+            background: var(--surface); /* Solid bg for sticky elements */
+        }
+
+        .data-table tr:hover td {
+            background: var(--surface-hover);
         }
 
         .data-table th {
@@ -185,8 +208,46 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-secondary);
-            background: rgba(0,0,0,0.2);
             white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Sticky Columns */
+        .data-table th.col-case, .data-table td.col-case {
+            position: sticky;
+            left: 0;
+            min-width: 150px;
+            max-width: 150px;
+            z-index: 5;
+            border-right: 1px solid var(--border);
+        }
+        
+        .data-table th.col-title, .data-table td.col-title {
+            position: sticky;
+            left: 150px;
+            min-width: 250px;
+            max-width: 250px;
+            z-index: 5;
+            border-right: 2px solid var(--border);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* High Z-index for top-left intersecting cells */
+        .data-table th.col-case, .data-table th.col-title {
+            z-index: 20;
+        }
+
+        /* Only title sticky on mobile if necessary */
+        @media (max-width: 768px) {
+            .data-table th.col-title, .data-table td.col-title {
+                position: static;
+                border-right: none;
+            }
         }
 
         .data-table tr:last-child td {
@@ -199,8 +260,9 @@
             border: 1px dashed rgba(239, 68, 68, 0.4);
             padding: 0.125rem 0.5rem;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .recovered-badge {
@@ -212,6 +274,7 @@
             font-size: 0.7rem;
             display: inline-block;
             margin: 0.125rem;
+            white-space: nowrap;
         }
 
         .strong-candidate {
@@ -221,6 +284,7 @@
             padding: 0.125rem 0.5rem;
             border-radius: 9999px;
             font-size: 0.75rem;
+            white-space: nowrap;
         }
 
         .ambiguous {
@@ -234,6 +298,20 @@
         .ambiguous::before {
             content: '⚠';
         }
+
+        .row-multiple-match td {
+            background: rgba(245, 158, 11, 0.05); /* very subtle warning */
+        }
+        .data-table tr.row-multiple-match:hover td {
+            background: rgba(245, 158, 11, 0.1);
+        }
+        
+        /* Semantics */
+        .api-direct { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .api-title { background: rgba(14, 165, 233, 0.15); color: #38bdf8; }
+        .api-multiple { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .api-none { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+        .api-error { background: rgba(239, 68, 68, 0.15); color: #f87171; }
 
     </style>
 </head>
@@ -267,36 +345,42 @@
         </div>
 
         <h2 class="section-title">Recovery Table (回收明細表)</h2>
+        
+        <div class="help-note">
+            <p><strong>說明 (Note):</strong> 「有案名但無案號」代表目前僅取得 title-level 線索，尚未成功回接 unit_id/job_number 或官方標案 detail。此類資料保留於礦池，但標示為案號待補，不進行硬配。</p>
+            <p>A title without a case number means the record is currently title-traceable but not yet linked to unit_id/job_number or official tender detail. It remains in the mining pool as a pending field gap.</p>
+        </div>
+
         <div class="data-table-wrapper" style="margin-bottom: 2rem">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Case Number</th>
-                        <th>Title</th>
-                        <th>API Status</th>
-                        <th>Fields Recovered</th>
-                        <th>Vendor</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Method</th>
-                        <th>Source Ref Strength</th>
-                        <th>Confidence</th>
+                        <th class="col-case">案號<br>Case No.</th>
+                        <th class="col-title">案名<br>Title</th>
+                        <th>機關<br>Agency</th>
+                        <th>採購方式<br>Method</th>
+                        <th>決標日期<br>Award Date</th>
+                        <th>決標金額<br>Award Amount</th>
+                        <th>得標廠商<br>Vendor</th>
+                        <th>來源強度<br>Source Strength</th>
+                        <th>API 狀態<br>API Status</th>
+                        <th>補回欄位<br>Fields Recovered</th>
+                        <th>資料狀態<br>Record Status</th>
                     </tr>
                 </thead>
                 <tbody id="table-body"></tbody>
             </table>
         </div>
 
-        <h2 class="section-title" style="color: var(--warning)">Remaining Gap Queue (殘留缺漏隊列)</h2>
+        <h2 class="section-title" style="color: var(--warning)">Remaining Gap Queue (待補強案件)</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Record ID</th>
-                        <th>Case Number</th>
-                        <th>Title</th>
-                        <th>Gaps Remaining</th>
-                        <th>Action Needed</th>
+                        <th class="col-case">案號<br>Case No.</th>
+                        <th class="col-title">案名<br>Title</th>
+                        <th>Gaps Remaining (殘留缺漏)</th>
+                        <th>Action Needed (建議動作)</th>
                     </tr>
                 </thead>
                 <tbody id="gap-table-body"></tbody>
@@ -315,6 +399,24 @@
             }
         }
 
+        const semanticGaps = {
+            'case_number': '案號待補 / Case No. Pending',
+            'winning_vendor': '廠商待補 / Vendor Pending',
+            'award_amount': '金額待補 / Amount Pending',
+            'procurement_method': '採購方式待補 / Method Pending',
+            'announcement_date': '公告日待補 / Announcement Pending',
+            'submission_deadline': '截止日待補 / Deadline Pending',
+            'opening_date': '開標日待補 / Opening Pending'
+        };
+
+        const apiStatusMap = {
+            'API_MATCH_DIRECT_TENDER': { label: '直接標案命中 / Direct Match', css: 'api-direct' },
+            'API_MATCH_EXACT_TITLE': { label: '案名命中 / Title Match', css: 'api-title' },
+            'API_MULTIPLE_MATCHES': { label: '多筆候選 / Needs Review', css: 'api-multiple' },
+            'API_NO_MATCH': { label: 'API 無命中 / No Match', css: 'api-none' },
+            'API_ERROR': { label: 'API 錯誤 / API Error', css: 'api-error' }
+        };
+
         function renderData(data) {
             const kpi = data.kpi;
             
@@ -323,11 +425,15 @@
             const methodRecovered = kpi.procurement_method_unknown_before - kpi.procurement_method_unknown_after;
 
             const kpiHtml = `
-                <div class="kpi-card"><div class="kpi-value">${kpi.fields_recovered_records}</div><div class="kpi-label">Records with Fields Recovered</div></div>
-                <div class="kpi-card"><div class="kpi-value">${vendorRecovered}</div><div class="kpi-label">Vendor Recovered</div></div>
-                <div class="kpi-card"><div class="kpi-value">${amountRecovered}</div><div class="kpi-label">Amount Recovered</div></div>
-                <div class="kpi-card"><div class="kpi-value">${methodRecovered}</div><div class="kpi-label">Method Recovered</div></div>
-                <div class="kpi-card"><div class="kpi-value">${kpi.official_url_candidates}</div><div class="kpi-label">Official URL Candidates</div></div>
+                <div class="kpi-card"><div class="kpi-value">${data.records.length}</div><div class="kpi-label">API 命中案件 / API Matched Records</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.direct_tender_matches}</div><div class="kpi-label">直接標案命中 / Direct Tender Matches</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.fields_recovered_records}</div><div class="kpi-label">欄位補回案件 / Records Recovered</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.official_url_candidates}</div><div class="kpi-label">官方連結候選 / Official URL Candidates</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.vendor_unknown_after}</div><div class="kpi-label">廠商待補 / Vendor Pending</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.award_amount_unknown_after}</div><div class="kpi-label">金額待補 / Amount Pending</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.procurement_method_unknown_after}</div><div class="kpi-label">採購方式待補 / Method Pending</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.index_analytics_ready}</div><div class="kpi-label">Index 基準候選 / Index Baseline Candidates</div></div>
+                <div class="kpi-card"><div class="kpi-value">${data.remaining_gap_queue.length}</div><div class="kpi-label">待補強案件 / Remaining Gaps</div></div>
             `;
             document.getElementById('kpi-container').innerHTML = kpiHtml;
 
@@ -341,12 +447,14 @@
             document.getElementById('strength-container').innerHTML = strengthHtml || '<div style="color:var(--text-secondary)">No data</div>';
 
             // API Lookup Status
-            const lookupHtml = data.api_lookup_status_distribution.map(item => `
+            const lookupHtml = data.api_lookup_status_distribution.map(item => {
+                const map = apiStatusMap[item.status] || { label: item.status, css: 'api-none' };
+                return `
                 <div class="list-row">
-                    <span style="font-family: monospace; font-size: 0.875rem">${item.status}</span>
+                    <span style="font-family: monospace; font-size: 0.875rem">${map.label}</span>
                     <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa">${item.count}</span>
                 </div>
-            `).join('');
+            `}).join('');
             document.getElementById('lookup-container').innerHTML = lookupHtml || '<div style="color:var(--text-secondary)">No data</div>';
 
             // Readiness
@@ -359,16 +467,22 @@
             document.getElementById('readiness-container').innerHTML = readinessHtml || '<div style="color:var(--text-secondary)">No data</div>';
 
             // Main Table
-            const formatGap = val => (!val || val === 'UNKNOWN') ? `<span class="gap-badge">UNKNOWN</span>` : val;
+            const formatGap = (val, fieldKey) => {
+                if(!val || val === 'UNKNOWN') {
+                    const label = semanticGaps[fieldKey] || 'UNKNOWN';
+                    return `<span class="gap-badge">${label}</span>`;
+                }
+                return val;
+            };
             
             const formatStrength = val => {
-                if(val === 'OFFICIAL_URL_CANDIDATE') return `<span class="strong-candidate">${val}</span><div style="font-size:0.65rem; color:var(--text-secondary); margin-top:2px;">(Not final hardening)</div>`;
+                if(val === 'OFFICIAL_URL_CANDIDATE') return `<span class="strong-candidate">${val}</span>`;
                 return `<span style="font-size: 0.75rem">${val}</span>`;
             };
 
             const formatRecovered = val => {
-                if(!val || val === 'NONE') return '<span style="color:var(--text-secondary)">None</span>';
-                return val.split('|').map(f => `<span class="recovered-badge">${f}</span>`).join(' ');
+                if(!val || val === 'NONE') return '<span style="color:var(--text-secondary)">-</span>';
+                return val.split('|').map(f => `<span class="recovered-badge">${f}</span>`).join('');
             };
 
             const formatConfidence = val => {
@@ -376,36 +490,43 @@
                 return `<span style="font-size: 0.75rem">${val || 'N/A'}</span>`;
             };
 
-            const tableHtml = data.records.map(r => `
-                <tr>
-                    <td style="font-family: monospace">${formatGap(r.case_number)}</td>
-                    <td style="max-width: 200px; word-wrap: break-word">${r.title}</td>
-                    <td><span class="badge" style="background: rgba(14, 165, 233, 0.2); color: #38bdf8">${r.api_lookup_status || 'UNKNOWN'}</span></td>
-                    <td style="max-width: 180px">${formatRecovered(r.fields_recovered)}</td>
-                    <td>${formatGap(r.winning_vendor)}</td>
-                    <td>${formatGap(r.award_amount)}</td>
-                    <td>${formatGap(r.award_date)}</td>
-                    <td>${formatGap(r.procurement_method)}</td>
+            const formatApiStatus = val => {
+                const map = apiStatusMap[val] || { label: val, css: 'api-none' };
+                return `<span class="badge ${map.css}">${map.label}</span>`;
+            };
+
+            const tableHtml = data.records.map(r => {
+                const rowClass = r.api_lookup_status === 'API_MULTIPLE_MATCHES' ? 'row-multiple-match' : '';
+                return `
+                <tr class="${rowClass}">
+                    <td class="col-case" style="font-family: monospace">${formatGap(r.case_number, 'case_number')}</td>
+                    <td class="col-title" title="${r.title}">${r.title}</td>
+                    <td>${r.agency || '-'}</td>
+                    <td>${formatGap(r.procurement_method, 'procurement_method')}</td>
+                    <td>${formatGap(r.award_date, 'award_date')}</td>
+                    <td>${formatGap(r.award_amount, 'award_amount')}</td>
+                    <td>${formatGap(r.winning_vendor, 'winning_vendor')}</td>
                     <td>${formatStrength(r.source_ref_strength)}</td>
+                    <td>${formatApiStatus(r.api_lookup_status)}</td>
+                    <td style="white-space:normal">${formatRecovered(r.fields_recovered)}</td>
                     <td>${formatConfidence(r.confidence_level)}</td>
                 </tr>
-            `).join('');
+            `}).join('');
             document.getElementById('table-body').innerHTML = tableHtml;
 
             // Gap Queue Table
             const gapHtml = data.remaining_gap_queue.map(r => {
                 const gaps = [];
-                if(!r.case_number || r.case_number === 'UNKNOWN') gaps.push('case_number');
-                if(!r.winning_vendor || r.winning_vendor === 'UNKNOWN') gaps.push('winning_vendor');
-                if(!r.award_amount || r.award_amount === 'UNKNOWN') gaps.push('award_amount');
-                if(!r.procurement_method || r.procurement_method === 'UNKNOWN') gaps.push('procurement_method');
+                if(!r.case_number || r.case_number === 'UNKNOWN') gaps.push(semanticGaps['case_number']);
+                if(!r.winning_vendor || r.winning_vendor === 'UNKNOWN') gaps.push(semanticGaps['winning_vendor']);
+                if(!r.award_amount || r.award_amount === 'UNKNOWN') gaps.push(semanticGaps['award_amount']);
+                if(!r.procurement_method || r.procurement_method === 'UNKNOWN') gaps.push(semanticGaps['procurement_method']);
                 if(r.source_ref_strength !== 'OFFICIAL_URL_CANDIDATE') gaps.push('URL');
 
                 return `
                 <tr>
-                    <td style="font-family: monospace; font-size: 0.875rem">${r.record_id}</td>
-                    <td style="font-family: monospace">${formatGap(r.case_number)}</td>
-                    <td style="max-width: 250px">${r.title}</td>
+                    <td class="col-case" style="font-family: monospace; font-size: 0.875rem">${formatGap(r.case_number, 'case_number')}</td>
+                    <td class="col-title" title="${r.title}">${r.title}</td>
                     <td>${gaps.map(g => `<span class="gap-badge">${g}</span>`).join(' ')}</td>
                     <td><span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24">WEB_DETAIL_SCRAPE_FALLBACK</span></td>
                 </tr>
