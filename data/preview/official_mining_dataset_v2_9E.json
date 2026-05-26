@@ -129,33 +129,42 @@
   "rejected_discoveries": [
     {
       "keyword": "AI稽核",
-      "reason": "source not procurement-related",
+      "reason": "未形成標案層級紀錄",
       "details": "Refers to an internal mechanism and initiative (科技防護網) deployed by the Pingtung Government Ethics Department (屏東縣政府政風處), not a distinct public procurement case. No specific identifier found."
     },
     {
       "keyword": "科技防護網",
-      "reason": "source not procurement-related",
+      "reason": "未形成標案層級紀錄",
       "details": "Found as a conceptual framework for AI-driven data auditing by the Ethics Department, not a specific procurement case with an identifier."
     },
     {
       "keyword": "廉陽專案",
-      "reason": "source not procurement-related",
+      "reason": "未形成標案層級紀錄",
       "details": "This is a government ethics education and governance project pushed by the Pingtung Ethics Department to local township heads and civil servants, not a public procurement case."
     },
     {
       "keyword": "偏遠地區採購業務聯繫平臺",
-      "reason": "source not procurement-related",
+      "reason": "未形成標案層級紀錄",
       "details": "Refers to a cross-agency support and contact platform designed to assist remote agencies with procurement practices. It is a long-term mechanism, not a procurement case to be won or executed by a vendor."
     },
     {
       "keyword": "李雨蓁",
-      "reason": "insufficient identifier",
+      "reason": "尚未取得可入礦案號",
       "details": "Search terms related to the former director returned news and governance updates, but did not yield specific new case identifiers directly attributable to a procurement contract without further case-specific parameters."
     },
     {
       "keyword": "數據分析",
-      "reason": "insufficient identifier",
+      "reason": "尚未取得可入礦案號",
       "details": "General concept search yielded mentions of data analysis requirements in past cases, but no clear, distinct procurement identifier linked to the target scope could be cleanly extracted without broader context."
     }
-  ]
+  ],
+  "completeness": {
+    "award_date": 5,
+    "award_amount": 5,
+    "winning_vendor": 2,
+    "procurement_method": 3,
+    "submission_deadline": 0,
+    "committee_members": 0
+  },
+  "vendor_unknown_count": 3
 }
