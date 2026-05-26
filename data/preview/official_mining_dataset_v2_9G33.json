@@ -7,13 +7,16 @@
     "index_baseline_candidates": 14,
     "timeline_analytics_ready": 0,
     "timeline_analytics_pending": 30,
-    "records_with_any_gap": 30,
-    "gap_queue_rows": 130,
     "vendor_pending": 14,
     "amount_pending": 14,
     "method_pending": 14,
     "case_number_pending": 14,
-    "committee_pending": 30
+    "committee_pending": 30,
+    "gap_queue_rows": 130,
+    "records_with_any_gap": 30,
+    "records_with_index_blocking_gap": 16,
+    "records_with_timeline_gap": 30,
+    "records_with_committee_gap": 30
   },
   "source_strength_distribution": [
     {

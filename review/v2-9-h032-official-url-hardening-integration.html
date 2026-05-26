@@ -358,8 +358,8 @@
 
         <h2 class="section-title">Readiness Board (整備度看板)</h2>
         <div class="help-note">
-            <p><strong>說明 (Note):</strong> Index Baseline Candidate 不要求完整時間軸；時間軸完整度屬於 Timeline Analytics Ready。</p>
-            <p>Index Baseline Candidate does not require a complete timeline. Timeline completeness is tracked separately under Timeline Analytics Ready.</p>
+            <p><strong>說明 (Note):</strong> Index Baseline Candidate 不要求完整時間軸；只要求案號、官方來源、採購方式、決標金額與得標廠商。時間軸完整度另由 Timeline Analytics Ready 判斷。</p>
+            <p>Index Baseline Candidate does not require a complete timeline. It requires case number, official source, procurement method, award amount, and winning vendor. Timeline completeness is tracked separately.</p>
         </div>
         
         <div class="grid-3" id="readiness-container"></div>
@@ -442,9 +442,10 @@
             const kpiHtml = `
                 <div class="kpi-card"><div class="kpi-value">${kpi.total_records}</div><div class="kpi-label">總筆數 / Total Records</div></div>
                 <div class="kpi-card"><div class="kpi-value">${kpi.official_url_verified}</div><div class="kpi-label">驗證網址 / Official URL Verified</div></div>
-                <div class="kpi-card"><div class="kpi-value" style="color:var(--text-secondary)">${kpi.official_url_candidate_remaining}</div><div class="kpi-label">剩餘候選 / URL Candidate Remaining</div></div>
                 <div class="kpi-card"><div class="kpi-value">${kpi.records_with_any_gap}</div><div class="kpi-label">殘缺案件 / Records With Any Gap</div></div>
-                <div class="kpi-card"><div class="kpi-value">${kpi.gap_queue_rows}</div><div class="kpi-label">缺漏總列數 / Gap Queue Rows</div></div>
+                <div class="kpi-card"><div class="kpi-value" style="color:var(--danger)">${kpi.records_with_index_blocking_gap}</div><div class="kpi-label">Index 阻擋缺漏 / Index-Blocking Gap</div></div>
+                <div class="kpi-card"><div class="kpi-value" style="color:var(--warning)">${kpi.records_with_timeline_gap}</div><div class="kpi-label">時間軸缺漏 / Timeline Gap</div></div>
+                <div class="kpi-card"><div class="kpi-value" style="color:var(--info)">${kpi.records_with_committee_gap}</div><div class="kpi-label">委員缺漏 / Committee Gap</div></div>
             `;
             document.getElementById('kpi-container').innerHTML = kpiHtml;
 
