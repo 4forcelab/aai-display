@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI 礦池診斷語義修正｜v2.9H01</title>
+    <style>
+        :root {
+            --bg-dark: #07080b;
+            --panel-bg: rgba(26, 29, 36, 0.95);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #22d3ee;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-red: #ef4444;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 40px;
+            line-height: 1.6;
+        }
+        header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin: 0 0 5px 0;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: var(--accent-purple);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .kpi-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+        section {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        h2 {
+            font-size: 1.15rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            color: var(--text-muted);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.02);
+            position: sticky;
+            top: 0;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-FULLY_COMPLETE { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.5); }
+        .status-PARTIAL_USEFUL { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.5); }
+        .status-NEEDS_HARDENING { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.5); }
+        .status-NOT_READY { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.5); }
+        
+        .bool-TRUE { color: #34d399; font-weight: bold; }
+        .bool-FALSE { color: #fca5a5; font-weight: bold; }
+        
+        .p-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); }
+        .p-P1 { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.8); }
+        .p-P2 { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.8); }
+
+        .distributions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AAI 礦池診斷語義修正｜v2.9H01</h1>
+        <div class="subtitle">Diagnostic Semantics Fix</div>
+        <div class="description">更新 H0 的診斷語義，將欄位完整度與案件可用度（Readiness）分離。即使欄位未全部就緒，顯示層亦可透過 `UNKNOWN` 進行寬容呈現。</div>
+    </header>
+
+    <div class="grid-container" id="kpi-container"></div>
+
+    <section>
+        <h2>案件分析可用度 / Record Readiness Matrix</h2>
+        <div style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.85rem;">
+            * 此區塊說明了哪些案件已具備各項進階分析所需要的欄位，15 筆案件均可進入前台顯示（Displayable）。
+        </div>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Case Number</th>
+                        <th>Title</th>
+                        <th>Displayable</th>
+                        <th>Award Ready</th>
+                        <th>Timeline Ready</th>
+                        <th>Index Ready</th>
+                        <th>Missing Fields</th>
+                    </tr>
+                </thead>
+                <tbody id="readiness-table"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="distributions">
+        <section>
+            <h2>欄位完整度矩陣 / Field Completeness Matrix</h2>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field Name</th>
+                            <th>Supported</th>
+                            <th>Unknown</th>
+                            <th>Ratio</th>
+                            <th>Diagnostic Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="field-comp-table"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section style="display: flex; flex-direction: column; gap: 20px;">
+            <div>
+                <h2>來源強度矩陣 / Source Ref Strength Matrix</h2>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Strength</th>
+                                <th>Count</th>
+                                <th>Ratio</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="source-str-table"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div>
+                <h2>礦池補強優先序 / Hardening Queue</h2>
+                <div style="overflow-x: auto; max-height: 400px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority</th>
+                                <th>Case Number</th>
+                                <th>Title</th>
+                                <th>Field Gap</th>
+                            </tr>
+                        </thead>
+                        <tbody id="queue-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('../data/preview/official_mining_arrangement_v2_9H01.json');
+                const data = await response.json();
+                renderPage(data);
+            } catch (error) {
+                console.error("Error loading JSON data:", error);
+                document.body.innerHTML += `<div style="color: red; margin-top: 20px;">Failed to load data. Ensure JSON exists at data/preview/official_mining_arrangement_v2_9H01.json</div>`;
+            }
+        }
+
+        function formatUnknown(val) {
+            if (!val || val === 'UNKNOWN' || val === '') return '<span style="color: rgba(255,255,255,0.3); font-style: italic;">UNKNOWN</span>';
+            return val;
+        }
+        
+        function getStatusBadge(status) {
+            return `<div class="badge status-${status}">${status.replace(/_/g, ' ')}</div>`;
+        }
+        
+        function getPriorityBadge(priority) {
+            let cls = 'p-badge';
+            if (priority === 'P1') cls = 'p-P1';
+            if (priority === 'P2') cls = 'p-P2';
+            return `<div class="badge ${cls}">${priority}</div>`;
+        }
+        
+        function getBoolClass(val) {
+            return val === 'TRUE' ? 'bool-TRUE' : 'bool-FALSE';
+        }
+
+        function renderPage(data) {
+            // Render KPIs
+            const kpiContainer = document.getElementById('kpi-container');
+            const kpis = [
+                { label: '總案件<br>Total Records', value: data.kpi.total_records },
+                { label: '全體完整欄位<br>Fully Complete Fields', value: data.kpi.display_ready_fields },
+                { label: '可顯示案件<br>Displayable Records', value: data.kpi.displayable_records },
+                { label: '決標資料可用<br>Award Data Ready', value: data.kpi.award_data_ready },
+                { label: '時間分析可用<br>Timeline Analytics Ready', value: data.kpi.timeline_analytics_ready },
+                { label: 'Index 分析可用<br>Index Analytics Ready', value: data.kpi.index_analytics_ready },
+                { label: '需補強欄位<br>Fields Needing Hardening', value: data.kpi.fields_needing_hardening },
+                { label: '官方連結比例<br>Official URL Ratio', value: data.kpi.official_url_ratio },
+                { label: '案號待補<br>Case Number Unknown', value: data.kpi.case_number_unknown },
+                { label: '廠商待補<br>Vendor Unknown', value: data.kpi.vendor_unknown }
+            ];
+            
+            kpiContainer.innerHTML = kpis.map(k => `
+                <div class="kpi-card">
+                    <div class="kpi-value">${k.value}</div>
+                    <div class="kpi-label">${k.label}</div>
+                </div>
+            `).join('');
+
+            // Render Record Readiness
+            document.getElementById('readiness-table').innerHTML = data.readiness.map(r => `
+                <tr>
+                    <td style="color: var(--text-muted); font-size: 0.7rem;">${r.record_id}</td>
+                    <td style="font-family: monospace; color: var(--accent-purple)">${formatUnknown(r.case_number)}</td>
+                    <td style="font-weight: 500; max-width: 200px;">${r.title}</td>
+                    <td class="${getBoolClass(r.displayable_record)}">${r.displayable_record}</td>
+                    <td class="${getBoolClass(r.award_data_ready)}">${r.award_data_ready}</td>
+                    <td class="${getBoolClass(r.timeline_analytics_ready)}">${r.timeline_analytics_ready}</td>
+                    <td class="${getBoolClass(r.index_analytics_ready)}">${r.index_analytics_ready}</td>
+                    <td style="color: var(--accent-red); font-family: monospace; font-size: 0.75rem;">${r.missing_key_fields.replace(/ \| /g, '<br>')}</td>
+                </tr>
+            `).join('');
+
+            // Render Field Completeness
+            document.getElementById('field-comp-table').innerHTML = data.field_completeness.map(r => `
+                <tr>
+                    <td style="font-family: monospace;">${r.field_name}</td>
+                    <td style="color: var(--accent-cyan); font-weight: bold;">${r.supported_count}</td>
+                    <td style="color: var(--accent-red);">${r.unknown_count}</td>
+                    <td>${r.supported_ratio}</td>
+                    <td>${getStatusBadge(r.diagnostic_status)}</td>
+                </tr>
+            `).join('');
+
+            // Render Source Strength
+            document.getElementById('source-str-table').innerHTML = data.source_strength.map(r => `
+                <tr>
+                    <td style="font-weight: 500;">${r.source_ref_strength}</td>
+                    <td style="color: var(--accent-cyan); font-weight: bold;">${r.count}</td>
+                    <td>${r.ratio}</td>
+                    <td style="color: var(--text-muted); font-size: 0.8rem;">${r.next_action}</td>
+                </tr>
+            `).join('');
+
+            // Render Queue
+            document.getElementById('queue-table').innerHTML = data.hardening_queue.map(r => `
+                <tr>
+                    <td>${getPriorityBadge(r.priority)}</td>
+                    <td style="font-family: monospace; color: var(--accent-purple)">${formatUnknown(r.case_number)}</td>
+                    <td style="font-weight: 500; max-width: 150px;">${r.title}</td>
+                    <td style="color: var(--accent-red); font-family: monospace; font-size: 0.75rem;">${r.field_gap.replace(/ \| /g, '<br>')}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
