@@ -21,6 +21,7 @@
             --radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.3s ease;
+            --sticky-bar-height: 60px; /* Base height for the sticky bar */
         }
 
         * {
@@ -36,15 +37,100 @@
             line-height: 1.5;
             min-height: 100vh;
         }
+        
+        html {
+            scroll-behavior: smooth;
+        }
 
-        header {
-            padding: 2rem;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+        /* Sticky Context Bar */
+        .sticky-context-bar {
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(14px);
+            background: rgba(8, 16, 35, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding: 0 2rem;
+            height: var(--sticky-bar-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+            transition: height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .sticky-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #a78bfa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+            margin-right: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .sticky-kpis {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        .sticky-kpis::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .sticky-kpi-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sticky-kpi-chip.highlight {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #c084fc;
+        }
+
+        .sticky-kpi-val {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .sticky-nav {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+            padding-left: 1rem;
+        }
+        
+        .sticky-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .sticky-nav a:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        header {
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.4);
+            border-bottom: 1px solid var(--border);
         }
 
         h1 {
@@ -83,6 +169,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            scroll-margin-top: calc(var(--sticky-bar-height) + 2rem);
         }
 
         .section-title::before {
@@ -218,7 +305,7 @@
             color: var(--text-secondary);
             white-space: nowrap;
             position: sticky;
-            top: 0;
+            top: var(--sticky-bar-height); /* offset by the sticky context bar */
             z-index: 10;
             border-bottom: 2px solid var(--border);
         }
@@ -249,12 +336,18 @@
             z-index: 20;
         }
 
+        @media (max-width: 1024px) {
+            .sticky-nav { display: none; }
+        }
+
         @media (max-width: 768px) {
             .data-table th.col-title, .data-table td.col-title {
                 position: static;
                 border-right: none;
             }
             .grid-3 { grid-template-columns: 1fr; }
+            .sticky-title { display: none; } /* Hide title on very narrow screens to show KPIs */
+            .sticky-context-bar { padding: 0 1rem; }
         }
 
         .gap-badge {
@@ -333,6 +426,20 @@
     </style>
 </head>
 <body>
+    
+    <div class="sticky-context-bar" id="sticky-bar">
+        <div class="sticky-title">AAI 官方來源硬化｜v2.9H03.2</div>
+        <div class="sticky-kpis" id="sticky-kpi-container">
+            <!-- Dynamically populated -->
+        </div>
+        <div class="sticky-nav">
+            <a href="#section-readiness">Readiness</a>
+            <a href="#section-source">Source</a>
+            <a href="#section-dataset">Dataset Table</a>
+            <a href="#section-gap">Gap Queue</a>
+        </div>
+    </div>
+
     <header>
         <h1>AAI 官方來源硬化檢視層｜v2.9H03.2</h1>
         <div class="subtitle">Official URL Hardening Integration</div>
@@ -346,7 +453,7 @@
 
         <div class="grid-2">
             <div class="panel">
-                <h2 class="section-title">Source Strength Board (來源強度分佈)</h2>
+                <h2 class="section-title" id="section-source">Source Strength Board (來源強度分佈)</h2>
                 <div id="strength-container"></div>
             </div>
             
@@ -356,7 +463,7 @@
             </div>
         </div>
 
-        <h2 class="section-title">Readiness Board (整備度看板)</h2>
+        <h2 class="section-title" id="section-readiness">Readiness Board (整備度看板)</h2>
         <div class="help-note">
             <p><strong>說明 (Note):</strong> Index Baseline Candidate 不要求完整時間軸；只要求案號、官方來源、採購方式、決標金額與得標廠商。時間軸完整度另由 Timeline Analytics Ready 判斷。</p>
             <p>Index Baseline Candidate does not require a complete timeline. It requires case number, official source, procurement method, award amount, and winning vendor. Timeline completeness is tracked separately.</p>
@@ -364,7 +471,7 @@
         
         <div class="grid-3" id="readiness-container"></div>
 
-        <h2 class="section-title">Dataset Table (主資料表)</h2>
+        <h2 class="section-title" id="section-dataset">Dataset Table (主資料表)</h2>
         <div class="data-table-wrapper" style="margin-bottom: 2rem">
             <table class="data-table">
                 <thead>
@@ -385,7 +492,7 @@
             </table>
         </div>
 
-        <h2 class="section-title" style="color: var(--warning)">Remaining Gap Queue Table (殘留缺漏明細表)</h2>
+        <h2 class="section-title" id="section-gap" style="color: var(--warning)">Remaining Gap Queue Table (殘留缺漏明細表)</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
@@ -439,6 +546,15 @@
         function renderData(data) {
             const kpi = data.kpi;
             
+            // Populate Sticky Bar KPIs
+            const stickyHtml = `
+                <div class="sticky-kpi-chip highlight">URL Verified: <span class="sticky-kpi-val">${kpi.official_url_verified}</span></div>
+                <div class="sticky-kpi-chip">Index Baseline: <span class="sticky-kpi-val">${kpi.index_baseline_candidates}</span></div>
+                <div class="sticky-kpi-chip">Timeline Ready: <span class="sticky-kpi-val">${kpi.timeline_analytics_ready}</span></div>
+                <div class="sticky-kpi-chip">Gap Rows: <span class="sticky-kpi-val" style="color:var(--danger)">${kpi.gap_queue_rows}</span></div>
+            `;
+            document.getElementById('sticky-kpi-container').innerHTML = stickyHtml;
+
             const kpiHtml = `
                 <div class="kpi-card"><div class="kpi-value">${kpi.total_records}</div><div class="kpi-label">總筆數 / Total Records</div></div>
                 <div class="kpi-card"><div class="kpi-value">${kpi.official_url_verified}</div><div class="kpi-label">驗證網址 / Official URL Verified</div></div>
@@ -559,6 +675,20 @@
             `).join('');
             document.getElementById('gap-table-body').innerHTML = gapHtml;
         }
+
+        // Make the sticky bar compact on scroll
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('sticky-bar');
+            if (window.scrollY > 50) {
+                bar.style.height = '50px';
+                bar.style.padding = '0 1rem';
+                document.documentElement.style.setProperty('--sticky-bar-height', '50px');
+            } else {
+                bar.style.height = '60px';
+                bar.style.padding = '0 2rem';
+                document.documentElement.style.setProperty('--sticky-bar-height', '60px');
+            }
+        });
 
         init();
     </script>
