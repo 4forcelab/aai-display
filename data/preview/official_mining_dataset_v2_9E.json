@@ -1,0 +1,161 @@
+{
+  "records": [
+    {
+      "record_id": "REC-E-20260525-001",
+      "case_number": "E1141127-4",
+      "title": "115年屏東數位青創中心營運管理委託專業服務案",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "region": "屏東縣",
+      "procurement_method": "經公開評選或公開徵求之限制性招標",
+      "announcement_date": "2025-11-27",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2025-12-28",
+      "bid_preparation_days": "UNKNOWN",
+      "budget_amount": "3000000",
+      "award_amount": "3000000",
+      "winning_vendor": "階梯影像製作有限公司",
+      "committee_members": "UNKNOWN",
+      "source_refs": "https://web.pcc.gov.tw/prkms/tender/common/noticeDate/redirectPublic?ds=20251229&fn=BDM-1-71064704.xml",
+      "field_support_status": "FIELD_PARTIAL",
+      "discovery_path": "TITLE_PATH_RESURFACED",
+      "record_status": "EXTRACTED",
+      "notes": "Extracted available public fields"
+    },
+    {
+      "record_id": "REC-E-20260525-002",
+      "case_number": "E1150212-1",
+      "title": "職人町經營管理勞務委託專業服務案",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "region": "屏東縣",
+      "procurement_method": "經公開評選或公開徵求之限制性招標",
+      "announcement_date": "2026-02-13",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "2026-02-26",
+      "award_date": "2026-03-12",
+      "bid_preparation_days": "UNKNOWN",
+      "budget_amount": "2000000",
+      "award_amount": "2000000",
+      "winning_vendor": "睿霓國際顧問有限公司",
+      "committee_members": "UNKNOWN",
+      "source_refs": "https://www.pthg.gov.tw/planra/News_Content.aspx?n=4607120D29F65FBC&s=667900A11516C30C&sms=662F82A7CEF597C3",
+      "field_support_status": "FIELD_PARTIAL",
+      "discovery_path": "OFFICIAL_GOV_PAGE",
+      "record_status": "EXTRACTED",
+      "notes": "Third-party clue 2026-02-25 ignored pending official support"
+    },
+    {
+      "record_id": "REC-E-20260525-003",
+      "case_number": "E1131212-3",
+      "title": "114年屏東數位青創中心營運管理委託專業服務案",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "region": "屏東縣",
+      "procurement_method": "UNKNOWN",
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2025-01-03",
+      "bid_preparation_days": "UNKNOWN",
+      "budget_amount": "3000000",
+      "award_amount": "3000000",
+      "winning_vendor": "UNKNOWN",
+      "committee_members": "UNKNOWN",
+      "source_refs": "Official PCC search via case number [E1131212-3]",
+      "field_support_status": "FIELD_PARTIAL",
+      "discovery_path": "KEYWORD_EXPANSION",
+      "record_status": "OBSERVED",
+      "notes": "Keyword discovery"
+    },
+    {
+      "record_id": "REC-E-20260525-004",
+      "case_number": "E1150128-2",
+      "title": "115年度青農即戰力人才培育計畫勞務委託案",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "region": "屏東縣",
+      "procurement_method": "公開取得報價單或企劃書",
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2026-03-02",
+      "bid_preparation_days": "UNKNOWN",
+      "budget_amount": "950000",
+      "award_amount": "950000",
+      "winning_vendor": "UNKNOWN",
+      "committee_members": "UNKNOWN",
+      "source_refs": "Official PCC search via case number [E1150128-2]",
+      "field_support_status": "FIELD_PARTIAL",
+      "discovery_path": "KEYWORD_EXPANSION",
+      "record_status": "OBSERVED",
+      "notes": "Keyword discovery"
+    },
+    {
+      "record_id": "REC-E-20260525-005",
+      "case_number": "E1140324-1",
+      "title": "114年度屏東縣大專青年地方創生見習行動計畫勞務委託案",
+      "agency": "屏東縣政府勞動暨青年發展處",
+      "region": "屏東縣",
+      "procurement_method": "UNKNOWN",
+      "announcement_date": "UNKNOWN",
+      "submission_deadline": "UNKNOWN",
+      "opening_date": "UNKNOWN",
+      "award_date": "2025-04-15",
+      "bid_preparation_days": "UNKNOWN",
+      "budget_amount": "496335",
+      "award_amount": "496335",
+      "winning_vendor": "UNKNOWN",
+      "committee_members": "UNKNOWN",
+      "source_refs": "Official PCC search via case number [E1140324-1]",
+      "field_support_status": "FIELD_PARTIAL",
+      "discovery_path": "KEYWORD_EXPANSION",
+      "record_status": "OBSERVED",
+      "notes": "Keyword discovery"
+    }
+  ],
+  "kpi": {
+    "total_records": 5,
+    "complete_timeline": 0,
+    "unknown_timeline": 5,
+    "unique_vendors": 2,
+    "procurement_methods": {
+      "經公開評選或公開徵求之限制性招標": 2,
+      "公開取得報價單或企劃書": 1,
+      "UNKNOWN": 2
+    }
+  },
+  "vendor_recurrence": {
+    "階梯影像製作有限公司": 1,
+    "睿霓國際顧問有限公司": 1
+  },
+  "rejected_discoveries": [
+    {
+      "keyword": "AI稽核",
+      "reason": "source not procurement-related",
+      "details": "Refers to an internal mechanism and initiative (科技防護網) deployed by the Pingtung Government Ethics Department (屏東縣政府政風處), not a distinct public procurement case. No specific identifier found."
+    },
+    {
+      "keyword": "科技防護網",
+      "reason": "source not procurement-related",
+      "details": "Found as a conceptual framework for AI-driven data auditing by the Ethics Department, not a specific procurement case with an identifier."
+    },
+    {
+      "keyword": "廉陽專案",
+      "reason": "source not procurement-related",
+      "details": "This is a government ethics education and governance project pushed by the Pingtung Ethics Department to local township heads and civil servants, not a public procurement case."
+    },
+    {
+      "keyword": "偏遠地區採購業務聯繫平臺",
+      "reason": "source not procurement-related",
+      "details": "Refers to a cross-agency support and contact platform designed to assist remote agencies with procurement practices. It is a long-term mechanism, not a procurement case to be won or executed by a vendor."
+    },
+    {
+      "keyword": "李雨蓁",
+      "reason": "insufficient identifier",
+      "details": "Search terms related to the former director returned news and governance updates, but did not yield specific new case identifiers directly attributable to a procurement contract without further case-specific parameters."
+    },
+    {
+      "keyword": "數據分析",
+      "reason": "insufficient identifier",
+      "details": "General concept search yielded mentions of data analysis requirements in past cases, but no clear, distinct procurement identifier linked to the target scope could be cleanly extracted without broader context."
+    }
+  ]
+}

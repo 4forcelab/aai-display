@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI OFFICIAL MINING DATASET // v2.9E</title>
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --panel-bg: rgba(30, 34, 42, 0.7);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 40px;
+            line-height: 1.6;
+        }
+        header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .kpi-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+        }
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        section {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            color: var(--text-muted);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.02);
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .badge-unknown {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-yellow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .distributions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+        }
+        .rejected-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--accent-yellow);
+            border-radius: 0 6px 6px 0;
+        }
+        .rejected-title {
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+        .rejected-reason {
+            color: var(--accent-yellow);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        .rejected-details {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AAI OFFICIAL MINING DATASET // v2.9E</h1>
+        <div class="subtitle">Real-time inspection surface for the official procurement mining track</div>
+    </header>
+
+    <div class="grid-container" id="kpi-container">
+        <!-- KPIs will be injected here -->
+    </div>
+
+    <div class="distributions">
+        <section>
+            <h2>Vendor Recurrence</h2>
+            <div id="vendor-recurrence"></div>
+        </section>
+        <section>
+            <h2>Procurement Methods</h2>
+            <div id="procurement-methods"></div>
+        </section>
+    </div>
+
+    <section>
+        <h2>Dataset Records</h2>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Title</th>
+                        <th>Agency</th>
+                        <th>Award Date</th>
+                        <th>Amount</th>
+                        <th>Vendor</th>
+                        <th>Method</th>
+                        <th>Source Ref</th>
+                    </tr>
+                </thead>
+                <tbody id="records-table">
+                    <!-- Records injected here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>Rejected / Non-Case-Level Discoveries</h2>
+        <div id="rejected-container">
+            <!-- Rejected items injected here -->
+        </div>
+    </section>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('../data/preview/official_mining_dataset_v2_9E.json');
+                const data = await response.json();
+                renderPage(data);
+            } catch (error) {
+                console.error("Error loading JSON data:", error);
+                document.body.innerHTML += `<div style="color: red; margin-top: 20px;">Failed to load data. Ensure JSON exists at data/preview/official_mining_dataset_v2_9E.json</div>`;
+            }
+        }
+
+        function formatUnknown(val) {
+            if (!val || val === 'UNKNOWN') return '<span class="badge-unknown">UNKNOWN</span>';
+            return val;
+        }
+
+        function formatSourceRef(ref) {
+            if (ref.startsWith('http')) {
+                return `<a href="${ref}" target="_blank" title="${ref}">[Official Link]</a>`;
+            }
+            return ref;
+        }
+
+        function formatAmount(val) {
+            if (!val || val === 'UNKNOWN') return formatUnknown(val);
+            return parseInt(val).toLocaleString();
+        }
+
+        function renderPage(data) {
+            // Render KPIs
+            const kpiContainer = document.getElementById('kpi-container');
+            const kpis = [
+                { label: 'Total Records', value: data.kpi.total_records },
+                { label: 'Complete Timeline', value: data.kpi.complete_timeline },
+                { label: 'Unknown Timeline', value: data.kpi.unknown_timeline },
+                { label: 'Unique Vendors', value: data.kpi.unique_vendors }
+            ];
+            
+            kpiContainer.innerHTML = kpis.map(k => `
+                <div class="kpi-card">
+                    <div class="kpi-value">${k.value}</div>
+                    <div class="kpi-label">${k.label}</div>
+                </div>
+            `).join('');
+
+            // Render Vendor Recurrence
+            const vContainer = document.getElementById('vendor-recurrence');
+            vContainer.innerHTML = Object.entries(data.vendor_recurrence).map(([vendor, count]) => `
+                <div class="list-item">
+                    <span>${vendor}</span>
+                    <span style="color: var(--accent-cyan)">${count}</span>
+                </div>
+            `).join('');
+
+            // Render Procurement Methods
+            const pContainer = document.getElementById('procurement-methods');
+            pContainer.innerHTML = Object.entries(data.kpi.procurement_methods).map(([method, count]) => `
+                <div class="list-item">
+                    <span>${formatUnknown(method)}</span>
+                    <span style="color: var(--accent-cyan)">${count}</span>
+                </div>
+            `).join('');
+
+            // Render Records
+            const tBody = document.getElementById('records-table');
+            tBody.innerHTML = data.records.map(r => `
+                <tr>
+                    <td style="font-family: monospace; color: var(--accent-blue)">${r.case_number}</td>
+                    <td>${r.title}</td>
+                    <td>${r.agency}</td>
+                    <td>${formatUnknown(r.award_date)}</td>
+                    <td>${formatAmount(r.award_amount)}</td>
+                    <td>${formatUnknown(r.winning_vendor)}</td>
+                    <td>${formatUnknown(r.procurement_method)}</td>
+                    <td>${formatSourceRef(r.source_refs)}</td>
+                </tr>
+            `).join('');
+
+            // Render Rejected
+            const rContainer = document.getElementById('rejected-container');
+            rContainer.innerHTML = data.rejected_discoveries.map(r => `
+                <div class="rejected-item">
+                    <div class="rejected-title">${r.keyword}</div>
+                    <div class="rejected-reason">${r.reason}</div>
+                    <div class="rejected-details">${r.details}</div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
