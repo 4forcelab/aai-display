@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI 官方來源硬化檢視層｜v2.9H03.2</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface: rgba(30, 41, 59, 1);
+            --surface-hover: rgba(51, 65, 85, 1);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --verified: #8b5cf6;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(to right, #a78bfa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            max-width: 800px;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1.25rem;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .help-note {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--info);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .help-note p {
+            margin-bottom: 0.5rem;
+        }
+        .help-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid-kpi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(to right, #c084fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .list-row:last-child {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .data-table-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            max-width: 100%;
+            position: relative;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+        .data-table th, .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .data-table tr:hover td {
+            background: var(--surface-hover);
+        }
+
+        .data-table th {
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Sticky Columns */
+        .data-table th.col-case, .data-table td.col-case {
+            position: sticky;
+            left: 0;
+            min-width: 150px;
+            max-width: 150px;
+            z-index: 5;
+            border-right: 1px solid var(--border);
+        }
+        
+        .data-table th.col-title, .data-table td.col-title {
+            position: sticky;
+            left: 150px;
+            min-width: 250px;
+            max-width: 250px;
+            z-index: 5;
+            border-right: 2px solid var(--border);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .data-table th.col-case, .data-table th.col-title {
+            z-index: 20;
+        }
+
+        @media (max-width: 768px) {
+            .data-table th.col-title, .data-table td.col-title {
+                position: static;
+                border-right: none;
+            }
+            .grid-3 { grid-template-columns: 1fr; }
+        }
+
+        .gap-badge {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px dashed rgba(239, 68, 68, 0.4);
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .recovered-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin: 0.125rem;
+            white-space: nowrap;
+        }
+
+        .strong-verified {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        
+        .strong-candidate {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .weak-query {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .readiness-lane {
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .readiness-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+        
+        .api-direct { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .api-title { background: rgba(14, 165, 233, 0.15); color: #38bdf8; }
+        .api-multiple { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .api-none { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+        .api-error { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AAI 官方來源硬化檢視層｜v2.9H03.2</h1>
+        <div class="subtitle">Official URL Hardening Integration</div>
+        <div class="description">檢視 G33 官方來源驗證後的來源強度、欄位缺口、Index baseline 候選與 timeline analytics readiness。</div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Gap Overview KPI (缺口與驗證總覽)</h2>
+        <div class="grid-kpi" id="kpi-container"></div>
+
+        <div class="grid-2">
+            <div class="panel">
+                <h2 class="section-title">Source Strength Board (來源強度分佈)</h2>
+                <div id="strength-container"></div>
+            </div>
+            
+            <div class="panel">
+                <h2 class="section-title">Gap Queue Summary (缺漏隊列)</h2>
+                <div id="gap-dist-container"></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Readiness Board (整備度看板)</h2>
+        <div class="help-note">
+            <p><strong>說明 (Note):</strong> Index Baseline Candidate 不要求完整時間軸；時間軸完整度屬於 Timeline Analytics Ready。</p>
+            <p>Index Baseline Candidate does not require a complete timeline. Timeline completeness is tracked separately under Timeline Analytics Ready.</p>
+        </div>
+        
+        <div class="grid-3" id="readiness-container"></div>
+
+        <h2 class="section-title">Dataset Table (主資料表)</h2>
+        <div class="data-table-wrapper" style="margin-bottom: 2rem">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th class="col-case">案號<br>Case No.</th>
+                        <th class="col-title">案名<br>Title</th>
+                        <th>採購方式<br>Method</th>
+                        <th>決標日期<br>Award Date</th>
+                        <th>決標金額<br>Award Amount</th>
+                        <th>得標廠商<br>Vendor</th>
+                        <th>來源強度<br>Source Strength</th>
+                        <th>官方驗證<br>Official Verification</th>
+                        <th>API 狀態<br>API Status</th>
+                        <th>補回欄位<br>Fields Recovered</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title" style="color: var(--warning)">Remaining Gap Queue Table (殘留缺漏明細表)</h2>
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>優先順序<br>Priority</th>
+                        <th class="col-case">案號<br>Case No.</th>
+                        <th class="col-title">案名<br>Title</th>
+                        <th>缺口類型<br>Gap Type</th>
+                        <th>當前值<br>Current Value</th>
+                        <th>來源強度<br>Source Strength</th>
+                        <th>官方驗證<br>URL Verification</th>
+                        <th>建議動作<br>Next Action</th>
+                    </tr>
+                </thead>
+                <tbody id="gap-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function init() {
+            try {
+                const response = await fetch('../data/preview/official_mining_dataset_v2_9G33.json');
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                document.body.innerHTML += `<div style="padding: 2rem; color: red;">Failed to load G33 JSON dataset: ${error.message}</div>`;
+            }
+        }
+
+        const semanticGaps = {
+            'case_number': '案號待補 / Case No. Pending',
+            'winning_vendor': '廠商待補 / Vendor Pending',
+            'award_amount': '金額待補 / Amount Pending',
+            'procurement_method': '採購方式待補 / Method Pending',
+            'announcement_date': '公告日待補 / Announcement Pending',
+            'submission_deadline': '截止日待補 / Deadline Pending',
+            'opening_date': '開標日待補 / Opening Pending',
+            'award_date': '決標日待補 / Award Date Pending',
+            'committee_members': '委員待補 / Committee Pending'
+        };
+
+        const apiStatusMap = {
+            'API_MATCH_DIRECT_TENDER': { label: '直接標案命中 / Direct Match', css: 'api-direct' },
+            'API_MATCH_EXACT_TITLE': { label: '案名命中 / Title Match', css: 'api-title' },
+            'API_MULTIPLE_MATCHES': { label: '多筆候選 / Needs Review', css: 'api-multiple' },
+            'API_NO_MATCH': { label: 'API 無命中 / No Match', css: 'api-none' },
+            'API_ERROR': { label: 'API 錯誤 / API Error', css: 'api-error' }
+        };
+
+        function renderData(data) {
+            const kpi = data.kpi;
+            
+            const kpiHtml = `
+                <div class="kpi-card"><div class="kpi-value">${kpi.total_records}</div><div class="kpi-label">總筆數 / Total Records</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.official_url_verified}</div><div class="kpi-label">驗證網址 / Official URL Verified</div></div>
+                <div class="kpi-card"><div class="kpi-value" style="color:var(--text-secondary)">${kpi.official_url_candidate_remaining}</div><div class="kpi-label">剩餘候選 / URL Candidate Remaining</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.records_with_any_gap}</div><div class="kpi-label">殘缺案件 / Records With Any Gap</div></div>
+                <div class="kpi-card"><div class="kpi-value">${kpi.gap_queue_rows}</div><div class="kpi-label">缺漏總列數 / Gap Queue Rows</div></div>
+            `;
+            document.getElementById('kpi-container').innerHTML = kpiHtml;
+
+            // Readiness Board
+            const readinessHtml = `
+                <div class="readiness-lane">
+                    <div class="readiness-value" style="color: #60a5fa">${kpi.official_source_display_ready}</div>
+                    <div style="font-weight:600">Official-source Display Ready</div>
+                    <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.5rem">Title + Agency + Source Ref Verified</div>
+                </div>
+                <div class="readiness-lane">
+                    <div class="readiness-value" style="color: #a78bfa">${kpi.index_baseline_candidates}</div>
+                    <div style="font-weight:600">Index Baseline Candidate</div>
+                    <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.5rem">Case No + Method + Amount + Vendor (No Timeline req)</div>
+                </div>
+                <div class="readiness-lane">
+                    <div class="readiness-value" style="color: #34d399">${kpi.timeline_analytics_ready}</div>
+                    <div style="font-weight:600">Timeline Analytics Ready</div>
+                    <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.5rem">Full Announcement to Award timeline</div>
+                </div>
+            `;
+            document.getElementById('readiness-container').innerHTML = readinessHtml;
+
+            // Source strength
+            const strengthHtml = data.source_strength_distribution.map(item => `
+                <div class="list-row">
+                    <span style="font-family: monospace; font-size: 0.875rem">${item.name}</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.1)">${item.count}</span>
+                </div>
+            `).join('');
+            document.getElementById('strength-container').innerHTML = strengthHtml || '<div style="color:var(--text-secondary)">No data</div>';
+
+            // Gap Dist
+            const gapDistHtml = data.gap_priority_distribution.map(item => {
+                let color = item.priority === 'P1' ? '#f87171' : '#fbbf24';
+                if(item.priority.includes('P6') || item.priority.includes('P7')) color = '#94a3b8';
+                return `
+                <div class="list-row">
+                    <span style="font-family: monospace; font-size: 0.875rem; color: ${color}">${item.priority}</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.1)">${item.count}</span>
+                </div>
+            `}).join('');
+            document.getElementById('gap-dist-container').innerHTML = gapDistHtml || '<div style="color:var(--text-secondary)">No data</div>';
+
+            // Main Table
+            const formatGap = (val, fieldKey) => {
+                if(!val || val === 'UNKNOWN') {
+                    const label = semanticGaps[fieldKey] || 'UNKNOWN';
+                    return `<span class="gap-badge">${label}</span>`;
+                }
+                return val;
+            };
+            
+            const formatStrength = val => {
+                if(val === 'OFFICIAL_URL_VERIFIED') return `<span class="strong-verified">${val}</span>`;
+                if(val === 'OFFICIAL_URL_CANDIDATE') return `<span class="strong-candidate">${val}</span>`;
+                if(val && val.includes('QUERY')) return `<span class="weak-query">${val}</span>`;
+                return `<span style="font-size: 0.75rem">${val}</span>`;
+            };
+            
+            const formatVerification = val => {
+                if(val === 'VERIFIED') return '<span class="badge" style="background:rgba(16, 185, 129, 0.2); color:#34d399">VERIFIED</span>';
+                if(!val || val === 'UNKNOWN') return '<span class="gap-badge">UNVERIFIED</span>';
+                return `<span class="badge" style="background:rgba(245, 158, 11, 0.2); color:#fbbf24">${val}</span>`;
+            };
+
+            const formatRecovered = val => {
+                if(!val || val === 'NONE') return '<span style="color:var(--text-secondary)">-</span>';
+                return val.split('|').map(f => `<span class="recovered-badge">${f}</span>`).join('');
+            };
+
+            const formatApiStatus = val => {
+                const map = apiStatusMap[val] || { label: val, css: 'api-none' };
+                return `<span class="badge ${map.css}">${map.label}</span>`;
+            };
+
+            const tableHtml = data.records.map(r => `
+                <tr>
+                    <td class="col-case" style="font-family: monospace">${formatGap(r.case_number, 'case_number')}</td>
+                    <td class="col-title" title="${r.title}">${r.title}</td>
+                    <td>${formatGap(r.procurement_method, 'procurement_method')}</td>
+                    <td>${formatGap(r.award_date, 'award_date')}</td>
+                    <td>${formatGap(r.award_amount, 'award_amount')}</td>
+                    <td>${formatGap(r.winning_vendor, 'winning_vendor')}</td>
+                    <td>${formatStrength(r.source_ref_strength)}</td>
+                    <td>${formatVerification(r.official_url_verification_status)}</td>
+                    <td>${formatApiStatus(r.api_lookup_status)}</td>
+                    <td style="white-space:normal">${formatRecovered(r.fields_recovered)}</td>
+                </tr>
+            `).join('');
+            document.getElementById('table-body').innerHTML = tableHtml;
+
+            // Gap Queue Table
+            const formatPriority = p => {
+                if(p === 'P1') return `<span class="badge" style="background:rgba(239, 68, 68, 0.2); color:#f87171">${p}</span>`;
+                if(p === 'P6' || p === 'P7') return `<span class="badge" style="background:rgba(148, 163, 184, 0.2); color:#94a3b8">${p}</span>`;
+                return `<span class="badge" style="background:rgba(245, 158, 11, 0.2); color:#fbbf24">${p}</span>`;
+            };
+            
+            const gapHtml = data.remaining_gap_queue.map(r => `
+                <tr>
+                    <td>${formatPriority(r.priority)}</td>
+                    <td class="col-case" style="font-family: monospace; font-size: 0.875rem">${formatGap(r.case_number, 'case_number')}</td>
+                    <td class="col-title" title="${r.title}">${r.title}</td>
+                    <td><span class="gap-badge">${r.gap_type}</span></td>
+                    <td style="color:var(--text-secondary); font-family:monospace; font-size: 0.75rem">${r.current_value}</td>
+                    <td>${formatStrength(r.source_ref_strength)}</td>
+                    <td>${formatVerification(r.official_url_verification_status)}</td>
+                    <td><span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24">${r.next_action}</span></td>
+                </tr>
+            `).join('');
+            document.getElementById('gap-table-body').innerHTML = gapHtml;
+        }
+
+        init();
+    </script>
+</body>
+</html>
