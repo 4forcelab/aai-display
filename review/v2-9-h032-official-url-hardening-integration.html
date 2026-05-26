@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAI 官方來源硬化檢視層｜v2.9H03.2</title>
+    <title>AAI 官方來源硬化檢視層｜v2.9H03.2.3</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -17,11 +17,9 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --info: #0ea5e9;
-            --verified: #8b5cf6;
             --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.3s ease;
-            --sticky-bar-height: 60px; /* Base height for the sticky bar */
+            --fixed-bar-height: 52px;
         }
 
         * {
@@ -36,27 +34,29 @@
             color: var(--text-primary);
             line-height: 1.5;
             min-height: 100vh;
+            padding-top: var(--fixed-bar-height);
         }
         
         html {
             scroll-behavior: smooth;
         }
 
-        /* Sticky Context Bar */
-        .sticky-context-bar {
-            position: sticky;
+        /* Fixed Command Bar */
+        .fixed-command-bar {
+            position: fixed;
             top: 0;
-            z-index: 1000;
+            left: 0;
+            right: 0;
+            height: var(--fixed-bar-height);
+            z-index: 9999;
+            background: rgba(8, 16, 35, 0.96);
             backdrop-filter: blur(14px);
-            background: rgba(8, 16, 35, 0.92);
             border-bottom: 1px solid rgba(255,255,255,0.12);
-            padding: 0 2rem;
-            height: var(--sticky-bar-height);
+            padding: 0 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
-            transition: height 0.3s ease, padding 0.3s ease;
         }
         
         .sticky-title {
@@ -66,17 +66,18 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             white-space: nowrap;
-            margin-right: 2rem;
+            margin-right: 1.5rem;
             display: flex;
             align-items: center;
         }
 
         .sticky-kpis {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
             overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
+            flex-grow: 1;
         }
         .sticky-kpis::-webkit-scrollbar {
             display: none;
@@ -107,9 +108,8 @@
         
         .sticky-nav {
             display: flex;
-            gap: 1rem;
-            margin-left: auto;
-            padding-left: 1rem;
+            gap: 0.75rem;
+            margin-left: 1rem;
         }
         
         .sticky-nav a {
@@ -169,7 +169,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            scroll-margin-top: calc(var(--sticky-bar-height) + 2rem);
+            scroll-margin-top: calc(var(--fixed-bar-height) + 2rem);
         }
 
         .section-title::before {
@@ -195,6 +195,11 @@
         }
         .help-note p:last-child {
             margin-bottom: 0;
+        }
+        
+        .note-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
         }
 
         .grid-kpi {
@@ -267,23 +272,27 @@
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 500;
-            white-space: nowrap;
+            white-space: normal; /* allow wrapping for long text */
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
-        .data-table-wrapper {
+        .table-scroll {
+            width: 100%;
+            max-width: 100%;
             overflow-x: auto;
-            overflow-y: hidden;
+            overflow-y: visible;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            max-width: 100%;
-            position: relative;
+            margin-bottom: 2rem;
         }
 
         .data-table {
+            min-width: 1500px;
+            table-layout: auto;
             width: 100%;
             border-collapse: collapse;
-            min-width: 1200px;
         }
 
         .data-table th, .data-table td {
@@ -305,35 +314,50 @@
             color: var(--text-secondary);
             white-space: nowrap;
             position: sticky;
-            top: var(--sticky-bar-height); /* offset by the sticky context bar */
-            z-index: 10;
+            top: var(--fixed-bar-height);
+            z-index: 900;
             border-bottom: 2px solid var(--border);
         }
+
+        /* Column widths */
+        .col-case { min-width: 120px; width: 120px; }
+        .col-title { min-width: 260px; max-width: 320px; }
+        .col-method { min-width: 180px; }
+        .col-date { min-width: 140px; }
+        .col-amount { min-width: 150px; }
+        .col-vendor { min-width: 220px; }
+        .col-strength { min-width: 180px; }
+        .col-verification { min-width: 180px; }
+        .col-api { min-width: 180px; }
+        .col-fields { min-width: 220px; }
 
         /* Sticky Columns */
         .data-table th.col-case, .data-table td.col-case {
             position: sticky;
             left: 0;
-            min-width: 150px;
-            max-width: 150px;
-            z-index: 5;
+            z-index: 800;
             border-right: 1px solid var(--border);
+            background: var(--surface);
         }
         
         .data-table th.col-title, .data-table td.col-title {
             position: sticky;
-            left: 150px;
-            min-width: 250px;
-            max-width: 250px;
-            z-index: 5;
+            left: 120px;
+            z-index: 790;
             border-right: 2px solid var(--border);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            background: var(--surface);
         }
 
         .data-table th.col-case, .data-table th.col-title {
-            z-index: 20;
+            z-index: 910;
+        }
+
+        /* Hover states for sticky columns */
+        .data-table tr:hover td.col-case, .data-table tr:hover td.col-title {
+            background: var(--surface-hover);
         }
 
         @media (max-width: 1024px) {
@@ -346,19 +370,27 @@
                 border-right: none;
             }
             .grid-3 { grid-template-columns: 1fr; }
-            .sticky-title { display: none; } /* Hide title on very narrow screens to show KPIs */
-            .sticky-context-bar { padding: 0 1rem; }
+            .sticky-title { display: none; }
         }
 
+        /* Toned Down Badges */
+        .gap-badge-p1 { background: rgba(234, 88, 12, 0.15); color: #ea580c; border: 1px solid rgba(234, 88, 12, 0.3); } /* red-orange */
+        .gap-badge-p2 { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.3); } /* orange */
+        .gap-badge-p3, .gap-badge-p4 { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); } /* amber */
+        .gap-badge-p5 { background: rgba(202, 138, 4, 0.15); color: #ca8a04; border: 1px solid rgba(202, 138, 4, 0.3); } /* yellow-brown */
+        .gap-badge-p6 { background: rgba(100, 116, 139, 0.15); color: #64748b; border: 1px solid rgba(100, 116, 139, 0.3); } /* blue-gray */
+        .gap-badge-p7 { background: rgba(115, 115, 115, 0.15); color: #737373; border: 1px solid rgba(115, 115, 115, 0.3); } /* neutral gray */
+        
+        /* Fallback for general gaps without specific priority mapping initially */
         .gap-badge {
-            background: rgba(239, 68, 68, 0.1);
-            color: #f87171;
-            border: 1px dashed rgba(239, 68, 68, 0.4);
+            background: rgba(249, 115, 22, 0.15);
+            color: #f97316;
+            border: 1px dashed rgba(249, 115, 22, 0.4);
             padding: 0.125rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
             display: inline-block;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         .recovered-badge {
@@ -370,7 +402,7 @@
             font-size: 0.7rem;
             display: inline-block;
             margin: 0.125rem;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         .strong-verified {
@@ -380,7 +412,7 @@
             padding: 0.125rem 0.5rem;
             border-radius: 9999px;
             font-size: 0.75rem;
-            white-space: nowrap;
+            white-space: normal;
         }
         
         .strong-candidate {
@@ -390,7 +422,7 @@
             padding: 0.125rem 0.5rem;
             border-radius: 9999px;
             font-size: 0.75rem;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         .weak-query {
@@ -400,7 +432,7 @@
             padding: 0.125rem 0.5rem;
             border-radius: 9999px;
             font-size: 0.75rem;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         .readiness-lane {
@@ -427,7 +459,7 @@
 </head>
 <body>
     
-    <div class="sticky-context-bar" id="sticky-bar">
+    <div class="fixed-command-bar" id="sticky-bar">
         <div class="sticky-title">AAI 官方來源硬化｜v2.9H03.2</div>
         <div class="sticky-kpis" id="sticky-kpi-container">
             <!-- Dynamically populated -->
@@ -472,20 +504,20 @@
         <div class="grid-3" id="readiness-container"></div>
 
         <h2 class="section-title" id="section-dataset">Dataset Table (主資料表)</h2>
-        <div class="data-table-wrapper" style="margin-bottom: 2rem">
+        <div class="table-scroll">
             <table class="data-table">
                 <thead>
                     <tr>
                         <th class="col-case">案號<br>Case No.</th>
                         <th class="col-title">案名<br>Title</th>
-                        <th>採購方式<br>Method</th>
-                        <th>決標日期<br>Award Date</th>
-                        <th>決標金額<br>Award Amount</th>
-                        <th>得標廠商<br>Vendor</th>
-                        <th>來源強度<br>Source Strength</th>
-                        <th>官方驗證<br>Official Verification</th>
-                        <th>API 狀態<br>API Status</th>
-                        <th>補回欄位<br>Fields Recovered</th>
+                        <th class="col-method">採購方式<br>Method</th>
+                        <th class="col-date">決標日期<br>Award Date</th>
+                        <th class="col-amount">決標金額<br>Award Amount</th>
+                        <th class="col-vendor">得標廠商<br>Vendor</th>
+                        <th class="col-strength">來源強度<br>Source Strength</th>
+                        <th class="col-verification">官方驗證<br>Official Verification</th>
+                        <th class="col-api">API 狀態<br>API Status</th>
+                        <th class="col-fields">補回欄位<br>Fields Recovered</th>
                     </tr>
                 </thead>
                 <tbody id="table-body"></tbody>
@@ -493,8 +525,12 @@
         </div>
 
         <h2 class="section-title" id="section-gap" style="color: var(--warning)">Remaining Gap Queue Table (殘留缺漏明細表)</h2>
-        <div class="data-table-wrapper">
-            <table class="data-table">
+        <div class="help-note note-warning">
+            <p><strong>說明：</strong>紅色或橘色標籤代表「待補欄位」，不是系統錯誤。部分 114 年案件理論上可能已決標，但目前資料仍停留在 title/query 層，尚未成功接回 PCC detail，因此保留為待補狀態。</p>
+            <p>Gap badges indicate fields pending recovery, not system failure. Some ROC 114 records may already have award data, but they remain title/query-level until linked back to PCC detail.</p>
+        </div>
+        <div class="table-scroll">
+            <table class="data-table" style="min-width: 1200px;">
                 <thead>
                     <tr>
                         <th>優先順序<br>Priority</th>
@@ -502,8 +538,8 @@
                         <th class="col-title">案名<br>Title</th>
                         <th>缺口類型<br>Gap Type</th>
                         <th>當前值<br>Current Value</th>
-                        <th>來源強度<br>Source Strength</th>
-                        <th>官方驗證<br>URL Verification</th>
+                        <th class="col-strength">來源強度<br>Source Strength</th>
+                        <th class="col-verification">官方驗證<br>URL Verification</th>
                         <th>建議動作<br>Next Action</th>
                     </tr>
                 </thead>
@@ -524,15 +560,15 @@
         }
 
         const semanticGaps = {
-            'case_number': '案號待補 / Case No. Pending',
-            'winning_vendor': '廠商待補 / Vendor Pending',
-            'award_amount': '金額待補 / Amount Pending',
-            'procurement_method': '採購方式待補 / Method Pending',
-            'announcement_date': '公告日待補 / Announcement Pending',
-            'submission_deadline': '截止日待補 / Deadline Pending',
-            'opening_date': '開標日待補 / Opening Pending',
-            'award_date': '決標日待補 / Award Date Pending',
-            'committee_members': '委員待補 / Committee Pending'
+            'case_number': { label: '案號待補 / Case No. Pending', class: 'gap-badge gap-badge-p2' },
+            'winning_vendor': { label: '廠商待補 / Vendor Pending', class: 'gap-badge gap-badge-p3' },
+            'award_amount': { label: '金額待補 / Amount Pending', class: 'gap-badge gap-badge-p4' },
+            'procurement_method': { label: '採購方式待補 / Method Pending', class: 'gap-badge gap-badge-p5' },
+            'announcement_date': { label: '公告日待補 / Announcement Pending', class: 'gap-badge gap-badge-p6' },
+            'submission_deadline': { label: '截止日待補 / Deadline Pending', class: 'gap-badge gap-badge-p6' },
+            'opening_date': { label: '開標日待補 / Opening Pending', class: 'gap-badge gap-badge-p6' },
+            'award_date': { label: '決標日待補 / Award Date Pending', class: 'gap-badge gap-badge-p6' },
+            'committee_members': { label: '委員待補 / Committee Pending', class: 'gap-badge gap-badge-p7' }
         };
 
         const apiStatusMap = {
@@ -546,7 +582,7 @@
         function renderData(data) {
             const kpi = data.kpi;
             
-            // Populate Sticky Bar KPIs
+            // Populate Fixed Bar KPIs
             const stickyHtml = `
                 <div class="sticky-kpi-chip highlight">URL Verified: <span class="sticky-kpi-val">${kpi.official_url_verified}</span></div>
                 <div class="sticky-kpi-chip">Index Baseline: <span class="sticky-kpi-val">${kpi.index_baseline_candidates}</span></div>
@@ -595,12 +631,22 @@
             document.getElementById('strength-container').innerHTML = strengthHtml || '<div style="color:var(--text-secondary)">No data</div>';
 
             // Gap Dist
+            const getPriorityClass = (p) => {
+                const lower = p.toLowerCase();
+                if(lower.includes('p1')) return 'gap-badge gap-badge-p1';
+                if(lower.includes('p2')) return 'gap-badge gap-badge-p2';
+                if(lower.includes('p3')) return 'gap-badge gap-badge-p3';
+                if(lower.includes('p4')) return 'gap-badge gap-badge-p4';
+                if(lower.includes('p5')) return 'gap-badge gap-badge-p5';
+                if(lower.includes('p6')) return 'gap-badge gap-badge-p6';
+                if(lower.includes('p7')) return 'gap-badge gap-badge-p7';
+                return 'gap-badge';
+            };
+
             const gapDistHtml = data.gap_priority_distribution.map(item => {
-                let color = item.priority === 'P1' ? '#f87171' : '#fbbf24';
-                if(item.priority.includes('P6') || item.priority.includes('P7')) color = '#94a3b8';
                 return `
                 <div class="list-row">
-                    <span style="font-family: monospace; font-size: 0.875rem; color: ${color}">${item.priority}</span>
+                    <span style="font-family: monospace; font-size: 0.875rem;"><span class="${getPriorityClass(item.priority)}" style="padding:0.125rem 0.5rem;">${item.priority}</span></span>
                     <span class="badge" style="background: rgba(255,255,255,0.1)">${item.count}</span>
                 </div>
             `}).join('');
@@ -609,8 +655,11 @@
             // Main Table
             const formatGap = (val, fieldKey) => {
                 if(!val || val === 'UNKNOWN') {
-                    const label = semanticGaps[fieldKey] || 'UNKNOWN';
-                    return `<span class="gap-badge">${label}</span>`;
+                    const mapped = semanticGaps[fieldKey];
+                    if (mapped) {
+                        return `<span class="${mapped.class}">${mapped.label}</span>`;
+                    }
+                    return `<span class="gap-badge">UNKNOWN</span>`;
                 }
                 return val;
             };
@@ -624,7 +673,7 @@
             
             const formatVerification = val => {
                 if(val === 'VERIFIED') return '<span class="badge" style="background:rgba(16, 185, 129, 0.2); color:#34d399">VERIFIED</span>';
-                if(!val || val === 'UNKNOWN') return '<span class="gap-badge">UNVERIFIED</span>';
+                if(!val || val === 'UNKNOWN') return '<span class="gap-badge gap-badge-p1">UNVERIFIED</span>';
                 return `<span class="badge" style="background:rgba(245, 158, 11, 0.2); color:#fbbf24">${val}</span>`;
             };
 
@@ -642,53 +691,41 @@
                 <tr>
                     <td class="col-case" style="font-family: monospace">${formatGap(r.case_number, 'case_number')}</td>
                     <td class="col-title" title="${r.title}">${r.title}</td>
-                    <td>${formatGap(r.procurement_method, 'procurement_method')}</td>
-                    <td>${formatGap(r.award_date, 'award_date')}</td>
-                    <td>${formatGap(r.award_amount, 'award_amount')}</td>
-                    <td>${formatGap(r.winning_vendor, 'winning_vendor')}</td>
-                    <td>${formatStrength(r.source_ref_strength)}</td>
-                    <td>${formatVerification(r.official_url_verification_status)}</td>
-                    <td>${formatApiStatus(r.api_lookup_status)}</td>
-                    <td style="white-space:normal">${formatRecovered(r.fields_recovered)}</td>
+                    <td class="col-method">${formatGap(r.procurement_method, 'procurement_method')}</td>
+                    <td class="col-date">${formatGap(r.award_date, 'award_date')}</td>
+                    <td class="col-amount">${formatGap(r.award_amount, 'award_amount')}</td>
+                    <td class="col-vendor">${formatGap(r.winning_vendor, 'winning_vendor')}</td>
+                    <td class="col-strength">${formatStrength(r.source_ref_strength)}</td>
+                    <td class="col-verification">${formatVerification(r.official_url_verification_status)}</td>
+                    <td class="col-api">${formatApiStatus(r.api_lookup_status)}</td>
+                    <td class="col-fields" style="white-space:normal">${formatRecovered(r.fields_recovered)}</td>
                 </tr>
             `).join('');
             document.getElementById('table-body').innerHTML = tableHtml;
 
             // Gap Queue Table
             const formatPriority = p => {
-                if(p === 'P1') return `<span class="badge" style="background:rgba(239, 68, 68, 0.2); color:#f87171">${p}</span>`;
-                if(p === 'P6' || p === 'P7') return `<span class="badge" style="background:rgba(148, 163, 184, 0.2); color:#94a3b8">${p}</span>`;
-                return `<span class="badge" style="background:rgba(245, 158, 11, 0.2); color:#fbbf24">${p}</span>`;
+                return `<span class="${getPriorityClass(p)}">${p}</span>`;
             };
             
+            const formatGapType = (type, p) => {
+                return `<span class="${getPriorityClass(p)}">${type}</span>`;
+            }
+
             const gapHtml = data.remaining_gap_queue.map(r => `
                 <tr>
                     <td>${formatPriority(r.priority)}</td>
                     <td class="col-case" style="font-family: monospace; font-size: 0.875rem">${formatGap(r.case_number, 'case_number')}</td>
                     <td class="col-title" title="${r.title}">${r.title}</td>
-                    <td><span class="gap-badge">${r.gap_type}</span></td>
+                    <td>${formatGapType(r.gap_type, r.priority)}</td>
                     <td style="color:var(--text-secondary); font-family:monospace; font-size: 0.75rem">${r.current_value}</td>
-                    <td>${formatStrength(r.source_ref_strength)}</td>
-                    <td>${formatVerification(r.official_url_verification_status)}</td>
+                    <td class="col-strength">${formatStrength(r.source_ref_strength)}</td>
+                    <td class="col-verification">${formatVerification(r.official_url_verification_status)}</td>
                     <td><span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24">${r.next_action}</span></td>
                 </tr>
             `).join('');
             document.getElementById('gap-table-body').innerHTML = gapHtml;
         }
-
-        // Make the sticky bar compact on scroll
-        window.addEventListener('scroll', () => {
-            const bar = document.getElementById('sticky-bar');
-            if (window.scrollY > 50) {
-                bar.style.height = '50px';
-                bar.style.padding = '0 1rem';
-                document.documentElement.style.setProperty('--sticky-bar-height', '50px');
-            } else {
-                bar.style.height = '60px';
-                bar.style.padding = '0 2rem';
-                document.documentElement.style.setProperty('--sticky-bar-height', '60px');
-            }
-        });
 
         init();
     </script>
