@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI 礦池篩選實驗室｜v2.9H02</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface: rgba(30, 41, 59, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            max-width: 800px;
+        }
+
+        .container {
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        .filter-section {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 120px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+
+        .filter-section::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .filter-section::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkbox-label:hover {
+            color: var(--text-primary);
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.2);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        input[type="checkbox"]:checked {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .stat-count {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .stat-count span {
+            color: var(--accent);
+        }
+
+        .btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--border);
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .active-filter-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remove-filter {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        
+        .remove-filter:hover {
+            opacity: 1;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            background: rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .cell-id {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .cell-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-success { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-info { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge-secondary { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+        .gap-badge {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px dashed rgba(239, 68, 68, 0.4);
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin: 0.125rem;
+        }
+
+        .unknown-text {
+            color: #f87171;
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AAI 礦池篩選實驗室｜v2.9H02</h1>
+        <div class="subtitle">Filter UI Lab</div>
+        <div class="description">用現有官方採購礦池測試前端篩選邏輯，驗證哪些維度適合未來整合進 Index。</div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <!-- Filters will be generated here -->
+                <div id="filters-container"></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="controls-bar">
+                <div class="stat-count">Showing <span id="visible-count">0</span> / <span id="total-count">0</span> records</div>
+                <button id="reset-btn" class="btn">Reset Filters (重設篩選)</button>
+            </div>
+            
+            <div id="active-filters" class="active-filters"></div>
+
+            <div id="table-container">
+                <div class="loading">Loading dataset...</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let allRecords = [];
+        let filteredRecords = [];
+        let activeFilters = {
+            source_ref_strength: new Set(),
+            readiness: new Set(),
+            field_gaps: new Set(),
+            procurement_method: new Set(),
+            vendor_status: new Set(),
+            hardening_priority: new Set()
+        };
+
+        const FILTER_DEFS = {
+            source_ref_strength: {
+                label: 'Source Strength (來源強度)',
+                options: ['OFFICIAL_URL', 'OFFICIAL_QUERY_CASE_NUMBER', 'OFFICIAL_QUERY_TITLE']
+            },
+            readiness: {
+                label: 'Record Readiness (準備度)',
+                options: ['displayable_record', 'award_data_ready', 'timeline_analytics_ready', 'index_analytics_ready']
+            },
+            field_gaps: {
+                label: 'Field Gaps (缺漏欄位)',
+                options: [
+                    { id: 'case_number', label: 'case_number UNKNOWN' },
+                    { id: 'winning_vendor', label: 'winning_vendor UNKNOWN' },
+                    { id: 'award_amount', label: 'award_amount UNKNOWN' },
+                    { id: 'procurement_method', label: 'procurement_method UNKNOWN' },
+                    { id: 'submission_deadline', label: 'submission_deadline UNKNOWN' }
+                ]
+            },
+            procurement_method: {
+                label: 'Procurement Method (招標方式)',
+                options: [] // dynamically populated
+            },
+            vendor_status: {
+                label: 'Vendor Status (廠商狀態)',
+                options: [
+                    { id: 'known', label: 'Known Vendor (已知廠商)' },
+                    { id: 'unknown', label: 'Unknown Vendor (未知廠商)' }
+                ]
+            },
+            hardening_priority: {
+                label: 'Hardening Priority (優化優先級)',
+                options: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6']
+            }
+        };
+
+        async function init() {
+            try {
+                const response = await fetch('../data/preview/official_mining_filter_lab_v2_9H02.json');
+                const data = await response.json();
+                allRecords = data.records;
+                
+                // Populate dynamic options
+                const methods = new Set(allRecords.map(r => r.procurement_method).filter(Boolean));
+                FILTER_DEFS.procurement_method.options = Array.from(methods);
+                
+                filteredRecords = [...allRecords];
+                
+                renderFilters();
+                updateUI();
+                
+                document.getElementById('reset-btn').addEventListener('click', resetFilters);
+            } catch (error) {
+                document.getElementById('table-container').innerHTML = `<div class="empty-state" style="color:var(--danger)">Error loading data: ${error.message}</div>`;
+            }
+        }
+
+        function renderFilters() {
+            const container = document.getElementById('filters-container');
+            container.innerHTML = '';
+
+            for (const [key, def] of Object.entries(FILTER_DEFS)) {
+                if (def.options.length === 0) continue;
+                
+                const group = document.createElement('div');
+                group.className = 'filter-group';
+                
+                const title = document.createElement('div');
+                title.className = 'filter-title';
+                title.textContent = def.label;
+                group.appendChild(title);
+
+                def.options.forEach(opt => {
+                    const id = typeof opt === 'object' ? opt.id : opt;
+                    const label = typeof opt === 'object' ? opt.label : opt;
+                    
+                    const labelEl = document.createElement('label');
+                    labelEl.className = 'checkbox-label';
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.value = id;
+                    checkbox.dataset.group = key;
+                    checkbox.addEventListener('change', handleFilterChange);
+                    
+                    labelEl.appendChild(checkbox);
+                    labelEl.appendChild(document.createTextNode(label));
+                    group.appendChild(labelEl);
+                });
+                
+                container.appendChild(group);
+            }
+        }
+
+        function handleFilterChange(e) {
+            const group = e.target.dataset.group;
+            const value = e.target.value;
+            
+            if (e.target.checked) {
+                activeFilters[group].add(value);
+            } else {
+                activeFilters[group].delete(value);
+            }
+            
+            applyFilters();
+        }
+
+        function removeFilter(group, value) {
+            activeFilters[group].delete(value);
+            const checkbox = document.querySelector(`input[data-group="${group}"][value="${value}"]`);
+            if (checkbox) checkbox.checked = false;
+            applyFilters();
+        }
+
+        function resetFilters() {
+            Object.values(activeFilters).forEach(set => set.clear());
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            applyFilters();
+        }
+
+        function applyFilters() {
+            filteredRecords = allRecords.filter(record => {
+                // Check source strength
+                if (activeFilters.source_ref_strength.size > 0 && !activeFilters.source_ref_strength.has(record.source_ref_strength)) {
+                    return false;
+                }
+                
+                // Check readiness (must have ALL selected readiness flags set to "TRUE")
+                if (activeFilters.readiness.size > 0) {
+                    for (const req of activeFilters.readiness) {
+                        if (record[req] !== "TRUE") return false;
+                    }
+                }
+                
+                // Check field gaps (must have ALL selected field gaps)
+                if (activeFilters.field_gaps.size > 0) {
+                    for (const gap of activeFilters.field_gaps) {
+                        if (record[gap] !== "UNKNOWN" && record[gap] !== undefined) return false;
+                    }
+                }
+                
+                // Check procurement method
+                if (activeFilters.procurement_method.size > 0 && !activeFilters.procurement_method.has(record.procurement_method)) {
+                    return false;
+                }
+                
+                // Check vendor status
+                if (activeFilters.vendor_status.size > 0) {
+                    const isUnknown = record.winning_vendor === 'UNKNOWN' || !record.winning_vendor;
+                    if (activeFilters.vendor_status.has('unknown') && !isUnknown) return false;
+                    if (activeFilters.vendor_status.has('known') && isUnknown) return false;
+                }
+                
+                // Check priority
+                if (activeFilters.hardening_priority.size > 0 && !activeFilters.hardening_priority.has(record.priority)) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            updateUI();
+        }
+
+        function renderActiveFilters() {
+            const container = document.getElementById('active-filters');
+            container.innerHTML = '';
+            
+            for (const [group, values] of Object.entries(activeFilters)) {
+                values.forEach(val => {
+                    let displayLabel = val;
+                    // Try to find the pretty label if it's an object config
+                    const def = FILTER_DEFS[group].options.find(o => (typeof o === 'object' ? o.id === val : o === val));
+                    if (def && typeof def === 'object') {
+                        displayLabel = def.label;
+                    }
+                    
+                    const tag = document.createElement('div');
+                    tag.className = 'active-filter-tag';
+                    tag.innerHTML = `
+                        ${FILTER_DEFS[group].label.split(' ')[0]}: ${displayLabel}
+                        <span class="remove-filter" onclick="removeFilter('${group}', '${val}')">×</span>
+                    `;
+                    container.appendChild(tag);
+                });
+            }
+        }
+
+        function getGapBadges(record) {
+            const fields = ['case_number', 'winning_vendor', 'award_amount', 'procurement_method', 'submission_deadline'];
+            return fields.filter(f => record[f] === 'UNKNOWN' || record[f] === undefined)
+                         .map(f => `<span class="gap-badge">${f}</span>`)
+                         .join('');
+        }
+
+        function getReadinessBadges(record) {
+            const flags = ['displayable_record', 'award_data_ready', 'timeline_analytics_ready', 'index_analytics_ready'];
+            return flags.filter(f => record[f] === 'TRUE')
+                        .map(f => {
+                            let label = f.replace('_ready', '').replace('_', ' ');
+                            if(f==='displayable_record') label = 'displayable';
+                            return `<span class="badge badge-success">${label}</span>`;
+                        }).join('');
+        }
+        
+        function getStrengthBadge(strength) {
+            if(!strength) return '';
+            if(strength === 'OFFICIAL_URL') return `<span class="badge badge-success">${strength}</span>`;
+            if(strength === 'OFFICIAL_QUERY_CASE_NUMBER') return `<span class="badge badge-info">${strength}</span>`;
+            return `<span class="badge badge-warning">${strength}</span>`;
+        }
+        
+        function getPriorityBadge(priority) {
+            if(!priority) return '';
+            if(priority === 'P1') return `<span class="badge badge-danger">${priority}</span>`;
+            if(priority === 'P2' || priority === 'P3') return `<span class="badge badge-warning">${priority}</span>`;
+            return `<span class="badge badge-secondary">${priority}</span>`;
+        }
+
+        function renderTable() {
+            const container = document.getElementById('table-container');
+            
+            if (filteredRecords.length === 0) {
+                container.innerHTML = '<div class="empty-state">No records found matching the active filters.</div>';
+                return;
+            }
+            
+            let html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Record ID / Case #</th>
+                            <th>Title / Agency</th>
+                            <th>Amount / Method</th>
+                            <th>Vendor</th>
+                            <th>Status (Strength / Readiness / Priority)</th>
+                            <th>Field Gaps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            filteredRecords.forEach(r => {
+                const caseNum = r.case_number === 'UNKNOWN' ? '<span class="unknown-text">UNKNOWN</span>' : r.case_number;
+                const vendor = r.winning_vendor === 'UNKNOWN' ? '<span class="unknown-text">UNKNOWN</span>' : r.winning_vendor;
+                const amount = r.award_amount === 'UNKNOWN' ? '<span class="unknown-text">UNKNOWN</span>' : parseInt(r.award_amount).toLocaleString();
+                const method = r.procurement_method === 'UNKNOWN' ? '<span class="unknown-text">UNKNOWN</span>' : r.procurement_method;
+                
+                html += `
+                    <tr>
+                        <td>
+                            <div class="cell-id">${r.record_id}</div>
+                            <div style="margin-top:0.25rem">${caseNum}</div>
+                        </td>
+                        <td>
+                            <div class="cell-title">${r.title}</div>
+                            <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem">${r.agency}</div>
+                        </td>
+                        <td>
+                            <div>${amount}</div>
+                            <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem">${method}</div>
+                        </td>
+                        <td>${vendor}</td>
+                        <td>
+                            <div>${getStrengthBadge(r.source_ref_strength)}</div>
+                            <div style="margin-top:0.25rem">${getReadinessBadges(r)}</div>
+                            <div style="margin-top:0.25rem">${getPriorityBadge(r.priority)}</div>
+                        </td>
+                        <td>
+                            <div style="display:flex; flex-wrap:wrap; max-width:200px;">
+                                ${getGapBadges(r) || '<span style="color:var(--text-secondary); font-size:0.75rem;">None</span>'}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        }
+
+        function updateUI() {
+            document.getElementById('total-count').textContent = allRecords.length;
+            document.getElementById('visible-count').textContent = filteredRecords.length;
+            renderActiveFilters();
+            renderTable();
+        }
+
+        // Boot
+        init();
+    </script>
+</body>
+</html>
