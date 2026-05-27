@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI v2.9 B5 API-only Lifecycle Preview</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-bg: #ffffff;
+            --border-color: #e4e4e7;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --danger: #dc2626;
+            --warning: #f59e0b;
+            --success: #16a34a;
+            --muted: #71717a;
+            --computed-bg: #dcfce7;
+            --computed-text: #166534;
+            --unresolved-bg: #fef08a;
+            --unresolved-text: #854d0e;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --doctrine-bg: #1e293b;
+            --doctrine-text: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .doctrine-band {
+            background-color: var(--doctrine-bg);
+            color: var(--doctrine-text);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .doctrine-band h1 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #38bdf8;
+        }
+
+        .doctrine-band p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .doctrine-band ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+
+        .doctrine-band ul li {
+            margin-bottom: 4px;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 1.875rem;
+            font-weight: 600;
+        }
+
+        .filters {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .filter-group input, .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .filter-group input:focus, .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-container input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .wrap-text td {
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: var(--muted);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-computed {
+            background-color: var(--computed-bg);
+            color: var(--computed-text);
+        }
+
+        .badge-unresolved {
+            background-color: var(--unresolved-bg);
+            color: var(--unresolved-text);
+        }
+
+        .badge-parse-failed {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .badge-complex {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .badge-not-generated {
+            background-color: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+
+        details {
+            margin-top: 8px;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            white-space: normal;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--primary);
+            user-select: none;
+        }
+
+        summary:hover {
+            text-decoration: underline;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 12px;
+            margin-top: 8px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        .detail-label {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        /* Column Widths */
+        .col-id { width: 150px; }
+        .col-name { width: 250px; }
+        .col-date { width: 150px; }
+        .col-source { width: 180px; }
+        .col-status { width: 150px; }
+        .col-num { width: 100px; }
+        .col-detail { width: 300px; }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="doctrine-band">
+        <h1>AAI v2.9 B5 API-only Lifecycle Preview</h1>
+        <p><strong>Source Layer:</strong> G40A Case Lifecycle Date Aggregation</p>
+        <p><strong>Claim Type:</strong> PROCUREMENT_CASE_LIFECYCLE_DATE_OBSERVED</p>
+        <p><strong>Legal Status:</strong> NOT_GENERATED</p>
+        <p><strong>Doctrine Guidelines:</strong></p>
+        <ul>
+            <li><code>PAIRING_PASS</code> means date pairing was computed from available public API lifecycle records.</li>
+            <li><code>NO_PRIOR_NOTICE_OBSERVED</code> means no prior notice event was safely paired before the deadline event in the available lifecycle records.</li>
+            <li>This preview does not generate scores, indexes, or legal findings.</li>
+        </ul>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 12px;">
+            中文補充：本頁展示 API 原始 payload 經 G40A 轉換後的標案生命週期日期觀測。可配對代表系統能從公開 API records[] 中找到截止日前的公告日期事件；未配對代表保留未解析狀態，不轉換為結論。本頁不產生分數、指標或法律判斷。
+        </p>
+    </div>
+
+    <div class="summary-cards" id="summaryCards">
+        <!-- Cards injected by JS -->
+    </div>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label for="searchInput">Search (Case Number / Name)</label>
+            <input type="text" id="searchInput" placeholder="Enter keywords...">
+        </div>
+        <div class="filter-group">
+            <label for="pairingFilter">Pairing Status</label>
+            <select id="pairingFilter">
+                <option value="ALL">All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="observationFilter">Observation Status</label>
+            <select id="observationFilter">
+                <option value="ALL">All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="deadlineSourceFilter">Deadline Source Key</label>
+            <select id="deadlineSourceFilter">
+                <option value="ALL">All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="noticeSourceFilter">Notice Source Key</label>
+            <select id="noticeSourceFilter">
+                <option value="ALL">All</option>
+            </select>
+        </div>
+        <div class="filter-group toggle-container" style="padding-bottom: 8px;">
+            <input type="checkbox" id="denseModeToggle" checked>
+            <label for="denseModeToggle" style="margin: 0; cursor: pointer;">Dense Mode</label>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th class="col-id">Case Number</th>
+                    <th class="col-name">Case Name</th>
+                    <th class="col-status">Pairing Status</th>
+                    <th class="col-status">Observation Status</th>
+                    <th class="col-date">Deadline Raw / ISO</th>
+                    <th class="col-source">Deadline Source</th>
+                    <th class="col-date">Notice Raw / ISO</th>
+                    <th class="col-source">Notice Source</th>
+                    <th class="col-num">Days to Deadline</th>
+                    <th class="col-detail">Details</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td colspan="10" style="text-align: center;">Loading data...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let globalData = [];
+        let filteredData = [];
+
+        const PAIRING_LABEL_MAP = {
+            'PAIRING_PASS': { label: 'Computed', class: 'badge-computed' },
+            'NO_PRIOR_NOTICE_OBSERVED': { label: 'Preserved Unresolved', class: 'badge-unresolved' },
+            'DATE_PARSE_FAILED': { label: 'Parse Failed', class: 'badge-parse-failed' },
+            'COMPLEX_LIFECYCLE_UNRESOLVED': { label: 'Complex Unresolved', class: 'badge-complex' }
+        };
+
+        async function loadData() {
+            try {
+                const response = await fetch('../data/preview/g40a_case_lifecycle_date_aggregation.json');
+                globalData = await response.json();
+                filteredData = globalData;
+                
+                populateFilters();
+                updateSummary();
+                renderTable();
+            } catch (error) {
+                console.error("Failed to load data:", error);
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" style="text-align: center; color: red;">Error loading data: ${error.message}</td></tr>`;
+            }
+        }
+
+        function populateFilters() {
+            const pairingStatuses = new Set();
+            const obsStatuses = new Set();
+            const deadlineSources = new Set();
+            const noticeSources = new Set();
+
+            globalData.forEach(row => {
+                if (row.pairing_status) pairingStatuses.add(row.pairing_status);
+                if (row.observation_status) obsStatuses.add(row.observation_status);
+                if (row.deadline_source_key) deadlineSources.add(row.deadline_source_key);
+                if (row.best_priority_notice_source_key) noticeSources.add(row.best_priority_notice_source_key);
+            });
+
+            populateSelect('pairingFilter', pairingStatuses);
+            populateSelect('observationFilter', obsStatuses);
+            populateSelect('deadlineSourceFilter', deadlineSources);
+            populateSelect('noticeSourceFilter', noticeSources);
+        }
+
+        function populateSelect(id, values) {
+            const select = document.getElementById(id);
+            const sorted = Array.from(values).sort();
+            sorted.forEach(val => {
+                const option = document.createElement('option');
+                option.value = val;
+                option.textContent = val;
+                select.appendChild(option);
+            });
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const pairing = document.getElementById('pairingFilter').value;
+            const obs = document.getElementById('observationFilter').value;
+            const dlSource = document.getElementById('deadlineSourceFilter').value;
+            const ntSource = document.getElementById('noticeSourceFilter').value;
+
+            filteredData = globalData.filter(row => {
+                const matchSearch = (row.case_number && row.case_number.toLowerCase().includes(search)) || 
+                                    (row.case_name && row.case_name.toLowerCase().includes(search));
+                const matchPairing = pairing === 'ALL' || row.pairing_status === pairing;
+                const matchObs = obs === 'ALL' || row.observation_status === obs;
+                const matchDl = dlSource === 'ALL' || row.deadline_source_key === dlSource;
+                const matchNt = ntSource === 'ALL' || row.best_priority_notice_source_key === ntSource;
+
+                return matchSearch && matchPairing && matchObs && matchDl && matchNt;
+            });
+
+            updateSummary();
+            renderTable();
+        }
+
+        function updateSummary() {
+            const totalRows = filteredData.length;
+            const cases = new Set(filteredData.map(r => r.case_number).filter(Boolean)).size;
+            
+            let pass = 0, unresolved = 0, parseFailed = 0, complex = 0;
+            
+            filteredData.forEach(row => {
+                if (row.pairing_status === 'PAIRING_PASS') pass++;
+                else if (row.pairing_status === 'NO_PRIOR_NOTICE_OBSERVED') unresolved++;
+                else if (row.pairing_status === 'DATE_PARSE_FAILED') parseFailed++;
+                else if (row.pairing_status === 'COMPLEX_LIFECYCLE_UNRESOLVED') complex++;
+            });
+
+            const passRate = totalRows ? ((pass / totalRows) * 100).toFixed(2) : '0.00';
+            const unresRate = totalRows ? (((unresolved + parseFailed + complex) / totalRows) * 100).toFixed(2) : '0.00';
+
+            document.getElementById('summaryCards').innerHTML = `
+                <div class="card"><div class="card-title">Total Rows</div><div class="card-value">${totalRows}</div></div>
+                <div class="card"><div class="card-title">Unique Cases</div><div class="card-value">${cases}</div></div>
+                <div class="card"><div class="card-title">Computed (Pass)</div><div class="card-value" style="color: var(--success);">${pass}</div></div>
+                <div class="card"><div class="card-title">Unresolved</div><div class="card-value" style="color: var(--warning);">${unresolved}</div></div>
+                <div class="card"><div class="card-title">Parse Failed / Complex</div><div class="card-value" style="color: var(--danger);">${parseFailed} / ${complex}</div></div>
+                <div class="card"><div class="card-title">Pairing Rate</div><div class="card-value">${passRate}%</div></div>
+                <div class="card"><div class="card-title">Unresolved Rate</div><div class="card-value">${unresRate}%</div></div>
+            `;
+        }
+
+        function getShortPath(path) {
+            if (!path) return 'N/A';
+            const parts = path.split('/');
+            return parts[parts.length - 1];
+        }
+
+        function safeVal(val) {
+            if (val === null || val === undefined) return '<span style="color:var(--muted)">N/A</span>';
+            return val;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            if (filteredData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" style="text-align: center;">No data found</td></tr>';
+                return;
+            }
+
+            const html = filteredData.map(row => {
+                const pairingUI = PAIRING_LABEL_MAP[row.pairing_status] || { label: row.pairing_status, class: 'badge-not-generated' };
+                
+                return `
+                    <tr>
+                        <td title="${row.case_number || ''}">${safeVal(row.case_number)}</td>
+                        <td title="${row.case_name || ''}">${safeVal(row.case_name)}</td>
+                        <td><span class="status-badge ${pairingUI.class}">${pairingUI.label}</span></td>
+                        <td title="${row.observation_status || ''}">${safeVal(row.observation_status)}</td>
+                        <td>
+                            <div>${safeVal(row.deadline_raw)}</div>
+                            <div style="font-size:0.75rem; color:var(--muted);">${safeVal(row.deadline_datetime_iso)}</div>
+                            <div style="font-size:0.75rem; color:var(--muted);">Idx: ${safeVal(row.deadline_record_index)}</div>
+                        </td>
+                        <td title="${row.deadline_source_key || ''}">${safeVal(row.deadline_source_key)}</td>
+                        <td>
+                            <div>${safeVal(row.best_priority_notice_raw)}</div>
+                            <div style="font-size:0.75rem; color:var(--muted);">${safeVal(row.best_priority_notice_datetime_iso)}</div>
+                            <div style="font-size:0.75rem; color:var(--muted);">Idx: ${safeVal(row.best_priority_notice_record_index)}</div>
+                        </td>
+                        <td title="${row.best_priority_notice_source_key || ''}">${safeVal(row.best_priority_notice_source_key)}</td>
+                        <td>
+                            <div>${safeVal(row.best_priority_notice_to_deadline_days)} d</div>
+                            <div style="font-size:0.75rem; color:var(--muted);">${safeVal(row.best_priority_notice_to_deadline_hours)} h</div>
+                        </td>
+                        <td>
+                            <details>
+                                <summary>More Info</summary>
+                                <div class="detail-grid">
+                                    <div class="detail-label">Claim Type</div><div>${safeVal(row.claim_type)}</div>
+                                    <div class="detail-label">Legal Status</div><div><span class="status-badge badge-not-generated">${safeVal(row.legal_status)}</span></div>
+                                    <div class="detail-label">Payload</div><div title="${row.payload_path}">${getShortPath(row.payload_path)}</div>
+                                    <div class="detail-label">Record Count</div><div>${safeVal(row.record_count)}</div>
+                                    <div class="detail-label">Opening</div><div>${safeVal(row.opening_raw)} (${safeVal(row.opening_source_key)})</div>
+                                    <div class="detail-label">Opening ISO</div><div>${safeVal(row.opening_datetime_iso)}</div>
+                                    <div class="detail-label">Latest Notice</div><div>${safeVal(row.latest_notice_raw)} (${safeVal(row.latest_notice_source_key)})</div>
+                                    <div class="detail-label">Earliest Notice</div><div>${safeVal(row.earliest_notice_raw)} (${safeVal(row.earliest_notice_source_key)})</div>
+                                    <div class="detail-label">Latest to DL</div><div>${safeVal(row.latest_notice_to_deadline_days)} d</div>
+                                    <div class="detail-label">Earliest to DL</div><div>${safeVal(row.earliest_notice_to_deadline_days)} d</div>
+                                    <div class="detail-label">Candidates Cnt</div><div>${safeVal(row.notice_candidates_count)}</div>
+                                </div>
+                                <div style="margin-top:8px; font-size:0.75rem; word-break:break-all;">
+                                    <strong>Candidate Keys:</strong><br>
+                                    ${Array.isArray(row.notice_candidate_keys) ? row.notice_candidate_keys.join('<br>') : 'N/A'}
+                                </div>
+                            </details>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = html;
+        }
+
+        // Event Listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('pairingFilter').addEventListener('change', applyFilters);
+        document.getElementById('observationFilter').addEventListener('change', applyFilters);
+        document.getElementById('deadlineSourceFilter').addEventListener('change', applyFilters);
+        document.getElementById('noticeSourceFilter').addEventListener('change', applyFilters);
+        
+        document.getElementById('denseModeToggle').addEventListener('change', (e) => {
+            const table = document.getElementById('dataTable');
+            if (e.target.checked) {
+                table.classList.remove('wrap-text');
+            } else {
+                table.classList.add('wrap-text');
+            }
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
