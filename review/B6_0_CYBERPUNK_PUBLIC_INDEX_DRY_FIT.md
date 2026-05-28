@@ -369,6 +369,23 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Supplier Case Management Example, Custom Information Example, and Entity Data Management Example remain contract_only. Current index payload has partial public fields for future display packs but is not enough to open those modules as full connected views without project-specific display structure.
 - No new rows, no external payload, no Core connection, no B-Prod change, no manual deploy, and no Display Pack Split work.
 
+## B7.5.1 Connected Module Semantics + Sample Route Persistence Repair
+- Timeline Field Calculator copy now describes the connected calculation as bid preparation days from announce_date to bid_deadline, while keeping the existing display-layer calculation preview and count sanity.
+- Module card switching preserves the active sample route, clears only the free-text search query, keeps sort mode intact, and recomputes the selected module result count.
+- Sample tag clicks remain structured route filters, clear the free-text search query, and apply to the current active module instead of becoming search text.
+- Clear filter still removes both active sample and search query while keeping the current active module.
+- Custom Supplier Management labels now distinguish related display rows from distinct case count through 關聯資料列數 / Related Row Count and 關聯案件數 / Related Case Count.
+- Module states preserved: Bid Preparation Module, Reviewer Composition Matrix, Custom Supplier Management Module, and Timeline Field Calculator remain preview_connected; the three commercial sample modules remain contract_only.
+- No new rows, no mock data, no Core connection, no B-Prod change, no manual deploy, and no Display Pack Split work.
+
+## B7.5.2 State Persistence + Timeline Render Path Hard Repair
+- Module card switching now preserves active sample route, manual search query, and sort mode; only active module changes before rows and result count are recalculated.
+- Sample tag clicks still set the structured sample route and clear manual search, while clear filter removes both sample route and search without changing the active module or sort mode.
+- Filter mode copy is now explicit: Sample + Search Filter, Sample Filter, Search Filter, or All Records.
+- Timeline render path now uses bid preparation days copy throughout the connected module: 備標天數, average preparation days, shortest preparation days, longest preparation days, and computable preparation windows.
+- Supplier entity cards keep bilingual semantic labels for related display rows, related agencies, distinct case count, and sample route match.
+- Module states remain locked: four preview_connected modules and three contract_only modules. No new rows, no mock data, no Core connection, no B-Prod change, no commit, no tag, no push, and no deploy.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
