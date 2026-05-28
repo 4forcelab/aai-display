@@ -283,6 +283,14 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Bid Preparation summary cards continue to recompute from filteredRows through computeBidSummary().
 - Mobile layer protection, DevTools easter egg, Source & Model copy, logo lock, hero surface, payload, and production files untouched.
 
+## B6.6 Demo Scenario / Sample Path Lock
+- Operation layer now includes a SAMPLE PATH GUIDE beside the structured sample tags.
+- Guide frames the page as Public Module Sample / AAI display layer and keeps the route commercial: Bid Preparation Module, Reviewer Composition Matrix, Co-presence View, Timeline Field Calculator, 供應商管理樣本路徑, 客戶訂製訊息範例, and Entity Data Management Example.
+- Sample route counts are documented from the current display payload: 李雨蓁 Bid 12 / Co-presence 23, 協昌 Bid 10 / Co-presence 175, 三恆一樹 Bid 6 / Co-presence 8, 屏東縣政府 Bid 1042 / source scope 7653.
+- Active module, active sample, result count, and filter mode remain visible below the guide.
+- B6.5 interaction behavior preserved: sample tags stay structured, module switches clear sample/search state, clear filters returns the current module to its full pool, and sort option values remain unchanged.
+- Reviewer / co-presence payload, sample_case_numbers search support, Bid Preparation filteredRows summaries, mobile protection, DevTools easter egg, Source & Model copy, and production files untouched.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
