@@ -278,7 +278,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Interaction state is now routed through setActiveModule(), setSampleFilter(), clearFilters(), and sortMode.
 - Module chip and module card switches clear activeSampleFilter and searchQuery before rendering the selected module, preventing hidden carryover between module views.
 - Sample tags remain structured filters and do not write into the free-text search query.
-- Clear filter actions reset activeSampleFilter and searchQuery while preserving the current active module, returning that module to its full pool.
+- Clear filter actions reset activeSampleFilter and searchQuery while preserving the current active module, returning that module to its current display set.
 - Reviewer / co-presence search and sample paths now include sample_case_numbers plus sample_cases, preserving case number and sample case coverage.
 - Bid Preparation summary cards continue to recompute from filteredRows through computeBidSummary().
 - Mobile layer protection, DevTools easter egg, Source & Model copy, logo lock, hero surface, payload, and production files untouched.
@@ -288,7 +288,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Guide frames the page as Public Module Sample / AAI display layer and keeps the route commercial: Bid Preparation Module, Reviewer Composition Matrix, Co-presence View, Timeline Field Calculator, 供應商管理樣本路徑, 客戶訂製訊息範例, and Entity Data Management Example.
 - Sample route counts are documented from the current display payload: 李雨蓁 Bid 12 / Co-presence 23, 協昌 Bid 10 / Co-presence 175, 三恆一樹 Bid 6 / Co-presence 8, 屏東縣政府 Bid 1042 / source scope 7653.
 - Active module, active sample, result count, and filter mode remain visible below the guide.
-- B6.5 interaction behavior preserved: sample tags stay structured, module switches clear sample/search state, clear filters returns the current module to its full pool, and sort option values remain unchanged.
+- B6.5 interaction behavior preserved: sample tags stay structured, module switches clear sample/search state, clear filters returns the current module to its current display set, and sort option values remain unchanged.
 - Reviewer / co-presence payload, sample_case_numbers search support, Bid Preparation filteredRows summaries, mobile protection, DevTools easter egg, Source & Model copy, and production files untouched.
 
 ## B6.7 First Machine Release Candidate
@@ -527,6 +527,19 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Statement body preserves the 4Force Lab forward-motion message, AAI route-viewing method, 公平、公評、公民, and the closing motto.
 - Mobile Layer Protection remains restricted to the terminal surface only.
 - B7.9 / V8 dashboard-first route experience, three public sample routes, 李雨蓁 default route, Reviewer Co-presence Grid, statistical terms, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
+
+## V8 Alpha Consultant Unlock CTA + Source Semantics Sweep Lock
+- Base: V8 Alpha Absurdity Statement Panel Lock / ffabf8953499c95ab1a516eb08217b6534dd7bc9.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Search placeholder updated to consultant unlock wording for designated route service.
+- Added Contact / info@4force.com.tw CTA with mailto link.
+- Product status row source semantics tightened: precise public row split removed from the top status surface.
+- Public Projection Surface now reports Active with Sample routes only.
+- Source semantics sweep completed for product-facing search and status-row copy; DevTools architecture boundary wording preserved as required.
+- Absurdity statement panel, hero motto, V8 Alpha naming, Public Projection Console, dashboard-first route, three public sample routes, Reviewer Co-presence Grid, statistical terms, mobile gate, Source & Model copy, and true-color logo treatment preserved.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
