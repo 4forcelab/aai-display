@@ -362,6 +362,13 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Connected modules remain untouched: Bid Preparation Module keeps existing filteredRows summary behavior, and Reviewer Composition Matrix keeps co-presence payload and sample route support.
 - No new data rows, no data source change, no Core connection, no B-Prod change, no manual deploy, and no Display Pack Split work.
 
+## B7.5 Display Function Wiring Pass
+- Payload inventory: index.html already contains 4,446 Bid Preparation rows and 7,653 Reviewer Composition Matrix rows. Safe display fields available in the root artifact include case number, case name, entity, method, award amount, announce date, bid deadline, preparation days, awarded vendor, reviewer matrix, sample case numbers, sample cases, support, share, and recent date.
+- Timeline Field Calculator is wired as a display-layer calculation preview using existing Bid Preparation rows only. Current full-pool sanity: rows scanned 4,446, rows with date fields 4,446, rows with both date fields 4,309, computable intervals 4,269, min 0, avg 15.1, max 199.
+- Custom Supplier Management Module is wired as a supplier/entity aggregation view using existing Bid Preparation and Reviewer Composition Matrix display rows only. Current full-pool sanity: source rows 8,695, entities detected 508, rows matched 8,695 before filters.
+- Supplier Case Management Example, Custom Information Example, and Entity Data Management Example remain contract_only. Current index payload has partial public fields for future display packs but is not enough to open those modules as full connected views without project-specific display structure.
+- No new rows, no external payload, no Core connection, no B-Prod change, no manual deploy, and no Display Pack Split work.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
