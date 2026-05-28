@@ -1,45 +1,35 @@
 {
   "files": [
     {
-      "path": "assets/4force-logo.png",
-      "sha256": "f9dea7846380eab09f40eb62fb4187befc66da340e50ad55bddcbff7461595bf",
-      "size_bytes": 79464
-    },
-    {
       "path": "data/active_pool_meta.json",
-      "sha256": "35bb83029a560cedf241be84ebaf53858d5d4647238198d05a490a464e1d4d66",
-      "size_bytes": 511
+      "sha256": "ed09eb691cba4f4e30e5bfd8762c5675aed817d99e80e4c0d633c4eee058dbf1",
+      "size_bytes": 566
     },
     {
       "path": "data/dashboard_data.json",
-      "sha256": "768cfb99889b245bb3ea912486c15a526b9b184a6343eb854d14d10e37b504ce",
-      "size_bytes": 159418
+      "sha256": "6cbc3728d36843a6d82aeb7fd53de885593747041d008f47c2e80f5c121fffa0",
+      "size_bytes": 7313
     },
     {
       "path": "data/detail_results.json",
-      "sha256": "941c21a98c14c9513675e4dca0cfcd666948cae4ad77950bbc453ee4f8173508",
-      "size_bytes": 119478
+      "sha256": "063052d759ec74241223356274b211eb54b58d0926fb055f75ccd787d13a4d74",
+      "size_bytes": 12777
     },
     {
       "path": "data/evidence_graph.json",
-      "sha256": "4edf9c2aed3fd98bd99651ceadc3a3ee65f9927c8c16ac109b3862a7137be928",
-      "size_bytes": 34633
+      "sha256": "6efddee4ac5aa6b822fc5df9ac6c993c8fef3c6ee2b15dd4415ba0e853cedbfb",
+      "size_bytes": 26583
     },
     {
       "path": "data/red_flag_data.json",
-      "sha256": "1458632c02a62bbcb18e5850ffb9152b395798c0a2999ad388c83ca87cd59449",
-      "size_bytes": 10262
+      "sha256": "a1a7287e4f7c2365f0f6830f497a84931349540772ae03a20545843844927e9e",
+      "size_bytes": 1780
     },
     {
       "path": "data/risk_signals.json",
-      "sha256": "d8e39dc1bdc76cd1bfe2f30d0ea1116074cf29fe4cc00868d4058bfb6750875d",
-      "size_bytes": 11132
-    },
-    {
-      "path": "index.html",
-      "sha256": "35f60c45c3a1fb17b733648b74cfe1a7679cc1bdddcebd4d196f84db2335547d",
-      "size_bytes": 214784
+      "sha256": "6222a247046731221f047ade032fa162abb6cbf32c34de5fdda9d1a236d94140",
+      "size_bytes": 5551
     }
   ],
-  "signature": "d378e6d8b77438229c13e6b6376465811a8bb2fe9598f9afea429a5dde0f8140"
+  "signature": "7729a9156f46da0b4ebda8981da54241d1fdc5465fb802ed31401ba52701adfc"
 }

@@ -1,8 +1,17 @@
 {
+  "schema_version": "2.9",
+  "projection_version": "core-v2.9-ag2-public-projection",
+  "display_payload_type": "public_projection",
+  "generated_at": "2026-05-28T15:01:19+00:00",
   "active_pool_id": "pingtung_labor_youth",
   "active_pool_display_name": "屏東勞青處採購池",
-  "active_pool_scope_note": "第二採購池，涵蓋屏東縣政府勞動暨青年發展處及周邊青年、勞動、青創類採購標案，並保留跨縣市外溢訊號。",
-  "active_pool_generated_from": "pingtung_labor_youth_detail_results + pingtung_labor_youth_risk_signals + pingtung_labor_youth_evidence_graph",
-  "schema_version": "1.0.0",
-  "generated_at": "2026-05-28T12:49:53.550801+00:00"
+  "display_layer_label": "sanitized_display_layer",
+  "display_source_scope": "active_pool_public_projection",
+  "aggregate_counts": {
+    "display_cases": 13,
+    "display_signals": 13,
+    "display_graph_nodes": 55,
+    "display_graph_edges": 84,
+    "observation_cards": 3
+  }
 }

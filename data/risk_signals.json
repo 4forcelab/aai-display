@@ -1,306 +1,158 @@
 {
-  "total_cases": 13,
-  "high_risk_count": 0,
-  "medium_risk_count": 5,
-  "low_risk_count": 8,
-  "uses_mock_data": false,
-  "legal_claims_made": false,
-  "signals": [
-    {
-      "signal_id": "risk-sig-E1131205-2-1-0",
-      "case_number": "E1131205-2-1",
-      "case_name": "115年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作勞務採購契約後續擴充案",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 100.00% (決標: 1,600,000 元 / 預算: 1,600,000 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
-        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-E1131209-3-1-1",
-      "case_number": "E1131209-3-1",
-      "case_name": "屏東縣政府勞動暨青年發展處115年度電腦設備租賃採購後續擴充案",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 94.41% (決標: 553,344 元 / 預算: 586,080 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-E1131205-2-2",
-      "case_number": "E1131205-2",
-      "case_name": "114年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 98.16% (決標: 1,600,000 元 / 預算: 1,630,000 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-E1131209-3-3",
-      "case_number": "E1131209-3",
-      "case_name": "屏東縣政府勞動暨青年發展處114年度電腦設備租賃採購案",
-      "risk_score": 20,
-      "anomaly_patterns": [
-        "Single Bidder Tender"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 94.41% (決標: 553,344 元 / 預算: 586,080 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-115126-4",
-      "case_number": "115126",
-      "case_name": "嘉義市政府115年度勞工及青年發展處公務電腦及設備維護案",
-      "risk_score": 15,
-      "anomaly_patterns": [
-        "Short Bid Preparation"
-      ],
-      "evidence_shell": [
-        "等標期為 7 天",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "等標期偏短（小於 10 天），時間較為緊迫，不利於新進廠商公平競爭。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "signal_id": "risk-sig-115098-5",
-      "case_number": "115098",
-      "case_name": "嘉義市政府勞工及青年發展處115年度清潔維護管理工作",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_shell": [
-        "決標/預算比例為 97.49% (決標: 414,320 元 / 預算: 425,000 元)",
-        "得標廠商於同主題案件中得標次數: 1 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "signal_id": "risk-sig-E1150128-3-6",
-      "case_number": "E1150128-3",
-      "case_name": "115年屏東青航站(青年學院)社群營運服務案",
-      "risk_score": 30,
-      "anomaly_patterns": [
-        "Extremely Short Bid Preparation"
-      ],
-      "evidence_shell": [
-        "等標期為 4 天",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "等標期極短（小於 7 天），可能限制潛在投標廠商之準備時間。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-LASL108019-7",
-      "case_number": "LASL108019",
-      "case_name": "109年度宜蘭青年交流中心暨宜蘭青年學院計畫",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 100.00% (決標: 421,250 元 / 預算: 421,250 元)",
-        "得標廠商於同主題案件中得標次數: 1 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
-        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "cross_region",
-        "related_agency"
-      ],
-      "scope_status": "cross_region_hit"
-    },
-    {
-      "signal_id": "risk-sig-C1080110-4-8",
-      "case_number": "C1080110-4",
-      "case_name": "108年度青年學院PIT進階創業實戰課程",
-      "risk_score": 25,
-      "anomaly_patterns": [
-        "High Budget Fit Ratio"
-      ],
-      "evidence_shell": [
-        "決標/預算比例為 100.00% (決標: 650,000 元 / 預算: 650,000 元)",
-        "得標廠商於同主題案件中得標次數: 1 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-D107-1113-164-1-9",
-      "case_number": "D107-1113-164-1",
-      "case_name": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_shell": [
-        "決標/預算比例為 98.12% (決標: 1,570,000 元 / 預算: 1,600,000 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-E1141127-4-10",
-      "case_number": "E1141127-4",
-      "case_name": "115年屏東數位青創中心營運管理委託專業服務案",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 100.00% (決標: 3,000,000 元 / 預算: 3,000,000 元)",
-        "得標廠商於同主題案件中得標次數: 1 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
-        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-164-E1140512-1-11",
-      "case_number": "164-E1140512-1",
-      "case_name": "屏東數位青創中心屋頂女兒牆護欄裝修設工程",
-      "risk_score": 0,
-      "anomaly_patterns": [],
-      "evidence_shell": [
-        "決標/預算比例為 73.02% (決標: 731,882 元 / 預算: 1,002,305 元)",
-        "得標廠商於同主題案件中得標次數: 1 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    },
-    {
-      "signal_id": "risk-sig-E1131220-1-12",
-      "case_number": "E1131220-1",
-      "case_name": "114年度屏東數位青創中心及職人町環境維護勞務委託案",
-      "risk_score": 45,
-      "anomaly_patterns": [
-        "Single Bidder Tender",
-        "High Budget Fit Ratio"
-      ],
-      "evidence_shell": [
-        "投標廠商僅有 1 家",
-        "決標/預算比例為 100.00% (決標: 980,190 元 / 預算: 980,190 元)",
-        "得標廠商於同主題案件中得標次數: 2 次",
-        "此案號累計公告次數: 1 次"
-      ],
-      "signal_explanation": [
-        "此案僅有一家廠商參與投標，缺乏競價機制，競爭程度低。",
-        "決標金額與預算金額高度吻合（達 99% 以上），可能存有綁標或預算透露之潛在風險。"
-      ],
-      "pool_id": "pingtung_labor_youth",
-      "scope_tags": [
-        "primary_geo"
-      ],
-      "scope_status": "in_scope"
-    }
-  ],
-  "schema_version": "1.0.0",
-  "generated_at": "2026-05-28T12:49:53.550801+00:00",
+  "schema_version": "2.9",
+  "projection_version": "core-v2.9-ag2-public-projection",
+  "display_payload_type": "public_projection",
+  "generated_at": "2026-05-28T15:01:19+00:00",
   "active_pool_id": "pingtung_labor_youth",
   "active_pool_display_name": "屏東勞青處採購池",
-  "active_pool_scope_note": "第二採購池，涵蓋屏東縣政府勞動暨青年發展處及周邊青年、勞動、青創類採購標案，並保留跨縣市外溢訊號。",
-  "active_pool_generated_from": "pingtung_labor_youth_detail_results + pingtung_labor_youth_risk_signals + pingtung_labor_youth_evidence_graph"
+  "display_layer_label": "sanitized_display_layer",
+  "display_source_scope": "active_pool_public_projection",
+  "total_cases": 13,
+  "display_level_counts": {
+    "medium_attention": 5,
+    "observe": 8
+  },
+  "signals": [
+    {
+      "signal_id": "SIG-01",
+      "display_case_id": "CASE-01",
+      "case_number": "CASE-01",
+      "case_name": "115年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作勞務採購契約後續擴充案",
+      "display_level": "medium_attention",
+      "display_indicators": [
+        "single_bidder_observed",
+        "budget_alignment_bucket_high"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-02",
+      "display_case_id": "CASE-02",
+      "case_number": "CASE-02",
+      "case_name": "屏東縣政府勞動暨青年發展處115年度電腦設備租賃採購後續擴充案",
+      "display_level": "observe",
+      "display_indicators": [
+        "single_bidder_observed"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-03",
+      "display_case_id": "CASE-03",
+      "case_number": "CASE-03",
+      "case_name": "114年度屏東縣政府勞動暨青年發展處辦公大樓及勞工公園園區環境清潔維護工作",
+      "display_level": "observe",
+      "display_indicators": [
+        "single_bidder_observed"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-04",
+      "display_case_id": "CASE-04",
+      "case_number": "CASE-04",
+      "case_name": "屏東縣政府勞動暨青年發展處114年度電腦設備租賃採購案",
+      "display_level": "observe",
+      "display_indicators": [
+        "single_bidder_observed"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-05",
+      "display_case_id": "CASE-05",
+      "case_number": "CASE-05",
+      "case_name": "嘉義市政府115年度勞工及青年發展處公務電腦及設備維護案",
+      "display_level": "observe",
+      "display_indicators": [
+        "preparation_window_bucket_short"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-06",
+      "display_case_id": "CASE-06",
+      "case_number": "CASE-06",
+      "case_name": "嘉義市政府勞工及青年發展處115年度清潔維護管理工作",
+      "display_level": "observe",
+      "display_indicators": [],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-07",
+      "display_case_id": "CASE-07",
+      "case_number": "CASE-07",
+      "case_name": "115年屏東青航站(青年學院)社群營運服務案",
+      "display_level": "medium_attention",
+      "display_indicators": [
+        "preparation_window_bucket_short"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-08",
+      "display_case_id": "CASE-08",
+      "case_number": "CASE-08",
+      "case_name": "109年度宜蘭青年交流中心暨宜蘭青年學院計畫",
+      "display_level": "medium_attention",
+      "display_indicators": [
+        "single_bidder_observed",
+        "budget_alignment_bucket_high"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-09",
+      "display_case_id": "CASE-09",
+      "case_number": "CASE-09",
+      "case_name": "108年度青年學院PIT進階創業實戰課程",
+      "display_level": "observe",
+      "display_indicators": [
+        "budget_alignment_bucket_high"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-10",
+      "display_case_id": "CASE-10",
+      "case_number": "CASE-10",
+      "case_name": "屏東縣108年度青年學院暨青創聚落（含職人町）環境清潔維護服務勞務委託案",
+      "display_level": "observe",
+      "display_indicators": [],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-11",
+      "display_case_id": "CASE-11",
+      "case_number": "CASE-11",
+      "case_name": "115年屏東數位青創中心營運管理委託專業服務案",
+      "display_level": "medium_attention",
+      "display_indicators": [
+        "single_bidder_observed",
+        "budget_alignment_bucket_high"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-12",
+      "display_case_id": "CASE-12",
+      "case_number": "CASE-12",
+      "case_name": "屏東數位青創中心屋頂女兒牆護欄裝修設工程",
+      "display_level": "observe",
+      "display_indicators": [],
+      "display_source_scope": "active_pool_public_projection"
+    },
+    {
+      "signal_id": "SIG-13",
+      "display_case_id": "CASE-13",
+      "case_number": "CASE-13",
+      "case_name": "114年度屏東數位青創中心及職人町環境維護勞務委託案",
+      "display_level": "medium_attention",
+      "display_indicators": [
+        "single_bidder_observed",
+        "budget_alignment_bucket_high"
+      ],
+      "display_source_scope": "active_pool_public_projection"
+    }
+  ]
 }
