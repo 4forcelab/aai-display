@@ -355,6 +355,13 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Guide body now explains that sample tags are structured demo routes, not free-text search, in Chinese and English.
 - No module state logic, sample counts, search/filter behavior, mobile gate, DevTools easter egg, data, assets, Core, B-Prod, push, or deploy changed.
 
+## B7.4 Module Content Depth Pass
+- Five non-connected module panels now include product-depth display cards for Purpose, Configurable Fields, Display Capabilities, and Access State.
+- Custom Supplier Management Module and Timeline Field Calculator keep preview_ready status while presenting commercial preview-shell descriptions instead of empty-state wording.
+- Supplier Case Management Example, Custom Information Example, and Entity Data Management Example keep contract_only status while presenting commercial sample descriptions instead of broken or unavailable behavior.
+- Connected modules remain untouched: Bid Preparation Module keeps existing filteredRows summary behavior, and Reviewer Composition Matrix keeps co-presence payload and sample route support.
+- No new data rows, no data source change, no Core connection, no B-Prod change, no manual deploy, and no Display Pack Split work.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
