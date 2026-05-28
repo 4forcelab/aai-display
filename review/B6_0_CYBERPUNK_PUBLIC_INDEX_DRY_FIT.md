@@ -518,3 +518,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
+
+## V8 Alpha Absurdity Statement Panel Lock
+- Base: V8 Alpha product status row lock / 4d2e0520abc07fae3b758d4af78cbb44efc0886d.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added right-rail brand philosophy card below Source & Model and AAI Mobile Terminal.
+- Statement title: Arrangement Against Absurdity.
+- Statement body preserves the 4Force Lab forward-motion message, AAI route-viewing method, 公平、公評、公民, and the closing motto.
+- Mobile Layer Protection remains restricted to the terminal surface only.
+- B7.9 / V8 dashboard-first route experience, three public sample routes, 李雨蓁 default route, Reviewer Co-presence Grid, statistical terms, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
