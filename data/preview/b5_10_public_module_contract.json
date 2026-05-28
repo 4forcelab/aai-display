@@ -1,0 +1,517 @@
+{
+  "version": "v2.9B5.10",
+  "sealed_from": "display-v2.9B5.9-front-copy-translation-lock-preview",
+  "contract_scope": {
+    "purpose": "B6 public frontend module contract",
+    "output_layer": "public_display_contract",
+    "standalone_html_dependency": false,
+    "production_write_allowed": false
+  },
+  "source_files": [
+    "data/preview/b5_9_front_copy_translation_lock.json",
+    "data/preview/g40b_lifecycle_display_enriched.json",
+    "data/preview/g40g_awarded_vendor_reviewer_clique_support.json",
+    "review/v2-9-b5-8-bid-preparation-module-standalone.html",
+    "review/B5_8_BID_PREPARATION_MODULE_DRY_FIT.md",
+    "review/B5_9_FRONT_COPY_TRANSLATION_LOCK.md"
+  ],
+  "public_modules": [
+    {
+      "id": "bid_preparation_module",
+      "source_module": "Bid Preparation Window",
+      "front_zh": "標案準備時間範例模組",
+      "front_en": "Bid Preparation Module",
+      "route": "/modules/bid-preparation",
+      "source_files": [
+        "data/preview/g40b_lifecycle_display_enriched.json",
+        "data/preview/g40g_awarded_vendor_reviewer_clique_support.json"
+      ],
+      "status": "preview_ready",
+      "public_fields": [
+        "case_number",
+        "case_name",
+        "entity",
+        "method",
+        "budget_amount",
+        "award_amount",
+        "announce_date",
+        "bid_deadline",
+        "preparation_days",
+        "awarded_vendor",
+        "reviewer_matrix"
+      ],
+      "field_definitions": {
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "method": {
+          "display_label": "採購方式",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "budget_amount": {
+          "display_label": "預算金額",
+          "type": "currency",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_number_then_format_for_display"
+        },
+        "award_amount": {
+          "display_label": "決標金額",
+          "type": "currency",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_number_then_format_for_display"
+        },
+        "announce_date": {
+          "display_label": "公告日期",
+          "type": "date",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_to_YYYY-MM-DD"
+        },
+        "bid_deadline": {
+          "display_label": "截止投標日期",
+          "type": "date",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_to_YYYY-MM-DD"
+        },
+        "preparation_days": {
+          "display_label": "標案準備時間",
+          "type": "integer",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "calendar_date_diff(bid_deadline, announce_date)"
+        },
+        "awarded_vendor": {
+          "display_label": "得標廠商",
+          "type": "string",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_vendor_name_joined_for_display"
+        },
+        "reviewer_matrix": {
+          "display_label": "委員組成矩陣",
+          "type": "string_list",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_reviewer_group_joined_for_display"
+        }
+      },
+      "computed_fields": {
+        "preparation_days": {
+          "rule": "calendar_date_diff(bid_deadline, announce_date)",
+          "invalid_when": "missing date or bid_deadline < announce_date",
+          "display_invalid_as": "unavailable",
+          "summary_exclude_invalid": true
+        }
+      }
+    },
+    {
+      "id": "reviewer_matrix",
+      "source_module": "Reviewer Matrix",
+      "front_zh": "委員組成矩陣",
+      "front_en": "Reviewer Composition Matrix",
+      "route": "/modules/reviewer-matrix",
+      "source_files": [
+        "contract-shaped reviewer matrix payload"
+      ],
+      "status": "contract_only",
+      "public_fields": [
+        "case_number",
+        "case_name",
+        "entity",
+        "reviewer_matrix"
+      ],
+      "field_definitions": {
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "reviewer_matrix": {
+          "display_label": "委員組成矩陣",
+          "type": "string_list",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_reviewer_group_joined_for_display"
+        }
+      }
+    },
+    {
+      "id": "custom_supplier_management",
+      "source_module": "Target Vendor Lens",
+      "front_zh": "客戶訂製供應商管理系統",
+      "front_en": "Custom Supplier Management Module",
+      "route": "/modules/supplier-management",
+      "source_files": [
+        "data/preview/g40g_awarded_vendor_reviewer_clique_support.json"
+      ],
+      "status": "preview_ready",
+      "public_fields": [
+        "awarded_vendor",
+        "reviewer_matrix",
+        "case_number",
+        "case_name",
+        "entity"
+      ],
+      "field_definitions": {
+        "awarded_vendor": {
+          "display_label": "得標廠商",
+          "type": "string",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_vendor_name_joined_for_display"
+        },
+        "reviewer_matrix": {
+          "display_label": "委員組成矩陣",
+          "type": "string_list",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_reviewer_group_joined_for_display"
+        },
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        }
+      }
+    },
+    {
+      "id": "supplier_case_management_example",
+      "source_module": "Vendor Case Drilldown",
+      "front_zh": "供應商案件管理範例",
+      "front_en": "Supplier Case Management Example",
+      "route": "/modules/supplier-cases",
+      "source_files": [
+        "contract-shaped supplier case payload"
+      ],
+      "status": "contract_only",
+      "public_fields": [
+        "awarded_vendor",
+        "case_number",
+        "case_name",
+        "entity",
+        "award_amount"
+      ],
+      "field_definitions": {
+        "awarded_vendor": {
+          "display_label": "得標廠商",
+          "type": "string",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "top_public_vendor_name_joined_for_display"
+        },
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "award_amount": {
+          "display_label": "決標金額",
+          "type": "currency",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_number_then_format_for_display"
+        }
+      }
+    },
+    {
+      "id": "custom_information_example",
+      "source_module": "Case Evidence Card",
+      "front_zh": "客戶訂製訊息範例",
+      "front_en": "Custom Information Example",
+      "route": "/modules/custom-information",
+      "source_files": [
+        "contract-shaped information card payload"
+      ],
+      "status": "contract_only",
+      "public_fields": [
+        "case_number",
+        "case_name",
+        "entity",
+        "method"
+      ],
+      "field_definitions": {
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "method": {
+          "display_label": "採購方式",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        }
+      }
+    },
+    {
+      "id": "entity_data_management_example",
+      "source_module": "Entity Lens",
+      "front_zh": "機關資料管理範例",
+      "front_en": "Entity Data Management Example",
+      "route": "/modules/entity-data",
+      "source_files": [
+        "contract-shaped entity data payload"
+      ],
+      "status": "contract_only",
+      "public_fields": [
+        "entity",
+        "case_number",
+        "case_name",
+        "method"
+      ],
+      "field_definitions": {
+        "entity": {
+          "display_label": "機關",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "method": {
+          "display_label": "採購方式",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        }
+      }
+    },
+    {
+      "id": "timeline_field_calculator",
+      "source_module": "Timeline Compression",
+      "front_zh": "時間欄位計算器",
+      "front_en": "Timeline Field Calculator",
+      "route": "/modules/timeline-calculator",
+      "source_files": [
+        "contract-shaped timeline payload"
+      ],
+      "status": "contract_only",
+      "public_fields": [
+        "case_number",
+        "case_name",
+        "announce_date",
+        "bid_deadline",
+        "preparation_days"
+      ],
+      "field_definitions": {
+        "case_number": {
+          "display_label": "案號",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "case_name": {
+          "display_label": "案名",
+          "type": "string",
+          "source_layer": "source_observation",
+          "transform_rule": "pass_through_string"
+        },
+        "announce_date": {
+          "display_label": "公告日期",
+          "type": "date",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_to_YYYY-MM-DD"
+        },
+        "bid_deadline": {
+          "display_label": "截止投標日期",
+          "type": "date",
+          "source_layer": "source_observation",
+          "transform_rule": "normalize_to_YYYY-MM-DD"
+        },
+        "preparation_days": {
+          "display_label": "標案準備時間",
+          "type": "integer",
+          "source_layer": "computed_arrangement",
+          "transform_rule": "calendar_date_diff(bid_deadline, announce_date)"
+        }
+      }
+    }
+  ],
+  "shared_ui_rules": {
+    "b5_8_table_labels": {
+      "case_number": "案號",
+      "case_name": "案名",
+      "entity": "機關",
+      "method": "採購方式",
+      "budget_amount": "預算金額",
+      "award_amount": "決標金額",
+      "announce_date": "公告日期",
+      "bid_deadline": "截止投標日期",
+      "preparation_days": "標案準備時間",
+      "awarded_vendor": "得標廠商",
+      "reviewer_matrix": "委員組成矩陣"
+    },
+    "b5_8_card_labels": {
+      "matched_cases": "Matched Cases",
+      "cases_with_date_pair": "Cases With Date Pair",
+      "cases_with_computable_preparation_days": "Cases With Computable Preparation Days",
+      "avg_preparation_days": "Avg Preparation Days",
+      "min_preparation_days": "Min Preparation Days",
+      "max_preparation_days": "Max Preparation Days",
+      "top_entity_in_matched_cases": "Top Entity in Matched Cases"
+    },
+    "blank_display": "—",
+    "unavailable_display": "unavailable",
+    "number_display": "localized_thousands_separator",
+    "date_display": "YYYY-MM-DD"
+  },
+  "field_policies": {
+    "source_layer": [
+      "source_observation",
+      "computed_arrangement",
+      "operator_annotation",
+      "public_copy"
+    ],
+    "public_allowed": {
+      "source_observation": "allowed only through field allowlist",
+      "computed_arrangement": "allowed for computed result and rule display only",
+      "operator_annotation": "not allowed for public frontend display",
+      "public_copy": "allowed"
+    },
+    "blank_policy": {
+      "null_empty_missing_display": "—",
+      "do_not_display": [
+        "blank",
+        "undefined",
+        "null",
+        "NaN"
+      ]
+    },
+    "payload_policy": {
+      "raw_payload_public_use": false,
+      "standalone_embedded_data_public_source": false,
+      "b6_required_source": "contract-defined module payload"
+    },
+    "disallowed_fields": [
+      "payload_path",
+      "source_key",
+      "record_index",
+      "claim_type",
+      "legal_status",
+      "operator_notes",
+      "raw_payload",
+      "internal_flags"
+    ]
+  },
+  "data_boundary": {
+    "b_review_role": "B-Review is preview / dry-fit / contract lab",
+    "b_prod_role": "B-Prod is production display pack",
+    "b6_must_not_reference": [
+      "review standalone HTML",
+      "large embedded JSON from standalone previews"
+    ],
+    "b6_should_use": "contract-shaped JSON payload",
+    "standalone_html_dependency": false,
+    "large_embedded_json_dependency": false
+  },
+  "forbidden_terms": [
+    "risk",
+    "risk score",
+    "danger",
+    "critical",
+    "illegal",
+    "corruption",
+    "fraud",
+    "win rate",
+    "win-rate",
+    "win_rate",
+    "affinity",
+    "勝率",
+    "中標率",
+    "風險",
+    "黑箱",
+    "護航",
+    "派系",
+    "違法",
+    "弊案",
+    "貪腐",
+    "勾結",
+    "圖利",
+    "異常",
+    "可疑",
+    "可疑廠商",
+    "重點廠商",
+    "高頻廠商",
+    "特徵廠商",
+    "預算完全命中",
+    "代工小組",
+    "壟斷"
+  ],
+  "validation": {
+    "source_lock_version": "v2.9B5.9",
+    "module_count_expected": 7,
+    "forbidden_terms_expected": 31,
+    "production_files_touched": false,
+    "standalone_html_dependency": false
+  }
+}
