@@ -195,42 +195,28 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Runtime computed logo check added with console.table for hero and footer logo rendered size, natural size, filter, opacity, and mixBlendMode.
 - Data payload untouched.
 
+## B6.2.0 Gate Noise Cleanup + Continue Visual Stability Lock
+- Gate noise cleanup completed: review markdown no longer duplicates raw blocked vocabulary; execution gates remain the source of scan patterns.
+- Hero title readability locked with high-contrast title color, full opacity, and foreground stacking above haze, grid, and particle layers.
+- Background glow reduced behind the main title area so haze supports the cyberpunk tone without washing out the title.
+- Logo true-color preservation retained through the existing tracked brand asset and inline hard lock.
+- Hero action line remains removed; the mission line remains confined to the footer/company positioning area.
+- Operation layer width remains stabilized with the shared wide container token and table wrapper horizontal scroll.
+- Summary cards and table hierarchy remain consistent with shared token colors, stronger numeric hierarchy, and sticky table headers.
+- Reviewer Matrix remains structurally alive as a public co-presence view: names can form X/Y axes, cells can carry co-presence counts, and context can reference same case, vendor path, or review cluster.
+- Reviewer matrix payload and filter logic untouched.
+- Production untouched: expected no diff for index.html and data/*.json.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
 - Preview URL: file:///Users/juantingwei/Documents/4Force-AI-Lab/aai-display-review-codex-b/review/v2-9-b6-0-cyberpunk-public-index-dry-fit.html
 
 ## Forbidden Copy Boundary
-Forbidden terms remain sourced from B5.10. They may appear in this section only when listed for scanning context.
+Review markdown must not duplicate raw blocked vocabulary.
 
-- risk
-- risk score
-- danger
-- critical
-- illegal
-- corruption
-- fraud
-- win rate
-- win-rate
-- win_rate
-- affinity
-- 勝率
-- 中標率
-- 風險
-- 黑箱
-- 護航
-- 派系
-- 違法
-- 弊案
-- 貪腐
-- 勾結
-- 圖利
-- 異常
-- 可疑
-- 可疑廠商
-- 重點廠商
-- 高頻廠商
-- 特徵廠商
-- 預算完全命中
-- 代工小組
-- 壟斷
+The public preview copy must avoid legal-accusation vocabulary, criminal-judgment vocabulary, and public-label vocabulary that frames entities or cases as public harm signals.
+
+The grep gate is maintained in execution commands, not duplicated as raw terms inside this review document.
+
+Tracked review files should remain clean when scanned by the execution gate.
