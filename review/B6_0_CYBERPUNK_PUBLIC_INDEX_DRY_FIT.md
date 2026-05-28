@@ -207,6 +207,37 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Reviewer matrix payload and filter logic untouched.
 - Production untouched: expected no diff for index.html and data/*.json.
 
+## B6.3 Operation Layer / Module Hierarchy Lock
+- Operation layer hierarchy tightened while preserving the wide min(1760px, calc(100vw - 48px)) control deck.
+- Search, sort, module chips, sample tags, and active filter state now share one colder control surface with stable spacing and alignment.
+- Module cards now use a consistent height rhythm, stronger active-state treatment, stable bilingual label spacing, and a consistent status badge position.
+- Bid Preparation and Reviewer Composition Matrix remain visually important within the module card grid.
+- Summary card hierarchy strengthened with shared numeric color, larger number scale, smaller bilingual labels, consistent internal spacing, and stable card height.
+- Bid Preparation summaries continue to use filteredRows through computeBidSummary after active sample filters and search query are applied.
+- Table headers strengthened with sticky neon cyan headers, heavier type, clearer header background, and denser but readable body rows.
+- Bid Preparation and Reviewer Matrix tables keep wide-table behavior with horizontal scroll inside the table wrapper rather than body-level page drift.
+- Reviewer / co-presence matrix direction preserved: X axis = person / reviewer / entity names; Y axis = person / reviewer / entity names; cell value = co-presence / overlap count; cell context = same case, same vendor path, or same review cluster.
+- Reviewer matrix payload and filter logic untouched.
+- Public demo language kept commercial and neutral; no legal-accusation, judgment, or public harm label vocabulary added.
+- Production untouched: expected no diff for index.html and data/*.json.
+
+## B6.3.1 Header + Metric Card Hierarchy Micro Repair
+- Table header dominance strengthened with larger 15px header text, heavier 900 weight, stronger cyan tone, increased vertical padding, and a clearer header separator.
+- Body row density preserved with smaller table body text and unchanged wide-table horizontal scroll behavior.
+- Hero metric cards now use a split value/label layout: large value on the left, bilingual label stack on the right, and a subtle divider between them.
+- Bid Preparation and Reviewer Matrix summary cards now use the same split value/label hierarchy with larger numeric values and more readable bilingual labels.
+- Summary values continue to be computed from filteredRows through computeBidSummary and existing reviewer matrix summary logic.
+- B6.2/B6.3 gains preserved: hero readability, true-color logo handling, mission line absence in hero, wide operation layer, module card rhythm, active module state, and reviewer matrix payload/filter logic.
+- Reviewer / co-presence matrix direction remains preserved for future X/Y matrix work.
+- Production untouched: expected no diff for index.html and data/*.json.
+
+## B6.3.2 Metric Value Alignment Micro Repair
+- Metric value alignment unified with centered value zones for both hero metrics and module summary cards.
+- Hero metric values now share a fixed value-zone width and center alignment, so short values and longer values follow the same visual discipline.
+- Bid Preparation summary values now share a fixed value-zone width and center alignment, preserving the split value/label card structure.
+- No per-card or nth-child alignment hacks added.
+- Data values, filteredRows summary logic, reviewer matrix payload, filter logic, table body data, and production files untouched.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
