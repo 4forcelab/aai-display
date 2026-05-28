@@ -386,6 +386,17 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Supplier entity cards keep bilingual semantic labels for related display rows, related agencies, distinct case count, and sample route match.
 - Module states remain locked: four preview_connected modules and three contract_only modules. No new rows, no mock data, no Core connection, no B-Prod change, no commit, no tag, no push, and no deploy.
 
+## B7.6 Cross-Module Dimension Bridge
+- Added DIMENSION BRIDGE / 跨模組維度橋 to align the four preview_connected modules through shared display-layer dimensions: active route, related cases, related supplier/entity, related agency, co-presence rows, preparation window, and source scope.
+- The bridge is derived only from existing sanitized display payload rows and updates with active sample route, manual search query, active module, and sort state.
+- The 李雨蓁 sample route is supported across the four connected modules by including reviewer composition text in the Custom Supplier Management display-row filter path.
+- Bid Preparation now states that bid rows provide the case and date foundation used by Timeline and Supplier context.
+- Reviewer Composition Matrix keeps the co-presence table and adds a context note that co-presence rows align to active sample route and related supplier/entity context when available.
+- Timeline Field Calculator now includes a Preparation Window summary above the table: shortest, average, longest, and related cases count.
+- Custom Supplier Management purpose copy now frames the module as supplier/entity context across cases, agencies, co-presence rows, and bid preparation windows within the active display route.
+- Supplier cards now expose Related Cases, Related Agencies, Co-presence Rows, Preparation Days Range, and Sample Route Match when those fields can be derived from the current display payload.
+- No new rows, no mock data, no Core-like inference wording, no Core connection, no B-Prod change, no manual deploy, no commit, no tag, and no push.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
