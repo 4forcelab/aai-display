@@ -291,6 +291,15 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - B6.5 interaction behavior preserved: sample tags stay structured, module switches clear sample/search state, clear filters returns the current module to its full pool, and sort option values remain unchanged.
 - Reviewer / co-presence payload, sample_case_numbers search support, Bid Preparation filteredRows summaries, mobile protection, DevTools easter egg, Source & Model copy, and production files untouched.
 
+## B6.7 First Machine Release Candidate
+- Browser title updated from the previous dry-fit label to B6.7 RC Dry-Fit; visible hero, brand, logo, Source & Model, and operation layout remain unchanged.
+- RC readiness check confirms B6.5 interaction lock and B6.6 sample path guide remain intact.
+- Demo sample routes remain stable from the current display payload: 李雨蓁 Bid 12 / Co-presence 23, 協昌 Bid 10 / Co-presence 175, 三恆一樹 Bid 6 / Co-presence 8, 屏東縣政府 Bid 1042 / source scope 7653.
+- Reviewer / co-presence payload keeps sample_case_numbers and sample_cases search support, plus the future X/Y matrix direction.
+- Bid Preparation summary cards continue to recompute from filteredRows.
+- Mobile layer protection, DevTools easter egg, Chinese UI copy, Source & Model copy, and Core / Display boundary wording preserved.
+- Production untouched: expected no diff for index.html, data/*.json, deployment config, source directories, public assets, and logo asset.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
