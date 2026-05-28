@@ -543,3 +543,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
+
+## V8 Alpha Fourth Sample Route Lock
+- Base: V8 Alpha consultant unlock CTA lock / a24407c20ca5202779da7f3f0dbade9bab5c49d7.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Confirmed 屏東縣政府 remains available through existing public projection rows and existing sample route logic.
+- Product status row Display Routes updated to 4 public samples.
+- Sample route guide now labels 李雨蓁 / 李宇臻 as person route, 協昌 as supplier route, 三恆一樹 as small-pool route, and 屏東縣政府 as agency route.
+- Consultant unlock placeholder and Contact / info@4force.com.tw CTA preserved.
+- Precise status-row source split remains removed.
+- Absurdity statement panel, hero motto, V8 Alpha naming, Public Projection Console, dashboard-first route, Reviewer Co-presence Grid, statistical terms, mobile gate, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
