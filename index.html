@@ -725,7 +725,7 @@
             }
         }
 
-        /* 3. 資金流向戰術地圖 */
+        /* 3. 預算方向戰術地圖 */
         .flow-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1123,6 +1123,64 @@
             color: #ffffff;
         }
 
+        .b79-mobile-terminal { display: none; }
+        .route-dashboard-section {
+            text-align: left;
+            max-width: 1400px;
+            margin: 0 auto 4.5rem auto;
+            border: 1px solid rgba(0, 240, 255, 0.22);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(10, 16, 32, 0.92), rgba(5, 10, 24, 0.86));
+            box-shadow: 0 0 34px rgba(0, 240, 255, 0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+            padding: 1.4rem;
+        }
+        .route-control-row { display: grid; grid-template-columns: minmax(260px, 1fr) auto; gap: 1rem; align-items: center; }
+        .route-search-input {
+            min-height: 48px; border: 1px solid rgba(0, 240, 255, 0.28); border-radius: 10px;
+            background: rgba(0, 0, 0, 0.28); color: var(--text-primary); padding: 0 1rem; font-size: 0.95rem; outline: none;
+        }
+        .route-chip-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
+        .route-chip-label { color: var(--text-secondary); font-family: 'Fira Code', monospace; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 0.25rem; }
+        .route-chip {
+            border: 1px solid rgba(0, 240, 255, 0.28); color: var(--text-primary); background: rgba(0, 240, 255, 0.06);
+            border-radius: 999px; padding: 0.5rem 0.85rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth);
+        }
+        .route-chip.active { border-color: var(--neon-green); color: #03130d; background: var(--neon-green); box-shadow: 0 0 16px var(--neon-green-glow); }
+        .route-dashboard-head { margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid rgba(0, 240, 255, 0.14); display: flex; gap: 1rem; justify-content: space-between; align-items: flex-start; }
+        .route-dashboard-head .kicker { display: block; color: var(--neon-blue); font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.09em; }
+        .route-dashboard-head h3 { margin: 0.35rem 0 0; font-size: 1.45rem; font-weight: 900; }
+        .route-dashboard-head p { max-width: 820px; color: var(--text-secondary); line-height: 1.65; margin: 0; }
+        .route-dashboard-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .route-dashboard-card {
+            min-height: 100px; border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 12px; background: rgba(0, 0, 0, 0.22);
+            padding: 0.9rem; display: flex; flex-direction: column; gap: 0.45rem; align-items: flex-start; justify-content: flex-start;
+        }
+        .route-dashboard-card b { color: var(--text-secondary); font-family: 'Fira Code', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .route-dashboard-card strong { color: var(--text-primary); font-size: 1rem; line-height: 1.35; overflow-wrap: anywhere; }
+        .route-dashboard-card span { color: var(--text-muted); font-size: 0.78rem; line-height: 1.45; }
+        .route-dashboard-panels { display: grid; grid-template-columns: minmax(0, 1.14fr) minmax(360px, 0.86fr); gap: 1rem; margin-top: 1rem; align-items: start; }
+        .route-dashboard-panel { border: 1px solid rgba(0, 240, 255, 0.16); border-radius: 14px; background: rgba(0, 0, 0, 0.2); padding: 1rem; }
+        .route-panel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.8rem; margin-bottom: 0.8rem; }
+        .route-panel-head b { font-size: 1rem; }
+        .route-panel-head span { color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.72rem; }
+        .route-dashboard-table-wrap { max-height: 360px; overflow: auto; border: 1px solid rgba(0, 240, 255, 0.12); border-radius: 10px; }
+        .route-dashboard-table { width: 100%; min-width: 980px; border-collapse: collapse; }
+        .route-dashboard-table th, .route-dashboard-table td { padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: top; text-align: left; font-size: 0.78rem; }
+        .route-dashboard-table th { position: sticky; top: 0; z-index: 1; background: rgba(8, 18, 36, 0.98); color: var(--neon-blue); font-weight: 900; }
+        .co-presence-grid-wrap { overflow: auto; border: 1px solid rgba(0, 240, 255, 0.12); border-radius: 10px; padding: 0.55rem; background: rgba(0,0,0,0.18); }
+        .co-presence-grid { display: grid; gap: 4px; min-width: 560px; }
+        .co-presence-cell {
+            min-height: 38px; border: 1px solid rgba(0, 240, 255, 0.14); border-radius: 6px; background: rgba(0, 240, 255, 0.045);
+            color: var(--text-primary); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0.4rem; font-family: 'Fira Code', monospace; font-size: 0.72rem; font-weight: 800;
+        }
+        .co-presence-cell.head { color: var(--neon-blue); background: rgba(0, 240, 255, 0.09); }
+        .co-presence-cell.axis { justify-content: flex-start; text-align: left; font-family: 'Noto Sans TC', sans-serif; }
+        .co-presence-cell.hot { border-color: rgba(5, 255, 161, 0.35); background: rgba(5, 255, 161, 0.1); color: #ffffff; }
+        .observation-axes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.8rem; }
+        .observation-axes span { border: 1px solid rgba(5, 255, 161, 0.2); background: rgba(5, 255, 161, 0.055); border-radius: 8px; padding: 0.55rem 0.65rem; color: #dfffee; font-size: 0.78rem; font-weight: 800; }
+        .route-support-layer { margin-top: 1rem; border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 14px; background: rgba(124, 58, 237, 0.055); padding: 1rem; color: var(--text-secondary); line-height: 1.65; }
+        .route-support-layer b { display: block; color: var(--neon-green); margin-bottom: 0.35rem; font-family: 'Fira Code', monospace; font-size: 0.78rem; letter-spacing: 0.08em; }
+
         @media (max-width: 768px) {
             /* Hero title sizing */
             .hero-section h2 {
@@ -1145,6 +1203,12 @@
 
             /* Pack grids to single column */
             .sales-pack-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .route-control-row,
+            .route-dashboard-grid,
+            .route-dashboard-panels,
+            .observation-axes {
                 grid-template-columns: 1fr !important;
             }
 
@@ -1197,6 +1261,45 @@
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
+            }
+        }
+
+        @media (max-width: 760px) {
+            header, main, footer {
+                display: none !important;
+            }
+            .b79-mobile-terminal {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5rem;
+                position: relative;
+                z-index: 5;
+            }
+            .b79-mobile-terminal .mobile-panel {
+                width: min(100%, 440px);
+                border: 1px solid rgba(0, 240, 255, 0.35);
+                border-left: 3px solid var(--neon-blue);
+                border-radius: 16px;
+                background: rgba(6, 9, 19, 0.94);
+                padding: 1.5rem;
+                box-shadow: 0 0 28px rgba(0, 240, 255, 0.12);
+            }
+            .b79-mobile-terminal h2 {
+                margin-bottom: 0.55rem;
+                color: var(--text-primary);
+            }
+            .b79-mobile-terminal strong {
+                display: block;
+                color: var(--neon-blue);
+                font-family: 'Fira Code', monospace;
+                text-transform: uppercase;
+                margin-bottom: 0.8rem;
+            }
+            .b79-mobile-terminal p {
+                color: var(--text-secondary);
+                line-height: 1.75;
             }
         }
 
@@ -1285,6 +1388,13 @@
     <!-- 4Force Brand Layer: particle field + HUD toast (pointer-events: none, z-index below content) -->
     <canvas id="aai-particle-canvas" aria-hidden="true"></canvas>
     <div id="aai-hud-toast" role="status" aria-live="polite"></div>
+    <section class="b79-mobile-terminal">
+        <div class="mobile-panel">
+            <h2>AAI Mobile Terminal</h2>
+            <strong>Signal Restricted</strong>
+            <p>手機端目前僅開放客製化情報推送。<br>請使用桌機或平板進入 Active Audit Intelligence 操作層。</p>
+        </div>
+    </section>
 
     <!-- Header Navigation -->
     <header>
@@ -1369,6 +1479,21 @@
                         <span class="hud-value">370 條</span>
                     </div>
                 </div>
+            </section>
+
+            <section class="route-dashboard-section" id="route-dashboard-section">
+                <div class="route-control-row">
+                    <input id="route-search-field" class="route-search-input" placeholder="搜尋欄位 / Search Field：人物、廠商、機關、案號、案名" />
+                    <button class="btn-cyber" id="route-clear-btn" type="button">清除篩選</button>
+                </div>
+                <div class="route-chip-row" id="route-chip-row">
+                    <span class="route-chip-label">測試路徑 / Demo Route</span>
+                    <button class="route-chip" data-route="李雨蓁" type="button">李雨蓁</button>
+                    <button class="route-chip" data-route="屏東縣政府" type="button">屏東縣政府</button>
+                    <button class="route-chip" data-route="協昌" type="button">協昌</button>
+                    <button class="route-chip" data-route="三恆一樹" type="button">三恆一樹</button>
+                </div>
+                <div id="route-dashboard-root"></div>
             </section>
 
             <!-- Screen 2: System Solutions -->
@@ -1501,7 +1626,7 @@
                     </div>
                     <div class="sales-pack-card">
                         <i class="fa-solid fa-route sales-pack-icon" style="color: var(--neon-blue);"></i>
-                        <span class="sales-pack-title">場域資金流情報包</span>
+                        <span class="sales-pack-title">場域預算方向情報包</span>
                         <p class="sales-desc" style="font-size: 0.82rem; text-align: center;">追蹤特定場域計畫資金分配流向，輸出決算金額吻合度分析與跨年度資金路徑圖譜。</p>
                     </div>
                 </div>
@@ -1557,7 +1682,7 @@
                     <i class="fa-solid fa-circle-nodes"></i> 星狀關聯圖
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('tactical')">
-                    <i class="fa-solid fa-map-location-dot"></i> 資金流向戰術地圖
+                    <i class="fa-solid fa-map-location-dot"></i> 預算方向戰術地圖
                 </button>
                 <button class="btn-war-tab" onclick="switchWarTab('members')">
                     <i class="fa-solid fa-users-gear"></i> 評委重複網
@@ -1672,11 +1797,11 @@
                     </div>
                 </div>
 
-                <!-- 3. 資金流向戰術地圖 -->
+                <!-- 3. 預算方向戰術地圖 -->
                 <div id="war-tab-tactical" class="warroom-content">
                     <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; background: rgba(0, 240, 255, 0.05); padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
                         <i class="fa-solid fa-circle-info" style="margin-right: 0.4rem; color: var(--neon-blue);"></i>
-                        子母關聯集合卡：本面板以案號為母卡群組，展開旗下歷史公告子列，呈現完整資金流轉軌跡。
+                        子母關聯集合卡：本面板以案號為母卡群組，展開旗下歷史公告子列，呈現完整預算配置軌跡。
                     </div>
                     <div id="tactical-list" class="flow-grid">
                         <!-- Filled by JS -->
@@ -2045,7 +2170,7 @@
                 <span style="font-weight: 700; color: #ffffff; font-size: 1rem; letter-spacing: 0.05em;">萬合天宜有限公司</span>
             </div>
             <div style="font-size: 0.85rem;">AAI 專案主理人 Wesley Juan / 0900-489-893</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4Force Lab. All rights reserved.</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">© 2025–2026 4Force Lab CO., LTD. All rights reserved.</div>
         </div>
     </footer>
 
@@ -2055,6 +2180,254 @@
         let globalDetails = [];
         let globalSignals = [];
         let globalGraph = {};
+        const DISPLAY_PENDING = 'Display field pending';
+        const routeDashboardState = { route: '李雨蓁', search: '', routeLocked: false };
+
+        function b79Safe(value) {
+            if (value === null || value === undefined || value === '') return '—';
+            const text = String(value).trim();
+            return text || '—';
+        }
+
+        function b79Number(value) {
+            if (value === null || value === undefined || value === '') return null;
+            const num = Number(String(value).replace(/[^\d.-]/g, ''));
+            return Number.isFinite(num) ? num : null;
+        }
+
+        function b79Money(value) {
+            const num = b79Number(value);
+            return num === null ? DISPLAY_PENDING : num.toLocaleString('zh-TW');
+        }
+
+        function b79DeepText(value) {
+            try { return JSON.stringify(value || '').toLowerCase(); }
+            catch (_) { return String(value || '').toLowerCase(); }
+        }
+
+        function b79TaiwanDate(value) {
+            const text = b79Safe(value);
+            if (text === '—') return null;
+            const m = text.match(/(\d{2,3})[/-](\d{1,2})[/-](\d{1,2})/);
+            if (m) {
+                const year = Number(m[1]) + 1911;
+                return `${year}-${String(m[2]).padStart(2, '0')}-${String(m[3]).padStart(2, '0')}`;
+            }
+            const iso = text.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+            if (iso) return `${iso[1]}-${String(iso[2]).padStart(2, '0')}-${String(iso[3]).padStart(2, '0')}`;
+            return null;
+        }
+
+        function b79ParseDate(value) {
+            const normalized = b79TaiwanDate(value);
+            if (!normalized) return null;
+            const date = new Date(`${normalized}T00:00:00`);
+            return Number.isNaN(date.getTime()) ? null : date;
+        }
+
+        function b79AnnounceDate(row) {
+            return b79TaiwanDate(row.announce_date || row.raw_detail?.['已公告資料:原公告日期'] || row.raw_detail?.['招標公告:公告日期'] || row.raw_detail?.['採購資料:公告日期']);
+        }
+
+        function b79DeadlineDate(row) {
+            return b79TaiwanDate(row.bid_deadline || row.raw_detail?.['領投開標:截止投標'] || row.raw_detail?.['領投開標:開標時間'] || row.raw_detail?.['已公告資料:開標時間']);
+        }
+
+        function b79PreparationDays(row) {
+            const start = b79ParseDate(b79AnnounceDate(row));
+            const end = b79ParseDate(b79DeadlineDate(row));
+            if (!start || !end) return null;
+            const days = Math.round((end - start) / 86400000);
+            return Number.isInteger(days) && days >= 0 ? days : null;
+        }
+
+        function b79CommitteeNames(row) {
+            return (row.committee_members || []).map(member => b79Safe(member.name)).filter(name => name !== '—');
+        }
+
+        function b79MatchesRoute(row) {
+            const route = routeDashboardState.route;
+            const query = routeDashboardState.search.trim().toLowerCase();
+            const text = b79DeepText(row);
+            const routeOk = query && !routeDashboardState.routeLocked ? true : (!route || text.includes(route.toLowerCase()));
+            const queryOk = !query || text.includes(query);
+            return routeOk && queryOk;
+        }
+
+        function b79RouteRows() {
+            return (globalDetails || []).filter(b79MatchesRoute);
+        }
+
+        function b79UniqueCaseRows(rows) {
+            const seen = new Set();
+            return rows.filter(row => {
+                const key = b79Safe(row.case_number);
+                if (key === '—' || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+
+        function b79RouteType(rows) {
+            const route = routeDashboardState.route;
+            if (!route) return routeDashboardState.search ? 'manual search axis' : DISPLAY_PENDING;
+            const nodes = globalGraph?.nodes || [];
+            const node = nodes.find(item => b79Safe(item.label) === route || b79Safe(item.id).endsWith(`-${route}`));
+            if (node?.type === 'member') return 'person / reviewer';
+            if (node?.type === 'vendor') return 'supplier / entity';
+            if (node?.type === 'agency' || node?.type === 'unit') return 'agency / entity';
+            if (rows.some(row => b79CommitteeNames(row).includes(route))) return 'person / reviewer';
+            return DISPLAY_PENDING;
+        }
+
+        function b79Position(rows) {
+            const route = routeDashboardState.route;
+            const values = rows.flatMap(row => (row.committee_members || [])
+                .filter(member => b79Safe(member.name) === route)
+                .map(member => member.profession));
+            const unique = [...new Set(values.map(b79Safe).filter(v => v !== '—'))];
+            return unique.length ? unique.slice(0, 2).join(' / ') : DISPLAY_PENDING;
+        }
+
+        function b79DateSpan(rows) {
+            const dates = rows.flatMap(row => [b79AnnounceDate(row), b79DeadlineDate(row), row.award_date])
+                .map(value => ({ value: b79TaiwanDate(value), date: b79ParseDate(value) }))
+                .filter(item => item.date)
+                .sort((a, b) => a.date - b.date);
+            if (!dates.length) return DISPLAY_PENDING;
+            return `${dates[0].value} → ${dates[dates.length - 1].value}`;
+        }
+
+        function b79Budget(rows) {
+            const values = rows.map(row => b79Number(row.budget_amount ?? row.award_amount)).filter(value => value !== null);
+            if (!values.length) return { direction: DISPLAY_PENDING, context: DISPLAY_PENDING, exposure: DISPLAY_PENDING };
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const sum = values.reduce((a, b) => a + b, 0);
+            const range = min === max ? b79Money(min) : `${b79Money(min)} - ${b79Money(max)}`;
+            return {
+                direction: `${range} · readable rows ${values.length}`,
+                context: `sum ${sum.toLocaleString('zh-TW')} · cases ${b79UniqueCaseRows(rows).length}`,
+                exposure: `${sum.toLocaleString('zh-TW')} · coverage rows ${values.length}`
+            };
+        }
+
+        function b79TenderDirection(rows) {
+            const methods = [...new Set(rows.map(row => b79Safe(row.procurement_method || row.raw_detail?.['已公告資料:招標方式'] || row.raw_detail?.['採購資料:招標方式'])).filter(v => v !== '—'))];
+            const vendors = [...new Set(rows.map(row => b79Safe(row.winning_vendor)).filter(v => v !== '—'))];
+            if (!methods.length && !vendors.length) return DISPLAY_PENDING;
+            return `${methods.slice(0, 2).join(' / ') || DISPLAY_PENDING} · awarded vendors ${vendors.length}`;
+        }
+
+        function b79AwardedVendors(rows) {
+            const vendors = [...new Set(rows.map(row => b79Safe(row.winning_vendor)).filter(v => v !== '—'))];
+            if (!vendors.length) return DISPLAY_PENDING;
+            return `${vendors.length} · ${vendors.slice(0, 3).join(' / ')}${vendors.length > 3 ? ` +${vendors.length - 3}` : ''}`;
+        }
+
+        function b79ReviewerDistribution(rows, limit = 7) {
+            const counts = new Map();
+            rows.forEach(row => b79CommitteeNames(row).forEach(name => counts.set(name, (counts.get(name) || 0) + 1)));
+            return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-Hant')).slice(0, limit);
+        }
+
+        function b79CoPresenceGrid(rows) {
+            const nodes = b79ReviewerDistribution(rows, 7).map(([name]) => name);
+            const cells = nodes.map(y => nodes.map(x => rows.filter(row => {
+                const names = b79CommitteeNames(row);
+                return names.includes(x) && names.includes(y);
+            }).length));
+            return { nodes, cells };
+        }
+
+        function b79SupplierPosition(rows) {
+            const vendors = [...new Set(rows.map(row => b79Safe(row.winning_vendor)).filter(v => v !== '—'))];
+            const agencies = [...new Set(rows.map(row => b79Safe(row.agency || row.unit)).filter(v => v !== '—'))];
+            if (!vendors.length && !agencies.length) return DISPLAY_PENDING;
+            return `${vendors.slice(0, 2).join(' / ') || DISPLAY_PENDING} · agencies ${agencies.length}`;
+        }
+
+        function renderRouteDashboardPanel() {
+            const root = document.getElementById('route-dashboard-root');
+            if (!root) return;
+            const rows = b79RouteRows();
+            const caseRows = b79UniqueCaseRows(rows);
+            const budget = b79Budget(rows);
+            const prepValues = rows.map(b79PreparationDays).filter(Number.isInteger);
+            const prepText = prepValues.length
+                ? `${Math.min(...prepValues)} / ${(prepValues.reduce((a,b)=>a+b,0)/prepValues.length).toFixed(1)} / ${Math.max(...prepValues)} bid preparation days`
+                : DISPLAY_PENDING;
+            const reviewerTop = b79ReviewerDistribution(rows, 5);
+            const reviewerText = reviewerTop.length ? reviewerTop.map(([name, count]) => `${name} ${count}`).join(' / ') : DISPLAY_PENDING;
+            const metrics = [
+                ['展示路徑 / Display Route', routeDashboardState.search && !routeDashboardState.routeLocked ? `Manual Search: ${routeDashboardState.search}` : (routeDashboardState.route || 'Manual Search'), `type: ${b79RouteType(rows)}`],
+                ['職級 / Position', b79Position(rows), 'source: display fields'],
+                ['參與案件 / Participated Tenders', caseRows.length.toLocaleString('zh-TW'), `case rows ${rows.length}`],
+                ['時間段 / Time Span', b79DateSpan(rows), 'earliest → latest'],
+                ['預算方向 / Budget Direction', budget.direction, 'readable budget fields'],
+                ['預算脈絡 / Budget Context', budget.context, 'budget by display case'],
+                ['預算接觸面 / Budget Exposure', budget.exposure, 'coverage from current route'],
+                ['招標方向 / Tender Direction', b79TenderDirection(rows), 'method / awarded vendor'],
+                ['備標時間 / Preparation Window', prepText, 'announce_date → bid_deadline'],
+                ['得標廠商 / Awarded Vendors', b79AwardedVendors(rows), 'unique vendor list'],
+                ['案件評委常態分布圖 / Reviewer Distribution', reviewerText, 'linked to co-presence grid'],
+                ['共現資料列 / Co-presence Rows', rows.filter(row => b79CommitteeNames(row).length).length.toLocaleString('zh-TW'), 'existing co-presence rows only'],
+                ['供應商位置 / Supplier Position', b79SupplierPosition(rows), 'case / agency / time window']
+            ];
+            const tableRows = caseRows.slice(0, 10);
+            const tenderTable = tableRows.length ? `
+                <div class="route-dashboard-table-wrap">
+                    <table class="route-dashboard-table">
+                        <thead><tr><th>案號 / Case Number</th><th>案名 / Case Title</th><th>機關 / Agency</th><th>預算 / Budget</th><th>備標天數 / Preparation Days</th><th>得標廠商 / Awarded Vendor</th><th>公告日期 / Announce Date</th><th>截止投標日 / Bid Deadline</th></tr></thead>
+                        <tbody>${tableRows.map(row => `<tr><td>${b79Safe(row.case_number)}</td><td>${b79Safe(row.title)}</td><td>${b79Safe(row.agency || row.unit)}</td><td>${b79Money(row.budget_amount)}</td><td>${b79Safe(b79PreparationDays(row))}</td><td>${b79Safe(row.winning_vendor)}</td><td>${b79Safe(b79AnnounceDate(row))}</td><td>${b79Safe(b79DeadlineDate(row))}</td></tr>`).join('')}</tbody>
+                    </table>
+                </div>` : `<div style="color:var(--text-secondary);padding:1rem;">${DISPLAY_PENDING}</div>`;
+            const matrix = b79CoPresenceGrid(rows);
+            const gridColumns = `minmax(120px, 1.1fr) repeat(${Math.max(matrix.nodes.length, 1)}, minmax(70px, 1fr))`;
+            const matrixGrid = matrix.nodes.length ? `
+                <div class="co-presence-grid-wrap">
+                    <div class="co-presence-grid" style="grid-template-columns:${gridColumns}">
+                        <div class="co-presence-cell head">Reviewer</div>
+                        ${matrix.nodes.map(node => `<div class="co-presence-cell head">${b79Safe(node)}</div>`).join('')}
+                        ${matrix.nodes.map((name, y) => `<div class="co-presence-cell axis">${b79Safe(name)}</div>${matrix.nodes.map((_, x) => `<div class="co-presence-cell ${matrix.cells[y][x] ? 'hot' : ''}">${matrix.cells[y][x]}</div>`).join('')}`).join('')}
+                    </div>
+                </div>` : `<div style="color:var(--text-secondary);padding:1rem;">${DISPLAY_PENDING}</div>`;
+            root.innerHTML = `
+                <div class="route-dashboard-head">
+                    <div><span class="kicker">ROUTE DASHBOARD</span><h3>展示路徑總表 · Budget Direction / 預算方向</h3></div>
+                    <p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, awarded vendors, and reviewer co-presence.</p>
+                </div>
+                <div class="route-dashboard-grid">${metrics.map(([label, value, hint]) => `<article class="route-dashboard-card"><b>${label}</b><strong>${b79Safe(value)}</strong><span>${b79Safe(hint)}</span></article>`).join('')}</div>
+                <div class="route-dashboard-panels">
+                    <section class="route-dashboard-panel"><div class="route-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${caseRows.length} unique cases · showing ${tableRows.length}</span></div>${tenderTable}</section>
+                    <section class="route-dashboard-panel"><div class="route-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${rows.filter(row => b79CommitteeNames(row).length).length} Co-presence Rows</span></div>${matrixGrid}<div class="route-panel-head" style="margin:0.9rem 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section>
+                </div>
+                <div class="route-support-layer"><b>DIMENSION BRIDGE / 跨模組維度橋</b>ROUTE NARRATIVE support layer: Search Field and Demo Route feed the same display-layer context used by tender list, reviewer grid, supplier position, and preparation window.</div>`;
+            document.querySelectorAll('.route-chip').forEach(chip => chip.classList.toggle('active', chip.dataset.route === routeDashboardState.route && (!routeDashboardState.search || routeDashboardState.routeLocked)));
+        }
+
+        function bindRouteDashboardControls() {
+            const input = document.getElementById('route-search-field');
+            if (input) input.addEventListener('input', event => {
+                routeDashboardState.search = event.target.value.trim();
+                renderRouteDashboardPanel();
+            });
+            document.querySelectorAll('.route-chip').forEach(chip => chip.addEventListener('click', () => {
+                routeDashboardState.route = chip.dataset.route;
+                routeDashboardState.routeLocked = true;
+                routeDashboardState.search = '';
+                if (input) input.value = '';
+                renderRouteDashboardPanel();
+            }));
+            const clear = document.getElementById('route-clear-btn');
+            if (clear) clear.addEventListener('click', () => {
+                routeDashboardState.route = '李雨蓁';
+                routeDashboardState.routeLocked = false;
+                routeDashboardState.search = '';
+                if (input) input.value = '';
+                renderRouteDashboardPanel();
+            });
+        }
 
         // Consultation Booking Handlers
         function openConsultModal() {
@@ -2151,6 +2524,7 @@
                 globalDetails = detailsData.cases || [];
                 globalSignals = signalsData.signals || [];
                 globalGraph = graphData || {};
+                renderRouteDashboardPanel();
 
                 // Inject active pool display name into panel titles and notes
                 const activePoolName = detailsData.active_pool_display_name
@@ -2840,7 +3214,7 @@
             `;
         }
 
-        // 3. Render 資金流向戰術地圖
+        // 3. Render 預算方向戰術地圖
         function renderTacticalTab(details, signals) {
             const container = document.getElementById('tactical-list');
             container.innerHTML = '';
@@ -4054,7 +4428,10 @@
         }
 
         // Run data load on startup
-        window.addEventListener('DOMContentLoaded', loadAllData);
+        window.addEventListener('DOMContentLoaded', () => {
+            bindRouteDashboardControls();
+            loadAllData();
+        });
 
         // ═══════════════════════════════════════════════════
         // 4Force Brand: Lightweight Particle Field
@@ -4130,9 +4507,9 @@
             console.log(
                 '%c┌─────────────────────────────────────────────┐\n'
               + '%c│  AAI  //  Active Audit Intelligence         │\n'
-              + '%c│  4Force Lab  ·  Signal Engine v2.5          │\n'
+              + '%c│  4Force Lab  ·  Sanitized Display Layer     │\n'
               + '%c│  萬事皆宜，天作之合                            │\n'
-              + '%c│  Insight · Strategy · Creativity · Execution │\n'
+              + "%c│  What's already there, arranged.           │\n"
               + '%c└─────────────────────────────────────────────┘',
                 'color:#1e293b',
                 cyan, cyan, cyan, violet,
@@ -4147,23 +4524,31 @@
                 ['%c[ SPLIT   ]%c Secure Split          : %cENABLED',         cyan, muted, green],
                 ['%c[ RADAR   ]%c Governance Signal Radar: %cACTIVE',         cyan, muted, green],
                 ['%c[ METHOD  ]%c Extraction Layer      : %cSEALED',          cyan, muted, 'color:#ffaa00;font-weight:600;'],
-                ['%c[ RULE ]%c Scoring Distribution  : %cSEALED',          cyan, muted, 'color:#ffaa00;font-weight:600;'],
+                ['%c[ BOUNDARY ]%c Core / Display Boundary: %cENABLED',       cyan, muted, green],
                 ['%c[ OUTPUT  ]%c Sanitized Signal Surface: %cACTIVE',        cyan, muted, green],
             ];
             statusLines.forEach(args => console.log(...args));
 
             console.log('%c', '');
             console.log(
-                '%c// If you opened DevTools, you are already looking at the wrong layer.',
+                '%c// You are looking at the display layer.',
                 muted
             );
             console.log(
-                '%c// The mine is not here. Only refined signals are displayed.',
+                '%c// The mine is not here. You may inspect the glass, not the engine.',
                 muted
             );
             console.log(
-                '%c// Core methods are sealed behind the mountain.',
+                '%c// If you came for the method, you arrived at the echo.',
                 muted
+            );
+            console.log(
+                '%c// You are not denied. You are simply in the wrong layer.',
+                muted
+            );
+            console.log(
+                '%c// CONTACT: info@4force.com.tw',
+                cyan
             );
             console.log('%c', '');
             console.log(
@@ -4181,7 +4566,7 @@
             const SEQUENCES = ['aai', '4force'];
             const TOASTS = [
                 '<i class="fa-solid fa-satellite-dish" style="margin-right:0.5rem;color:var(--neon-green);"></i>AAI Signal Layer · ONLINE',
-                '<i class="fa-solid fa-shield-halved" style="margin-right:0.5rem;color:var(--neon-blue);"></i>4Force Lab · Insight Strategy Creativity Execution',
+                '<i class="fa-solid fa-shield-halved" style="margin-right:0.5rem;color:var(--neon-blue);"></i>4Force Lab · Display Layer Ready',
                 '<i class="fa-solid fa-circle-nodes" style="margin-right:0.5rem;color:#7c3aed;"></i>Governance Signal Radar · ACTIVE'
             ];
             let buffer = '';
