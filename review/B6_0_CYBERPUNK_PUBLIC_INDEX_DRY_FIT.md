@@ -496,3 +496,14 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Mobile Layer Protection, DevTools easter egg, Source & Model copy, true-color logo treatment, and Dimension Bridge alignment remain preserved.
 - No Core touch, no B-Prod touch, no manual deploy.
 - Production QA target: https://aai-display.vercel.app/.
+
+## V8 Alpha Frontend Naming Lock
+- Base: B7.9S / 289d9d292f07f94ce85bc707fde65c4f43a48980.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Frontend product state renamed to AAI V8 Alpha / Public Projection Console.
+- Hero badge updated to Alpha Surface.
+- Hero subtitle updated to Signals already present, arranged for inspection.
+- B7.9 dashboard-first route experience, default route 李雨蓁, sample tags, Participated Tender List, Reviewer Co-presence Grid, statistical terms, mobile gate, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
