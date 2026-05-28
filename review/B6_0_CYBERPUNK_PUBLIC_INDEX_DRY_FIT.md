@@ -507,3 +507,14 @@ Tracked review files should remain clean when scanned by the execution gate.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
+
+## V8 Alpha Product Status Row + Motto Restore Lock
+- Base: V8 Alpha frontend naming lock / bb814831c023a3e219c48299c0c0b0e346dc811f.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Hero motto restored to CAIRN IN THE DARKPOOL and What's already there, arranged.
+- Added product status row with Last Projection Update, Daily Miner, Public Projection Rows, Display Routes, and Data Boundary.
+- Status row reflects AG2 public projection timestamp, active miner state, display row count, three public sample routes, and Public Projection Only boundary.
+- B7.9 / V8 dashboard-first route experience, 李雨蓁 default route, 協昌 and 三恆一樹 sample tags, Participated Tender List, Reviewer Co-presence Grid, statistical terms, mobile gate, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
