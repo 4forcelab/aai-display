@@ -352,7 +352,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 ## B7.3.2 Demo Route Guide Copy Polish
 - SAMPLE PATH GUIDE product copy is now DEMO ROUTE GUIDE / 展示路徑導引.
 - The guide keeps Public Module Sample / AAI display layer but removes internal root-preview wording.
-- Guide body now explains that sample tags are structured demo routes, not free-text search, in Chinese and English.
+- Guide body now explains that sample tags provide structured demo routes in Chinese and English.
 - No module state logic, sample counts, search/filter behavior, mobile gate, DevTools easter egg, data, assets, Core, B-Prod, push, or deploy changed.
 
 ## B7.4 Module Content Depth Pass
@@ -417,6 +417,16 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Narrative card copy compressed for Search Field, Demo Route, Timeline, Supplier Context, and Dimension Bridge.
 - Card alignment and line-height received a micro repair so Chinese and English text read as separated lines without changing the layout system.
 - No Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
+- Production QA target: https://aai-display.vercel.app/.
+
+## B7.8.1 Narrative Copy De-AI Pass
+- Base: B7.8 / 1bf1fc463c68e17eeed2e06b317f1c3cfa93ac5e.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Route Narrative card copy revised from negative explanatory wording into positive product-action wording.
+- Removed negative free-search wording from the demo route copy.
+- Removed vendor-card negative wording from the supplier context copy.
+- Timeline card copy now reads announce_date to bid_deadline as a preparation window, with amount and price dimensions reserved for later linkage.
+- No function changes, no layout restructuring, no Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
 - Production QA target: https://aai-display.vercel.app/.
 
 ## Gate Result
