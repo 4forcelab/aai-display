@@ -409,6 +409,16 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - No Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B7.8 Interface Semantics Pass
+- Base: B7.7 / 544b4ae4ce567900858c35f102ff4ecdc7283cfc.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- UI label updates: Search Query -> 搜尋欄位 / Search Field; Sample Filter -> 測試路徑 / Demo Route; Filter Mode -> 篩選狀態 / Filter State; Result Count -> 結果筆數 / Result Count; Active Module -> 目前模組 / Active Module.
+- Route Narrative intro converted to a full-width reading entry: title, intro, then five compact cards.
+- Narrative card copy compressed for Search Field, Demo Route, Timeline, Supplier Context, and Dimension Bridge.
+- Card alignment and line-height received a micro repair so Chinese and English text read as separated lines without changing the layout system.
+- No Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
