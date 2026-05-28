@@ -325,6 +325,15 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Mobile layer protection is enforced at narrow viewport width so the root landing does not expose the operation layer on phone-sized screens.
 - Data payload, Bid Preparation filteredRows summaries, reviewer/co-presence rows, future X/Y direction, and DevTools easter egg remain untouched.
 
+## B7.2P Production Visual Observation Lock
+- B7.2 Direct Main Root Entry is complete, and production root https://aai-display.vercel.app/ can open the first-machine surface directly.
+- The root entry no longer requires the /review path for normal production viewing.
+- User production root visual QA: running normally.
+- User observed that the production root visual appears better than the local preview, with stronger glow and cyberpunk atmosphere on Vercel production.
+- Possible interpretation: HTTP/CDN asset delivery, root path normalization, GPU compositing, browser rendering context, and font/rendering/cache differences may affect the final display surface.
+- This observation becomes the visual baseline for later Display Pack Split work.
+- Observation-only seal: no machine code change, no index change, no data change, no Core change, no deploy.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
