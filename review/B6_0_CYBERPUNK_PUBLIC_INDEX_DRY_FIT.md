@@ -397,6 +397,18 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Supplier cards now expose Related Cases, Related Agencies, Co-presence Rows, Preparation Days Range, and Sample Route Match when those fields can be derived from the current display payload.
 - No new rows, no mock data, no Core-like inference wording, no Core connection, no B-Prod change, no manual deploy, no commit, no tag, and no push.
 
+## B7.7 Route Narrative Layer
+- Base: B7.6 / e4516689490282092b9d515531a27de77df08d62.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added ROUTE NARRATIVE / 路徑解讀 near DIMENSION BRIDGE so the root production surface explains how to read the active display route.
+- Narrative clarifies that Search Query is the manual observation axis, Sample Filter is the structured demo route, and both can stack without changing the state persistence contract.
+- Timeline reading is clarified as display-only bid preparation days from announce_date to bid_deadline, with amount and price linkage not connected in this stage.
+- Supplier Management reading is clarified as relational context across cases, agencies, preparation windows, and co-presence rows, not a supplier card wall.
+- Count reading is clarified for Related Row Count, Related Case Count, and Sample Route Match.
+- Dimension Bridge reading is clarified as the shared display-layer alignment for Bid, Reviewer, Supplier, and Timeline across case, agency, supplier/entity, co-presence rows, preparation window, and source scope.
+- No Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
