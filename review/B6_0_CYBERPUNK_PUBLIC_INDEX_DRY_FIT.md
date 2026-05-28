@@ -429,6 +429,15 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - No function changes, no layout restructuring, no Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B7.8.2 Dimension Bridge Alignment Fix
+- Base: B7.8.1 / 9e8c8eb5db2867e364c1f2fa4b4354718f6a82e8.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Fixed Dimension Bridge card vertical alignment so label and value content start from the top.
+- Co-presence Rows long content no longer stretches the entire bridge row; it scrolls inside its own card when needed.
+- Bridge cards now top-align label/value content and no longer use space-between spacing.
+- No function changes, no data changes, no copy changes beyond report, no Core touch, no B-Prod touch, no data/assets/public/src/package/vercel touch, no manual deploy.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
