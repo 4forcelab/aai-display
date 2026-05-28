@@ -300,6 +300,15 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Mobile layer protection, DevTools easter egg, Chinese UI copy, Source & Model copy, and Core / Display boundary wording preserved.
 - Production untouched: expected no diff for index.html, data/*.json, deployment config, source directories, public assets, and logo asset.
 
+## B7.0 First Machine Final Dry-Fit Lock
+- Browser title, hero eyebrow, and display-layer metric are locked to B7.0 Final Dry-Fit / 初號機 final dry-fit wording.
+- This is a final dry-fit marker pass only: no layout rewrite, no new module, no new payload, no logo change, no Source & Model change, no mobile gate change, and no DevTools architecture wording change.
+- B6.1-B6.7 preservation check remains intact: hero readability, true-color logo, stable hero-to-control gap, wide operation layer, SAMPLE PATH GUIDE, Chinese UI copy, split summaries, table hierarchy, and structured sample filters.
+- Demo sample routes remain stable from the current display payload: 李雨蓁 Bid 12 / Co-presence 23, 協昌 Bid 10 / Co-presence 175, 三恆一樹 Bid 6 / Co-presence 8, 屏東縣政府 Bid 1042 / source scope 7653.
+- Reviewer / co-presence payload remains a structured preview with sample_case_numbers and sample_cases search support, preserving the future X/Y matrix direction.
+- Bid Preparation summary cards continue to recompute from filteredRows.
+- Production untouched: expected no diff for index.html, data/*.json, deployment config, source directories, public assets, and logo asset.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
