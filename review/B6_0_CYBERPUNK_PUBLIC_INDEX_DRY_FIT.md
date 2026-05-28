@@ -33,7 +33,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - 李雨蓁 correction completed.
 - Active filter bar added for module, sample filter, search query, and result count.
 - Search and sample filter collision handling added.
-- No-result diagnostic message and Clear sample filter action added.
+- No-result diagnostic message and Clear filter action added.
 - Contract-only module state card added.
 - Preview payload pending card added.
 - Footer added.
@@ -273,6 +273,15 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Console copy states that the mine is not here, the viewer is in the display layer, and frontend JSON only exposes public display structure plus sanitized display payload.
 - It avoids raw payload dumps, object dumps, stack traces, and outdated B-series console wording.
 - UI surface, hero spacing, mobile protection, payload, filter logic, and production files untouched.
+
+## B6.5 Interaction / Filter Behavior Lock
+- Interaction state is now routed through setActiveModule(), setSampleFilter(), clearFilters(), and sortMode.
+- Module chip and module card switches clear activeSampleFilter and searchQuery before rendering the selected module, preventing hidden carryover between module views.
+- Sample tags remain structured filters and do not write into the free-text search query.
+- Clear filter actions reset activeSampleFilter and searchQuery while preserving the current active module, returning that module to its full pool.
+- Reviewer / co-presence search and sample paths now include sample_case_numbers plus sample_cases, preserving case number and sample case coverage.
+- Bid Preparation summary cards continue to recompute from filteredRows through computeBidSummary().
+- Mobile layer protection, DevTools easter egg, Source & Model copy, logo lock, hero surface, payload, and production files untouched.
 
 ## Gate Result
 - Production untouched check: no production diff expected.
