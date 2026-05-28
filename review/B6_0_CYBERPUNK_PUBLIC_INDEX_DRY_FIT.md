@@ -260,6 +260,13 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - B6.4 accepted public copy, Source & Model copy, footer company language, module cards, visual hierarchy, payload, and filter logic untouched.
 - Production untouched: expected no diff for index.html and data/*.json.
 
+## B6.4P.2 Hero-to-Control Gap Micro Repair
+- Reduced the excessive hero-to-operation vertical gap observed during Vercel preview visual QA.
+- Root cause: the hero section used a viewport-height minimum that created extra blank space below the metric cards on taller screens.
+- Repair applied: hero now uses content-height flow with a deliberate bottom breathing space, and the decorative hero haze height was reduced to match.
+- Hero readability, Source & Model placement, AAI Mobile Terminal, logo true-color rendering, Chinese UI copy, operation deck, module cards, tables, payload, and filter logic untouched.
+- Production untouched: expected no diff for index.html and data/*.json.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
