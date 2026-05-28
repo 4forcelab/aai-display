@@ -192,7 +192,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Hero logo inline locked to 72 x 72 with fixed width, height, min/max dimensions, contain fit, no filter, full opacity, normal blend mode, transparent background, and no mask.
 - Footer logo inline locked to 36 x 36 with the same true-color rendering constraints.
 - No recolor, no filter, and no wrapper frame added.
-- Runtime computed logo check added with console.table for hero and footer logo rendered size, natural size, filter, opacity, and mixBlendMode.
+- Runtime logo verification was later replaced by a compact DevTools brand message to keep console output product-facing.
 - Data payload untouched.
 
 ## B6.2.0 Gate Noise Cleanup + Continue Visual Stability Lock
@@ -266,6 +266,13 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Repair applied: hero now uses content-height flow with a deliberate bottom breathing space, and the decorative hero haze height was reduced to match.
 - Hero readability, Source & Model placement, AAI Mobile Terminal, logo true-color rendering, Chinese UI copy, operation deck, module cards, tables, payload, and filter logic untouched.
 - Production untouched: expected no diff for index.html and data/*.json.
+
+## B6.4P.3 DevTools Easter Egg Lock
+- DevTools console now prints a compact cyberpunk temple-wall message through printDevtoolsEasterEgg().
+- Message identifies AAI // Active Audit Intelligence, 4Force Lab, Sanitized Display Layer, Core / Display Boundary, and contact info@4force.com.tw.
+- Console copy states that the mine is not here, the viewer is in the display layer, and frontend JSON only exposes public display structure plus sanitized display payload.
+- It avoids raw payload dumps, object dumps, stack traces, and outdated B-series console wording.
+- UI surface, hero spacing, mobile protection, payload, filter logic, and production files untouched.
 
 ## Gate Result
 - Production untouched check: no production diff expected.
