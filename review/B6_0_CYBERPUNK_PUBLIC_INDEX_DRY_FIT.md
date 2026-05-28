@@ -309,6 +309,22 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Bid Preparation summary cards continue to recompute from filteredRows.
 - Production untouched: expected no diff for index.html, data/*.json, deployment config, source directories, public assets, and logo asset.
 
+## B7.1 Index Landing Candidate - Root Preview Entry
+- Root index.html is promoted from the sealed B7.0 Final Dry-Fit standalone review artifact so the Vercel preview root can display the first-machine surface directly.
+- Landing strategy: full standalone page promotion, not redirect-only; the review artifact remains preserved under /review.
+- Root path normalization completed: logo references use assets/4force-logo.png instead of the review-relative parent path.
+- B7.0 locks preserved in the root entry: browser title, hero eyebrow, B7 display-layer metric, hero readability, true-color logo, SAMPLE PATH GUIDE, Chinese UI copy, Source & Model, mobile layer protection, DevTools easter egg, structured sample filters, and co-presence direction.
+- Sample route counts remain expected from the embedded display payload: 李雨蓁 Bid 12 / Co-presence 23, 協昌 Bid 10 / Co-presence 175, 三恆一樹 Bid 6 / Co-presence 8, 屏東縣政府 Bid 1042 / source scope 7653.
+- Data/config/source/public/logo assets untouched; no manual deploy, no production alias, no Core or B-Prod changes.
+
+## B7.1 Root Landing Visual Polish Pass
+- Root entry identity refined with a compact Root Preview Entry marker beside the B7.0 dry-fit eyebrow.
+- Hero-to-operation transition kept tight while preserving B7.0 hero readability, true-color logo rendering, Source & Model, and mobile terminal placement.
+- SAMPLE PATH GUIDE copy now reads as a root preview entrance and clarifies the four structured sample routes without changing filter behavior.
+- Control deck polish keeps Active Module, Sample Filter, Search Query, Result Count, and Filter Mode visible; reset copy is localized while the existing handler remains unchanged.
+- Mobile layer protection is enforced at narrow viewport width so the root landing does not expose the operation layer on phone-sized screens.
+- Data payload, Bid Preparation filteredRows summaries, reviewer/co-presence rows, future X/Y direction, and DevTools easter egg remain untouched.
+
 ## Gate Result
 - Production untouched check: no production diff expected.
 - Banned terms scan expected: html_hits [] and md_hits_before_forbidden_section [].
