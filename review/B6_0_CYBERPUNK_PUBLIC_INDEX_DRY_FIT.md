@@ -65,13 +65,13 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - 屏東縣政府 sample rows: 1042
 
 ## Public Modules
-- bid_preparation_module | 標案準備時間範例模組 | preview_ready
-- reviewer_matrix | 委員組成矩陣 | contract_only
+- bid_preparation_module | 標案準備時間範例模組 | preview_connected
+- reviewer_matrix | 委員組成矩陣 | preview_connected
 - custom_supplier_management | 客戶訂製供應商管理系統 | preview_ready
 - supplier_case_management_example | 供應商案件管理範例 | contract_only
 - custom_information_example | 客戶訂製訊息範例 | contract_only
 - entity_data_management_example | 機關資料管理範例 | contract_only
-- timeline_field_calculator | 時間欄位計算器 | contract_only
+- timeline_field_calculator | 時間欄位計算器 | preview_ready
 
 ## Blank / Unavailable Policy
 - Missing, empty, null, undefined, and NaN display as —.
@@ -333,6 +333,27 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Possible interpretation: HTTP/CDN asset delivery, root path normalization, GPU compositing, browser rendering context, and font/rendering/cache differences may affect the final display surface.
 - This observation becomes the visual baseline for later Display Pack Split work.
 - Observation-only seal: no machine code change, no index change, no data change, no Core change, no deploy.
+
+## B7.3 Module State Contract Lock
+- Root module cards now use one display-layer state contract: Bid Preparation Module and Reviewer Composition Matrix are preview_connected; Custom Supplier Management Module and Timeline Field Calculator are preview_ready; Supplier Case Management Example, Custom Information Example, and Entity Data Management Example are contract_only.
+- preview_connected modules retain the existing interactive tables, sample filters, result counts, and filteredRows summary behavior.
+- preview_ready modules now open a commercial shell panel that explains authorized display-pack configuration without adding table data.
+- contract_only modules now open a commercial sample panel that presents project-contract availability without looking broken or connected.
+- Module switching still clears sample/search carryover, sample tags remain structured filters, Chinese UI copy remains in place, and root visual baseline is preserved.
+- Reviewer / co-presence payload, sample_case_numbers support, future X/Y matrix direction, mobile layer protection, DevTools easter egg, logo path, Source & Model copy, data assets, Core, B-Prod, and deploy state remain untouched.
+
+## B7.3.1 Timeline Status + Copy Micro Repair
+- Timeline Field Calculator remains locked as preview_ready in the display-layer module state contract.
+- preview_ready panels use the unified copy: 模組預覽已就緒 / Preview Shell Ready, with display-field configuration and preview payload pending language.
+- contract_only panels use the unified copy: 模組契約已鎖定 / Contract Locked, with project-contract access pending language.
+- Panel notes now distinguish display field count from connected preview data and commercial display samples from project-specific configuration.
+- No data, asset, Core, B-Prod, deployment, table, summary, mobile gate, or DevTools behavior changed.
+
+## B7.3.2 Demo Route Guide Copy Polish
+- SAMPLE PATH GUIDE product copy is now DEMO ROUTE GUIDE / 展示路徑導引.
+- The guide keeps Public Module Sample / AAI display layer but removes internal root-preview wording.
+- Guide body now explains that sample tags are structured demo routes, not free-text search, in Chinese and English.
+- No module state logic, sample counts, search/filter behavior, mobile gate, DevTools easter egg, data, assets, Core, B-Prod, push, or deploy changed.
 
 ## Gate Result
 - Production untouched check: no production diff expected.
