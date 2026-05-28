@@ -40,7 +40,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 
 ## B6.0.3 Company Identity Copy Repair
 - Correct English company name locked as 4Force Lab CO., LTD.
-- Removed Wan He Tian Yi Ltd. from frontend/footer English copy.
+- Removed the previous English-facing company-name variant from frontend/footer English copy.
 
 ## B6.0.4 Visual Readability + Logo Slot + Field Mapping Repair
 - Footer readability repaired with larger type, looser line-height, more vertical padding, and separated content blocks.
@@ -237,6 +237,28 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Bid Preparation summary values now share a fixed value-zone width and center alignment, preserving the split value/label card structure.
 - No per-card or nth-child alignment hacks added.
 - Data values, filteredRows summary logic, reviewer matrix payload, filter logic, table body data, and production files untouched.
+
+## B6.4 Public Copy / Brand Surface Lock
+- Public-facing copy locked to commercial SaaS / intelligence display demo language.
+- Module naming remains public-safe through the locked front-facing labels: Bid Preparation Module, Reviewer Composition Matrix, Custom Supplier Management Module, Supplier Case Management Example, Custom Information Example, Entity Data Management Example, and Timeline Field Calculator.
+- Module cards now display public module sample wording instead of backend source-module labels.
+- Contract-only state cards now show Public Module with the front-facing English module name.
+- Source & Model copy remains locked to the approved 4Force Active Audit Intelligence Chinese paragraph, Model Lead, and Contact lines.
+- English-facing company name remains locked as 4Force Lab CO., LTD.; Chinese company wording remains 萬合天宜有限公司 4Force Lab.
+- Hero slogan remains What's already there, arranged.; subtitle remains CAIRN in the DARKPOOL.
+- Hero mission line remains absent. Footer/company positioning line remains controlled.
+- Search, chip, and filter labels remain neutral public UI labels: MODULE CHIPS, SAMPLE TAGS, ACTIVE MODULE, SAMPLE FILTER, SEARCH QUERY, RESULT COUNT, and FILTER MODE.
+- Reviewer / co-presence matrix wording remains public-safe through Reviewer Composition Matrix and Co-presence View, with future X/Y matrix direction preserved.
+- B6.2/B6.3 visual gains preserved: hero readability, true-color logo, wide operation layer, module card rhythm, split metric cards, centered value zones, table header dominance, wide tables, and filteredRows summary logic.
+- Reviewer matrix payload and filter logic untouched.
+- Production untouched: expected no diff for index.html and data/*.json.
+
+## B6.4.1 Chinese UI Copy Micro Repair
+- Search placeholder localized to 搜尋模組／機關／供應商／案件訊號.
+- Sort dropdown visible labels localized to 公告日期由新到舊, 準備天數由少到多, 準備天數由多到少, and 決標金額由高到低.
+- Sort option value attributes preserved, so existing sort behavior remains unchanged.
+- B6.4 accepted public copy, Source & Model copy, footer company language, module cards, visual hierarchy, payload, and filter logic untouched.
+- Production untouched: expected no diff for index.html and data/*.json.
 
 ## Gate Result
 - Production untouched check: no production diff expected.
