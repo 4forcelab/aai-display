@@ -936,6 +936,23 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B V8.8.3.3 Projection Binding Cleanup
+- Base head: e8c8c853f6334a83c0351985e6a95c518800cc21.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Corrected projection JSON left unchanged.
+- Cleaned route display binding so budget, calendar pressure, fast response, reviewer distribution, and supplier-reviewer surfaces consume the corrected route object when present.
+- Removed the stale Budget Context card from the corrected route dashboard path to prevent invalid band labels.
+- Budget summary now keeps Participated Cases, Budget Case Count, Award Case Count, award sum, and distinct case basis on the Distinct Case Budget Sum card.
+- Fast Response now computes eligible, qualified, shortest, average, and fastest responder from notice_window_days and valid supplier rows.
+- Fast Response no longer shows an unsupported co-presence KPI.
+- FAST RESPONSE SUPPLIERS heading copy preserved.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.

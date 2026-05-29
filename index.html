@@ -1547,29 +1547,40 @@ function supportLabel(value) {
 function renderAggregateFastResponsePanel(routeSurface) {
   const fastSurface = resolveFastResponseSurface(routeSurface);
   if (!fastSurface) return '';
-  const summary = fastSurface.summary || {};
-  const matrix = resolveCoPresenceMatrix(routeSurface) || {};
+  const allPressureRows = resolveCalendarPressureStrip(routeSurface);
+  const numericWindowRows = allPressureRows.filter(row => safePositiveDays(row.notice_window_days) !== null);
+  const qualifiedPressureRows = numericWindowRows
+    .filter(row => {
+      const days = Number(row.notice_window_days);
+      return days >= 3 && days <= 14;
+    })
+    .sort((a, b) => Number(a.notice_window_days) - Number(b.notice_window_days) || safe(b.announcement_date_public).localeCompare(safe(a.announcement_date_public)));
+  const cap = Number(fastSurface.cap ?? fastSurface.display_count ?? 20);
+  const pressureRows = qualifiedPressureRows.slice(0, Number.isFinite(cap) && cap > 0 ? cap : 20);
+  const days = qualifiedPressureRows.map(row => Number(row.notice_window_days)).filter(Number.isFinite);
+  const shortestWindow = days.length ? Math.min(...days) : null;
+  const averageWindow = days.length ? days.reduce((sum, value) => sum + value, 0) / days.length : null;
+  const fastestResponder = qualifiedPressureRows.find(row => safe(row.supplier) !== '—')?.supplier;
   const suppliers = (Array.isArray(fastSurface.supplier_ranking) ? fastSurface.supplier_ranking : (Array.isArray(fastSurface.supplier_rows) ? fastSurface.supplier_rows : []))
     .filter(item => safe(item.supplier) !== '—');
-  const pressureRows = resolveCalendarPressureStrip(routeSurface).filter(row => safePositiveDays(row.notice_window_days) !== null);
-  const eligibleCount = Number(fastSurface.eligible_count ?? pressureRows.length ?? 0);
-  const qualifiedCount = Number(fastSurface.qualified_count ?? pressureRows.length ?? 0);
-  const displayCount = Number(fastSurface.display_count ?? pressureRows.length ?? 0);
-  const sourceMeta = `Eligible Count / 可檢查數 ${eligibleCount.toLocaleString('zh-TW')} · Qualified Count / 有效窗口數 ${qualifiedCount.toLocaleString('zh-TW')} · Display Count / 公開展示 ${displayCount.toLocaleString('zh-TW')} · Cap ${Number(fastSurface.cap || displayCount || 0).toLocaleString('zh-TW')}${fastSurface.capped ? ' · capped' : ''}`;
+  const eligibleCount = numericWindowRows.length;
+  const qualifiedCount = qualifiedPressureRows.length;
+  const displayCount = pressureRows.length;
+  const sourceLabel = Array.isArray(routeSurface?.route_calendar_pressure) ? 'Route Dashboard Public Projection / 路徑公開投影' : 'Route Surface Aggregate Projection / 路徑表面聚合投影';
+  const sourceMeta = `Eligible Count / 可檢查數 ${eligibleCount.toLocaleString('zh-TW')} · Qualified Count / 有效窗口數 ${qualifiedCount.toLocaleString('zh-TW')} · Display Count / 公開展示 ${displayCount.toLocaleString('zh-TW')} · Cap ${Number(Number.isFinite(cap) ? cap : displayCount || 0).toLocaleString('zh-TW')}${fastSurface.capped ? ' · capped' : ''}`;
   const supplierTable = suppliers.length
-    ? `<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table"><thead><tr><th>Supplier / 供應商</th><th>Fast Response Count / 快速反應次數</th><th>Best Response Window / 最佳反應窗口</th><th>Average Response Window / 平均反應窗口</th><th>Route Presence / 路徑出現次數</th><th>Support / 支撐</th></tr></thead><tbody>${suppliers.slice(0, 12).map(item => `<tr><td class="cell-ellipsis" title="${safe(item.supplier)}">${safe(item.supplier)}<span class="cell-meta">${formatIdentityLabel(item.sample_case_numbers)}</span></td><td>${Number(item.qualified_case_count || 0).toLocaleString('zh-TW')}</td><td>${formatDaysPublic(item.shortest_window_days)}</td><td>${formatDaysPublic(item.average_window_days)}</td><td>${Number(item.related_case_count || item.display_cases_count || 0).toLocaleString('zh-TW')}</td><td>${supportLabel(item.support_level)}</td></tr>`).join('')}</tbody></table></div>`
+    ? `<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table"><thead><tr><th>Supplier / 供應商</th><th>Fast Response Count / 快速反應次數</th><th>Best Response Window / 最佳反應窗口</th><th>Average Response Window / 平均反應窗口</th><th>Route Presence / 路徑出現次數</th><th>Support / 支撐</th></tr></thead><tbody>${suppliers.slice(0, 12).map(item => `<tr><td class="cell-ellipsis" title="${safe(item.supplier)}">${safe(item.supplier)}<span class="cell-meta">${formatIdentityLabel(item.sample_case_numbers)}</span></td><td>${Number(item.qualified_case_count || 0).toLocaleString('zh-TW')}</td><td>${formatDaysPublic(item.shortest_window_days)}</td><td>${formatDaysPublic(item.average_window_days)}</td><td>${Number(item.related_case_count || item.display_cases_count || item.qualified_case_count || 0).toLocaleString('zh-TW')}</td><td>${supportLabel(item.support_level || item.support_bucket)}</td></tr>`).join('')}</tbody></table></div>`
     : `<div class="no-result"><h3>—</h3><p>目前路徑沒有可公開展示的 3–14 天窗口供應商排序。<br>No display-ranked 3–14 day compressed window suppliers in current route.</p></div>`;
   const pressureStrip = pressureRows.length
     ? `<div class="calendar-strip-viewport"><div class="pressure-strip-list">${pressureRows.slice(0, 8).map(row => `<article class="pressure-strip-item"><div><strong>${safe(row.case_number)} · ${safe(row.title || row.case_title_display || row.case_name)}</strong><span>Agency / 機關：${safe(row.agency)}<br>Supplier / 供應商：${safe(row.supplier)}<br>Announce / 公告日：${displayProjectedDate(row, 'announcement_date_public') || displayPending(row.announce_date)} · Deadline / 截止日：${displayProjectedDate(row, 'bid_deadline_public') || displayPending(row.bid_deadline)}<br>Window Label / 窗口標籤：${windowBandLabel(row.window_band) !== '—' ? windowBandLabel(row.window_band) : noticeWindowLabel(row.notice_window_days)} · Budget / 預算：${formatAmountPublic(row.budget_amount_public ?? row.budget_amount)} · Award / 決標：${formatAmountPublic(row.award_amount_public ?? row.award_amount)}</span></div><b>${formatDaysPublic(row.notice_window_days)}</b></article>`).join('')}</div></div>`
     : `<div class="no-result"><h3>—</h3><p>目前路徑無 3–14 天公告窗口案件。<br>No 3–14 day compressed window cases in current route.</p></div>`;
   const cards = [
-    ['Qualified Fast Window Cases / 有效快速窗口案件', Number(summary.qualified_fast_window_cases ?? fastSurface.qualified_count ?? pressureRows.length ?? 0).toLocaleString('zh-TW'), '3–14 day compressed window'],
-    ['Shortest Qualified Window / 最短有效窗口', formatDaysPublic(summary.shortest_qualified_window), '3 days or above'],
-    ['Average Qualified Window / 平均有效窗口', formatDaysPublic(summary.average_qualified_window), 'qualified aggregate rows'],
-    ['Fastest Responder / 最速反應供應商', safe(summary.fastest_responder || fastSurface.fastest_responder || suppliers[0]?.supplier), 'supplier response capability'],
-    ['Co-presence Surface / 共現表面', Number(matrix.source_count ?? summary.co_presence_surface_count ?? 0).toLocaleString('zh-TW'), 'Source Count / 來源基礎']
+    ['Qualified Fast Window Cases / 有效快速窗口案件', qualifiedCount.toLocaleString('zh-TW'), '3–14 day compressed window'],
+    ['Shortest Qualified Window / 最短有效窗口', formatDaysPublic(shortestWindow), '3 days or above'],
+    ['Average Qualified Window / 平均有效窗口', formatDaysPublic(averageWindow), 'qualified rows only'],
+    ['Fastest Responder / 最速反應供應商', safe(fastestResponder || fastSurface.fastest_responder || suppliers[0]?.supplier), 'supplier response capability']
   ];
-  return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>依指定公開樣本路徑中，公告窗口較短案件之反應能力排序。<br>Suppliers ranked by response capability under compressed notice windows within the selected public sample route.</p></div><p class="matrix-compact-note">Route Surface Aggregate Projection / 路徑表面聚合投影 · ${sourceMeta}</p><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fast Response Suppliers / 快速反應供應商</b><span>Tight Window 3–7 days · Fast Window 8–14 days</span></div><div class="response-panel-body">${supplierTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>CALENDAR PRESSURE STRIP / 時程壓力帶</b><span>3–14 days · aggregate display rows</span></div><div class="response-panel-body"><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">顯示公告日至截止日窗口，如何與供應商及指定路徑訊號形成排列。<br>Shows how announcement-to-deadline windows align with suppliers and selected route signals.</p>${pressureStrip}</div></section></div></section>`;
+  return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>依指定公開樣本路徑中，公告窗口較短案件之反應能力排序。<br>Suppliers ranked by response capability under compressed notice windows within the selected public sample route.</p></div><p class="matrix-compact-note">${sourceLabel} · ${sourceMeta}</p><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fast Response Suppliers / 快速反應供應商</b><span>Tight Window 3–7 days · Fast Window 8–14 days</span></div><div class="response-panel-body">${supplierTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>CALENDAR PRESSURE STRIP / 時程壓力帶</b><span>3–14 days · aggregate display rows</span></div><div class="response-panel-body"><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">顯示公告日至截止日窗口，如何與供應商及指定路徑訊號形成排列。<br>Shows how announcement-to-deadline windows align with suppliers and selected route signals.</p>${pressureStrip}</div></section></div></section>`;
 }
 function renderFastResponsePanel(rows, reviewerRows, routeSurface = getActiveRouteSurface()) {
   const aggregatePanel = renderAggregateFastResponsePanel(routeSurface);
@@ -1589,8 +1600,7 @@ function renderFastResponsePanel(rows, reviewerRows, routeSurface = getActiveRou
     ['Qualified Fast Window Cases / 有效快速窗口案件', summary.fastCount ? summary.fastCount.toLocaleString('zh-TW') : 'No qualified window', '3–14 day compressed window'],
     ['Shortest Qualified Window / 最短有效窗口', summary.shortest, '3 days or above'],
     ['Average Qualified Window / 平均有效窗口', summary.routeAverage, 'qualified rows only'],
-    ['Fastest Responder / 最速反應供應商', summary.fastestSupplier, 'supplier response capability'],
-    ['Co-presence Surface / 共現表面', summary.coPresenceRows.toLocaleString('zh-TW'), 'selected public sample route']
+    ['Fastest Responder / 最速反應供應商', summary.fastestSupplier, 'supplier response capability']
   ];
   return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>依指定公開樣本路徑中，公告窗口較短案件之反應能力排序。<br>Suppliers ranked by response capability under compressed notice windows within the selected public sample route.</p></div><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fast Response Suppliers / 快速反應供應商</b><span>Tight Window 3–7 days · Fast Window 8–14 days</span></div><div class="response-panel-body">${supplierTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>CALENDAR PRESSURE STRIP / 時程壓力帶</b><span>3–14 days · route matched</span></div><div class="response-panel-body"><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">顯示公告日至截止日窗口，如何與供應商及指定路徑訊號形成排列。<br>Shows how announcement-to-deadline windows align with suppliers and selected route signals.</p>${pressureStrip}</div></section></div></section>`;
 }
@@ -1764,8 +1774,6 @@ function projectionMetricCards(routeProjection, routeSemantics = null) {
   const budgetRange = Number.isFinite(Number(budgetMax))
     ? (Number.isFinite(Number(budgetMin)) ? `預算區間<br>${projectedMoney(budgetMin)} ～ ${projectedMoney(budgetMax)}` : `最高預算觸及<br>${projectedMoney(budgetMax)}`)
     : DISPLAY_PENDING;
-  const budgetBands = (budgetSemantics.budget_band_counts ? Object.entries(budgetSemantics.budget_band_counts).map(([label, count]) => ({label, count})) : (budgetContext.budget_band_mix || []))
-    .slice(0, 3).map(item => `${budgetBandLabel(item.label)}：${Number(item.count || 0).toLocaleString('zh-TW')}`).join('<br>');
   const methodMix = (tender.procurement_method_mix || []).slice(0, 3).map(item => `${safe(item.label)}：${Number(item.count || 0).toLocaleString('zh-TW')}`).join('<br>');
   const agencyMix = (tender.agency_mix || []).slice(0, 2).map(item => `${safe(item.label)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).join(' / ');
   const prepValue = Number.isFinite(Number(preparation.average_preparation_days)) ? `平均備標時間<br>${Number(preparation.average_preparation_days).toFixed(1)} 天` : DISPLAY_PENDING;
@@ -1785,7 +1793,6 @@ function projectionMetricCards(routeProjection, routeSemantics = null) {
     ['參與案件 / Participated Tenders', participatedCaseCount.toLocaleString('zh-TW'), projectionCountMeta(routeProjection, 'participated_tenders')],
     ['時間段 / Time Span', timeSpan.earliest && timeSpan.latest ? `${safe(timeSpan.earliest)} → ${safe(timeSpan.latest)}` : DISPLAY_PENDING, 'earliest → latest'],
     ['預算方向 / Budget Direction', budgetRange, `可計算預算資料：${budgetCaseCount.toLocaleString('zh-TW')} 筆`],
-    ['預算脈絡 / Budget Context', budgetBands || DISPLAY_PENDING, `關聯案件：${budgetCaseCount || participatedCaseCount} 件`],
     ['路徑案件預算總和 / Distinct Case Budget Sum', projectedMoney(distinctBudgetSum), budgetSumHint],
     ['招標方向 / Tender Direction', methodMix ? `招標方式分布<br>${methodMix}` : DISPLAY_PENDING, agencyMix || DISPLAY_PENDING],
     ['備標時間 / Preparation Window', prepValue, prepNote],
