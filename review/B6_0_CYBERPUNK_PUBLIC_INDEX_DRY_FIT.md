@@ -679,6 +679,28 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4.3 Upper Overflow + Supplier Share Formula Repair
+- Base head: a1ac50d16aac98965cb4671acf55cd09684fd239.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Upper Fast Response / Calendar overflow contained with safe grid and inner viewport handling.
+- Calendar strip inner viewport added.
+- Metric grid safe layout added.
+- Supplier Share formula repaired to use qualified supplier case appearances as denominator.
+- Supplier Share constrained to 0-100%.
+- Reviewer Share confirmed 0-100%.
+- Top Supplier-Reviewer Share list uses repaired share values.
+- Lift / over-expected view deferred until expected denominator is defined.
+- High Companion Cells deferred.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
