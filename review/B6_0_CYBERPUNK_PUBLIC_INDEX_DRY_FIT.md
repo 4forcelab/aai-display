@@ -586,6 +586,22 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.3 Fast Response Suppliers Pass
+- Base head: 818d82d V8.2 Proposal Surface Seal.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Fast Response Suppliers / 快速反應供應商 as a display-layer grouping from existing public projection rows.
+- Added Compressed Notice Window / 公告壓縮窗口 summary for route average window, shortest window, fast window case count, fastest supplier, and related co-presence rows.
+- Added Calendar Pressure Strip / 時程壓力帶 with compact case, agency, supplier, announce, deadline, day count, and route match display.
+- Uses existing public projection data embedded in the display page; no data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
