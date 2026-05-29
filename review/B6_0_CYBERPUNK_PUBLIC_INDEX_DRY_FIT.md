@@ -556,3 +556,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
+
+## V8.1 Route Identity Text Patch
+- Base: V8 Alpha Fourth Sample Route Lock / 72f9e66ab10dc8d65ab28fae7bc6a3e2f715148a.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added display-safe route identity profiles for the four public sample routes.
+- 李雨蓁 now displays person / reviewer / official with position 屏東縣政府勞動暨青年發展處處長.
+- 協昌 and 三恆一樹 now display supplier route with role 得標廠商 / 供應商.
+- 屏東縣政府 now displays agency route with role 採購機關 / public agency.
+- Other routes continue to use existing display-field fallback behavior.
+- Sample route logic, dashboard computation, Reviewer Co-presence Grid, statistical terms, mobile gate, DevTools easter egg, consultant unlock CTA, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
