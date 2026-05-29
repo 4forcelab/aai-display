@@ -602,6 +602,23 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.3.1 Fast Response Data Floor + Copy Patch
+- Base head: 27c9b2b9d0bf0657bab887cf44830ded0bc9ef8e.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Removed self-defense microcopy from the Fast Response panel.
+- Fast Response display floor set to 3-14 days.
+- 0 / 1 / 2 day edge values are excluded from front-stage ranking.
+- Calendar Pressure Strip uses qualified 3-14 day windows only.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
