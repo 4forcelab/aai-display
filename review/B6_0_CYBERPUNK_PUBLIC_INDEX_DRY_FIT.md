@@ -701,6 +701,27 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4.4 Upper Panel Alignment + Conditional Matrix Reading Label
+- Base head: 601776a15c54e9db44ab48e56147821e59c7871a.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Fast Response Suppliers and Calendar Pressure Strip panels now share aligned stretch layout.
+- Shared viewport height applied to table and calendar strip inner viewports.
+- Calendar strip remains inner vertical scroll.
+- Fast Response table remains inner horizontal / vertical scroll.
+- Conditional Presence Matrix reading label added.
+- Conditional matrix column labels clarified as Appearing Reviewer / Given Reviewer.
+- Conditional Rate denominator unchanged.
+- Matrix raw values unchanged.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
