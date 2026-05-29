@@ -636,6 +636,27 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4.1 Matrix Fold + Conditional Presence Pass
+- Base head: 459345073b46f39415bed9c1e71aef4dc204cd90.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added compact / expand viewport behavior for matrix sections.
+- Supplier x Reviewer Heatmap keeps full matrix data inside a scrollable folded viewport.
+- Reviewer Co-presence Grid uses the same folded viewport with sticky header and first column.
+- Added Conditional Presence Matrix / 條件出現矩陣 beside the raw co-presence count view.
+- Conditional Rate uses the column reviewer diagonal count as denominator.
+- Conditional matrix is directional and not forced into symmetry.
+- Diagonal cells are visually muted so off-diagonal comparison remains readable.
+- Raw co-presence cell values are preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
