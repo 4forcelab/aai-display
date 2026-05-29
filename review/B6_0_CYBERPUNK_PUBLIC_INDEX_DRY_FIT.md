@@ -861,6 +861,24 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.8.2 Public Payload Diet + Identity Consumption + Table Density Repair
+- Base head: f54e72697ff6b8bf475bd2cfbf6f0480c24e35b5.
+- A AG5.3P capped source: 5d20f3d483c5f82bd11c3fcf311a7de2dc133616 / core-v2.9AG5.3P-public-projection-cap-before-sync.
+- Changed files: index.html, data/preview/g40g_awarded_vendor_reviewer_clique_support.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Synced capped g40g public projection into B: source_count 7653, display_count 120, cap 120.
+- B public payload diet applied: embedded reviewerMatrixRows reduced from 7653 to 120 capped rows; embedded bidRows reduced from 4446 to 200 capped rows.
+- Added source_count / display_count / cap / capped metadata for public display counts.
+- Consumed AG5.3P identity fields through resolveReviewerIdentity and formatIdentityLabel.
+- Reviewer Distribution Table and Top Supplier-Reviewer Share now use compact identity labels where available.
+- Awarded Vendor Table, Reviewer Distribution Table, and Top Supplier-Reviewer Share table density repaired with bilingual header compression and fixed numeric column widths.
+- Public payload audit result: no B public JSON array >=500 and index.html under 3MB.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
