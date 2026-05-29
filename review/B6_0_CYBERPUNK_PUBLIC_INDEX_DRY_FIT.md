@@ -722,6 +722,29 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4.4.1 Upper Overflow Regression Fix
+- Base head: 6c696502f459fa9be844c4dd1215c4ea3f0ab044.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- V8.4.4 upper alignment regression identified in shared stretch layout and fixed viewport height.
+- V8.4.3 upper containment rebuilt for Fast Response Suppliers and Calendar Pressure Strip.
+- Fast Response table remains inside horizontal / vertical inner scroll.
+- Calendar Pressure Strip remains inside vertical inner scroll.
+- Page-level horizontal overflow removed by restoring safe grid containment and inner viewport bounds.
+- Conditional Presence Matrix reading label preserved.
+- Conditional matrix column labels preserved.
+- Conditional Rate denominator unchanged.
+- Matrix raw values unchanged.
+- Supplier Share and Reviewer Share remain constrained to 0-100%.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
