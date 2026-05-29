@@ -779,6 +779,30 @@ Tracked review files should remain clean when scanned by the execution gate.
 - DevTools easter egg preserved.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.6 AG4 Budget Fit Surface + Companion Drop Bar Repair
+- Base head: f5d62f2fe4db12ec07a7414960a7f156bc6545f3.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Ceiling Proximity Board / 預算上緣接近板.
+- Added Award-to-Budget Rhythm / 決標預算節奏.
+- Added Compressed Window × Budget Fit / 壓縮公告 × 預算貼合.
+- Presence-conditioned Budget Fit was not promoted to the main card layer.
+- Companion Drop Surface bars rebuilt with labeled Present / Absent rows.
+- AG4 surfaces use supplier-key prioritization when active route or search text matches a supplier context.
+- Imported only display-ready aggregate subset from AG4 projection reference.
+- GA tracking preserved.
+- V8.4.4.1 upper overflow containment preserved.
+- AG3 Presence Contrast Board preserved.
+- Supplier Share and Reviewer Share bounds preserved.
+- Conditional Presence Matrix reading label preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
