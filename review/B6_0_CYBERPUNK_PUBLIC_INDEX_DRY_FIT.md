@@ -757,6 +757,28 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.5 AG3 Presence Contrast Surface
+- Base head: 6ff3e79cab1c0ce63daa2fdc97bf79f0fb1e48e6.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Presence Contrast Board / 在場對照板.
+- Added Companion Drop Surface / 伴隨落差表面.
+- Added Compressed Notice × Budget Band / 壓縮公告 × 預算帶.
+- Added Initial Reviewer Group display-layer label.
+- AG3 presence rows with denominator below 12 are excluded from the main display table.
+- Imported only display-ready aggregate subset from AG3 projection references.
+- GA tracking preserved.
+- V8.4.4.1 upper overflow containment preserved.
+- Supplier Share and Reviewer Share bounds preserved.
+- Conditional Presence Matrix reading label preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
