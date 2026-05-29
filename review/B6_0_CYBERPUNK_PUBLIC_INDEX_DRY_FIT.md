@@ -258,6 +258,23 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - Sort dropdown visible labels localized to 公告日期由新到舊, 準備天數由少到多, 準備天數由多到少, and 決標金額由高到低.
 - Sort option value attributes preserved, so existing sort behavior remains unchanged.
 - B6.4 accepted public copy, Source & Model copy, footer company language, module cards, visual hierarchy, payload, and filter logic untouched.
+
+## V8.2 Proposal Surface Seal
+
+- Seal version: V8.2
+- Seal target: production root proposal surface
+- QA URL: https://aai-display.vercel.app/
+- Product boundary: public projection console / four sample routes / consultant unlock
+- Core boundary: Core not exposed
+- Search boundary: no open SaaS search
+- Display boundary: B displays public projection only
+- Mobile gate: preserved
+- DevTools easter egg: preserved
+- Four routes: 李雨蓁 / 協昌 / 三恆一樹 / 屏東縣政府
+- V8.1.3 state:
+  - commit: 449b195
+  - tag: display-v2.9V8.1.3-status-density-disabled-modules-patch
+- Manual deploy: none
 - Production untouched: expected no diff for index.html and data/*.json.
 
 ## B6.4P.2 Hero-to-Control Gap Micro Repair
