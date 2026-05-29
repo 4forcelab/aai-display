@@ -619,6 +619,23 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4 Supplier Reviewer Heatmap + Seriation Pass
+- Base head: 92ec75e9caebea9daa0ae68265398a1effc80550.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Supplier x Reviewer Heatmap / 供應商 x 審委熱力圖 using existing public projection rows only.
+- Added reviewer column seriation by observed reviewer-supplier proximity.
+- Added Reviewer Co-presence Grid seriation with symmetric row / column order and preserved cell values.
+- Projection Update display date refreshed to 2026-05-29.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
