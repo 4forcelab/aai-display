@@ -803,6 +803,25 @@ Tracked review files should remain clean when scanned by the execution gate.
 - DevTools easter egg preserved.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.6.1 AG3 Scope Label Clarification
+- Base head: 763ddae7540f7cbf384a4040efd416be49a161d5.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added AG3 scope label: Agency Public Projection / 機關公開投影 · Scope: 屏東縣政府.
+- AG3 values and tables unchanged.
+- AG3 route-synchronization copy was not introduced.
+- AG4 supplier-key prioritization preserved.
+- Companion Drop Present / Absent bars preserved.
+- GA tracking preserved.
+- V8.4.4.1 upper overflow containment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
