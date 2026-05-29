@@ -843,6 +843,24 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.8 Dashboard Semantics + Reviewer Table Pass
+- Base head: a10a0c444284b2053cc685e291a522b5448e0e78.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Awarded Vendor Table / 得標廠商展開表 as the outcome-layer expansion for awarded vendor summary cards.
+- Added Reviewer Distribution Table / 評委分布表 as the reviewer distribution expansion table.
+- Added Identity / 身份 column where existing public projection fields are available, with compact fallback when no source tag is present.
+- Slimmed Top Supplier-Reviewer Share / 供應商審委伴隨率排行 by moving denominator details out of the main columns.
+- Kept Supplier × Reviewer Heatmap in the relation arrangement layer.
+- Preserved V8.7 Competition Scarcity Surface.
+- Preserved AG3 agency-scoped projection and AG4 supplier prioritization surfaces.
+- Preserved GA tracking, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- No data, manifest, assets, package, lockfile, vercel, public, or src touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
