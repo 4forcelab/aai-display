@@ -822,6 +822,27 @@ Tracked review files should remain clean when scanned by the execution gate.
 - DevTools easter egg preserved.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.7 Competition Scarcity Surface
+- Base head: 9638bd680cd93d71c91f244e4bfe285dcfbb0123.
+- Source authorization: A AG5.2 Readout Gate ca25e669eec69ece238e0c0f35b15d325299a37f.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added Competition Scarcity Surface / 競爭稀疏表面 for 三恆一樹行銷有限公司.
+- Added Bidder Density Board / 投標密度板.
+- Added Single Bidder Corridor / 單一投標走廊.
+- Added Roster Depth / 名單深度.
+- Added Fit Band × Bidder Density / 預算貼合 × 投標密度.
+- Companion / spread / alternating surfaces remain locked.
+- AG3 agency-scoped projection preserved.
+- AG4 supplier-key prioritization preserved.
+- GA tracking preserved.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
