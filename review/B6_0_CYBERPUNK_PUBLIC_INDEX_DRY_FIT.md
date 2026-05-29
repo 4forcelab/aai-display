@@ -898,6 +898,25 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B V8.8.3.1 Route Surface Aggregate Projection Consumption
+- Base head: 7578cbc85eff3ad36d8689b22783f0912bbf7552.
+- A read-only capped aggregate source: data/preview/ag5_4_1_route_surface_aggregate_projection.json.
+- Changed files: index.html, data/preview/ag5_4_1_route_surface_aggregate_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Synced capped route surface aggregate projection into B with routes: 李雨蓁, 協昌, 三恆一樹, 屏東縣政府.
+- Fast Response Suppliers and Calendar Pressure Strip now consume route aggregate surfaces instead of recomputing from capped preview rows.
+- Reviewer Co-presence Grid now consumes aggregate matrix cells for raw counts and conditional rates.
+- Conditional Presence top pairs now use aggregate support thresholds, keeping low-support 1/1 or 2/2 style spikes out of the public ranking.
+- Amount formatting now treats zero, missing, and invalid values as — in public amount cells.
+- Preparation windows require positive days before entering Fast Response / Calendar Pressure display.
+- Public visible copy avoids internal projection version labels and uses Route Surface Aggregate Projection / 路徑表面聚合投影 language.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.

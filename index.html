@@ -517,8 +517,11 @@ const bidRows = PAYLOAD.bidRows || [];
 const reviewerMatrixRows = PAYLOAD.reviewerMatrixRows || [];
 const publicPayloadDiet = PAYLOAD.publicPayloadDiet || {};
 const ROUTE_DASHBOARD_PROJECTION_URL = 'data/preview/ag5_4_route_dashboard_public_projection.json';
+const ROUTE_SURFACE_AGGREGATE_PROJECTION_URL = 'data/preview/ag5_4_1_route_surface_aggregate_projection.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
+let routeSurfaceAggregateProjectionPack = null;
+let routeSurfaceAggregateProjectionStatus = 'idle';
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
 let searchQuery = '';
@@ -643,8 +646,23 @@ const V87_SCARCITY_READOUT = {
   fitOverlay:{ag4Cases:45, ag4Fit98:44, strictFit98:40, strictFit95to98:1, strictBelow95:0}
 };
 function safe(v) { if (v === null || v === undefined || v === '' || Number.isNaN(v)) return '—'; const s=String(v).trim(); return (!s || s === 'blank' || s === 'undefined' || s === 'null' || s === 'NaN' || s === ':' || s === '：') ? '—' : s; }
-function money(v) { if (v === null || v === undefined || Number.isNaN(v)) return '—'; return Number(v).toLocaleString('zh-TW'); }
-function moneyNT(v) { const text = money(v); return text === '—' ? DISPLAY_PENDING : `NT$${text}`; }
+function safeAmount(value) {
+  const n = Number(value);
+  return value === null || value === undefined || value === '' || !Number.isFinite(n) || n <= 0 ? null : n;
+}
+function money(v) { const n = safeAmount(v); return n === null ? '—' : n.toLocaleString('zh-TW'); }
+function moneyNT(v) { const n = safeAmount(v); return n === null ? '—' : `NT$${n.toLocaleString('zh-TW')}`; }
+function formatAmountPublic(value) { return moneyNT(value); }
+function safePositiveDays(value) {
+  const n = Number(value);
+  return value === null || value === undefined || value === '' || !Number.isFinite(n) || n <= 0 ? null : n;
+}
+function formatDaysPublic(value, unit = 'days') {
+  const n = safePositiveDays(value);
+  if (n === null) return '—';
+  const digits = Number.isInteger(n) ? 0 : 1;
+  return `${n.toFixed(digits)} ${unit}`;
+}
 function share(v) { return (v === null || v === undefined || Number.isNaN(v)) ? '—' : `${(Number(v) * 100).toFixed(1)}%`; }
 function sampleCases(v) {
   const text = safe(v);
@@ -1312,6 +1330,63 @@ function renderCoPresenceMatrixPanel(matrix) {
   const conditionalGrid = matrixFold(renderCoPresenceGrid(matrix, 'conditional'), 'Matrix Mode: Raw Count / 共現次數 · Conditional Rate / 條件出現率');
   return `<div class="dashboard-panel-head" style="margin:8px 0"><b>Raw Count / 共現次數</b><span>diagonal = Self Count / 自身出現</span></div>${rawGrid}<div class="dashboard-panel-head" style="margin:12px 0 8px"><b>Conditional Presence Matrix / 條件出現矩陣</b><span>Conditional Rate / 條件出現率</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">比例讀法：欄位審委出現的案件中，列位審委同步出現的比例。<br>Rate reads as row reviewer appearing within column reviewer cases.</p>${conditionalGrid}${renderConditionalPairs(matrix)}`;
 }
+function aggregateCoPresenceMatrixModel(routeSurface) {
+  const matrix = resolveCoPresenceMatrix(routeSurface);
+  const nodes = Array.isArray(matrix?.nodes) ? matrix.nodes.map(node => safe(node.reviewer || node.name)).filter(value => value !== '—') : [];
+  const cellMap = new Map();
+  (Array.isArray(matrix?.cells) ? matrix.cells : []).forEach(cell => {
+    const row = safe(cell.row_reviewer);
+    const col = safe(cell.column_reviewer);
+    if (row !== '—' && col !== '—') cellMap.set(`${row}||${col}`, cell);
+  });
+  return {matrix, nodes, cellMap};
+}
+function aggregateCell(model, rowName, colName) {
+  return model.cellMap.get(`${rowName}||${colName}`) || {co_presence_count:0, given_count:0, conditional_rate:null, support_level:'thin', is_diagonal:rowName === colName};
+}
+function renderAggregateCoPresenceGrid(routeSurface, mode = 'raw') {
+  const model = aggregateCoPresenceMatrixModel(routeSurface);
+  const {matrix, nodes} = model;
+  if (!matrix || !nodes.length) return `<div class="no-result"><h3>—</h3><p>目前路徑沒有足夠的公開聚合共現矩陣。</p></div>`;
+  const minPair = Number(matrix.min_pair_support ?? 3);
+  const minGiven = Number(matrix.min_given_support ?? 5);
+  const columns = `minmax(120px, 1.1fr) repeat(${Math.max(nodes.length, 1)}, minmax(78px, 1fr))`;
+  const rawValues = nodes.flatMap(rowName => nodes.map(colName => aggregateCell(model, rowName, colName))).filter(cell => !cell.is_diagonal).map(cell => Number(cell.co_presence_count || 0));
+  const rateValues = nodes.flatMap(rowName => nodes.map(colName => aggregateCell(model, rowName, colName))).filter(cell => !cell.is_diagonal && Number(cell.co_presence_count || 0) >= minPair && Number(cell.given_count || 0) >= minGiven).map(cell => Number(cell.conditional_rate || 0));
+  const maxRaw = Math.max(...rawValues, 0);
+  const maxRate = Math.max(...rateValues, 0);
+  const body = nodes.map(rowName => `<div class="co-cell axis">${safe(rowName)}</div>${nodes.map(colName => {
+    const cell = aggregateCell(model, rowName, colName);
+    const raw = Number(cell.co_presence_count || 0);
+    const given = Number(cell.given_count || 0);
+    const diagonal = Boolean(cell.is_diagonal || rowName === colName);
+    const thresholdPass = diagonal || (raw >= minPair && given >= minGiven);
+    if (mode === 'conditional') {
+      const rate = diagonal ? 1 : (thresholdPass ? Number(cell.conditional_rate || 0) : null);
+      const label = diagonal ? '100%' : (rate === null ? '—' : percent(rate));
+      const alpha = !diagonal && rate !== null && maxRate ? Math.min(.08 + (rate / maxRate) * .52, .68) : .035;
+      const hot = !diagonal && rate ? 'hot' : '';
+      return `<div class="co-cell ${hot} ${diagonal ? 'diagonal' : ''}" title="Appearing Reviewer: ${safe(rowName)} / Given Reviewer: ${safe(colName)} / Raw Co-presence: ${raw} / Given Reviewer Count: ${given} / Conditional Rate: ${label} / Support: ${supportLabel(cell.support_level)}" style="background:rgba(255,79,216,${alpha})">${label}</div>`;
+    }
+    const alpha = !diagonal && maxRaw ? Math.min(.06 + (raw / maxRaw) * .44, .58) : .04;
+    return `<div class="co-cell ${raw && !diagonal ? 'hot' : ''} ${diagonal ? 'diagonal' : ''}" title="${diagonal ? 'Self Count / 自身出現' : 'Co-presence Count'}: ${raw} / Support: ${supportLabel(cell.support_level)}" style="background:rgba(255,79,216,${alpha})">${raw || (diagonal ? raw : '')}</div>`;
+  }).join('')}`).join('');
+  const corner = mode === 'conditional' ? 'Conditional Rate' : 'Reviewer';
+  return `<div class="co-grid-wrap"><div class="co-grid" style="grid-template-columns:${columns}"><div class="co-cell head">${corner}</div>${nodes.map(node => `<div class="co-cell head">${safe(node)}</div>`).join('')}${body}</div></div>`;
+}
+function renderAggregateConditionalPairs(routeSurface) {
+  const pairs = resolveConditionalPresencePairs(routeSurface).slice(0, 10);
+  if (!pairs.length) return `<div class="conditional-pairs"><h4>Top Conditional Presence Pairs / 條件出現率排行</h4><p class="matrix-compact-note">支撐門檻未達標的低支撐尖峰不進入排行。</p></div>`;
+  return `<div class="conditional-pairs"><h4>Top Conditional Presence Pairs / 條件出現率排行</h4><div class="fast-response-table-wrap table-viewport"><table><thead><tr><th>Appearing Reviewer / 同步出現審委</th><th>Given Reviewer / 條件審委</th><th>Raw Co-presence / 共現次數</th><th>Given Reviewer Count / 條件審委出現數</th><th>Conditional Rate / 條件出現率</th><th>Support / 支撐</th></tr></thead><tbody>${pairs.map(row => `<tr><td>${safe(row.row_reviewer)}</td><td>${safe(row.column_reviewer)}</td><td>${Number(row.co_presence_count || 0).toLocaleString('zh-TW')}</td><td>${Number(row.given_count || 0).toLocaleString('zh-TW')}</td><td>${Number.isFinite(Number(row.conditional_rate)) ? percent(Number(row.conditional_rate)) : '—'}</td><td>${supportLabel(row.support_level)}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function renderAggregateCoPresenceMatrixPanel(routeSurface) {
+  const matrix = resolveCoPresenceMatrix(routeSurface);
+  if (!matrix) return '';
+  const meta = `Source Count / 來源基礎 ${Number(matrix.source_count || 0).toLocaleString('zh-TW')} · nodes ${Number(matrix.node_count || 0).toLocaleString('zh-TW')} · cells ${Number(matrix.cell_count || 0).toLocaleString('zh-TW')} · support ${Number(matrix.min_pair_support || 3).toLocaleString('zh-TW')}/${Number(matrix.min_given_support || 5).toLocaleString('zh-TW')}`;
+  const rawGrid = matrixFold(renderAggregateCoPresenceGrid(routeSurface, 'raw'), `Route Surface Aggregate Projection / 路徑表面聚合投影 · ${meta}`);
+  const conditionalGrid = matrixFold(renderAggregateCoPresenceGrid(routeSurface, 'conditional'), 'Matrix Mode: Raw Count / 共現次數 · Conditional Rate / 條件出現率');
+  return `<div class="dashboard-panel-head" style="margin:8px 0"><b>Raw Count / 共現次數</b><span>diagonal = Self Count / 自身出現</span></div>${rawGrid}<div class="dashboard-panel-head" style="margin:12px 0 8px"><b>Conditional Presence Matrix / 條件出現矩陣</b><span>Conditional Rate / 條件出現率</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">比例讀法：欄位審委出現的案件中，列位審委同步出現的比例。<br>Rate reads as row reviewer appearing within column reviewer cases.</p>${conditionalGrid}${renderAggregateConditionalPairs(routeSurface)}`;
+}
 function tenderDirection(rows) {
   const methodCounts = new Map();
   rows.forEach(r => {
@@ -1433,7 +1508,48 @@ function fastResponseSummary(rows, reviewerRows) {
       .slice(0, 7)
   };
 }
-function renderFastResponsePanel(rows, reviewerRows) {
+function windowBandLabel(value) {
+  return ({
+    tight_3_7:'緊湊窗口 / Tight Window',
+    fast_8_14:'快速窗口 / Fast Window',
+    normal_15_plus:'一般窗口 / Normal Window'
+  })[value] || safe(value);
+}
+function supportLabel(value) {
+  return ({
+    strong:'strong / 高支撐',
+    medium:'medium / 中支撐',
+    thin:'thin / 薄支撐',
+    weak:'weak / 弱支撐',
+    diagonal:'self / 自身出現'
+  })[value] || safe(value);
+}
+function renderAggregateFastResponsePanel(routeSurface) {
+  const fastSurface = resolveFastResponseSurface(routeSurface);
+  if (!fastSurface) return '';
+  const summary = fastSurface.summary || {};
+  const matrix = resolveCoPresenceMatrix(routeSurface) || {};
+  const suppliers = Array.isArray(fastSurface.supplier_ranking) ? fastSurface.supplier_ranking : [];
+  const pressureRows = resolveCalendarPressureStrip(routeSurface).filter(row => safePositiveDays(row.notice_window_days) !== null);
+  const sourceMeta = `Eligible Count / 可檢查數 ${Number(fastSurface.eligible_count || 0).toLocaleString('zh-TW')} · Qualified Count / 有效窗口數 ${Number(fastSurface.qualified_count || 0).toLocaleString('zh-TW')} · Display Count / 公開展示 ${Number(fastSurface.display_count || pressureRows.length || 0).toLocaleString('zh-TW')} · Cap ${Number(fastSurface.cap || 0).toLocaleString('zh-TW')}${fastSurface.capped ? ' · capped' : ''}`;
+  const supplierTable = suppliers.length
+    ? `<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table"><thead><tr><th>Supplier / 供應商</th><th>Fast Response Count / 快速反應次數</th><th>Best Response Window / 最佳反應窗口</th><th>Average Response Window / 平均反應窗口</th><th>Route Presence / 路徑出現次數</th><th>Support / 支撐</th></tr></thead><tbody>${suppliers.slice(0, 12).map(item => `<tr><td class="cell-ellipsis" title="${safe(item.supplier)}">${safe(item.supplier)}<span class="cell-meta">${formatIdentityLabel(item.sample_case_numbers)}</span></td><td>${Number(item.qualified_case_count || 0).toLocaleString('zh-TW')}</td><td>${formatDaysPublic(item.shortest_window_days)}</td><td>${formatDaysPublic(item.average_window_days)}</td><td>${Number(item.related_case_count || item.display_cases_count || 0).toLocaleString('zh-TW')}</td><td>${supportLabel(item.support_level)}</td></tr>`).join('')}</tbody></table></div>`
+    : `<div class="no-result"><h3>—</h3><p>目前路徑沒有可公開展示的 3–14 天窗口供應商排序。<br>No display-ranked 3–14 day compressed window suppliers in current route.</p></div>`;
+  const pressureStrip = pressureRows.length
+    ? `<div class="calendar-strip-viewport"><div class="pressure-strip-list">${pressureRows.slice(0, 8).map(row => `<article class="pressure-strip-item"><div><strong>${safe(row.case_number)} · ${safe(row.title || row.case_title_display || row.case_name)}</strong><span>Agency / 機關：${safe(row.agency)}<br>Supplier / 供應商：${safe(row.supplier)}<br>Announce / 公告日：${displayPending(row.announce_date)} · Deadline / 截止日：${displayPending(row.bid_deadline)}<br>Window Label / 窗口標籤：${windowBandLabel(row.window_band)} · Budget / 預算：${formatAmountPublic(row.budget_amount_public ?? row.budget_amount)} · Award / 決標：${formatAmountPublic(row.award_amount_public ?? row.award_amount)}</span></div><b>${formatDaysPublic(row.notice_window_days)}</b></article>`).join('')}</div></div>`
+    : `<div class="no-result"><h3>—</h3><p>目前路徑無 3–14 天公告窗口案件。<br>No 3–14 day compressed window cases in current route.</p></div>`;
+  const cards = [
+    ['Qualified Fast Window Cases / 有效快速窗口案件', Number(summary.qualified_fast_window_cases ?? fastSurface.qualified_count ?? 0).toLocaleString('zh-TW'), '3–14 day compressed window'],
+    ['Shortest Qualified Window / 最短有效窗口', formatDaysPublic(summary.shortest_qualified_window), '3 days or above'],
+    ['Average Qualified Window / 平均有效窗口', formatDaysPublic(summary.average_qualified_window), 'qualified aggregate rows'],
+    ['Fastest Responder / 最速反應供應商', safe(summary.fastest_responder), 'supplier response capability'],
+    ['Co-presence Surface / 共現表面', Number(matrix.source_count ?? summary.co_presence_surface_count ?? 0).toLocaleString('zh-TW'), 'Source Count / 來源基礎']
+  ];
+  return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>依指定公開樣本路徑中，公告窗口較短案件之反應能力排序。<br>Suppliers ranked by response capability under compressed notice windows within the selected public sample route.</p></div><p class="matrix-compact-note">Route Surface Aggregate Projection / 路徑表面聚合投影 · ${sourceMeta}</p><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fast Response Suppliers / 快速反應供應商</b><span>Tight Window 3–7 days · Fast Window 8–14 days</span></div><div class="response-panel-body">${supplierTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>CALENDAR PRESSURE STRIP / 時程壓力帶</b><span>3–14 days · aggregate display rows</span></div><div class="response-panel-body"><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">顯示公告日至截止日窗口，如何與供應商及指定路徑訊號形成排列。<br>Shows how announcement-to-deadline windows align with suppliers and selected route signals.</p>${pressureStrip}</div></section></div></section>`;
+}
+function renderFastResponsePanel(rows, reviewerRows, routeSurface = getActiveRouteSurface()) {
+  const aggregatePanel = renderAggregateFastResponsePanel(routeSurface);
+  if (aggregatePanel) return aggregatePanel;
   const summary = fastResponseSummary(rows, reviewerRows);
   const route = activeSampleFilter || (searchQuery.trim() ? 'Manual Search' : '李雨蓁');
   const supplierTable = summary.suppliers.length
@@ -1473,10 +1589,55 @@ function loadRouteDashboardProjection() {
       render();
     });
 }
+function loadRouteSurfaceAggregateProjection() {
+  if (routeSurfaceAggregateProjectionStatus === 'loading' || routeSurfaceAggregateProjectionStatus === 'ready') return;
+  routeSurfaceAggregateProjectionStatus = 'loading';
+  fetch(ROUTE_SURFACE_AGGREGATE_PROJECTION_URL, {cache:'no-store'})
+    .then(response => {
+      if (!response.ok) throw new Error(`Route Surface Aggregate Projection ${response.status}`);
+      return response.json();
+    })
+    .then(pack => {
+      routeSurfaceAggregateProjectionPack = pack;
+      routeSurfaceAggregateProjectionStatus = 'ready';
+      render();
+    })
+    .catch(error => {
+      routeSurfaceAggregateProjectionStatus = 'unavailable';
+      console.warn('Route Surface Aggregate Projection unavailable', error);
+      render();
+    });
+}
 function getActiveRouteProjection(routeKey = activeSampleFilter) {
   const routes = routeDashboardProjectionPack?.routes || [];
   const key = safe(routeKey);
   return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
+}
+function getActiveRouteSurface(routeKey = activeSampleFilter) {
+  const routes = routeSurfaceAggregateProjectionPack?.routes || [];
+  const key = safe(routeKey);
+  return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
+}
+function resolveFastResponseSurface(routeSurface) {
+  return routeSurface?.route_fast_response || routeSurface?.fast_response || null;
+}
+function resolveCalendarPressureStrip(routeSurface) {
+  const fastSurface = resolveFastResponseSurface(routeSurface);
+  return Array.isArray(fastSurface?.calendar_pressure_strip) ? fastSurface.calendar_pressure_strip : [];
+}
+function resolveCoPresenceMatrix(routeSurface) {
+  return routeSurface?.route_co_presence_matrix || routeSurface?.co_presence_matrix || null;
+}
+function resolveConditionalPresencePairs(routeSurface) {
+  const matrix = resolveCoPresenceMatrix(routeSurface);
+  const minPair = Number(matrix?.min_pair_support ?? 3);
+  const minGiven = Number(matrix?.min_given_support ?? 5);
+  const pairs = Array.isArray(matrix?.top_conditional_pairs) ? matrix.top_conditional_pairs : [];
+  return pairs.filter(pair => {
+    const raw = Number(pair.co_presence_count || 0);
+    const given = Number(pair.given_count || 0);
+    return !pair.is_diagonal && raw >= minPair && given >= minGiven;
+  });
 }
 function resolveRouteCard(routeProjection, key) {
   return routeProjection?.cards?.[key] || null;
@@ -1523,8 +1684,7 @@ function projectedTopList(items = [], limit = 3) {
   return rows.length ? rows.join(' / ') : DISPLAY_PENDING;
 }
 function projectedMoney(value) {
-  const n = Number(value);
-  return Number.isFinite(n) ? moneyNT(n) : DISPLAY_PENDING;
+  return formatAmountPublic(value);
 }
 function projectedPercent(value) {
   const n = Number(value);
@@ -1622,12 +1782,20 @@ function coPresenceMatrixFromProjection(routeProjection, limit = 7) {
 function renderProjectedRouteDashboard(el, routeProjection) {
   const bid = activeRows();
   const reviewer = activeReviewerRows();
+  const routeSurface = getActiveRouteSurface(routeProjection?.route_key || activeSampleFilter);
   const metricCards = projectionMetricCards(routeProjection);
   const tenders = resolveRouteTable(routeProjection, 'participated_tenders');
   const matrix = coPresenceMatrixFromProjection(routeProjection, 7);
-  const matrixGrid = renderCoPresenceMatrixPanel(matrix);
-  const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，與下方供應商審委排列分開閱讀。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">案件評委常態分布圖以 AG5.4 身份欄位、出現次數與關聯供應商展開。</p>${renderProjectedReviewerDistributionTable(routeProjection)}</section></div>`;
-  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>Source Count / 來源基礎 records are displayed as counts; Display Count / 公開展示 rows stay capped for the public display layer.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  const aggregatePending = routeSurfaceAggregateProjectionStatus !== 'ready' && routeSurfaceAggregateProjectionStatus !== 'unavailable';
+  const aggregateLoading = `<div class="no-result"><h3>—</h3><p>Loading Route Surface Aggregate Projection / 載入路徑表面聚合投影</p></div>`;
+  const aggregateMatrix = renderAggregateCoPresenceMatrixPanel(routeSurface);
+  const matrixGrid = aggregateMatrix || (aggregatePending ? aggregateLoading : renderCoPresenceMatrixPanel(matrix));
+  const fastResponseBlock = routeSurface ? renderFastResponsePanel(bid, reviewer, routeSurface) : (aggregatePending ? `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>Loading Route Surface Aggregate Projection / 載入路徑表面聚合投影</p></div></section>` : renderFastResponsePanel(bid, reviewer, null));
+  const matrixMeta = routeSurface && resolveCoPresenceMatrix(routeSurface)
+    ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · Source Count / 來源基礎 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
+    : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
+  const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，與下方供應商審委排列分開閱讀。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現次數與關聯供應商展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection)}</section></div>`;
+  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>Source Count / 來源基礎 records are displayed as counts; Display Count / 公開展示 rows stay capped for the public display layer.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${semanticTables}${fastResponseBlock}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -1675,7 +1843,7 @@ function renderRouteDashboard() {
     ['供應商分布 / Supplier Distribution', supplierDistribution.value, supplierDistribution.note]
   ];
   const tenderRows = tenders.slice(0, 10);
-  const tenderTable = tenderRows.length ? `<div class="dashboard-table-wrap"><table class="dashboard-table"><thead><tr><th>案號 / Case Number</th><th>案名 / Case Title</th><th>機關 / Agency</th><th>預算 / Budget</th><th>備標天數 / Preparation Days</th><th>得標廠商 / Awarded Vendor</th><th>公告日期 / Announce Date</th><th>截止投標日 / Bid Deadline</th></tr></thead><tbody>${tenderRows.map(row => `<tr><td>${safe(row.case_number)}</td><td>${safe(row.case_name)}</td><td>${safe(row.entity)}</td><td>${displayPending(money(row.budget_amount))}</td><td>${displayPending(row.preparation_days)}</td><td>${routeDisplayFallback(row.awarded_vendor)}</td><td>${displayPending(row.announce_date)}</td><td>${displayPending(row.bid_deadline)}</td></tr>`).join('')}</tbody></table></div>` : `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>No participated tender rows are readable for the current route.</p></div>`;
+  const tenderTable = tenderRows.length ? `<div class="dashboard-table-wrap"><table class="dashboard-table"><thead><tr><th>案號 / Case Number</th><th>案名 / Case Title</th><th>機關 / Agency</th><th>預算 / Budget</th><th>備標天數 / Preparation Days</th><th>得標廠商 / Awarded Vendor</th><th>公告日期 / Announce Date</th><th>截止投標日 / Bid Deadline</th></tr></thead><tbody>${tenderRows.map(row => `<tr><td>${safe(row.case_number)}</td><td>${safe(row.case_name)}</td><td>${safe(row.entity)}</td><td>${money(row.budget_amount)}</td><td>${displayPending(row.preparation_days)}</td><td>${routeDisplayFallback(row.awarded_vendor)}</td><td>${displayPending(row.announce_date)}</td><td>${displayPending(row.bid_deadline)}</td></tr>`).join('')}</tbody></table></div>` : `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>No participated tender rows are readable for the current route.</p></div>`;
   const matrix = coPresenceMatrix(reviewer, 7);
   const matrixGrid = renderCoPresenceMatrixPanel(matrix);
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以案件結果資料展開，與下方供應商審委排列分開閱讀。</p>${renderAwardedVendorTable(bid)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">案件評委常態分布圖以審委出現次數、身份欄位與關聯供應商展開。</p>${renderReviewerDistributionTable(reviewer)}</section></div>`;
@@ -1961,6 +2129,7 @@ document.addEventListener('DOMContentLoaded', printDevtoolsEasterEgg);
 })();
 render();
 loadRouteDashboardProjection();
+loadRouteSurfaceAggregateProjection();
 </script>
 </body>
 </html>
