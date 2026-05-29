@@ -557,6 +557,18 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
 
+## V8.1.2 Proposal Readability Pass
+- Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Hero metrics and product status cards now use clearer vertical label/value/note alignment for proposal reading.
+- Module chip row is presented as 顧問解鎖模組 / Consultant Unlock Modules while preserving existing module chip behavior.
+- Sample Tags retain the four public routes, with the proposal-page clear button removed from that row.
+- Route Dashboard budget, tender direction, preparation window, co-presence row, and supplier distribution cards now use proposal-facing display copy.
+- Participated Tender List, Reviewer Co-presence Grid, Statistical Observation Axes, Demo Route Guide, Dimension Bridge, route identity profiles, lower module cards, mobile gate, DevTools easter egg, Source & Model copy, consultant unlock CTA, hero motto, and bottom slogan preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.1 Demo Route Name + Brand Slogan Text Patch
 - Base: V8.1 Route Identity Text Patch / e4b434581fe6e276f3402e762448f8c202dfcb08.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
