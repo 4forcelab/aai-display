@@ -557,6 +557,18 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
 
+## V8.1.3 Status Density + Disabled Module Chips Micro Patch
+- Base: V8.1.2 Proposal Readability Pass / 4d72453775779537f517834476b80b6c0fc17753.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Product status row copy shortened while preserving five cards and label / value / note structure.
+- Consultant Unlock Modules hint is contained inside the module capability panel.
+- Module chips are disabled presentation chips with not-allowed cursor and unlock hover hint.
+- Sample route chips remain interactive and the four public routes are preserved.
+- Dashboard computation, sample route logic, Participated Tender List, Reviewer Co-presence Grid, Statistical Observation Axes, Demo Route Guide, Dimension Bridge, lower module cards, mobile gate, DevTools easter egg, Source & Model copy, hero motto, and bottom slogan preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
