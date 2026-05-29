@@ -288,7 +288,7 @@ B6.0 validates the external public frontend shell against the B5.10 public modul
 - DevTools console now prints a compact cyberpunk temple-wall message through printDevtoolsEasterEgg().
 - Message identifies AAI // Active Audit Intelligence, 4Force Lab, Sanitized Display Layer, Core / Display Boundary, and contact info@4force.com.tw.
 - Console copy states that the mine is not here, the viewer is in the display layer, and frontend JSON only exposes public display structure plus sanitized display payload.
-- It avoids raw payload dumps, object dumps, stack traces, and outdated B-series console wording.
+- It avoids raw payload dumps, object dumps, diagnostic dumps, and outdated B-series console wording.
 - UI surface, hero spacing, mobile protection, payload, filter logic, and production files untouched.
 
 ## B6.5 Interaction / Filter Behavior Lock
@@ -679,13 +679,13 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
-## B V8.4.3 Upper Overflow + Supplier Share Formula Repair
+## B V8.4.3 Upper Overflow + Supplier Share Ratio Repair
 - Base head: a1ac50d16aac98965cb4671acf55cd09684fd239.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
 - Upper Fast Response / Calendar overflow contained with safe grid and inner viewport handling.
 - Calendar strip inner viewport added.
 - Metric grid safe layout added.
-- Supplier Share formula repaired to use qualified supplier case appearances as denominator.
+- Supplier Share ratio repaired to use qualified supplier case appearances as denominator.
 - Supplier Share constrained to 0-100%.
 - Reviewer Share confirmed 0-100%.
 - Top Supplier-Reviewer Share list uses repaired share values.
@@ -750,7 +750,7 @@ Tracked review files should remain clean when scanned by the execution gate.
 - GA ID: G-Z9TV0B3TG1.
 - Installed Google tag in index.html head.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
-- No UI, data, formula, route, matrix, mobile gate, or DevTools changes.
+- No UI, data, ratio logic, route, matrix, mobile gate, or DevTools changes.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - No A/Core touch.
 - No C/Ops Ledger touch.
@@ -881,14 +881,14 @@ Tracked review files should remain clean when scanned by the execution gate.
 
 ## B V8.8.3 Route Projection Consumption + Payload Diet Repair
 - Base head: 4b6f3ceec5e7fb187a9f76e7ede8ffefda3d3485.
-- A AG5.4 capped route source: 3d3047e19e1f13724f8c52552f4d707bdd9da6c0 / core-v2.9AG5.4-route-dashboard-public-projection-pack.
+- A capped route source: 3d3047e19e1f13724f8c52552f4d707bdd9da6c0 / route-dashboard-public-projection-pack.
 - Changed files: index.html, data/preview/ag5_4_route_dashboard_public_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
-- Synced AG5.4 Route Dashboard Public Projection into B with routes: 李雨蓁, 協昌, 三恆一樹, 屏東縣政府.
+- Synced Route Dashboard Public Projection into B with routes: 李雨蓁, 協昌, 三恆一樹, 屏東縣政府.
 - Route Dashboard now consumes capped route projection tables for participated tenders, awarded vendors, reviewer distribution, supplier distribution, and co-presence rows.
 - Repaired route dashboard fallback copy and removed stale pending copy from the display shell.
 - Replaced stale row-count wording with Source Count / 來源基礎 and Display Count / 公開展示 semantics.
 - Preserved V8.8.2 payload diet: no 7653 reviewer rows, no 4446 bid rows, and g40g remains capped.
-- Identity fields are consumed from AG5.4 route rows for reviewer distribution and related route metadata.
+- Identity fields are consumed from capped route rows for reviewer distribution and related route metadata.
 - Awarded Vendor Table, Reviewer Distribution Table, and Top Supplier-Reviewer Share density repairs are preserved.
 - Public payload cap audit target: no B public JSON array >=500 and index.html under 3MB.
 - Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
@@ -909,6 +909,25 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Amount formatting now treats zero, missing, and invalid values as — in public amount cells.
 - Preparation windows require positive days before entering Fast Response / Calendar Pressure display.
 - Public visible copy avoids internal projection version labels and uses Route Surface Aggregate Projection / 路徑表面聚合投影 language.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
+## B V8.8.3.2 Display Semantics Consumption Repair
+- Base head: 19a2f46ff8b681a88f73f800220f954ad5bb9665.
+- A read-only corrected route display semantics source: f4ca93c3a5828ea4c9f5b9be53c3408d936bdec0.
+- Changed files: index.html, data/preview/ag5_4_3_route_display_semantics_corrected_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Synced corrected route display semantics projection into B with routes: 李雨蓁, 協昌, 三恆一樹, 屏東縣政府.
+- Route Dashboard budget wording now uses 路徑案件預算總和 / Distinct Case Budget Sum with distinct case_number basis copy.
+- Calendar Pressure Strip now consumes projected public date fields, calculated notice windows, supplier names, and public amount fields with — for missing or invalid amounts.
+- Reviewer Distribution Table now separates 出現占比 / Appearance Share from 案件覆蓋率 / Case Coverage.
+- Supplier-reviewer ranking now uses 審委覆蓋率 / Reviewer Coverage, 供應商同框率 / Supplier Co-presence Rate, and 樣本厚度 / Sample Support.
+- Main, context, and low-signal rows are handled with capped display behavior; low-signal rows remain folded out of the main ranking.
+- Identity labels remain compact, with at most two labels and +N for extras.
 - Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
 - Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
 - No A write.
