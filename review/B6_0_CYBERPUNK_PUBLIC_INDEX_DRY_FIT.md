@@ -549,10 +549,20 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
 - Confirmed 屏東縣政府 remains available through existing public projection rows and existing sample route logic.
 - Product status row Display Routes updated to 4 public samples.
-- Sample route guide now labels 李雨蓁 / 李宇臻 as person route, 協昌 as supplier route, 三恆一樹 as small-pool route, and 屏東縣政府 as agency route.
+- Sample route guide now labels 李雨蓁 as person route, 協昌 as supplier route, 三恆一樹 as small-pool route, and 屏東縣政府 as agency route.
 - Consultant unlock placeholder and Contact / info@4force.com.tw CTA preserved.
 - Precise status-row source split remains removed.
 - Absurdity statement panel, hero motto, V8 Alpha naming, Public Projection Console, dashboard-first route, Reviewer Co-presence Grid, statistical terms, mobile gate, DevTools easter egg, Source & Model copy, and true-color logo treatment preserved.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- Manual deploy: none.
+- Production QA target: https://aai-display.vercel.app/.
+
+## V8.1.1 Demo Route Name + Brand Slogan Text Patch
+- Base: V8.1 Route Identity Text Patch / e4b434581fe6e276f3402e762448f8c202dfcb08.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Demo Route Guide now displays 李雨蓁 as the sole route name for the person sample.
+- Footer product-state words replaced with the brand slogan: Insight × Strategy × Creativity × Execution.
+- Hero motto, dashboard route identity profiles, sample route logic, mobile gate, DevTools easter egg, Source & Model copy, consultant unlock CTA, and true-color logo treatment preserved.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
