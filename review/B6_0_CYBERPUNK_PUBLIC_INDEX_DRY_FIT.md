@@ -879,6 +879,25 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B V8.8.3 Route Projection Consumption + Payload Diet Repair
+- Base head: 4b6f3ceec5e7fb187a9f76e7ede8ffefda3d3485.
+- A AG5.4 capped route source: 3d3047e19e1f13724f8c52552f4d707bdd9da6c0 / core-v2.9AG5.4-route-dashboard-public-projection-pack.
+- Changed files: index.html, data/preview/ag5_4_route_dashboard_public_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Synced AG5.4 Route Dashboard Public Projection into B with routes: 李雨蓁, 協昌, 三恆一樹, 屏東縣政府.
+- Route Dashboard now consumes capped route projection tables for participated tenders, awarded vendors, reviewer distribution, supplier distribution, and co-presence rows.
+- Repaired route dashboard fallback copy and removed stale pending copy from the display shell.
+- Replaced stale row-count wording with Source Count / 來源基礎 and Display Count / 公開展示 semantics.
+- Preserved V8.8.2 payload diet: no 7653 reviewer rows, no 4446 bid rows, and g40g remains capped.
+- Identity fields are consumed from AG5.4 route rows for reviewer distribution and related route metadata.
+- Awarded Vendor Table, Reviewer Distribution Table, and Top Supplier-Reviewer Share density repairs are preserved.
+- Public payload cap audit target: no B public JSON array >=500 and index.html under 3MB.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.

@@ -516,6 +516,9 @@ const modules = PAYLOAD.modules;
 const bidRows = PAYLOAD.bidRows || [];
 const reviewerMatrixRows = PAYLOAD.reviewerMatrixRows || [];
 const publicPayloadDiet = PAYLOAD.publicPayloadDiet || {};
+const ROUTE_DASHBOARD_PROJECTION_URL = 'data/preview/ag5_4_route_dashboard_public_projection.json';
+let routeDashboardProjectionPack = null;
+let routeDashboardProjectionStatus = 'idle';
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
 let searchQuery = '';
@@ -866,13 +869,13 @@ function preparationDaysRange(values) {
   const max = Math.max(...nums);
   return min === max ? `${min} days` : `${min} - ${max} days`;
 }
-const DISPLAY_PENDING = 'Display field pending';
+const DISPLAY_PENDING = 'Projection unavailable';
 function displayPending(value) {
   const text = safe(value);
   return text === '—' ? DISPLAY_PENDING : text;
 }
 
-function routeDisplayFallback(value, fallback = 'Display field not included in current sample') {
+function routeDisplayFallback(value, fallback = 'Projection unavailable') {
   const text = safe(value);
   return text === '—' ? fallback : text;
 }
@@ -1093,10 +1096,13 @@ function countShare(count, total) { return `${count.toLocaleString('zh-TW')}/${t
 function contrastRatio(value) { return (value === null || value === undefined) ? '—' : `${Number(value).toFixed(Number(value) % 1 ? 1 : 0)}x`; }
 function budgetBandLabel(label) {
   return ({
+    'under_1m':'Under NT$1M',
     '1m_to_5m':'NT$1M–5M',
     '5m_to_10m':'NT$5M–10M',
     '10m_to_30m':'NT$10M–30M',
+    '10m_to_50m':'NT$10M–50M',
     '30m_to_100m':'NT$30M–100M',
+    '50m_plus':'Over NT$50M',
     'over_100m':'Over NT$100M'
   })[label] || safe(label);
 }
@@ -1448,9 +1454,193 @@ function renderFastResponsePanel(rows, reviewerRows) {
   ];
   return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>FAST RESPONSE SUPPLIERS</span><strong>快速反應供應商 · Compressed Notice Window / 公告壓縮窗口</strong></div><p>依指定公開樣本路徑中，公告窗口較短案件之反應能力排序。<br>Suppliers ranked by response capability under compressed notice windows within the selected public sample route.</p></div><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fast Response Suppliers / 快速反應供應商</b><span>Tight Window 3–7 days · Fast Window 8–14 days</span></div><div class="response-panel-body">${supplierTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>CALENDAR PRESSURE STRIP / 時程壓力帶</b><span>3–14 days · route matched</span></div><div class="response-panel-body"><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">顯示公告日至截止日窗口，如何與供應商及指定路徑訊號形成排列。<br>Shows how announcement-to-deadline windows align with suppliers and selected route signals.</p>${pressureStrip}</div></section></div></section>`;
 }
+function loadRouteDashboardProjection() {
+  if (routeDashboardProjectionStatus === 'loading' || routeDashboardProjectionStatus === 'ready') return;
+  routeDashboardProjectionStatus = 'loading';
+  fetch(ROUTE_DASHBOARD_PROJECTION_URL, {cache:'no-store'})
+    .then(response => {
+      if (!response.ok) throw new Error(`Route Dashboard Public Projection ${response.status}`);
+      return response.json();
+    })
+    .then(pack => {
+      routeDashboardProjectionPack = pack;
+      routeDashboardProjectionStatus = 'ready';
+      render();
+    })
+    .catch(error => {
+      routeDashboardProjectionStatus = 'unavailable';
+      console.warn('Route Dashboard Public Projection unavailable', error);
+      render();
+    });
+}
+function getActiveRouteProjection(routeKey = activeSampleFilter) {
+  const routes = routeDashboardProjectionPack?.routes || [];
+  const key = safe(routeKey);
+  return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
+}
+function resolveRouteCard(routeProjection, key) {
+  return routeProjection?.cards?.[key] || null;
+}
+function resolveRouteTable(routeProjection, tableKey) {
+  const table = routeProjection?.tables?.[tableKey];
+  return Array.isArray(table) ? table : [];
+}
+function routeProjectionDisplayKey(tableKey) {
+  return ({
+    participated_tenders:'participated_tenders',
+    awarded_vendors:'awarded_vendor_rows',
+    reviewer_distribution:'reviewer_distribution_rows',
+    supplier_distribution:'supplier_distribution_rows',
+    co_presence_rows:'co_presence_rows'
+  })[tableKey] || tableKey;
+}
+function routeProjectionCardKey(tableKey) {
+  return ({
+    co_presence_rows:'co_presence'
+  })[tableKey] || tableKey;
+}
+function routeProjectionCounts(routeProjection, tableKey) {
+  const card = resolveRouteCard(routeProjection, routeProjectionCardKey(tableKey)) || {};
+  const displayKey = routeProjectionDisplayKey(tableKey);
+  const sourceKey = tableKey === 'co_presence_rows' ? 'co_presence_rows' : tableKey;
+  const table = resolveRouteTable(routeProjection, tableKey);
+  const source = Number(card.source_count ?? routeProjection?.source_counts?.[sourceKey] ?? card.count ?? table.length);
+  const display = Number(card.display_count ?? routeProjection?.display_counts?.[displayKey] ?? table.length);
+  const cap = Number(routeProjection?.caps?.[tableKey] ?? routeProjection?.caps?.[displayKey] ?? display);
+  return {
+    source:Number.isFinite(source) ? source : table.length,
+    display:Number.isFinite(display) ? display : table.length,
+    cap:Number.isFinite(cap) ? cap : display,
+    capped:Boolean(routeProjection?.capped || card.capped || (Number.isFinite(source) && Number.isFinite(display) && source > display))
+  };
+}
+function projectionCountMeta(routeProjection, tableKey) {
+  const counts = routeProjectionCounts(routeProjection, tableKey);
+  return `Source Count / 來源基礎 ${counts.source.toLocaleString('zh-TW')} · Display Count / 公開展示 ${counts.display.toLocaleString('zh-TW')} · Cap ${counts.cap.toLocaleString('zh-TW')}${counts.capped ? ' · capped' : ''}`;
+}
+function projectedTopList(items = [], limit = 3) {
+  const rows = items.slice(0, limit).map(item => `${safe(item.label)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).filter(text => text !== '— 0');
+  return rows.length ? rows.join(' / ') : DISPLAY_PENDING;
+}
+function projectedMoney(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? moneyNT(n) : DISPLAY_PENDING;
+}
+function projectedPercent(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? percent(n) : DISPLAY_PENDING;
+}
+function projectionUnavailablePanel() {
+  const status = routeDashboardProjectionStatus === 'loading' || routeDashboardProjectionStatus === 'idle' ? 'Loading Route Dashboard Public Projection / 載入路徑公開投影' : 'Projection unavailable';
+  return `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>Route Dashboard Public Projection / 路徑公開投影</strong></div><p>${status}</p></div>`;
+}
+function projectionMetricCards(routeProjection) {
+  const route = safe(routeProjection?.route_key || activeSampleFilter);
+  const profile = routeIdentityProfile(route);
+  const position = firstReadable(routeProjection?.position, resolveRouteCard(routeProjection, 'position')?.value);
+  const participated = resolveRouteCard(routeProjection, 'participated_tenders') || {};
+  const timeSpan = resolveRouteCard(routeProjection, 'time_span') || {};
+  const budgetDirection = resolveRouteCard(routeProjection, 'budget_direction') || {};
+  const budgetContext = resolveRouteCard(routeProjection, 'budget_context') || {};
+  const budgetExposure = resolveRouteCard(routeProjection, 'budget_exposure') || {};
+  const tender = resolveRouteCard(routeProjection, 'tender_direction') || {};
+  const preparation = resolveRouteCard(routeProjection, 'preparation_window') || {};
+  const awarded = resolveRouteCard(routeProjection, 'awarded_vendors') || {};
+  const reviewers = resolveRouteCard(routeProjection, 'reviewer_distribution') || {};
+  const suppliers = resolveRouteCard(routeProjection, 'supplier_distribution') || {};
+  const coPresence = resolveRouteCard(routeProjection, 'co_presence') || {};
+  const budgetRange = Number.isFinite(Number(budgetDirection.budget_max))
+    ? (Number.isFinite(Number(budgetDirection.budget_min)) ? `預算區間<br>${projectedMoney(budgetDirection.budget_min)} ～ ${projectedMoney(budgetDirection.budget_max)}` : `最高預算觸及<br>${projectedMoney(budgetDirection.budget_max)}`)
+    : DISPLAY_PENDING;
+  const budgetBands = (budgetContext.budget_band_mix || []).slice(0, 3).map(item => `${budgetBandLabel(item.label)}：${Number(item.count || 0).toLocaleString('zh-TW')}`).join('<br>');
+  const methodMix = (tender.procurement_method_mix || []).slice(0, 3).map(item => `${safe(item.label)}：${Number(item.count || 0).toLocaleString('zh-TW')}`).join('<br>');
+  const agencyMix = (tender.agency_mix || []).slice(0, 2).map(item => `${safe(item.label)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).join(' / ');
+  const prepValue = Number.isFinite(Number(preparation.average_preparation_days)) ? `平均備標時間<br>${Number(preparation.average_preparation_days).toFixed(1)} 天` : DISPLAY_PENDING;
+  const prepNote = Number.isFinite(Number(preparation.shortest_preparation_days)) && Number.isFinite(Number(preparation.longest_preparation_days))
+    ? `最短 ${Number(preparation.shortest_preparation_days).toFixed(1)} 天｜最長 ${Number(preparation.longest_preparation_days).toFixed(1)} 天`
+    : projectionCountMeta(routeProjection, 'participated_tenders');
+  return [
+    ['展示路徑 / Display Route', route, `type: ${profile?.type || safe(routeProjection?.route_type) || 'Route Dashboard Public Projection / 路徑公開投影'}`],
+    ['職級 / Position', displayPending(position), 'Route Dashboard Public Projection / 路徑公開投影'],
+    ['參與案件 / Participated Tenders', Number(participated.count || routeProjection?.source_counts?.participated_tenders || 0).toLocaleString('zh-TW'), projectionCountMeta(routeProjection, 'participated_tenders')],
+    ['時間段 / Time Span', timeSpan.earliest && timeSpan.latest ? `${safe(timeSpan.earliest)} → ${safe(timeSpan.latest)}` : DISPLAY_PENDING, 'earliest → latest'],
+    ['預算方向 / Budget Direction', budgetRange, `可計算預算資料：${Number(budgetContext.case_count_with_budget || 0).toLocaleString('zh-TW')} 筆`],
+    ['預算脈絡 / Budget Context', budgetBands || DISPLAY_PENDING, `關聯案件：${Number(budgetContext.case_count_with_budget || participated.count || 0).toLocaleString('zh-TW')} 件`],
+    ['預算接觸面 / Budget Exposure', projectedMoney(budgetExposure.budget_total), `決標總額 ${projectedMoney(budgetExposure.award_total)} · 中位 ${projectedMoney(budgetExposure.award_median)}`],
+    ['招標方向 / Tender Direction', methodMix ? `招標方式分布<br>${methodMix}` : DISPLAY_PENDING, agencyMix || DISPLAY_PENDING],
+    ['備標時間 / Preparation Window', prepValue, prepNote],
+    ['得標廠商 / Awarded Vendors', projectedTopList(awarded.top_suppliers), projectionCountMeta(routeProjection, 'awarded_vendors')],
+    ['案件評委常態分布圖 / Reviewer Distribution', projectedTopList(reviewers.top_reviewers), projectionCountMeta(routeProjection, 'reviewer_distribution')],
+    ['共現資料列 / Co-presence Rows', Number(coPresence.source_count || routeProjection?.source_counts?.co_presence_rows || 0).toLocaleString('zh-TW'), projectionCountMeta(routeProjection, 'co_presence_rows')],
+    ['供應商分布 / Supplier Distribution', projectedTopList(suppliers.top_suppliers), projectionCountMeta(routeProjection, 'supplier_distribution')]
+  ];
+}
+function renderProjectionTenderTable(routeProjection) {
+  const rows = resolveRouteTable(routeProjection, 'participated_tenders');
+  if (!rows.length) return `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>Route Dashboard Public Projection / 路徑公開投影 table is unavailable.</p></div>`;
+  return `<div class="dashboard-table-wrap table-viewport"><table class="dashboard-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${rows.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title_display)}">${safe(row.case_title_display)}</td><td class="cell-ellipsis" title="${safe(row.agency)}">${safe(row.agency)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-count">${Number.isFinite(Number(row.preparation_days)) ? Number(row.preparation_days).toFixed(1) : DISPLAY_PENDING}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.awarded_vendors)}">${formatIdentityLabel(row.awarded_vendors)}</td><td class="cell-ellipsis" title="${safe(row.procurement_method)}">${safe(row.procurement_method)}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.reviewer_labels)}">${formatIdentityLabel(row.reviewer_labels)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function renderProjectedAwardedVendorTable(routeProjection) {
+  const rows = resolveRouteTable(routeProjection, 'awarded_vendors');
+  if (!rows.length) return `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>Awarded vendor public projection is unavailable for this route.</p></div>`;
+  return `<div class="dashboard-table-wrap table-viewport"><table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('得標廠商','Awarded Vendor')}</th><th class="col-count">${thLabel('得標案件','Cases')}</th><th class="col-money">${thLabel('預算曝露','Budget')}</th><th>${thLabel('關聯機關','Agencies')}</th><th>${thLabel('最近案件','Latest')}</th><th>${thLabel('路徑匹配','Route')}</th></tr></thead><tbody>${rows.map(row => {
+    const labels = Array.isArray(row.case_labels) ? row.case_labels : [];
+    return `<tr><td class="cell-ellipsis" title="${safe(row.supplier)}">${safe(row.supplier)}</td><td class="col-count">${Number(row.awarded_cases || 0).toLocaleString('zh-TW')}</td><td class="col-money">${projectedMoney(row.budget_exposure)}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.related_agencies)}">${formatIdentityLabel(row.related_agencies)}</td><td class="cell-ellipsis" title="${formatIdentityLabel(labels)}">${labels.length ? safe(labels[0]) : DISPLAY_PENDING}</td><td class="cell-ellipsis" title="${safe(routeProjection.route_key)}">${safe(routeProjection.route_key)}</td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+function renderProjectedReviewerDistributionTable(routeProjection) {
+  const rows = resolveRouteTable(routeProjection, 'reviewer_distribution');
+  if (!rows.length) return `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>Reviewer distribution public projection is unavailable for this route.</p></div>`;
+  return `<div class="dashboard-table-wrap table-viewport"><table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('審委','Reviewer')}</th><th class="col-identity">${thLabel('身份','Identity')}</th><th class="col-count">${thLabel('出現','Count')}</th><th class="col-share">${thLabel('占比','Share')}</th><th>${thLabel('關聯供應商','Suppliers')}</th><th class="col-count">${thLabel('關聯案件','Cases')}</th></tr></thead><tbody>${rows.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.reviewer)}">${safe(row.reviewer)}</td><td class="col-identity cell-ellipsis" title="${resolveReviewerIdentity(row)}">${resolveReviewerIdentity(row)}</td><td class="col-count">${Number(row.presence_count || 0).toLocaleString('zh-TW')}</td><td class="col-share">${Number.isFinite(Number(row.presence_share)) ? percent(Number(row.presence_share)) : DISPLAY_PENDING}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.related_suppliers)}">${formatIdentityLabel(row.related_suppliers)}</td><td class="col-count">${Number(row.related_cases || 0).toLocaleString('zh-TW')}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function coPresenceMatrixFromProjection(routeProjection, limit = 7) {
+  const rows = resolveRouteTable(routeProjection, 'co_presence_rows');
+  const byCase = new Map();
+  rows.forEach((row, index) => {
+    if (row.attended === false) return;
+    const reviewer = safe(row.reviewer);
+    if (reviewer === '—') return;
+    const caseKey = safe(row.case_number) !== '—' ? safe(row.case_number) : `projection-${index}`;
+    if (!byCase.has(caseKey)) byCase.set(caseKey, new Set());
+    byCase.get(caseKey).add(reviewer);
+  });
+  const totals = new Map();
+  byCase.forEach(reviewers => reviewers.forEach(name => totals.set(name, (totals.get(name) || 0) + 1)));
+  const topNodes = [...totals.entries()].sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-Hant')).slice(0, limit).map(([name]) => name);
+  const pairCounts = new Map();
+  byCase.forEach(reviewers => {
+    const tokens = [...reviewers].filter(name => topNodes.includes(name));
+    tokens.forEach(a => tokens.forEach(b => pairCounts.set(`${a}||${b}`, (pairCounts.get(`${a}||${b}`) || 0) + 1)));
+  });
+  const nodes = seriatedNames(
+    topNodes,
+    name => topNodes.map(other => pairCounts.get(`${name}||${other}`) || 0),
+    name => totals.get(name) || 0
+  );
+  return {nodes, cells:nodes.map(y => nodes.map(x => pairCounts.get(`${y}||${x}`) || 0))};
+}
+function renderProjectedRouteDashboard(el, routeProjection) {
+  const bid = activeRows();
+  const reviewer = activeReviewerRows();
+  const metricCards = projectionMetricCards(routeProjection);
+  const tenders = resolveRouteTable(routeProjection, 'participated_tenders');
+  const matrix = coPresenceMatrixFromProjection(routeProjection, 7);
+  const matrixGrid = renderCoPresenceMatrixPanel(matrix);
+  const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，與下方供應商審委排列分開閱讀。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">案件評委常態分布圖以 AG5.4 身份欄位、出現次數與關聯供應商展開。</p>${renderProjectedReviewerDistributionTable(routeProjection)}</section></div>`;
+  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>Source Count / 來源基礎 records are displayed as counts; Display Count / 公開展示 rows stay capped for the public display layer.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+}
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
   if (!el) return;
+  const routeProjection = getActiveRouteProjection();
+  if (routeProjection) {
+    renderProjectedRouteDashboard(el, routeProjection);
+    return;
+  }
+  if (routeDashboardProjectionStatus !== 'unavailable') {
+    el.innerHTML = projectionUnavailablePanel();
+    return;
+  }
   const bid = activeRows();
   const reviewer = activeReviewerRows();
   const timelineRows = activeTimelineRows();
@@ -1492,6 +1682,42 @@ function renderRouteDashboard() {
   el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Budget Direction / 預算方向</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, vendor outcomes, and reviewer co-presence.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${tenders.length.toLocaleString('zh-TW')} unique cases · showing ${tenderRows.length.toLocaleString('zh-TW')}</span></div>${tenderTable}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${reviewer.length.toLocaleString('zh-TW')} Co-presence Rows</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function bridgeContext() {
+  const routeProjection = getActiveRouteProjection();
+  if (routeProjection) {
+    const cases = new Set();
+    const suppliers = new Set();
+    const agencies = new Set();
+    const groups = new Set();
+    resolveRouteTable(routeProjection, 'participated_tenders').forEach(row => {
+      if (safe(row.case_number) !== '—') cases.add(safe(row.case_number));
+      (row.awarded_vendors || []).forEach(value => { if (safe(value) !== '—') suppliers.add(safe(value)); });
+      if (safe(row.agency) !== '—') agencies.add(safe(row.agency));
+      (row.reviewer_labels || []).forEach(value => { if (safe(value) !== '—') groups.add(safe(value)); });
+    });
+    resolveRouteTable(routeProjection, 'awarded_vendors').forEach(row => {
+      if (safe(row.supplier) !== '—') suppliers.add(safe(row.supplier));
+      (row.related_agencies || []).forEach(value => { if (safe(value) !== '—') agencies.add(safe(value)); });
+    });
+    resolveRouteTable(routeProjection, 'reviewer_distribution').forEach(row => {
+      if (safe(row.reviewer) !== '—') groups.add(safe(row.reviewer));
+      (row.related_suppliers || []).forEach(value => { if (safe(value) !== '—') suppliers.add(safe(value)); });
+    });
+    const preparation = resolveRouteCard(routeProjection, 'preparation_window') || {};
+    const preparationWindow = Number.isFinite(Number(preparation.average_preparation_days))
+      ? `shortest ${Number(preparation.shortest_preparation_days).toFixed(1)} / average ${Number(preparation.average_preparation_days).toFixed(1)} / longest ${Number(preparation.longest_preparation_days).toFixed(1)}`
+      : DISPLAY_PENDING;
+    return {
+      route: routeProjection.route_key || activeSampleFilter || 'All Records',
+      search: searchQuery.trim() || 'None',
+      cases,
+      suppliers,
+      agencies,
+      groups,
+      coPresenceRows: routeProjectionCounts(routeProjection, 'co_presence_rows').source,
+      preparationWindow,
+      sourceScope: `${projectionCountMeta(routeProjection, 'participated_tenders')} · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`
+    };
+  }
   const bid = activeRows();
   const reviewer = activeReviewerRows();
   const timeline = activeTimelineRows();
@@ -1734,6 +1960,7 @@ document.addEventListener('DOMContentLoaded', printDevtoolsEasterEgg);
   addEventListener('resize', resize); resize(); frame();
 })();
 render();
+loadRouteDashboardProjection();
 </script>
 </body>
 </html>
