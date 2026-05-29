@@ -657,6 +657,28 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Final git status before seal: modified allowed files only.
 - Production QA target: https://aai-display.vercel.app/.
 
+## B V8.4.2 Matrix Default Expanded + Supplier Companion Share Pass
+- Base head: 3a82ca0f1f466008686e3d1a9f511666ac991b54.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Matrix sections now default to expanded view.
+- Matrix overflow is handled by inner viewport and scroll containers.
+- Sticky header and first column behavior preserved where browser support allows.
+- Supplier x Reviewer Heatmap mode toggle added.
+- Count View preserved.
+- Reviewer Share / 審委占比 added.
+- Supplier Share / 供應商伴隨率 added.
+- Top Supplier-Reviewer Share / 供應商審委伴隨率排行 added.
+- Selected Reviewer Presence Split deferred.
+- No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
+- No A/Core touch.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Mobile gate preserved.
+- DevTools easter egg preserved.
+- Final git status before seal: modified allowed files only.
+- Production QA target: https://aai-display.vercel.app/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
