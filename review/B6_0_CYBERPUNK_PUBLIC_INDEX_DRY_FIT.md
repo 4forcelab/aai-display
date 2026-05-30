@@ -1029,6 +1029,20 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL4.1 Case Budget Copy Neutralization
+- Base head: 36609a98f56acde20eaba46a16354c7e0cba7226.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Changed visible case-budget table copy from old hard wording to Case Budget Reference List / 案件預算相關清單.
+- Added neutral helper copy: AAI 依公開投影資料排列指定路徑中的案件、預算與得標資訊。
+- No data logic changed.
+- No AG6.2 projection changed.
+- RFB Fingerprint surface, War-room Cockpit, LOCAL3 heatmap, V8.7, AG3, AG4, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA preserved.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## B LOCAL2 War-room Sales Surface Major Repair
 - Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
