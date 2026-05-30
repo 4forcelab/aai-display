@@ -154,6 +154,13 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .dashboard-card b { color:var(--muted); font:850 10px/1.25 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
 .dashboard-card strong { color:#f4fbff; font:900 17px/1.25 var(--zh); overflow-wrap:anywhere; }
 .dashboard-card span { color:rgba(205,232,242,.82); font:650 11px/1.45 var(--zh); overflow-wrap:anywhere; }
+.intelligence-inscription { margin:12px 0 0; border:1px solid rgba(91,231,255,.12); background:linear-gradient(90deg,rgba(91,231,255,.045),rgba(255,79,216,.035),rgba(3,9,16,.12)); color:rgba(222,238,246,.74); padding:8px 10px; font:750 11px/1.55 var(--zh); letter-spacing:.01em; position:relative; overflow:hidden; }
+.intelligence-inscription::before { content:""; position:absolute; inset:0 auto 0 0; width:2px; background:linear-gradient(180deg,var(--cyan),var(--magenta)); opacity:.72; }
+.intelligence-inscription span { color:rgba(176,209,220,.64); font:750 10px/1.35 var(--mono); }
+.skin-scan-target { position:relative; }
+.skin-scan-target::after { content:""; pointer-events:none; position:absolute; inset:0; background:linear-gradient(180deg,transparent 0%,rgba(91,231,255,.13) 45%,rgba(184,255,91,.08) 50%,transparent 58%); transform:translateY(-120%); opacity:0; }
+.skin-scan-target.scan-fired::after { animation:section-scan 900ms cubic-bezier(.2,.8,.2,1) 1; }
+@keyframes section-scan { 0% { transform:translateY(-120%); opacity:0; } 18% { opacity:.46; } 100% { transform:translateY(120%); opacity:0; } }
 .dashboard-panels { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(420px,.88fr); gap:12px; margin-top:13px; align-items:start; }
 .dashboard-panel { border:1px solid rgba(91,231,255,.19); background:rgba(4,13,22,.7); padding:13px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
 .dashboard-panel-head { display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:10px; }
@@ -262,6 +269,12 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .co-grid-wrap { overflow:auto; border:0; background:#03080e; padding:8px; }
 .co-grid { display:grid; gap:4px; min-width:560px; }
 .co-cell { min-height:38px; padding:7px 8px; border:1px solid rgba(91,231,255,.13); background:rgba(4,13,22,.72); color:#e8f7ff; font:750 11px/1.25 var(--mono); display:flex; align-items:center; justify-content:center; text-align:center; }
+.matrix-theater-panel .co-cell { transition:border-color .14s ease, box-shadow .14s ease, filter .14s ease, background-color .14s ease; }
+.matrix-theater-panel .co-cell.reticle-row,
+.matrix-theater-panel .co-cell.reticle-col { border-color:rgba(91,231,255,.3); filter:brightness(1.14); }
+.matrix-theater-panel .co-cell.reticle-cell { border-color:rgba(184,255,91,.72); box-shadow:0 0 0 1px rgba(184,255,91,.18),0 0 18px rgba(91,231,255,.22),inset 0 0 18px rgba(255,79,216,.1); filter:brightness(1.24); }
+.matrix-theater-panel .co-cell.axis.reticle-row,
+.matrix-theater-panel .co-cell.head.reticle-col { color:#f7fff2; text-shadow:0 0 12px rgba(91,231,255,.34); border-color:rgba(184,255,91,.42); }
 .co-cell.axis { position:sticky; left:0; z-index:2; justify-content:flex-start; text-align:left; color:rgba(221,242,248,.9); font-family:var(--zh); font-weight:850; overflow-wrap:anywhere; box-shadow:8px 0 12px rgba(3,8,14,.62); }
 .co-cell.head { position:sticky; top:0; z-index:3; background:rgba(91,231,255,.1); color:var(--cyan); font-weight:900; }
 .co-cell.head:first-child { left:0; z-index:4; }
@@ -286,7 +299,9 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .presence-card h4 { margin:0 0 8px; color:var(--cyan); font:900 12px/1.25 var(--zh); }
 .presence-table-viewport { width:100%; max-width:100%; overflow:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; }
 .presence-card-main { flex:1; min-height:0; }
-.top-signal-card { margin:10px 0; border:1px solid rgba(184,255,91,.2); background:linear-gradient(135deg,rgba(184,255,91,.095),rgba(91,231,255,.045),rgba(4,13,22,.72)); padding:10px; box-shadow:0 0 18px rgba(184,255,91,.045); }
+.top-signal-card { margin:10px 0; border:1px solid rgba(184,255,91,.2); background:linear-gradient(135deg,rgba(184,255,91,.095),rgba(91,231,255,.045),rgba(4,13,22,.72)); padding:10px; box-shadow:0 0 18px rgba(184,255,91,.045); position:relative; overflow:hidden; }
+.top-signal-card::before { content:"SIGNAL LOCKED"; position:absolute; top:7px; right:8px; color:rgba(184,255,91,.72); font:900 9px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.top-signal-card::after { content:""; pointer-events:none; position:absolute; inset:5px; border:1px solid rgba(184,255,91,.2); clip-path:polygon(0 0,24px 0,24px 2px,2px 2px,2px 24px,0 24px,0 0,100% 0,100% 24px,calc(100% - 2px) 24px,calc(100% - 2px) 2px,calc(100% - 24px) 2px,calc(100% - 24px) 0,100% 0,100% 100%,calc(100% - 24px) 100%,calc(100% - 24px) calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) calc(100% - 24px),100% calc(100% - 24px),100% 100%,0 100%,0 calc(100% - 24px),2px calc(100% - 24px),2px calc(100% - 2px),24px calc(100% - 2px),24px 100%,0 100%); opacity:.72; }
 .top-signal-card b { display:block; color:var(--lime); font:900 10px/1.1 var(--mono); letter-spacing:.075em; text-transform:uppercase; }
 .top-signal-card strong { display:block; margin-top:7px; color:#f7fff2; font:900 15px/1.25 var(--zh); overflow-wrap:anywhere; }
 .top-signal-main { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:end; margin-top:8px; }
@@ -1283,6 +1298,9 @@ function coPresenceMatrix(rows, limit = 7) {
 }
 function matrixFold(inner, note = '') {
   return `<details class="matrix-fold matrix-expanded" open><summary><b>Matrix Viewport / 矩陣視窗</b><span><span class="compact-label">Compact Matrix View / 緊湊矩陣視圖 · Expand Matrix / 展開矩陣</span><span class="collapse-label">Collapse Matrix / 收合矩陣</span></span></summary><div class="matrix-viewport">${inner}</div>${note ? `<p class="matrix-compact-note">${note}</p>` : ''}</details>`;
+}
+function intelligenceInscription() {
+  return `<div class="intelligence-inscription">有些路，早該在成為排列之前停下。<br><span>Some paths should have ended before they became patterns.</span></div>`;
 }
 function percent(value) { return `${(value * 100).toFixed(1)}%`; }
 function boundedShare(count, denominator) {
@@ -2530,7 +2548,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p><div class="dashboard-layer-spacer">Outcome layer / 案件結果層 · 表格起點對齊右側評委分布展開。</div>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${intelligenceInscription()}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -2582,7 +2600,7 @@ function renderRouteDashboard() {
   const matrix = coPresenceMatrix(reviewer, 7);
   const matrixGrid = renderCoPresenceMatrixPanel(matrix);
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以案件結果資料展開，與下方供應商審委排列分開閱讀。</p><div class="dashboard-layer-spacer">Outcome layer / 案件結果層 · 表格起點對齊右側評委分布展開。</div>${renderAwardedVendorTable(bid)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">案件評委常態分布圖以審委出現次數、身份欄位與路徑供應商展開。</p>${renderReviewerDistributionTable(reviewer)}</section></div>`;
-  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Budget Direction / 預算方向</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, vendor outcomes, and reviewer co-presence.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${tenders.length.toLocaleString('zh-TW')} unique cases · showing ${tenderRows.length.toLocaleString('zh-TW')}</span></div>${tenderTable}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${reviewer.length.toLocaleString('zh-TW')} Co-presence Rows</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Budget Direction / 預算方向</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, vendor outcomes, and reviewer co-presence.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${intelligenceInscription()}${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${tenders.length.toLocaleString('zh-TW')} unique cases · showing ${tenderRows.length.toLocaleString('zh-TW')}</span></div>${tenderTable}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${reviewer.length.toLocaleString('zh-TW')} Co-presence Rows</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function bridgeContext() {
   const routeProjection = getActiveRouteProjection();
@@ -2828,6 +2846,7 @@ function render() {
   renderRouteNarrative();
   const body = locked ? renderStateCard(m) : (activeModuleId === 'bid_preparation_module' ? renderBid() : (activeModuleId === 'reviewer_matrix' ? renderReviewerMatrix() : (activeModuleId === 'timeline_field_calculator' ? renderTimelineCalculator() : (activeModuleId === 'custom_supplier_management' ? renderSupplierManagement() : renderStateCard(m)))));
   document.getElementById('activePreview').innerHTML = `<div class="preview-head"><div><h2>${safe(m.front_zh)}</h2><span>${safe(m.front_en)} · ${safe(m.route)}</span></div><span>${moduleStatusCopy(m)}</span></div>${body}`;
+  hydrateIntelligenceSkin();
   const clear = document.getElementById('clearSampleBtn'); if (clear) clear.addEventListener('click', () => { clearFilters(); render(); });
 }
 document.getElementById('searchInput').addEventListener('input', e => { searchQuery = e.target.value.trim(); render(); });
@@ -2835,6 +2854,50 @@ document.getElementById('sortSelect').addEventListener('change', e => { sortMode
 document.querySelectorAll('.sample-chip').forEach(chip => chip.addEventListener('click', () => setSampleFilter(chip.dataset.sample)));
 const resetBtn = document.getElementById('resetBtn');
 if (resetBtn) resetBtn.addEventListener('click', () => { clearFilters(); render(); });
+let skinObserver;
+function hydrateIntelligenceSkin() {
+  document.querySelectorAll('.war-room-cockpit,.rfb-panel,.presence-contrast-panel,.ag4-budget-panel,.matrix-theater-panel,.route-dashboard-head').forEach(section => {
+    section.classList.add('skin-scan-target');
+    if (section.dataset.skinScanBound) return;
+    section.dataset.skinScanBound = '1';
+    if ('IntersectionObserver' in window) {
+      skinObserver ||= new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('scan-fired');
+        skinObserver.unobserve(entry.target);
+      }), {threshold:.18});
+      skinObserver.observe(section);
+    } else {
+      section.classList.add('scan-fired');
+    }
+  });
+}
+function clearMatrixReticle(grid) {
+  if (!grid) return;
+  grid.querySelectorAll('.reticle-row,.reticle-col,.reticle-cell').forEach(cell => cell.classList.remove('reticle-row','reticle-col','reticle-cell'));
+}
+document.addEventListener('mouseover', event => {
+  const cell = event.target.closest('.matrix-theater-panel .co-cell');
+  if (!cell) return;
+  const grid = cell.closest('.co-grid');
+  if (!grid) return;
+  const cells = Array.from(grid.children).filter(node => node.classList?.contains('co-cell'));
+  const index = cells.indexOf(cell);
+  const columns = cells.findIndex((node, i) => i > 0 && node.classList.contains('axis') && !node.classList.contains('head'));
+  if (index < 0 || columns <= 0) return;
+  const row = Math.floor(index / columns);
+  const col = index % columns;
+  clearMatrixReticle(grid);
+  cells.forEach((node, i) => {
+    if (Math.floor(i / columns) === row) node.classList.add('reticle-row');
+    if (i % columns === col) node.classList.add('reticle-col');
+  });
+  cell.classList.add('reticle-cell');
+});
+document.addEventListener('mouseout', event => {
+  const panel = event.target.closest('.matrix-theater-panel');
+  if (panel && !panel.contains(event.relatedTarget)) panel.querySelectorAll('.co-grid').forEach(clearMatrixReticle);
+});
 function printDevtoolsEasterEgg() {
   const mono = 'font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;line-height:1.45;';
   const cyan = `${mono}color:#6ff7ff;text-shadow:0 0 10px rgba(111,247,255,.28);`;
@@ -2848,7 +2911,7 @@ function printDevtoolsEasterEgg() {
 │  萬事皆宜，天作之合                                           │
 │  What's already there, arranged.                           │
 └────────────────────────────────────────────────────────────┘`, cyan);
-  console.log('%c[ DISPLAY ]%c Public View Layer       : ACTIVE\n%c[ SPLIT   ]%c Core / Display Boundary : ENABLED\n%c[ SOURCE  ]%c Sanitized Export Pack   : VERIFIED\n%c[ OUTPUT  ]%c Refined Signal Surface  : ACTIVE\n%c[ MOBILE  ]%c Terminal Protection     : RESTRICTED\n%c[ VOID    ]%c What you are looking for : NOT HERE', cyan, gray, magenta, gray, green, gray, cyan, gray, magenta, gray, dim, gray);
+  console.log('%c[ DISPLAY ]%c Public View Layer       : ACTIVE\n%c[ SPLIT   ]%c Core / Display Boundary : ONE-WAY\n%c[ SOURCE  ]%c public projection only  : VERIFIED\n%c[ OUTPUT  ]%c sanitized display layer : ACTIVE\n%c[ MOBILE  ]%c Terminal Protection     : RESTRICTED\n%c[ VOID    ]%c What you are looking for : NOT HERE', cyan, gray, magenta, gray, green, gray, cyan, gray, magenta, gray, dim, gray);
   console.log(`%c// You opened DevTools.
 // A ceremonial gesture. Not a key.
 
@@ -2857,15 +2920,17 @@ function printDevtoolsEasterEgg() {
 // You are looking at the display layer.
 // You may inspect the glass, not the engine.
 // The machinery remains elsewhere.
+// 有些路，早該在成為排列之前停下。
+// Some paths should have ended before they became patterns.
 
 // Frontend JSON may reveal public display structure and sanitized display payload.
-// It does not reveal private engine internals, secrets, source material,
-// or non-public preparation details.
+// It does not reveal raw rows, private engine internals, secrets, source material,
+// core computation, mining pipeline, resolver logic, or non-public preparation details.
 
 // If you came for the engine, you came to the showroom.
 // If you came for the method, you arrived at the echo.
 // If you came for the source of the signal, ask properly.`, gray);
-  console.log('%c[ CONTACT ]%c CONTACT: info@4force.com.tw\n%c[ VIEW    ]%c sanitized display payload only\n%c[ RULE    ]%c the mine is not here\n%c[ FINAL   ]%c You are not denied. You are simply in the wrong layer.', green, gray, cyan, gray, magenta, gray, green, gray);
+  console.log('%c[ CONTACT ]%c CONTACT: info@4force.com.tw\n%c[ VIEW    ]%c public projection only · sanitized display layer\n%c[ RULE    ]%c the mine is not here\n%c[ FINAL   ]%c Public data, arranged. What should have stopped, did not.', green, gray, cyan, gray, magenta, gray, green, gray);
 }
 document.addEventListener('DOMContentLoaded', printDevtoolsEasterEgg);
 (function particles() {

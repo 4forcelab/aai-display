@@ -1191,3 +1191,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Matrix data, heatmap source, conditional values, route binding, runtime refs, data JSON, active route, search/filter behavior, and computation untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Intelligence Skin Pass 01
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added core inscription: 有些路，早該在成為排列之前停下。 / Some paths should have ended before they became patterns.
+- Matrix Theater Hover Reticle added for matrix cells, row, column, row label, and column label within the matrix theater only.
+- Top Gun Target Lock skin added to the existing Top Contrast Signal and Top Budget Fit Signal cards without changing names, numbers, values, or data source.
+- Section Entry Scanline added via a one-time IntersectionObserver skin on major intelligence sections.
+- DevTools / F12 easter egg upgraded with architecture-safe wording: AAI / 4Force Lab branding, sanitized display layer, public projection only, no raw rows, and one-way Core-to-Display boundary.
+- Subtle text pin added near the route dashboard surface without changing information architecture.
+- Layout, data, runtime refs, binding, active route, matrix source, heatmap source, row/column order, computation, and denominators untouched.
+- Mobile gate preserved.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
