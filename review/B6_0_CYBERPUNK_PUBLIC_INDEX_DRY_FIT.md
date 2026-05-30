@@ -1204,3 +1204,13 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Mobile gate preserved.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA C-Baseline Layout Containment Patch
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: local layout containment for Core Matched Awarded Vendors / Reviewer Distribution and Stable Fast Response / Fastest Single Case only.
+- Added scoped min-width, max-width, table-layout, ellipsis, compact header, and local table shell containment for the dashboard two-column rails.
+- Added scoped Stable Fast Response / Fastest Single Case panel classes and table containment so dense rows remain inside local rails.
+- No rollback, section reorder, data, runtime refs, activeRows, active route, search/filter behavior, dashboard binding, heatmap source, matrix source, JSON projection, local pack reference, or computation changes.
+- Core inscription, RFB Specification Fingerprint, Presence Top Gun, Ceiling Top Gun, Supplier Reviewer Heatmap, Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, mobile gate, and DevTools easter egg preserved.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.

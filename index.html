@@ -201,6 +201,18 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .cell-meta { display:block; margin-top:4px; color:rgba(176,209,220,.72); font:650 10px/1.35 var(--zh); }
 .semantic-table td small, .share-meta { display:block; margin-top:4px; color:rgba(176,209,220,.72); font:650 10px/1.35 var(--zh); }
 .supplier-share-list table { min-width:760px; table-layout:fixed; }
+.dashboard-layer-panels > .dashboard-panel,
+.dashboard-layer-panels .dashboard-table-wrap { min-width:0; max-width:100%; box-sizing:border-box; }
+.dashboard-layer-panels .dashboard-table-wrap { width:100%; overflow-x:auto; overflow-y:auto; }
+.dashboard-layer-panels .semantic-table { width:100%; min-width:0; max-width:100%; table-layout:fixed; }
+.dashboard-layer-panels .semantic-table th,
+.dashboard-layer-panels .semantic-table td { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dashboard-layer-panels .th-main { font-size:11px; line-height:1.12; }
+.dashboard-layer-panels .th-sub { font-size:8px; line-height:1; letter-spacing:0; }
+.dashboard-layer-panels .col-count { width:68px; }
+.dashboard-layer-panels .col-share { width:76px; }
+.dashboard-layer-panels .col-money { width:108px; }
+.dashboard-layer-panels .col-identity { width:138px; }
 .fast-response-panel { margin-top:13px; max-width:100%; overflow:hidden; box-sizing:border-box; border:1px solid rgba(255,79,216,.2); background:linear-gradient(135deg,rgba(255,79,216,.055),rgba(91,231,255,.055),rgba(3,9,16,.74)); padding:13px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 0 24px rgba(255,79,216,.045); }
 .fast-response-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; border-bottom:1px solid rgba(255,79,216,.14); padding-bottom:10px; margin-bottom:11px; }
 .fast-response-head span { display:block; color:var(--magenta); font:900 11px/1 var(--mono); text-transform:uppercase; letter-spacing:.08em; }
@@ -223,6 +235,19 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .fast-response-table { min-width:780px; }
 .fast-response-table th { font-size:11px; padding:10px 9px; }
 .fast-response-table td { font-size:11px; line-height:1.48; }
+.stable-fast-response-panel .fast-response-grid > .response-panel { min-width:0; max-width:100%; overflow:hidden; }
+.stable-fast-response-panel .response-panel-body,
+.stable-fast-response-panel .response-table-viewport { min-width:0; max-width:100%; overflow:hidden; box-sizing:border-box; }
+.stable-fast-response-panel .response-table-viewport { width:100%; overflow-x:auto; overflow-y:auto; }
+.stable-fast-response-panel .fast-response-table { width:100%; min-width:0; max-width:100%; table-layout:fixed; }
+.stable-fast-response-panel .fast-response-table th,
+.stable-fast-response-panel .fast-response-table td { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.stable-fast-response-panel .fast-response-table .col-count { width:72px; }
+.stable-fast-response-panel .fastest-single-case-panel .fast-response-table .col-money { width:108px; }
+.stable-fast-response-panel .fastest-single-case-panel .fast-response-table th:nth-child(2),
+.stable-fast-response-panel .fastest-single-case-panel .fast-response-table td:nth-child(2) { width:112px; }
+.stable-fast-response-panel .fastest-single-case-panel .fast-response-table th:nth-child(4),
+.stable-fast-response-panel .fastest-single-case-panel .fast-response-table td:nth-child(4) { width:72px; }
 .pressure-strip-list { display:grid; gap:7px; }
 .pressure-strip-item { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(184,255,91,.16); background:rgba(184,255,91,.045); padding:9px 10px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:9px; align-items:start; }
 .pressure-strip-item strong { color:#f4fbff; font:850 12px/1.35 var(--zh); overflow-wrap:anywhere; word-break:break-word; }
@@ -2464,7 +2489,7 @@ function renderPartitionFastResponsePanel(routePartition) {
   const fastestTable = fastestRows.length
     ? `${fastestCards}<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table semantic-table"><thead><tr><th>${thLabel('供應商','Supplier')}</th><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th class="col-count">${thLabel('窗口','Window')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th></tr></thead><tbody>${fastestRows.slice(0, 8).map(row => `<tr><td class="cell-ellipsis" title="${safe(row.supplier_name)}">${safe(row.supplier_name)}</td><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="col-count">${formatDaysPublic(row.notice_window_days)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td></tr>`).join('')}</tbody></table></div>`
     : `<div class="no-result"><h3>—</h3><p>No fastest single case exported for this route.</p></div>`;
-  return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>STABLE FAST RESPONSE</span><strong>穩定快速反應 · Fastest Single Case / 最快單案</strong></div><p>穩定快速反應優先於單一最快案件，避免小樣本尖峰搶走主排序。<br>Stable supplier response is displayed ahead of the fastest single case.</p></div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Stable Fast Response / 穩定快速反應</b><span>Qualified Count / 有效窗口數</span></div><div class="response-panel-body">${stableTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fastest Single Case / 最快單案</b><span>single-case context</span></div><div class="response-panel-body">${fastestTable}</div></section></div></section>`;
+  return `<section class="fast-response-panel stable-fast-response-panel"><div class="fast-response-head"><div><span>STABLE FAST RESPONSE</span><strong>穩定快速反應 · Fastest Single Case / 最快單案</strong></div><p>穩定快速反應優先於單一最快案件，避免小樣本尖峰搶走主排序。<br>Stable supplier response is displayed ahead of the fastest single case.</p></div><div class="fast-response-grid"><section class="dashboard-panel response-panel stable-response-panel"><div class="dashboard-panel-head response-panel-header"><b>Stable Fast Response / 穩定快速反應</b><span>Qualified Count / 有效窗口數</span></div><div class="response-panel-body">${stableTable}</div></section><section class="dashboard-panel response-panel fastest-single-case-panel"><div class="dashboard-panel-head response-panel-header"><b>Fastest Single Case / 最快單案</b><span>single-case context</span></div><div class="response-panel-body">${fastestTable}</div></section></div></section>`;
 }
 function renderPartitionAssociatedContext(routePartition) {
   const associated = routePartition?.associated_route_context || {};
