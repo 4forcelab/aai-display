@@ -1236,3 +1236,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - LOCAL6 consumer absent.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Stable Fast Response Table Mode Fix
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Previous containment pass did not remove the local table-mode horizontal scrollbar inside Stable Fast Response.
+- Scope: Stable Fast Response / Fastest Single Case table layout only.
+- Stable Fast Response table switched to fixed width, fixed table layout, no horizontal scroll containment with ellipsis for long supplier and route-presence text.
+- Fastest Single Case single-row table replaced with a compact detail grid while keeping supplier, case, title, window, budget, award, and optional method values from the same source rows.
+- Page section order, data, runtime refs, active route, activeRows, search/filter behavior, dashboard binding, heatmap source, matrix source, JSON projections, and computation untouched.
+- RFB, Top Gun, Matrix Theater, Case Budget Reference List, mobile gate, DevTools easter egg, logo, hero, and V8 ALPHA inscription preserved.
+- LOCAL6 consumer absent.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.

@@ -236,6 +236,21 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .fast-response-panel .response-table-viewport .cell-ellipsis { max-width:230px; }
 .fast-response-panel .fast-response-grid > .response-panel:nth-child(2) .response-table-viewport .fast-response-table { min-width:690px; }
 .fast-response-panel .fast-response-grid > .response-panel:nth-child(2) .response-table-viewport .cell-ellipsis { max-width:205px; }
+.fast-response-panel .stable-response-table-wrap { overflow-x:hidden; }
+.fast-response-panel .stable-response-table-wrap .stable-response-table { width:100%; min-width:0; max-width:100%; table-layout:fixed; }
+.fast-response-panel .stable-response-table-wrap .stable-response-table th,
+.fast-response-panel .stable-response-table-wrap .stable-response-table td { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fast-response-panel .stable-response-table-wrap .stable-response-table th:first-child,
+.fast-response-panel .stable-response-table-wrap .stable-response-table td:first-child { width:auto; }
+.fast-response-panel .stable-response-table-wrap .stable-response-table .col-count { width:74px; }
+.fast-response-panel .stable-response-table-wrap .stable-response-table th:last-child,
+.fast-response-panel .stable-response-table-wrap .stable-response-table td:last-child { width:88px; }
+.fastest-case-detail-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:8px; }
+.fastest-case-detail-grid .detail-cell { min-width:0; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.72); padding:9px 10px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+.fastest-case-detail-grid .detail-cell.wide { grid-column:1/-1; }
+.fastest-case-detail-grid span { display:block; color:rgba(176,209,220,.68); font:800 9px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
+.fastest-case-detail-grid strong { display:block; margin-top:5px; color:#f4fbff; font:850 12px/1.35 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fastest-case-detail-grid .wide strong { white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
 .pressure-strip-list { display:grid; gap:7px; }
 .pressure-strip-item { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(184,255,91,.16); background:rgba(184,255,91,.045); padding:9px 10px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:9px; align-items:start; }
 .pressure-strip-item strong { color:#f4fbff; font:850 12px/1.35 var(--zh); overflow-wrap:anywhere; word-break:break-word; }
@@ -2460,6 +2475,21 @@ function renderFastResponseMiniCards(rows, mode, routeTotal, routeKey) {
     return `<article class="fast-response-mini-card"><b>${safe(row.supplier_name || row.awarded_vendor)}</b><strong>${formatDaysPublic(row.notice_window_days)}</strong><span>${safe(row.case_number)} · ${projectedMoney(row.budget_amount)}</span></article>`;
   }).join('')}</div>`;
 }
+function renderFastestSingleCaseDetailGrid(rows) {
+  if (!Array.isArray(rows) || !rows.length) return `<div class="no-result"><h3>—</h3><p>No fastest single case exported for this route.</p></div>`;
+  const row = rows[0] || {};
+  const method = publicFieldValue(row.procurement_method, row.method, row.procurement_method_public);
+  const optionalMethod = method === DISPLAY_PENDING ? '' : `<div class="detail-cell"><span>Method / 採購方式</span><strong title="${method}">${method}</strong></div>`;
+  return `<div class="fastest-case-detail-grid">
+    <div class="detail-cell"><span>Supplier / 供應商</span><strong title="${safe(row.supplier_name || row.awarded_vendor)}">${safe(row.supplier_name || row.awarded_vendor)}</strong></div>
+    <div class="detail-cell"><span>Case / 案號</span><strong title="${safe(row.case_number)}">${safe(row.case_number)}</strong></div>
+    <div class="detail-cell wide"><span>Title / 案名</span><strong title="${safe(row.case_title)}">${safe(row.case_title)}</strong></div>
+    <div class="detail-cell"><span>Window / 窗口</span><strong>${formatDaysPublic(row.notice_window_days)}</strong></div>
+    <div class="detail-cell"><span>Budget / 預算</span><strong>${projectedMoney(row.budget_amount)}</strong></div>
+    <div class="detail-cell"><span>Award / 決標</span><strong>${projectedMoney(row.award_amount)}</strong></div>
+    ${optionalMethod}
+  </div>`;
+}
 function renderPartitionFastResponsePanel(routePartition) {
   const stableRows = Array.isArray(routePartition?.stable_fast_response) ? routePartition.stable_fast_response : [];
   const fastestRows = Array.isArray(routePartition?.fastest_single_cases) ? routePartition.fastest_single_cases : [];
@@ -2468,14 +2498,14 @@ function renderPartitionFastResponsePanel(routePartition) {
   const stableCards = renderFastResponseMiniCards(stableRows, 'stable', routeTotal, routePartition.route_key);
   const fastestCards = renderFastResponseMiniCards(fastestRows, 'fastest', routeTotal, routePartition.route_key);
   const stableTable = stableRows.length
-    ? `${stableCards}<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table semantic-table"><thead><tr><th>${thLabel('供應商','Supplier')}</th><th class="col-count">${thLabel('有效窗口數','Qualified Count')}</th><th class="col-count">${thLabel('路徑出現','Route Presence')}</th><th class="col-count">${thLabel('最短窗口','Best Window')}</th><th class="col-count">${thLabel('平均窗口','Average Window')}</th><th class="col-count">${thLabel('樣本厚度','Sample Support')}</th></tr></thead><tbody>${stableRows.slice(0, 12).map(row => {
+    ? `${stableCards}<div class="fast-response-table-wrap response-table-viewport stable-response-table-wrap"><table class="fast-response-table semantic-table stable-response-table"><thead><tr><th>${thLabel('供應商','Supplier')}</th><th class="col-count">${thLabel('有效窗口數','Qualified Count')}</th><th class="col-count">${thLabel('路徑出現','Route Presence')}</th><th class="col-count">${thLabel('最短窗口','Best Window')}</th><th class="col-count">${thLabel('平均窗口','Average Window')}</th><th class="col-count">${thLabel('樣本厚度','Sample Support')}</th></tr></thead><tbody>${stableRows.slice(0, 12).map(row => {
       const routePresence = explicitRoutePresence(row.route_presence_count, routeTotal, `${routePartition.route_key}:stable_route_presence`);
       const examples = Array.isArray(row.case_examples) ? row.case_examples.map(item => safe(item.case_number)).filter(value => value !== '—').join(' / ') : '';
       return `<tr title="${safe(examples)}"><td class="cell-ellipsis" title="${safe(row.supplier_name)}">${safe(row.supplier_name)}<span class="cell-meta">${safe(examples)}</span></td><td class="col-count">${Number(row.qualified_count || 0).toLocaleString('zh-TW')}</td><td class="col-count">${routePresence}</td><td class="col-count">${formatDaysPublic(row.best_notice_window_days)}</td><td class="col-count">${formatDaysPublic(row.average_notice_window_days)}</td><td class="col-count">${supportLabel(row.sample_support_label)}</td></tr>`;
     }).join('')}</tbody></table></div>`
     : `<div class="no-result"><h3>—</h3><p>No stable fast response rows exported for this route.</p></div>`;
   const fastestTable = fastestRows.length
-    ? `${fastestCards}<div class="fast-response-table-wrap response-table-viewport"><table class="fast-response-table semantic-table"><thead><tr><th>${thLabel('供應商','Supplier')}</th><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th class="col-count">${thLabel('窗口','Window')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th></tr></thead><tbody>${fastestRows.slice(0, 8).map(row => `<tr><td class="cell-ellipsis" title="${safe(row.supplier_name)}">${safe(row.supplier_name)}</td><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="col-count">${formatDaysPublic(row.notice_window_days)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td></tr>`).join('')}</tbody></table></div>`
+    ? `${fastestCards}${renderFastestSingleCaseDetailGrid(fastestRows)}`
     : `<div class="no-result"><h3>—</h3><p>No fastest single case exported for this route.</p></div>`;
   return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>STABLE FAST RESPONSE</span><strong>穩定快速反應 · Fastest Single Case / 最快單案</strong></div><p>穩定快速反應優先於單一最快案件，避免小樣本尖峰搶走主排序。<br>Stable supplier response is displayed ahead of the fastest single case.</p></div><div class="fast-response-grid"><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Stable Fast Response / 穩定快速反應</b><span>Qualified Count / 有效窗口數</span></div><div class="response-panel-body">${stableTable}</div></section><section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Fastest Single Case / 最快單案</b><span>single-case context</span></div><div class="response-panel-body">${fastestTable}</div></section></div></section>`;
 }
