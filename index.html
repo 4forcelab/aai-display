@@ -223,6 +223,19 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .fast-response-table { min-width:780px; }
 .fast-response-table th { font-size:11px; padding:10px 9px; }
 .fast-response-table td { font-size:11px; line-height:1.48; }
+.fast-response-panel .fast-response-grid > * { min-width:0; max-width:100%; overflow:hidden; box-sizing:border-box; }
+.fast-response-panel .response-panel,
+.fast-response-panel .response-panel-body { min-width:0; max-width:100%; overflow:hidden; box-sizing:border-box; }
+.fast-response-panel .response-table-viewport { contain:inline-size; overscroll-behavior:contain; scrollbar-color:rgba(91,231,255,.44) rgba(3,8,14,.78); }
+.fast-response-panel .response-table-viewport::-webkit-scrollbar { width:8px; height:8px; }
+.fast-response-panel .response-table-viewport::-webkit-scrollbar-track { background:rgba(3,8,14,.82); }
+.fast-response-panel .response-table-viewport::-webkit-scrollbar-thumb { background:rgba(91,231,255,.42); border-radius:999px; }
+.fast-response-panel .response-table-viewport .fast-response-table { width:max-content; max-width:none; }
+.fast-response-panel .response-table-viewport .fast-response-table th,
+.fast-response-panel .response-table-viewport .fast-response-table td { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fast-response-panel .response-table-viewport .cell-ellipsis { max-width:230px; }
+.fast-response-panel .fast-response-grid > .response-panel:nth-child(2) .response-table-viewport .fast-response-table { min-width:690px; }
+.fast-response-panel .fast-response-grid > .response-panel:nth-child(2) .response-table-viewport .cell-ellipsis { max-width:205px; }
 .pressure-strip-list { display:grid; gap:7px; }
 .pressure-strip-item { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(184,255,91,.16); background:rgba(184,255,91,.045); padding:9px 10px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:9px; align-items:start; }
 .pressure-strip-item strong { color:#f4fbff; font:850 12px/1.35 var(--zh); overflow-wrap:anywhere; word-break:break-word; }
