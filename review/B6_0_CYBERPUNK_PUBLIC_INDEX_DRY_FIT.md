@@ -953,6 +953,25 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B V8.8.4 Direct Core Display Consumption
+- Base head: 946d24d945eaba753e65333b9671a8223f3085b4.
+- Changed files: index.html, data/preview/ag5_7_route_partition_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- A read-only capped public projection copied into B: data/preview/ag5_7_route_partition_projection.json.
+- B now consumes explicit Direct Route Core / Associated Route Context partition rows instead of deriving direct or associated matches in the browser.
+- Direct Route Core Summary now leads the Route Dashboard, with Matched Case Budget Sum, Budget Case Count, Award Case Count, Match Basis, and display basis copy.
+- Associated Route Context is displayed as second-layer context and shows no exported context for routes where the projection count is zero.
+- Top Supplier-Reviewer Share is promoted ahead of the response panels and consumes supplier_reviewer_share from the route partition projection.
+- Stable Fast Response is displayed ahead of Fastest Single Case and consumes stable_fast_response from the route partition projection.
+- Fastest Single Case consumes fastest_single_cases and remains separate from the stable supplier ranking.
+- Route Presence values are read only from explicit route_presence_count fields; missing, non-integer, or out-of-route values render as — with a console warning.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
