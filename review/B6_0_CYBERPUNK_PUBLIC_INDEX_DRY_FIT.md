@@ -1076,6 +1076,20 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Manual deploy: none.
 - Production QA target remains https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL6 Washed Projection Consumer
+- Base head: 223e80d72917a17aaa5a93b142b85f94c7b9001d.
+- Changed files: index.html, data/preview/local6_washed_public_projection_pack.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Copied A LOCAL6 public-safe projection into B as data/preview/local6_washed_public_projection_pack.json.
+- Frontend now consumes LOCAL6 as a compact washed projection surface near the Temporal Backtest Cockpit.
+- Compressed Notice Window prefers LOCAL6 capped route-year rows when available and keeps 3-14 day threshold copy.
+- Direct Core / Associated Context / Combined route depth, route birth / survival, budget contact, method distribution, and RFB availability are surfaced from LOCAL6.
+- LOCAL6 public JSON validation preserved: max public array length 20 and recommendation ready_for_b_local6_consumer.
+- Existing LOCAL5.1.1 surfaces, LOCAL4.1 Case Budget Reference List, RFB, War-room, heatmap, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA preserved.
+- A touched: no.
+- C/Ops Ledger touched: no.
+- Manual deploy: none.
+- Production QA target remains https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## B LOCAL2 War-room Sales Surface Major Repair
 - Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.

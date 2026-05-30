@@ -582,7 +582,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>08:13 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>08:37 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -637,6 +637,7 @@ const ROUTE_PARTITION_PROJECTION_URL = 'data/preview/ag5_7_route_partition_proje
 const LOCAL_STATIC_PACK_URL = 'data/local_static_pack/local_projection_pack.json';
 const RFB_PUBLIC_PROJECTION_URL = 'data/preview/ag6_2_rfb_public_projection_pack.json';
 const TEMPORAL_BACKTEST_PROJECTION_URL = 'data/preview/' + 'local' + '5_temporal_backtest_public_projection_candidate.json';
+const LOCAL6_WASHED_PROJECTION_URL = 'data/preview/local6_washed_public_projection_pack.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
 let routeSurfaceAggregateProjectionPack = null;
@@ -651,6 +652,8 @@ let rfbPublicProjectionPack = null;
 let rfbPublicProjectionStatus = 'idle';
 let temporalBacktestProjectionPack = null;
 let temporalBacktestProjectionStatus = 'idle';
+let local6WashedProjectionPack = null;
+let local6WashedProjectionStatus = 'idle';
 const routePresenceWarningKeys = new Set();
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
@@ -1389,6 +1392,71 @@ function rfbRouteSimilarityPairs(routeKey) {
   const matched = pairs.filter(pair => [pair.vendor_a, pair.vendor_b, pair.agency_a, pair.agency_b].some(value => safe(value).includes(key)));
   return (matched.length ? matched : pairs).slice(0, 6);
 }
+function local6Routes() {
+  return Array.isArray(local6WashedProjectionPack?.routes) ? local6WashedProjectionPack.routes : [];
+}
+function local6Route(rowKey) {
+  const key = safe(rowKey);
+  return local6Routes().find(row => safe(row.route_key) === key) || local6Routes().find(row => key !== '—' && safe(row.route_key).includes(key)) || null;
+}
+function local6Rows(pathKey) {
+  const value = local6WashedProjectionPack?.[pathKey]?.route_rows;
+  return Array.isArray(value) ? value : [];
+}
+function local6CompressedRows() {
+  return Array.isArray(local6WashedProjectionPack?.compressed_notice_window?.route_year_rows)
+    ? local6WashedProjectionPack.compressed_notice_window.route_year_rows
+    : [];
+}
+function local6ThresholdLabel() {
+  const lower = Number(local6WashedProjectionPack?.compressed_notice_window?.lower_bound_days ?? 3);
+  const upper = Number(local6WashedProjectionPack?.compressed_notice_window?.upper_bound_days ?? 14);
+  return `${lower}–${upper} days`;
+}
+function local6RouteDepthCards() {
+  const rows = local6Rows('direct_associated_partition').length ? local6Rows('direct_associated_partition') : local6Routes();
+  return rows.slice(0, 4).map(row => `<article class="temporal-survival-card"><b>${safe(row.route_label || row.route_key)}</b><strong>${Number(row.combined_count ?? row.ag5_7_combined_count ?? 0).toLocaleString('zh-TW')}</strong><span>Direct Core / 直接命中核心 ${Number(row.direct_core_count || 0).toLocaleString('zh-TW')} · Associated Context / 關聯命中脈絡 ${Number(row.associated_context_count || 0).toLocaleString('zh-TW')} · Combined / 合併展示量 ${Number(row.combined_count ?? row.ag5_7_combined_count ?? 0).toLocaleString('zh-TW')}</span></article>`).join('');
+}
+function local6BirthSurvivalRows() {
+  return local6Rows('route_birth_timeline').slice(0, 4).map(row => {
+    const yearly = Array.isArray(row.yearly_case_counts) ? row.yearly_case_counts : [];
+    const years = yearly.map(item => `${safe(item.year_gregorian)}: ${Number(item.case_count || 0).toLocaleString('zh-TW')}`).join(' / ') || '—';
+    return `<div class="temporal-timeline-row"><b>${safe(row.route_label || row.route_key)}</b><span>${safe(row.first_observed_year_gregorian)} first</span><span>${safe(row.latest_observed_year_gregorian)} latest</span><span>${years}</span></div>`;
+  }).join('');
+}
+function local6BudgetCards(limit = 4) {
+  return local6Rows('budget_contact_surface')
+    .slice(0, limit)
+    .map(row => `<article class="temporal-budget-item"><strong><span>${safe(row.route_label || row.route_key)}</span><em>${Number(row.distinct_budget_case_count || 0).toLocaleString('zh-TW')} cases</em></strong><p>Distinct case basis / 去重案件基準<br>Budget ${projectedMoney(row.budget_total)} · Award ${projectedMoney(row.award_total)}</p></article>`)
+    .join('');
+}
+function local6MethodCards(limit = 4) {
+  return local6Rows('method_distribution')
+    .slice(0, limit)
+    .map(row => {
+      const methods = (row.method_counts || []).slice(0, 2).map(item => `${safe(item.method)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).join(' / ') || '—';
+      return `<article class="temporal-budget-item"><strong><span>${safe(row.route_label || row.route_key)}</span><em>${Number((row.sample_cases_capped || []).length).toLocaleString('zh-TW')} rows</em></strong><p>Method Distribution / 採購方式分布<br>${methods}</p></article>`;
+    })
+    .join('');
+}
+function renderLocal6WashedProjectionSurface() {
+  if (local6WashedProjectionStatus !== 'ready' || !local6WashedProjectionPack) return '';
+  const validation = local6WashedProjectionPack.validation || {};
+  const routeYearRows = local6CompressedRows().length;
+  const rfb = local6WashedProjectionPack.rfb_surface_if_available || {};
+  const metrics = [
+    ['Routes Covered', local6Routes().length.toLocaleString('zh-TW'), 'public route surfaces'],
+    ['Route-Year Rows', routeYearRows.toLocaleString('zh-TW'), 'compressed notice rows'],
+    ['Compressed Notice Window', local6ThresholdLabel(), '公告日至截止日 3–14 天'],
+    ['RFB Surface', rfb.available ? 'Available' : '—', 'RFB Available from LOCAL6'],
+    ['Max Public Array', Number(validation.max_public_array_length || 0).toLocaleString('zh-TW'), 'capped display arrays'],
+    ['Recommendation', safe(validation.recommendation), 'ready_for_b_local6_consumer']
+  ];
+  const birthRows = local6BirthSurvivalRows();
+  const budgetCards = local6BudgetCards();
+  const methodCards = local6MethodCards();
+  return `<section class="temporal-cockpit"><div class="temporal-head"><div><span>LOCAL6 WASHED PROJECTION</span><strong>LOCAL6 Washed Projection / 洗礦展示包</strong></div><p>Public-safe projection from A Core. Routes, compressed notice windows, Direct / Associated partitions, budget contact, method distribution, and RFB are capped for display.<br>A Core 已完成洗礦投影；B 僅消費公開封裝後的 capped aggregates，不持有 raw rows 或完整礦池。</p></div><div class="temporal-badges"><span>Public Projection Only</span><span>Core Exposure：None</span><span>ready_for_b_local6_consumer</span><span>RFB Available from LOCAL6</span></div><div class="fast-response-metrics metric-grid-safe">${metrics.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><section class="temporal-card" style="margin-top:10px"><h4>Direct / Associated Route Depth / 路徑資料厚度</h4><div class="temporal-survival-grid">${local6RouteDepthCards()}</div></section><div class="temporal-grid" style="margin-top:10px"><section class="temporal-card"><h4>Route Birth / Survival Compact Readout</h4><div class="temporal-timeline"><div class="temporal-timeline-row header"><span>Route</span><span>First</span><span>Latest</span><span>Year rows</span></div>${birthRows}</div></section><section class="temporal-card"><h4>RFB Availability / 規格指紋可用狀態</h4><p class="presence-note">RFB Available from LOCAL6 · Sidecar intelligence surface remains capped for display.</p><div class="temporal-badges"><span>${rfb.available ? 'Available' : 'Unavailable'}</span><span>${safe(rfb.recommendation || validation.recommendation)}</span><span>${local6ThresholdLabel()}</span></div></section></div><div class="temporal-budget-grid"><section class="temporal-card"><h4>Budget Contact Surface / 預算接觸表面</h4><p class="presence-note">Distinct case basis / 去重案件基準</p><div class="temporal-budget-list">${budgetCards || '<article class="temporal-budget-item"><strong><span>—</span><em>0 cases</em></strong><p>—</p></article>'}</div></section><section class="temporal-card"><h4>Method Distribution / 採購方式分布</h4><div class="temporal-budget-list">${methodCards || '<article class="temporal-budget-item"><strong><span>—</span><em>0 rows</em></strong><p>—</p></article>'}</div></section></div></section>`;
+}
 function renderRfbFingerprintSurface(routeProjection) {
   const routeKey = routeProjection?.route_key || activeSampleFilter;
   const surface = getActiveRfbRouteSurface(routeKey);
@@ -1439,7 +1507,7 @@ function temporalCurrentLabel(routeKey) {
 }
 function temporalWindowCopy(row, qualified, eligible) {
   const routeKey = safe(row.route_key);
-  const year = safe(row.year);
+  const year = safe(row.year ?? row.year_gregorian);
   if (routeKey === '屏東縣政府') {
     return `背景母體 ${eligible.toLocaleString('zh-TW')} 件可計算案件中，${qualified.toLocaleString('zh-TW')} 件落入短公告窗口。`;
   }
@@ -1452,7 +1520,7 @@ function temporalWindowRatioLabel(row, qualified, eligible) {
     '屏東縣政府::2022': '29 / 31 cases',
     '屏東縣政府::2023': '31 / 33 cases'
   };
-  return presets[`${safe(row.route_key)}::${safe(row.year)}`] || `${qualified.toLocaleString('zh-TW')} / ${eligible.toLocaleString('zh-TW')} cases`;
+  return presets[`${safe(row.route_key)}::${safe(row.year ?? row.year_gregorian)}`] || `${qualified.toLocaleString('zh-TW')} / ${eligible.toLocaleString('zh-TW')} cases`;
 }
 function temporalBandLabel(band) {
   return safe(band).replace(/_/g, '–');
@@ -1475,18 +1543,26 @@ function renderTemporalBacktestCockpit(routeProjection) {
     return `<article class="temporal-survival-card"><b>${safe(surface.route_key)}</b><strong>${safe(label)}</strong><span>${safe(note)} · 2022 ${temporalCount(y2022).toLocaleString('zh-TW')} / 2023 ${temporalCount(y2023).toLocaleString('zh-TW')}</span></article>`;
   }).join('');
   const pressureOrder = {'三恆一樹::2023': 1, '李雨蓁::2023': 2, '屏東縣政府::2022': 3, '屏東縣政府::2023': 4};
-  const pressureRows = (temporalBacktestProjectionPack.tight_window_surfaces || [])
-    .filter(row => Object.prototype.hasOwnProperty.call(pressureOrder, `${safe(row.route_key)}::${safe(row.year)}`))
-    .filter(row => Number(row.eligible_count || 0) > 0)
-    .sort((a,b) => pressureOrder[`${safe(a.route_key)}::${safe(a.year)}`] - pressureOrder[`${safe(b.route_key)}::${safe(b.year)}`])
+  const local6PressureSource = local6CompressedRows().map(row => ({
+    ...row,
+    year: row.year_gregorian,
+    eligible_count: row.computable_case_count,
+    qualified_3_to_14_count: row.qualified_3_to_14_count
+  }));
+  const pressureSource = local6PressureSource.length ? local6PressureSource : (temporalBacktestProjectionPack.tight_window_surfaces || []);
+  const pressureRows = pressureSource
+    .filter(row => Object.prototype.hasOwnProperty.call(pressureOrder, `${safe(row.route_key)}::${safe(row.year ?? row.year_gregorian)}`))
+    .filter(row => Number(row.eligible_count ?? row.computable_case_count ?? 0) > 0)
+    .sort((a,b) => pressureOrder[`${safe(a.route_key)}::${safe(a.year ?? a.year_gregorian)}`] - pressureOrder[`${safe(b.route_key)}::${safe(b.year ?? b.year_gregorian)}`])
     .slice(0, 5)
     .map(row => {
-      const eligible = Number(row.eligible_count || 0);
+      const eligible = Number(row.eligible_count ?? row.computable_case_count ?? 0);
       const qualified = Number(row.qualified_3_to_14_count || 0);
       const width = eligible ? Math.max(4, Math.min(100, qualified / eligible * 100)) : 0;
-      return `<article class="temporal-pressure-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${temporalWindowRatioLabel(row, qualified, eligible)}</em></strong><p>${temporalWindowCopy(row, qualified, eligible)}</p><b class="temporal-bar"><i style="width:${width.toFixed(1)}%"></i></b></article>`;
+      return `<article class="temporal-pressure-item"><strong><span>${safe(row.route_key)} · ${safe(row.year ?? row.year_gregorian)}</span><em>${temporalWindowRatioLabel(row, qualified, eligible)}</em></strong><p>${temporalWindowCopy(row, qualified, eligible)}</p><b class="temporal-bar"><i style="width:${width.toFixed(1)}%"></i></b></article>`;
     }).join('');
-  const budgetRows = (temporalBacktestProjectionPack.threshold_surfaces || [])
+  const local6Budget = local6BudgetCards(6);
+  const budgetRows = local6Budget || (temporalBacktestProjectionPack.threshold_surfaces || [])
     .filter(row => Number(row.case_count_in_band || 0) > 0)
     .sort((a,b) => Number(b.case_count_in_band || 0) - Number(a.case_count_in_band || 0) || safe(a.route_key).localeCompare(safe(b.route_key), 'zh-Hant'))
     .slice(0, 6)
@@ -2104,6 +2180,26 @@ function loadTemporalBacktestProjection() {
       render();
     });
 }
+function loadLocal6WashedProjection() {
+  if (local6WashedProjectionStatus === 'loading' || local6WashedProjectionStatus === 'ready') return;
+  local6WashedProjectionStatus = 'loading';
+  fetch(LOCAL6_WASHED_PROJECTION_URL, {cache:'no-store'})
+    .then(response => {
+      if (!response.ok) throw new Error(`LOCAL6 Washed Projection ${response.status}`);
+      return response.json();
+    })
+    .then(pack => {
+      if (pack?.pack_type !== 'local6_washed_public_projection_pack') throw new Error('LOCAL6 Washed Projection type mismatch');
+      local6WashedProjectionPack = pack;
+      local6WashedProjectionStatus = 'ready';
+      render();
+    })
+    .catch(error => {
+      local6WashedProjectionStatus = 'unavailable';
+      console.warn('LOCAL6 Washed Projection not ready', error);
+      render();
+    });
+}
 function getActiveRouteProjection(routeKey = activeSampleFilter) {
   const routes = routeDashboardProjectionPack?.routes || [];
   const key = safe(routeKey);
@@ -2607,6 +2703,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
   const associatedContextBlock = routePartition ? renderPartitionAssociatedContext(routePartition) : '';
   const calendarPressureBlock = renderPartitionCalendarPressurePanel(routeDisplaySemantics || routeSurface);
   const cockpitBlock = renderWarRoomCockpit(routeProjection, routePartition, routeDisplaySemantics);
+  const local6WashedBlock = renderLocal6WashedProjectionSurface();
   const temporalBacktestBlock = renderTemporalBacktestCockpit(routeProjection);
   const routeMetricGrid = `<div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>`;
   const supplierReviewerHeatmapBlock = routePartition
@@ -2616,7 +2713,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `${cockpitBlock}${temporalBacktestBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、case budget rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `${cockpitBlock}${local6WashedBlock}${temporalBacktestBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、case budget rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -2969,6 +3066,7 @@ loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
 loadRfbPublicProjectionPack();
 loadTemporalBacktestProjection();
+loadLocal6WashedProjection();
 </script>
 </body>
 </html>
