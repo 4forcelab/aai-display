@@ -1133,3 +1133,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - C touched: read-only.
 - Manual deploy: no.
 - Future rule: LOCAL5/LOCAL6 projection depth may return only as side drawer, feature flag, or consultant-unlock layer, never by replacing the primary route dashboard.
+
+## B CLOGR2.2 Recover Accepted Runtime Data Pack
+- Reason: accepted shell was restored but runtime data remained disconnected.
+- CLOGR2.1 found two missing accepted-index refs: `data/preview/b5_9_front_copy_translation_lock.json` and `data/preview/g40b_lifecycle_display_enriched.json`.
+- Classification: B5.9 front-copy translation lock remains excluded as historical metadata/source ref.
+- Recovery: `g40b_lifecycle_display_enriched.json` was recovered from B git history because it may support lifecycle / participated tender / outcome runtime surfaces.
+- G40B recovery ref: `a2c05fa238582f9f00eaedf92686334f8069a06d`.
+- Restored accepted existing refs: 7.
+- Index changed: no.
+- A touched: no.
+- C touched: no.
+- Manual deploy: no.
