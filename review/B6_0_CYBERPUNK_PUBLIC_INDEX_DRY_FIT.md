@@ -989,6 +989,28 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL1 Static Pack Consumer Dry-Fit
+- Base head: 8b6072e3c0c4d3651288f6188b259cf3969836c8.
+- Changed files: index.html, data/local_static_pack/local_projection_pack.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- A read-only source copied into B: data/local_static_pack/local_projection_pack.json.
+- Pack type: local_static_projection_pack.
+- Pack version: local-v0.1.
+- Validation message: LOCAL STATIC PROJECTION PACK VALID.
+- B now consumes the local static pack as a sidecar source when present, while preserving the existing route partition projection loader.
+- Static Projection Pack indicator added with Source Mode, Pack Version, Data Boundary, Core Exposure, Manual Copy Required, and Auto Push to B state.
+- Four route counts preserved through the sidecar view model: 李雨蓁 47 / 0, 三恆一樹 41 / 3, 協昌 37 / 2, 屏東縣政府 3657 / 0.
+- Direct-only routes now show a compact badge instead of a large zero Associated Context card.
+- Stable Fast Response and Fastest Single Case retain Top 3 cards and add compact table expansion from the local pack rows.
+- Projection Update timestamp refreshed to 2026-05-30 02:35 UTC.
+- Footer copyright statement added for display architecture, interface copy, visual arrangement, and public projection structure.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
