@@ -1213,3 +1213,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - LOCAL6 consumer absent.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Display Ammo Contract Inventory
+- Added `review/V8_ALPHA_DISPLAY_AMMO_CONTRACT.md`.
+- Scope: documentation-only inventory of current B V8 ALPHA display slots, source functions, ammo fields, basis needs, caps, current gaps, and B render rules.
+- Inspected current B shell references: route dashboard projection, route surface aggregate projection, route display semantics projection, route partition projection, local static pack, RFB public projection pack, and G40G capped clique support.
+- Documented required ammo groups: Dashboard, Fast Response / Compressed Notice, RFB, Top Gun, Matrix Theater, Vendor / Reviewer Distribution, Direct Core Proof Table, Case Budget Reference, Module Status, Appendix, and DevTools.
+- Recorded LOCAL6 lesson: aggregate projection may be useful as side drawer / lab panel / consultant layer / static appendix, but must not enter the main route dashboard binding.
+- index.html untouched.
+- Data, runtime refs, active route, activeRows, search priority, dashboard binding, heatmap source, matrix source, filters, JSON projections, and computation untouched.
+- LOCAL6 consumer absent.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
