@@ -124,7 +124,27 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .sample-route-grid span { min-height:56px; border:1px solid rgba(91,231,255,.2); background:rgba(4,13,22,.66); padding:10px 11px; display:flex; flex-direction:column; justify-content:center; gap:7px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
 .sample-route-grid b { color:#f3fbff; font:800 13px/1.1 var(--zh); }
 .sample-route-grid em { color:rgba(172,209,220,.86); font:750 11px/1.25 var(--mono); font-style:normal; }
-.route-dashboard { margin-top:16px; border:1px solid rgba(91,231,255,.28); background:linear-gradient(180deg,rgba(8,24,36,.9),rgba(3,10,18,.82)); padding:16px; box-shadow:0 0 30px rgba(91,231,255,.08), inset 0 1px 0 rgba(255,255,255,.04); }
+.route-dashboard { margin-top:12px; border:1px solid rgba(91,231,255,.28); background:linear-gradient(180deg,rgba(8,24,36,.9),rgba(3,10,18,.82)); padding:14px; box-shadow:0 0 30px rgba(91,231,255,.08), inset 0 1px 0 rgba(255,255,255,.04); }
+.war-room-cockpit { margin:0 0 12px; border:1px solid rgba(184,255,91,.28); background:linear-gradient(135deg,rgba(184,255,91,.09),rgba(91,231,255,.06),rgba(3,9,16,.78)); padding:13px; box-shadow:0 0 28px rgba(184,255,91,.055), inset 0 1px 0 rgba(255,255,255,.035); }
+.war-room-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:10px; }
+.war-room-head span { display:block; color:var(--lime); font:900 11px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.war-room-head strong { display:block; margin-top:7px; color:#fff; font:900 19px/1.18 var(--zh); }
+.war-room-head p { max-width:720px; margin:0; color:rgba(214,235,244,.82); font:650 12px/1.55 var(--zh); }
+.war-room-grid { display:grid; grid-template-columns:1.15fr .85fr repeat(6,minmax(0,1fr)); gap:8px; align-items:stretch; }
+.war-room-card { min-width:0; min-height:78px; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.72); padding:9px 10px; display:flex; flex-direction:column; justify-content:space-between; gap:6px; overflow:hidden; }
+.war-room-card b { color:rgba(184,255,91,.86); font:850 9px/1.15 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
+.war-room-card strong { color:#f4fbff; font:900 16px/1.2 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.war-room-card span { color:rgba(207,232,242,.78); font:650 10px/1.35 var(--zh); overflow-wrap:anywhere; }
+.war-room-card.route strong { font-size:19px; color:#fff; }
+.war-room-card.signal strong { font-size:13px; }
+.projection-badge { display:inline-flex; flex-wrap:wrap; gap:5px; align-items:center; color:rgba(208,232,240,.82); font:800 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.025em; }
+.projection-badge i { font-style:normal; border:1px solid rgba(91,231,255,.18); background:rgba(91,231,255,.055); padding:4px 6px; }
+.proof-drawer { margin-top:9px; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.58); }
+.proof-drawer summary { cursor:pointer; list-style:none; color:#f4fbff; font:850 11px/1.3 var(--zh); padding:8px 10px; display:flex; justify-content:space-between; gap:12px; align-items:center; }
+.proof-drawer summary::-webkit-details-marker { display:none; }
+.proof-drawer summary::after { content:"View capped proof"; color:var(--cyan); font:850 10px/1 var(--mono); text-transform:uppercase; letter-spacing:.05em; }
+.proof-drawer[open] summary::after { content:"Collapse proof"; }
+.proof-drawer .dashboard-table-wrap { border-left:0; border-right:0; border-bottom:0; max-height:300px; }
 .route-dashboard-head { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; border-bottom:1px solid rgba(91,231,255,.14); padding-bottom:12px; }
 .route-dashboard-head span { display:block; color:var(--cyan); font:900 11px/1 var(--mono); letter-spacing:.09em; text-transform:uppercase; }
 .route-dashboard-head strong { display:block; margin-top:7px; color:#f5fcff; font:900 18px/1.25 var(--zh); }
@@ -445,8 +465,8 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .footer-legal .en-line { display:block; color:#7f97a5; font:600 10px/1.5 var(--en); }
 .footer-right { display:grid; gap:8px; justify-items:end; }
 .copyright { color:#7f97a5; font:500 13px/1.55 var(--en); }
-.local-pack-indicator { margin:0 0 12px; border:1px solid rgba(184,255,91,.28); background:linear-gradient(135deg,rgba(184,255,91,.08),rgba(91,231,255,.05)); padding:10px 12px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; box-shadow:0 0 22px rgba(184,255,91,.06); }
-.local-pack-indicator span { min-width:0; border:1px solid rgba(255,255,255,.08); background:rgba(4,9,18,.34); padding:7px 8px; color:#d9edf5; font:800 10px/1.35 var(--mono); text-transform:uppercase; overflow-wrap:anywhere; }
+.local-pack-indicator { margin:0 0 10px; border:1px solid rgba(184,255,91,.18); background:rgba(184,255,91,.035); padding:8px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; box-shadow:0 0 18px rgba(184,255,91,.035); }
+.local-pack-indicator span { min-width:0; border:1px solid rgba(255,255,255,.07); background:rgba(4,9,18,.28); padding:6px 7px; color:#d9edf5; font:800 9px/1.32 var(--mono); text-transform:uppercase; overflow-wrap:anywhere; }
 .direct-only-badge { margin:0 0 12px; border:1px solid rgba(91,231,255,.24); background:rgba(91,231,255,.06); padding:11px 12px; color:#d9edf5; font:700 12px/1.6 var(--zh); display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; }
 .direct-only-badge b { color:var(--cyan); font:800 11px/1.2 var(--mono); text-transform:uppercase; }
 .fast-response-mini-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0 0 10px; }
@@ -457,13 +477,14 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
   .fast-response-mini-grid { grid-template-columns:1fr; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -493,7 +514,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>02:35 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>03:02 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -523,7 +544,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
       <div class="chip-row"><span class="chip-label">SAMPLE TAGS</span><button class="chip sample-chip" data-sample="屏東縣政府">屏東縣政府</button><button class="chip sample-chip" data-sample="協昌">協昌</button><button class="chip sample-chip" data-sample="三恆一樹">三恆一樹</button><button class="chip sample-chip" data-sample="李雨蓁">李雨蓁</button></div>
     </div>
     <div id="routeDashboard" class="route-dashboard"></div>
-    <details class="sample-path-guide"><summary><span><span class="guide-kicker">DEMO ROUTE GUIDE</span>展示路徑導引 · compact reference</span></summary><div class="sample-guide-body"><div><strong>展示路徑導引 · Public Module Sample / AAI display layer</strong><p>樣本標籤提供預設展示路徑。主面板優先顯示 Route Dashboard、Direct Route Core 與核心案件證據表；本導引作為輔助說明。<br>Sample tags provide structured demo routes. The main route dashboard now leads with Direct Route Core and proof rows; this guide stays as compact reference.</p></div><div class="sample-route-grid"><span><b>李雨蓁</b><em>person route / 人物路徑</em></span><span><b>協昌</b><em>supplier route / 供應商路徑</em></span><span><b>三恆一樹</b><em>supplier route / 供應商路徑</em></span><span><b>屏東縣政府</b><em>agency route / 機關路徑</em></span></div></div></details>
+    <details class="sample-path-guide"><summary><span><span class="guide-kicker">HOW THIS ROUTE WORKS</span>路徑讀法 · compact reference</span></summary><div class="sample-guide-body"><div><strong>展示路徑導引 · Public Module Sample / AAI display layer</strong><p>樣本標籤提供預設展示路徑。主面板優先顯示 War-room Cockpit、Route Dashboard、Direct Route Core 與核心案件證據表；本導引退到輔助說明。<br>Sample tags switch the active display route. The main panel now leads with cockpit, dashboard, Direct Route Core, and proof rows.</p></div><div class="sample-route-grid"><span><b>李雨蓁</b><em>person route / 人物路徑</em></span><span><b>協昌</b><em>supplier route / 供應商路徑</em></span><span><b>三恆一樹</b><em>supplier route / 供應商路徑</em></span><span><b>屏東縣政府</b><em>agency route / 機關路徑</em></span></div></div></details>
     <div id="dimensionBridge" class="dimension-bridge"></div>
     <div id="routeNarrative" class="route-narrative"></div>
     <div class="filter-bar"><div class="filter-pill"><b>目前模組 / Active Module</b><span id="filterModule">—</span></div><div class="filter-pill"><b>測試路徑 / Demo Route</b><span id="filterSample">全部資料</span></div><div class="filter-pill"><b>搜尋欄位 / Search Field</b><span id="filterSearch">無</span></div><div class="filter-pill"><b>結果筆數 / Result Count</b><span id="filterCount">0</span></div><div class="filter-pill"><b>篩選狀態 / Filter State</b><span id="filterMode">All Records</span></div></div>
@@ -1908,7 +1929,15 @@ function routeProjectionCounts(routeProjection, tableKey) {
 }
 function projectionCountMeta(routeProjection, tableKey) {
   const counts = routeProjectionCounts(routeProjection, tableKey);
-  return `Source Count / 來源基礎 ${counts.source.toLocaleString('zh-TW')} · Display Count / 公開展示 ${counts.display.toLocaleString('zh-TW')} · Cap ${counts.cap.toLocaleString('zh-TW')}${counts.capped ? ' · capped' : ''}`;
+  return `來源 ${counts.source.toLocaleString('zh-TW')} · 展示 ${counts.display.toLocaleString('zh-TW')} · cap ${counts.cap.toLocaleString('zh-TW')}${counts.capped ? ' · capped' : ''}`;
+}
+function compactCountBadge(source, display, cap, capped = true) {
+  const parts = [];
+  if (Number.isFinite(Number(source))) parts.push(`<i>來源 ${Number(source).toLocaleString('zh-TW')}</i>`);
+  if (Number.isFinite(Number(display))) parts.push(`<i>展示 ${Number(display).toLocaleString('zh-TW')}</i>`);
+  if (Number.isFinite(Number(cap))) parts.push(`<i>cap ${Number(cap).toLocaleString('zh-TW')}</i>`);
+  if (capped) parts.push('<i>capped</i>');
+  return parts.length ? `<span class="projection-badge">${parts.join('')}</span>` : '';
 }
 function projectedTopList(items = [], limit = 3) {
   const rows = items.slice(0, limit).map(item => `${safe(item.label)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).filter(text => text !== '— 0');
@@ -2026,6 +2055,35 @@ function renderDisplaySemanticsSupplierReviewerShare(routeSemantics) {
     return `<tr title="Reviewer Self Count / 審委自身出現: ${Number(row.reviewer_self_count || 0).toLocaleString('zh-TW')} · Supplier Total / 供應商出現: ${Number(row.supplier_total || 0).toLocaleString('zh-TW')} · ${tierLabel}"><td class="cell-ellipsis" title="${safe(row.supplier)}">${safe(row.supplier)}</td><td class="cell-ellipsis" title="${safe(row.reviewer)}">${safe(row.reviewer)}<span class="cell-meta">${tierLabel}</span></td><td class="col-identity cell-ellipsis" title="${identity}">${identity}</td><td class="col-count">${Number(row.co_presence_count || 0).toLocaleString('zh-TW')}</td><td class="col-share">${Number.isFinite(reviewerCoverage) ? percent(reviewerCoverage) : DISPLAY_PENDING}</td><td class="col-share">${Number.isFinite(supplierRate) ? percent(supplierRate) : DISPLAY_PENDING}</td><td class="col-count">${supportLabel(row.support_bucket || row.support_label_zh)}</td></tr>`;
 	  }).join('')}</tbody></table></div>${lowSignalNote}</div>`;
 }
+function renderWarRoomCockpit(routeProjection, routePartition, routeSemantics = null) {
+  const route = safe(routePartition?.route_key || routeProjection?.route_key || activeSampleFilter);
+  const direct = routePartition?.direct_route_core || {};
+  const associated = routePartition?.associated_route_context || {};
+  const directCount = Number(routePartition?.route_summary?.direct_core_case_count ?? direct.case_count ?? routeProjection?.source_counts?.participated_tenders ?? 0);
+  const associatedCount = Number(routePartition?.route_summary?.associated_context_case_count ?? associated.case_count ?? 0);
+  const budget = routePartition?.matched_case_budget_sum?.direct_core ?? routePartition?.route_summary?.budget_sum_direct_core ?? resolveRouteCard(routeProjection, 'budget_exposure')?.budget_total;
+  const prep = Number(resolveRouteCard(routeProjection, 'preparation_window')?.average_preparation_days);
+  const signal = Array.isArray(routePartition?.supplier_reviewer_share) ? routePartition.supplier_reviewer_share[0] : null;
+  const stable = Array.isArray(routePartition?.stable_fast_response) ? routePartition.stable_fast_response[0] : null;
+  const routeType = routePartitionTypeLabel(routePartition?.route_summary?.route_type) || safe(routeProjection?.route_type || routeIdentityProfile(route)?.type);
+  const signalLabel = signal ? `${safe(signal.supplier_name)} × ${safe(signal.reviewer_name)}` : projectedTopList(resolveRouteCard(routeProjection, 'reviewer_distribution')?.top_reviewers || []);
+  const signalCount = signal ? Number(signal.co_presence_count || 0).toLocaleString('zh-TW') : '';
+  const stableLabel = stable ? safe(stable.supplier_name) : DISPLAY_PENDING;
+  const stableCount = stable ? Number(stable.qualified_count || 0).toLocaleString('zh-TW') : '';
+  const membershipLabel = associatedCount ? `${associatedCount.toLocaleString('zh-TW')} members` : 'Direct-only route';
+  const membershipNote = associatedCount ? `${partitionMatchBasis(associated)} · 關聯命中成員` : '直接命中路徑 · 未輸出第二層命中成員';
+  const cards = [
+    ['Active Route', route, '目前路徑'],
+    ['Route Type', routeType, '路徑類型'],
+    ['Direct Core', directCount.toLocaleString('zh-TW'), '直接命中核心'],
+    ['Associated Membership', membershipLabel, membershipNote],
+    ['Budget Sum', projectedMoney(budget), '命中案件預算總和'],
+    ['Avg Prep', Number.isFinite(prep) ? `${prep.toFixed(1)} days` : DISPLAY_PENDING, '平均備標天數'],
+    ['Top Signal', signalCount ? `${signalLabel} / ${signalCount}` : signalLabel, '主要同框訊號'],
+    ['Stable Fast', stableCount ? `${stableLabel} / ${stableCount}` : stableLabel, '穩定快速反應首位']
+  ];
+  return `<section class="war-room-cockpit" aria-label="War-room Cockpit"><div class="war-room-head"><div><span>WAR-ROOM COCKPIT</span><strong>戰情駕駛艙 · Route sales surface</strong></div><p>Direct Core 先讀，關聯命中只在有成員時展開；證據層上移，說明層後退。</p></div><div class="war-room-grid">${cards.map(([label,value,note], index) => `<article class="war-room-card ${index === 0 ? 'route' : ''} ${index >= 6 ? 'signal' : ''}"><b>${label}</b><strong title="${safe(value)}">${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div></section>`;
+}
 function renderPartitionDirectCoreSummary(routePartition) {
   if (!routePartition) return '';
   const summary = routePartition.route_summary || {};
@@ -2036,28 +2094,37 @@ function renderPartitionDirectCoreSummary(routePartition) {
   const associatedBasis = Array.isArray(associated.examples) ? associated.examples.find(row => safe(row.match_basis) !== '—')?.match_basis : null;
   const directCount = Number(summary.direct_core_case_count ?? direct.case_count ?? 0);
   const associatedCount = Number(summary.associated_context_case_count ?? associated.case_count ?? 0);
+  const budgetSum = routePartition.matched_case_budget_sum?.direct_core ?? summary.budget_sum_direct_core;
+  const budgetCases = routePartition.budget_case_count?.direct_core ?? summary.budget_case_count_direct_core ?? 0;
+  const awardCases = routePartition.award_case_count?.direct_core ?? summary.award_case_count_direct_core ?? 0;
+  const directMeta = compactCountBadge(direct.case_count ?? directCount, direct.display_count ?? Math.min(directCount, 50), direct.cap ?? direct.display_count ?? 50, Boolean(direct.cap || direct.display_count));
   const cards = [
     ['Route Type / 路徑類型', routePartitionTypeLabel(summary.route_type), partitionDisplayBasis(directBasis)],
-    ['Direct Route Core / 直接命中核心', directCount.toLocaleString('zh-TW'), `${partitionMatchBasis(direct)} · Display Count / 公開展示 ${Number(direct.display_count ?? directCount).toLocaleString('zh-TW')}`],
-    ['Associated Route Context / 關聯命中脈絡', associatedCount.toLocaleString('zh-TW'), associatedCount ? `${partitionMatchBasis(associated)} · Display Count / 公開展示 ${Number(associated.display_count ?? associatedCount).toLocaleString('zh-TW')}` : 'No associated context exported / 本路徑未輸出關聯脈絡'],
-    ['Matched Case Budget Sum / 命中案件預算總和', projectedMoney(summary.budget_sum_direct_core), '以本路徑命中案件計算'],
-    ['Budget Case Count / 有效預算案件', Number(summary.budget_case_count_direct_core ?? 0).toLocaleString('zh-TW'), `Direct core total ${routeTotal.toLocaleString('zh-TW')}`],
-    ['Award Case Count / 有效決標案件', Number(summary.award_case_count_direct_core ?? 0).toLocaleString('zh-TW'), `Award sum ${projectedMoney(summary.award_sum_direct_core)}`]
+    ['Direct Route Core / 直接命中核心', directCount.toLocaleString('zh-TW'), `${partitionMatchBasis(direct)} · ${directMeta}`],
+    ...(associatedCount ? [['Associated Membership / 關聯命中成員', associatedCount.toLocaleString('zh-TW'), `${partitionMatchBasis(associated)} · ${compactCountBadge(associated.case_count ?? associatedCount, associated.display_count ?? associatedCount, associated.cap ?? associated.display_count ?? associatedCount, Boolean(associated.cap || associated.display_count))}`]] : []),
+    ['Matched Case Budget Sum / 命中案件預算總和', projectedMoney(budgetSum), '以本路徑命中案件計算'],
+    ['Budget Case Count / 有效預算案件', Number(budgetCases).toLocaleString('zh-TW'), `Direct core total ${routeTotal.toLocaleString('zh-TW')}`],
+    ['Award Case Count / 有效決標案件', Number(awardCases).toLocaleString('zh-TW'), 'Direct core awarded-case coverage']
   ];
   return `<section class="fast-response-panel"><div class="fast-response-head"><div><span>DIRECT ROUTE CORE SUMMARY</span><strong>直接命中核心摘要 · Match Basis / 命中依據</strong></div><p>以本路徑命中案件計算，區分直接核心與第二層關聯脈絡。<br>Direct route-core cases are displayed ahead of associated context.</p></div><div class="fast-response-metrics metric-grid-safe">${cards.map(([label,value,note]) => `<article class="fast-response-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div></section>`;
 }
 function renderLocalStaticPackIndicator(routePartition) {
   const meta = routePartition?.local_pack_meta;
   if (!meta || localStaticPackStatus !== 'ready') return '';
-  const manualCopy = meta.manual_copy_required === true ? 'Yes' : 'No';
-  const autoPush = meta.auto_push_to_b === true ? 'Yes' : 'No';
-  return `<div class="local-pack-indicator" aria-label="Local Static Projection Pack"><span>Source Mode: Local Static Projection Pack</span><span>Pack Version: ${safe(meta.pack_version)}</span><span>Data Boundary: Public projection only</span><span>Core Exposure: None</span><span>Manual Copy Required: ${manualCopy}</span><span>Auto Push to B: ${autoPush}</span></div>`;
+  return `<div class="local-pack-indicator" aria-label="Local Static Projection Pack"><span>Source Mode: Local Static Projection Pack</span><span>Pack: ${safe(meta.pack_version || 'local-v0.1')}</span><span>Boundary: Public projection only</span><span>Core Exposure: None</span></div>`;
 }
 function renderPartitionDirectCoreProofTable(routePartition) {
   const rows = Array.isArray(routePartition?.top_budget_cases) ? routePartition.top_budget_cases : [];
   const summary = routePartition?.route_summary || {};
   if (!rows.length) return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Direct Core Proof Table / 直接核心案件證據表</b><span>Display Count / 公開展示 0</span></div><div class="no-result"><h3>—</h3><p>No direct core proof rows exported for this route.</p></div></section>`;
-  return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Direct Core Proof Table / 直接核心案件證據表</b><span>Matched Case Budget Sum / 命中案件預算總和 ${projectedMoney(summary.budget_sum_direct_core)}</span></div><p class="dashboard-layer-note">依公開投影的 top budget proof 順序展示，支撐直接核心案件的預算總和閱讀。</p><div class="dashboard-table-wrap table-viewport"><table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('命中依據','Match Basis')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${rows.slice(0, 20).map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="cell-ellipsis" title="${safe(row.agency_name)}">${safe(row.agency_name)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td><td class="col-count">${formatDaysPublic(row.deadline_or_notice_window)}</td><td class="cell-ellipsis" title="${safe(row.awarded_vendor)}">${safe(row.awarded_vendor)}</td><td class="cell-ellipsis" title="${safe(row.procurement_method)}">${safe(row.procurement_method)}</td><td class="cell-ellipsis" title="${matchBasisLabel(row.match_basis)}">${matchBasisLabel(row.match_basis)}</td><td class="cell-ellipsis" title="${safe(row.reviewer_identity_or_role)}">${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table></div></section>`;
+  const direct = routePartition?.direct_route_core || {};
+  const budgetSum = routePartition?.matched_case_budget_sum?.direct_core ?? summary.budget_sum_direct_core;
+  const proofBadge = compactCountBadge(direct.case_count ?? rows.length, Math.min(rows.length, 10), direct.cap ?? direct.display_count ?? rows.length, rows.length > 10 || Boolean(direct.cap));
+  const rowMarkup = list => `<table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('命中依據','Match Basis')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${list.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="cell-ellipsis" title="${safe(row.agency_name)}">${safe(row.agency_name)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td><td class="col-count">${formatDaysPublic(row.deadline_or_notice_window)}</td><td class="cell-ellipsis" title="${safe(row.awarded_vendor)}">${safe(row.awarded_vendor)}</td><td class="cell-ellipsis" title="${safe(row.procurement_method)}">${safe(row.procurement_method)}</td><td class="cell-ellipsis" title="${matchBasisLabel(row.match_basis)}">${matchBasisLabel(row.match_basis)}</td><td class="cell-ellipsis" title="${safe(row.reviewer_identity_or_role)}">${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table>`;
+  const topRows = rows.slice(0, 10);
+  const extraRows = rows.slice(10);
+  const drawer = extraRows.length ? `<details class="proof-drawer"><summary><span>View capped proof / 展開裁切證據列</span><b>${extraRows.length.toLocaleString('zh-TW')} more</b></summary><div class="dashboard-table-wrap table-viewport">${rowMarkup(extraRows)}</div></details>` : '';
+  return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Direct Core Proof Table / 直接核心案件證據表</b><span>${proofBadge}</span></div><p class="dashboard-layer-note">Top budget proof supports Matched Case Budget Sum / 命中案件預算總和 ${projectedMoney(budgetSum)}.</p><div class="dashboard-table-wrap table-viewport">${rowMarkup(topRows)}</div>${drawer}</section>`;
 }
 function renderPartitionSupplierReviewerShare(routePartition) {
   const rows = Array.isArray(routePartition?.supplier_reviewer_share) ? routePartition.supplier_reviewer_share : [];
@@ -2109,9 +2176,9 @@ function renderPartitionAssociatedContext(routePartition) {
     return `<div class="direct-only-badge"><b>Direct-only route</b><span>直接命中路徑</span><span>No associated membership layer exported</span><span>本路徑未輸出第二層命中成員</span></div>`;
   }
   const body = rows.length
-    ? `<div class="calendar-strip-viewport"><div class="pressure-strip-list">${rows.slice(0, 8).map(row => `<article class="pressure-strip-item"><div><strong>${safe(row.case_number)} · ${safe(row.case_title)}</strong><span>Associated Match / 關聯命中：${matchBasisLabel(row.match_basis)}<br>Agency / 機關：${safe(row.agency_name)} · Supplier / 供應商：${safe(row.awarded_vendor)}<br>Budget / 預算：${projectedMoney(row.budget_amount)} · Award / 決標：${projectedMoney(row.award_amount)} · Window / 窗口：${formatDaysPublic(row.deadline_or_notice_window)}</span></div><b>${matchBasisLabel(row.match_basis)}</b></article>`).join('')}</div></div>`
+    ? `<div class="calendar-strip-viewport"><div class="pressure-strip-list">${rows.slice(0, 8).map(row => `<article class="pressure-strip-item"><div><strong>${safe(row.case_number)} · ${safe(row.case_title)}</strong><span>Membership Match / 成員命中：${matchBasisLabel(row.match_basis)}<br>Agency / 機關：${safe(row.agency_name)} · Supplier / 供應商：${safe(row.awarded_vendor)}<br>Budget / 預算：${projectedMoney(row.budget_amount)} · Award / 決標：${projectedMoney(row.award_amount)} · Window / 窗口：${formatDaysPublic(row.deadline_or_notice_window)}</span></div><b>${matchBasisLabel(row.match_basis)}</b></article>`).join('')}</div></div>`
     : `<div class="no-result"><h3>—</h3><p>No associated context exported / 本路徑未輸出關聯脈絡</p></div>`;
-  return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Associated Route Context / 關聯命中脈絡</b><span>Associated Count / 關聯數 ${count.toLocaleString('zh-TW')}</span></div><div class="response-panel-body">${body}</div></section>`;
+  return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Associated Membership / 關聯命中成員</b><span>${compactCountBadge(associated.case_count ?? count, associated.display_count ?? count, associated.cap ?? associated.display_count ?? count, Boolean(associated.cap || associated.display_count))}</span></div><div class="response-panel-body">${body}</div></section>`;
 }
 function renderPartitionCalendarPressurePanel(routeSurface) {
   const rows = resolveCalendarPressureStrip(routeSurface)
@@ -2173,11 +2240,14 @@ function renderProjectedRouteDashboard(el, routeProjection) {
   const partitionFastResponseBlock = routePartition ? renderPartitionFastResponsePanel(routePartition) : '';
   const associatedContextBlock = routePartition ? renderPartitionAssociatedContext(routePartition) : '';
   const calendarPressureBlock = renderPartitionCalendarPressurePanel(routeDisplaySemantics || routeSurface);
+  const cockpitBlock = renderWarRoomCockpit(routeProjection, routePartition, routeDisplaySemantics);
+  const routeMetricGrid = `<div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>`;
+  const supplierReviewerHeatmapBlock = renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)});
   const matrixMeta = routeSurface && resolveCoPresenceMatrix(routeSurface)
-    ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · Source Count / 來源基礎 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
+    ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>同一條展示路徑，先讀直接核心，再讀直接核心案件證據表、供應商審委同框、穩定快速反應、最快單案與第二層關聯脈絡。<br>Source Count / 來源基礎 records are displayed as counts; Display Count / 公開展示 rows stay capped for the public display layer.</p></div>${localPackIndicator}${directCoreBlock}${directCoreProofBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}<div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)})}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');

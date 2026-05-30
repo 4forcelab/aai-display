@@ -1011,6 +1011,29 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL2 War-room Sales Surface Major Repair
+- Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- War-room Cockpit added above Route Dashboard Public Projection so the first route surface reads as a command/sales cockpit instead of an engineering checklist.
+- Route Dashboard metrics moved directly under the dashboard header; Demo Route Guide remains below as a folded route-reading reference.
+- Direct Route Core Summary no longer renders a large Associated 0 card for direct-only routes.
+- Associated Membership section only expands for routes with exported second-layer members; direct-only routes show compact Direct-only route / 直接命中路徑 status.
+- Direct Core Proof Table now defaults to Top 10 and exposes the remaining capped proof rows through a compact drawer.
+- Source / display / cap copy compressed into badge-style metadata.
+- Local Static Projection Pack indicator preserved but reduced to Source Mode, Pack, Boundary, and Core Exposure fields.
+- Stable Fast Response stays ahead of Fastest Single Case, with Top 3 cards plus compact table expansion preserved.
+- Supplier-reviewer signal and heatmap are preserved and moved earlier in the route surface stack.
+- Projection Update timestamp refreshed to 2026-05-30 03:02 UTC.
+- Footer copyright statement preserved with lower visual weight.
+- Preserved AG5.7 route partition loader and LOCAL1 sidecar consumer.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, no B source-row restoration, and no local pack JSON modification.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
