@@ -328,6 +328,33 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .scarcity-card h4 { margin:0 0 8px; color:var(--violet); font:900 12px/1.25 var(--zh); }
 .scarcity-corridor-track { display:grid; grid-template-columns:32fr 9fr; gap:5px; margin:10px 0 7px; }
 .scarcity-corridor-track i,.scarcity-corridor-track em { display:block; height:16px; border:1px solid rgba(91,231,255,.18); }
+.rfb-panel { margin-top:13px; border:1px solid rgba(91,231,255,.22); background:linear-gradient(135deg,rgba(91,231,255,.065),rgba(184,255,91,.045),rgba(3,9,16,.78)); padding:13px; max-width:100%; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 0 24px rgba(91,231,255,.04); }
+.rfb-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; border-bottom:1px solid rgba(91,231,255,.16); padding-bottom:10px; margin-bottom:11px; }
+.rfb-head span { display:block; color:var(--cyan); font:900 11px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.rfb-head strong { display:block; margin-top:7px; color:#fff; font:900 17px/1.25 var(--zh); }
+.rfb-head p { max-width:820px; margin:0; color:rgba(222,238,246,.84); font:650 12px/1.62 var(--zh); }
+.rfb-context { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 10px; }
+.rfb-context span { border:1px solid rgba(91,231,255,.18); background:rgba(91,231,255,.055); color:rgba(232,247,255,.9); padding:5px 8px; font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.035em; }
+.rfb-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
+.rfb-metric { min-height:86px; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.68); padding:10px; display:flex; flex-direction:column; justify-content:center; gap:7px; overflow:hidden; }
+.rfb-metric b { color:var(--muted); font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.03em; }
+.rfb-metric strong { color:#f4fbff; font:900 22px/1.08 var(--mono); overflow-wrap:anywhere; }
+.rfb-metric span { color:rgba(207,232,242,.82); font:650 11px/1.36 var(--zh); overflow-wrap:anywhere; }
+.rfb-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:10px; align-items:stretch; max-width:100%; overflow:hidden; }
+.rfb-card { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.68); padding:11px; display:flex; flex-direction:column; }
+.rfb-card h4 { margin:0 0 8px; color:var(--cyan); font:900 12px/1.25 var(--zh); }
+.rfb-term-cloud { display:flex; flex-wrap:wrap; gap:7px; align-content:flex-start; }
+.rfb-term { display:inline-flex; align-items:center; gap:6px; max-width:100%; border:1px solid rgba(184,255,91,.18); background:rgba(184,255,91,.055); color:#eaffcf; padding:6px 8px; font:800 11px/1.2 var(--zh); }
+.rfb-term em { color:rgba(207,232,242,.72); font:850 10px/1 var(--mono); font-style:normal; }
+.rfb-table-wrap { width:100%; max-width:100%; overflow:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; max-height:320px; }
+.rfb-table { min-width:860px; width:100%; border-collapse:separate; border-spacing:0; }
+.rfb-table th,.rfb-table td { padding:8px 9px; border-bottom:1px solid rgba(91,231,255,.1); text-align:left; color:rgba(224,242,248,.9); font:700 11px/1.35 var(--zh); }
+.rfb-table th { color:var(--cyan); background:rgba(91,231,255,.065); font-weight:900; }
+.rfb-secondary { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin-top:10px; }
+.rfb-list { display:grid; gap:7px; }
+.rfb-list-item { min-width:0; border:1px solid rgba(91,231,255,.14); background:rgba(91,231,255,.045); padding:8px 9px; }
+.rfb-list-item strong { display:block; color:#f4fbff; font:850 12px/1.35 var(--zh); overflow-wrap:anywhere; }
+.rfb-list-item span { display:block; margin-top:4px; color:rgba(207,232,242,.8); font:650 11px/1.45 var(--zh); overflow-wrap:anywhere; }
 .scarcity-corridor-track i { background:linear-gradient(90deg,var(--violet),var(--cyan)); box-shadow:0 0 14px rgba(168,140,255,.18); }
 .scarcity-corridor-track em { background:rgba(91,231,255,.13); }
 .roster-depth-list { display:grid; gap:7px; }
@@ -487,7 +514,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .rfb-grid, .rfb-secondary { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -495,7 +522,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .rfb-metrics { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -525,7 +552,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>04:13 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>06:22 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -578,6 +605,7 @@ const ROUTE_SURFACE_AGGREGATE_PROJECTION_URL = 'data/preview/ag5_4_1_route_surfa
 const ROUTE_DISPLAY_SEMANTICS_PROJECTION_URL = 'data/preview/ag5_4_3_route_display_semantics_corrected_projection.json';
 const ROUTE_PARTITION_PROJECTION_URL = 'data/preview/ag5_7_route_partition_projection.json';
 const LOCAL_STATIC_PACK_URL = 'data/local_static_pack/local_projection_pack.json';
+const RFB_PUBLIC_PROJECTION_URL = 'data/preview/ag6_2_rfb_public_projection_pack.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
 let routeSurfaceAggregateProjectionPack = null;
@@ -588,6 +616,8 @@ let routePartitionProjectionPack = null;
 let routePartitionProjectionStatus = 'idle';
 let localStaticPack = null;
 let localStaticPackStatus = 'idle';
+let rfbPublicProjectionPack = null;
+let rfbPublicProjectionStatus = 'idle';
 const routePresenceWarningKeys = new Set();
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
@@ -1295,6 +1325,64 @@ function renderCompetitionScarcitySurface() {
   ].map(([label,value,note]) => `<article class="scarcity-fit-card"><b>${label}</b><strong>${value}</strong><span>${note}</span></article>`).join('');
   return `<section class="scarcity-panel"><div class="scarcity-head"><div><span>COMPETITION SCARCITY SURFACE</span><strong>競爭稀疏表面 · Bidder Density Board / 投標密度板</strong></div><p>以既有公開投標名單深度與預算貼合帶，呈現指定路徑中的競爭密度。<br>AG5.2 Readout Gate · Scope: ${safe(d.route)}</p></div><div class="scarcity-ready-row"><span>B Surface Ready</span><span>Scope: Competition Scarcity Only</span><span>Companion Surface: Locked</span><span>Spread Surface: Locked</span><span>Alternating Surface: Locked</span><span>${contextLabel}</span></div><div class="scarcity-metrics">${metrics.map(([label,value,note]) => `<article class="scarcity-metric"><b>${label}</b><strong>${value}</strong><span>${note}</span></article>`).join('')}</div><div class="scarcity-grid"><section class="scarcity-card"><h4>Single Bidder Corridor / 單一投標走廊</h4><div class="scarcity-corridor-track"><i title="Single-vendor: ${d.singleVendorCases}"></i><em title="Multi-vendor: ${d.multiVendorCases}"></em></div><p class="presence-note">${d.singleVendorCases} single-vendor / ${d.multiVendorCases} multi-vendor<br>${d.singleVendorCases} 件單一投標 / ${d.multiVendorCases} 件多廠商名單</p></section><section class="scarcity-card"><h4>Roster Depth / 名單深度</h4>${roster}</section></div><section class="scarcity-card" style="margin-top:10px"><h4>Fit Band × Bidder Density / 預算貼合 × 投標密度</h4><p class="presence-note">預算貼合帶集中，投標名單深度偏薄。</p><div class="scarcity-fit-grid">${fitCards}</div></section></section>`;
 }
+function rfbTermCloud(terms, limit = 12) {
+  const rows = Array.isArray(terms) ? terms.slice(0, limit) : [];
+  if (!rows.length) return `<span class="rfb-term">—<em>0</em></span>`;
+  return rows.map(item => `<span class="rfb-term" title="${safe(item.term)}">${safe(item.term)}<em>${Number(item.count || item.document_frequency || 0).toLocaleString('zh-TW')}</em></span>`).join('');
+}
+function rfbTermsLabel(terms, limit = 3) {
+  const rows = Array.isArray(terms) ? terms.slice(0, limit) : [];
+  return rows.length ? rows.map(item => `${safe(item.term)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).join(' / ') : '—';
+}
+function rfbCategoryLabel(categories) {
+  return Object.entries(categories || {})
+    .sort((a,b) => Number(b[1] || 0) - Number(a[1] || 0) || a[0].localeCompare(b[0]))
+    .slice(0, 4)
+    .map(([key,value]) => `${safe(key)} ${Number(value || 0).toLocaleString('zh-TW')}`)
+    .join(' / ') || '—';
+}
+function rfbSurfaceMeta(surface) {
+  return compactCountBadge(
+    Number(surface?.source_count ?? surface?.case_count ?? 0),
+    Number(surface?.display_count ?? (surface?.representative_cases_capped || []).length),
+    Number(surface?.cap ?? 30),
+    Boolean(surface?.capped)
+  );
+}
+function rfbRouteSimilarityPairs(routeKey) {
+  const key = safe(routeKey);
+  const pairs = rfbPublicProjectionPack?.similarity_surfaces?.route_pairs || [];
+  if (key === '—') return pairs.slice(0, 6);
+  const matched = pairs.filter(pair => [pair.vendor_a, pair.vendor_b, pair.agency_a, pair.agency_b].some(value => safe(value).includes(key)));
+  return (matched.length ? matched : pairs).slice(0, 6);
+}
+function renderRfbFingerprintSurface(routeProjection) {
+  const routeKey = routeProjection?.route_key || activeSampleFilter;
+  const surface = getActiveRfbRouteSurface(routeKey);
+  if (!surface) return '';
+  const vendorSurface = getRfbVendorSurface(routeKey);
+  const agencyVendorSurface = getRfbAgencyVendorSurface(routeKey);
+  const pairs = rfbRouteSimilarityPairs(routeKey);
+  const cases = Array.isArray(surface.representative_cases_capped) ? surface.representative_cases_capped.slice(0, 10) : [];
+  const dictionary = Array.isArray(rfbPublicProjectionPack?.term_dictionary_public) ? rfbPublicProjectionPack.term_dictionary_public.slice(0, 12) : [];
+  const metrics = [
+    ['RFB Surface Cases / 規格指紋案件', Number(surface.case_count || 0).toLocaleString('zh-TW'), 'sidecar count beside Direct Route Core'],
+    ['Clean Term Cases / 乾淨需求詞案件', Number(surface.clean_term_case_count || 0).toLocaleString('zh-TW'), 'AAI Fingerprint Computation'],
+    ['Requirement Terms / 需求詞', Number((surface.top_requirement_terms || []).length).toLocaleString('zh-TW'), rfbTermsLabel(surface.top_requirement_terms, 2)],
+    ['Rare Term Density / 罕見詞密度', Number((surface.top_rare_terms || []).length).toLocaleString('zh-TW'), rfbTermsLabel(surface.top_rare_terms, 2)]
+  ];
+  const caseTable = cases.length
+    ? `<div class="rfb-table-wrap"><table class="rfb-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('需求詞','Terms')}</th></tr></thead><tbody>${cases.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_name)}">${safe(row.case_name)}</td><td class="cell-ellipsis" title="${safe(row.awarded_vendor)}">${safe(row.awarded_vendor)}</td><td class="cell-ellipsis" title="${rfbTermsLabel(row.top_terms_capped, 4)}">${rfbTermsLabel(row.top_terms_capped, 4)}</td></tr>`).join('')}</tbody></table></div>`
+    : `<div class="no-result"><h3>—</h3><p>No capped RFB surface cases for this route.</p></div>`;
+  const pairList = pairs.length
+    ? `<div class="rfb-list">${pairs.map(pair => `<article class="rfb-list-item"><strong>${safe(pair.case_a)} × ${safe(pair.case_b)}</strong><span>Document Similarity / 文件相似度：${percent(Number(pair.similarity || 0))}<br>Shared Requirement Terms / 共享需求詞：${formatIdentityLabel(pair.shared_clean_terms)}<br>Vendor / 供應商：${safe(pair.vendor_a)}</span></article>`).join('')}</div>`
+    : `<div class="no-result"><h3>—</h3><p>No capped document similarity pair for this route surface.</p></div>`;
+  const vendorRows = [vendorSurface, agencyVendorSurface].filter(Boolean);
+  const vendorContext = vendorRows.length
+    ? `<div class="rfb-list">${vendorRows.map(row => `<article class="rfb-list-item"><strong>${safe(row.awarded_vendor)}${row.agency ? ` · ${safe(row.agency)}` : ''}</strong><span>RFB Surface Cases / 規格指紋案件：${Number(row.case_count || 0).toLocaleString('zh-TW')}<br>Requirement Terms / 需求詞：${rfbTermsLabel(row.top_requirement_terms, 3)}<br>Categories / 詞類：${rfbCategoryLabel(row.term_categories)}</span></article>`).join('')}</div>`
+    : `<div class="rfb-term-cloud">${rfbTermCloud(dictionary, 12)}</div>`;
+  return `<section class="rfb-panel"><div class="rfb-head"><div><span>AAI FINGERPRINT COMPUTATION</span><strong>Specification Fingerprint / 規格指紋 · RFB Public Projection / 公開投影</strong></div><p>Sidecar intelligence surface beside Direct Route Core. Counts describe capped RFB surface cases for the selected display route.<br>規格指紋作為 Direct Route Core 旁側情報面，案件數描述目前路徑的 RFB 表面案件。</p></div><div class="rfb-context"><span>Route-aware Surface / 路徑表面：${safe(surface.route_key)}</span><span>Capped Public Projection</span><span>${rfbSurfaceMeta(surface)}</span></div><div class="rfb-metrics">${metrics.map(([label,value,note]) => `<article class="rfb-metric"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="rfb-grid"><section class="rfb-card"><h4>Requirement Terms / 需求詞</h4><div class="rfb-term-cloud">${rfbTermCloud(surface.top_requirement_terms, 12)}</div><h4 style="margin-top:12px">Rare Term Density / 罕見詞密度</h4><div class="rfb-term-cloud">${rfbTermCloud(surface.top_rare_terms, 12)}</div></section><section class="rfb-card"><h4>RFB Surface Cases / 規格指紋案件</h4>${caseTable}</section></div><div class="rfb-secondary"><section class="rfb-card"><h4>Document Similarity / 文件相似度</h4>${pairList}</section><section class="rfb-card"><h4>Vendor Fingerprint Context / 供應商指紋脈絡</h4>${vendorContext}</section></div></section>`;
+}
 function routeCaseKey(row, fallback = '') {
   const caseNo = safe(row.case_number);
   if (caseNo !== '—') return caseNo;
@@ -1865,6 +1953,26 @@ function loadLocalStaticPackProjection() {
       render();
     });
 }
+function loadRfbPublicProjectionPack() {
+  if (rfbPublicProjectionStatus === 'loading' || rfbPublicProjectionStatus === 'ready') return;
+  rfbPublicProjectionStatus = 'loading';
+  fetch(RFB_PUBLIC_PROJECTION_URL, {cache:'no-store'})
+    .then(response => {
+      if (!response.ok) throw new Error(`RFB Public Projection ${response.status}`);
+      return response.json();
+    })
+    .then(pack => {
+      if (pack?.pack_type !== 'rfb_public_projection_pack') throw new Error('RFB Public Projection type mismatch');
+      rfbPublicProjectionPack = pack;
+      rfbPublicProjectionStatus = 'ready';
+      render();
+    })
+    .catch(error => {
+      rfbPublicProjectionStatus = 'unavailable';
+      console.warn('RFB Public Projection not ready', error);
+      render();
+    });
+}
 function getActiveRouteProjection(routeKey = activeSampleFilter) {
   const routes = routeDashboardProjectionPack?.routes || [];
   const key = safe(routeKey);
@@ -1887,6 +1995,23 @@ function getActiveRoutePartition(routeKey = activeSampleFilter) {
   const localRoute = localRoutes.find(route => safe(route.route_key) === key) || localRoutes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
   if (localRoute) return normalizeLocalStaticRoute(localRoute, localStaticPack);
   return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
+}
+function getActiveRfbRouteSurface(routeKey = activeSampleFilter) {
+  const routes = rfbPublicProjectionPack?.route_surfaces || [];
+  const key = safe(routeKey);
+  return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
+}
+function getRfbVendorSurface(routeKey = activeSampleFilter) {
+  const vendors = rfbPublicProjectionPack?.vendor_surfaces || [];
+  const key = safe(routeKey);
+  if (key === '—') return null;
+  return vendors.find(item => safe(item.awarded_vendor).includes(key)) || null;
+}
+function getRfbAgencyVendorSurface(routeKey = activeSampleFilter) {
+  const rows = rfbPublicProjectionPack?.agency_vendor_surfaces || [];
+  const key = safe(routeKey);
+  if (key === '—') return null;
+  return rows.find(item => safe(item.awarded_vendor).includes(key) || safe(item.agency).includes(key)) || null;
 }
 function resolveFastResponseSurface(routeSurface) {
   return routeSurface?.route_fast_response || routeSurface?.fast_response || null;
@@ -2345,6 +2470,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     : (partitionPending ? `<section class="fast-response-panel"><div class="fast-response-head"><div><span>DIRECT ROUTE CORE SUMMARY</span><strong>直接命中核心摘要 · Match Basis / 命中依據</strong></div><p>Loading public route partition / 載入路徑公開投影</p></div></section>` : '');
   const localPackIndicator = renderLocalStaticPackIndicator(routePartition);
   const directCoreProofBlock = routePartition ? renderPartitionDirectCoreProofTable(routePartition, routeProjection) : '';
+  const rfbFingerprintBlock = renderRfbFingerprintSurface(routeProjection);
   const partitionSupplierReviewerShare = routePartition ? renderPartitionSupplierReviewerShare(routePartition) : '';
   const partitionFastResponseBlock = routePartition ? renderPartitionFastResponsePanel(routePartition) : '';
   const associatedContextBlock = routePartition ? renderPartitionAssociatedContext(routePartition) : '';
@@ -2358,7 +2484,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -2709,6 +2835,7 @@ loadRouteSurfaceAggregateProjection();
 loadRouteDisplaySemanticsProjection();
 loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
+loadRfbPublicProjectionPack();
 </script>
 </body>
 </html>

@@ -1011,6 +1011,24 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL4 RFB Surface Consumer Dry-Fit
+- Base head: 527c382d13a3bb95a668717b2453e7de98c5bff6.
+- A read-only source: RFB public projection pack commit 7e1dadb63f6d066d2d85232ef54d35ad4819dfbb.
+- Changed files: index.html, data/preview/ag6_2_rfb_public_projection_pack.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Synced a B-safe capped RFB public projection subset: route surfaces 4, vendor surfaces 30, agency-vendor surfaces 30, term dictionary 80.
+- Added Specification Fingerprint / 規格指紋 sidecar surface under Direct Core Proof Table; Direct Route Core remains primary.
+- RFB route case counts are labeled as RFB Surface Cases / 規格指紋案件 and do not replace route totals.
+- Surface copy uses AAI Fingerprint Computation / AAI 指紋演算 language and omits internal version copy from the visible frontend.
+- Added route requirement terms, rare term density, capped RFB surface cases, document similarity, and vendor fingerprint context.
+- Projection Update timestamp refreshed to 2026-05-30 06:22 UTC.
+- Preserved LOCAL2 cockpit, LOCAL3 heatmap repair, V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no full reviewer rows, no full bid rows, no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## B LOCAL2 War-room Sales Surface Major Repair
 - Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
