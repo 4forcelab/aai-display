@@ -972,6 +972,23 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B V8.8.5 Route Layout + Legacy Module Binding Repair
+- Base head: a03594ae97624ecacaab1351f8b04dd1ed800b4f.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Route Dashboard layout now keeps Direct Route Core Summary first, followed immediately by Direct Core Proof Table, Top Supplier-Reviewer Share, Stable Fast Response, Fastest Single Case, Associated Route Context, Calendar Pressure Strip, and core matched awarded-vendor rows.
+- Demo Route Guide, Dimension Bridge, and Route Narrative are folded into compact reference blocks after the Route Dashboard so they no longer push the main route surfaces down.
+- Bid Preparation Module now binds to the active route partition and route public projection when present, so four sample routes no longer show false zero rows in the legacy module summary.
+- Direct Core Proof Table uses capped top budget proof rows from the existing route partition projection and supports Matched Case Budget Sum without restoring source rows.
+- Awarded Vendor table copy changed from Latest to Sample Case, and the section title now reads Core Matched Awarded Vendors / 核心命中案件得標廠商.
+- Dimension Bridge and related lower-module labels now use Route Cases, Route Suppliers, and Route Agency wording unless explicitly describing Associated Route Context.
+- Preserved V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- Preserved payload diet: no 7653 reviewer rows, no 4446 bid rows, and no B source-row restoration.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
