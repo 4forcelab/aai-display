@@ -1043,48 +1043,6 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
-## B LOCAL5.1 Temporal Sales Cockpit
-- Base head: d53c8e202b5f7a33246d27c22f38e9f10970a1ac.
-- Source A LOCAL5 commit/tag: 0641976857d800001056fd43e530d9a06a0e4439 / core-v2.9LOCAL5-temporal-backtest-pack.
-- Changed files: index.html, data/preview/local5_temporal_backtest_public_projection_candidate.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
-- Copied and B-sanitized the public-safe temporal backtest projection candidate for display consumption.
-- Projection validation preserved: no raw rows, no full pool, no full text, no proposal, and max public array length stays under 100.
-- Added Temporal Backtest Cockpit / 年度回測駕駛艙 near the War-room Cockpit.
-- Added Route Birth Timeline / 路徑生成時間軸.
-- Added Tight Window Pressure / 緊湊窗口壓力.
-- Added Route Survival Cards / 路徑存活卡.
-- Added Budget Contact Surface / 預算接觸表面.
-- Added Method Proof Strip / 方法論證明條.
-- Updated Projection Update timestamp to 2026-05-30 07:56 UTC.
-- Preserved LOCAL4.1 Case Budget Reference List copy, RFB Fingerprint surface, War-room Cockpit, LOCAL3 heatmap, V8.7 Competition Scarcity, AG3/AG4 surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, CTA, and footer copyright.
-- B only.
-- No A write.
-- No C/Ops Ledger touch.
-- Manual deploy: none.
-- Semantic gate result: pass.
-- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
-
-## B LOCAL5.1.1 TWP Copy Clarification Patch
-- Base head: ae54a199e06b3584daea4fc4dd0fc5ce3d38e90f.
-- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
-- TWP renamed to Compressed Notice Window / 短公告窗口比例.
-- Numerator / denominator copy clarified for each visible route-year row.
-- Threshold days found: yes, 3-14 days from qualified_3_to_14_count.
-- Data JSON untouched.
-- A untouched.
-- C untouched.
-- Manual deploy: none.
-- Production QA target remains https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
-
-## B LOCAL6R Emergency Rollback
-- Reverted bad commit: 2e8850e12326764830063edcdc42c84adb1482ba.
-- Reason: LOCAL6 Consumer broke route dashboard binding on production visual QA.
-- Restored baseline: B LOCAL5.1.1 notice window copy patch.
-- A touched: no.
-- C touched: no.
-- Manual deploy: no.
-- Follow-up: redesign LOCAL6 as non-invasive side drawer / feature-flagged consumer before reattempt.
-
 ## B LOCAL2 War-room Sales Surface Major Repair
 - Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
@@ -1163,3 +1121,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - No data, manifest, assets, package, lockfile, vercel, Core, or B-Prod touch.
 - Manual deploy: none.
 - Production QA target: https://aai-display.vercel.app/.
+
+## B CLOGR Restore Last C-Accepted Production Baseline
+- Reason: LOCAL6R revert did not restore production visual state after github-actions display-pack update advanced origin/main.
+- Action: restored B production shell from the last C/Ops Ledger accepted production visual baseline.
+- Restored baseline ref: d53c8e202b5f7a33246d27c22f38e9f10970a1ac / display-v2.9LOCAL4.1-case-budget-copy-neutralization.
+- C acceptance source: records/LOCAL4_1_PRODUCTION_VISUAL_ACCEPTANCE_LOCK.md / ops-v2.9LOCAL4.1-production-visual-acceptance-lock.
+- Removed from main flow: LOCAL5.1 / LOCAL6 exploration surfaces if absent in accepted baseline.
+- Preserved accepted production shell expectations: Route Dashboard, War-room Cockpit, Supplier x Reviewer Heatmap, Awarded Vendor Table, Reviewer Distribution Table, Case Budget Reference List, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- A touched: no.
+- C touched: read-only.
+- Manual deploy: no.
+- Future rule: LOCAL5/LOCAL6 projection depth may return only as side drawer, feature flag, or consultant-unlock layer, never by replacing the primary route dashboard.

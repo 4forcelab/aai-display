@@ -137,36 +137,6 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .war-room-card span { color:rgba(207,232,242,.78); font:650 10px/1.35 var(--zh); overflow-wrap:anywhere; }
 .war-room-card.route strong { font-size:19px; color:#fff; }
 .war-room-card.signal strong { font-size:13px; }
-.temporal-cockpit { margin:0 0 12px; border:1px solid rgba(91,231,255,.24); background:linear-gradient(135deg,rgba(91,231,255,.08),rgba(168,140,255,.055),rgba(3,9,16,.78)); padding:13px; box-shadow:0 0 28px rgba(91,231,255,.055), inset 0 1px 0 rgba(255,255,255,.035); overflow:hidden; }
-.temporal-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:11px; }
-.temporal-head span { display:block; color:var(--cyan); font:900 11px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
-.temporal-head strong { display:block; margin-top:7px; color:#fff; font:900 19px/1.18 var(--zh); }
-.temporal-head p { max-width:820px; margin:0; color:rgba(214,235,244,.84); font:650 12px/1.6 var(--zh); }
-.temporal-badges, .temporal-bullets { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
-.temporal-badges span, .temporal-bullets span { border:1px solid rgba(91,231,255,.18); background:rgba(91,231,255,.055); color:rgba(224,246,255,.9); padding:6px 8px; font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.035em; }
-.temporal-bullets { margin:0 0 11px; }
-.temporal-bullets span { font-family:var(--zh); text-transform:none; letter-spacing:0; color:rgba(232,248,255,.9); }
-.temporal-survival-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
-.temporal-survival-card { min-height:78px; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.72); padding:9px 10px; display:flex; flex-direction:column; justify-content:space-between; gap:6px; overflow:hidden; }
-.temporal-survival-card b { color:rgba(91,231,255,.92); font:900 12px/1.2 var(--zh); }
-.temporal-survival-card strong { color:#f4fbff; font:900 16px/1.2 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.temporal-survival-card span { color:rgba(207,232,242,.78); font:650 10px/1.35 var(--zh); overflow-wrap:anywhere; }
-.temporal-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:10px; align-items:stretch; }
-.temporal-card { min-width:0; border:1px solid rgba(91,231,255,.16); background:rgba(3,10,18,.7); padding:11px; overflow:hidden; }
-.temporal-card h4 { margin:0 0 9px; color:#f4fbff; font:900 13px/1.25 var(--zh); }
-.temporal-timeline, .temporal-pressure-list, .temporal-budget-list { display:grid; gap:7px; }
-.temporal-timeline-row { display:grid; grid-template-columns:minmax(112px,.7fr) repeat(3,minmax(82px,1fr)); gap:7px; align-items:stretch; }
-.temporal-timeline-row > * { border:1px solid rgba(91,231,255,.13); background:rgba(6,18,29,.72); padding:7px 8px; min-width:0; }
-.temporal-timeline-row.header > * { color:rgba(91,231,255,.9); font:900 10px/1.15 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
-.temporal-timeline-row b { color:#fff; font:900 12px/1.2 var(--zh); }
-.temporal-timeline-row span { display:block; color:rgba(215,237,246,.86); font:750 11px/1.3 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.temporal-pressure-item, .temporal-budget-item { border:1px solid rgba(91,231,255,.13); background:rgba(6,18,29,.68); padding:8px; min-width:0; }
-.temporal-pressure-item strong, .temporal-budget-item strong { display:flex; justify-content:space-between; gap:10px; color:#fff; font:850 12px/1.25 var(--zh); }
-.temporal-pressure-item p, .temporal-budget-item p { margin:6px 0 0; color:rgba(207,232,242,.78); font:650 10px/1.45 var(--zh); }
-.temporal-bar { display:block; height:7px; margin-top:7px; background:rgba(91,231,255,.08); border:1px solid rgba(91,231,255,.12); overflow:hidden; }
-.temporal-bar i { display:block; height:100%; background:linear-gradient(90deg,var(--cyan),var(--violet)); min-width:3px; }
-.temporal-budget-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin-top:10px; }
-.temporal-card .presence-note { margin:0 0 9px; }
 .projection-badge { display:inline-flex; flex-wrap:wrap; gap:5px; align-items:center; color:rgba(208,232,240,.82); font:800 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.025em; }
 .projection-badge i { font-style:normal; border:1px solid rgba(91,231,255,.18); background:rgba(91,231,255,.055); padding:4px 6px; }
 .proof-drawer { margin-top:9px; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.58); }
@@ -544,7 +514,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics, .temporal-survival-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .rfb-grid, .rfb-secondary, .temporal-grid, .temporal-budget-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .rfb-grid, .rfb-secondary { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -552,7 +522,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .rfb-metrics, .temporal-survival-grid { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .rfb-metrics { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -582,7 +552,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>08:13 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>06:22 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -636,7 +606,6 @@ const ROUTE_DISPLAY_SEMANTICS_PROJECTION_URL = 'data/preview/ag5_4_3_route_displ
 const ROUTE_PARTITION_PROJECTION_URL = 'data/preview/ag5_7_route_partition_projection.json';
 const LOCAL_STATIC_PACK_URL = 'data/local_static_pack/local_projection_pack.json';
 const RFB_PUBLIC_PROJECTION_URL = 'data/preview/ag6_2_rfb_public_projection_pack.json';
-const TEMPORAL_BACKTEST_PROJECTION_URL = 'data/preview/' + 'local' + '5_temporal_backtest_public_projection_candidate.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
 let routeSurfaceAggregateProjectionPack = null;
@@ -649,8 +618,6 @@ let localStaticPack = null;
 let localStaticPackStatus = 'idle';
 let rfbPublicProjectionPack = null;
 let rfbPublicProjectionStatus = 'idle';
-let temporalBacktestProjectionPack = null;
-let temporalBacktestProjectionStatus = 'idle';
 const routePresenceWarningKeys = new Set();
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
@@ -1416,84 +1383,6 @@ function renderRfbFingerprintSurface(routeProjection) {
     : `<div class="rfb-term-cloud">${rfbTermCloud(dictionary, 12)}</div>`;
   return `<section class="rfb-panel"><div class="rfb-head"><div><span>AAI FINGERPRINT COMPUTATION</span><strong>Specification Fingerprint / 規格指紋 · RFB Public Projection / 公開投影</strong></div><p>Sidecar intelligence surface beside Direct Route Core. Counts describe capped RFB surface cases for the selected display route.<br>規格指紋作為 Direct Route Core 旁側情報面，案件數描述目前路徑的 RFB 表面案件。</p></div><div class="rfb-context"><span>Route-aware Surface / 路徑表面：${safe(surface.route_key)}</span><span>Capped Public Projection</span><span>${rfbSurfaceMeta(surface)}</span></div><div class="rfb-metrics">${metrics.map(([label,value,note]) => `<article class="rfb-metric"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(note)}</span></article>`).join('')}</div><div class="rfb-grid"><section class="rfb-card"><h4>Requirement Terms / 需求詞</h4><div class="rfb-term-cloud">${rfbTermCloud(surface.top_requirement_terms, 12)}</div><h4 style="margin-top:12px">Rare Term Density / 罕見詞密度</h4><div class="rfb-term-cloud">${rfbTermCloud(surface.top_rare_terms, 12)}</div></section><section class="rfb-card"><h4>RFB Surface Cases / 規格指紋案件</h4>${caseTable}</section></div><div class="rfb-secondary"><section class="rfb-card"><h4>Document Similarity / 文件相似度</h4>${pairList}</section><section class="rfb-card"><h4>Vendor Fingerprint Context / 供應商指紋脈絡</h4>${vendorContext}</section></div></section>`;
 }
-function temporalRouteSurface(routeKey) {
-  const key = safe(routeKey);
-  return (temporalBacktestProjectionPack?.route_surfaces || []).find(route => safe(route.route_key) === key) || null;
-}
-function temporalSlice(surface, year) {
-  return (surface?.date_slices || []).find(slice => String(slice.year) === String(year)) || {};
-}
-function temporalRouteStatus(routeKey, y2022, y2023) {
-  if (safe(routeKey) === '屏東縣政府') return ['Baseline Active', '背景母體持續存在'];
-  const count2023 = Number(y2023.route_case_count || y2023.distinct_case_count || 0);
-  if (safe(routeKey) === '協昌') return ['Not Observed in 111-112', '111-112 未觀測'];
-  if (safe(routeKey) === '三恆一樹') return count2023 ? ['2023 Early Signal', '早期訊號'] : ['Not Observed in 111-112', '111-112 未觀測'];
-  return count2023 ? ['2023 Active', '2023 出現'] : ['Not Observed in 111-112', '111-112 未觀測'];
-}
-function temporalCount(slice) {
-  return Number(slice?.route_case_count ?? slice?.distinct_case_count ?? 0);
-}
-function temporalCurrentLabel(routeKey) {
-  const hasCurrent = getActiveRouteProjection(routeKey) || getActiveRoutePartition(routeKey) || getActiveRouteSurface(routeKey);
-  return hasCurrent ? 'current route available' : 'current surface available';
-}
-function temporalWindowCopy(row, qualified, eligible) {
-  const routeKey = safe(row.route_key);
-  const year = safe(row.year);
-  if (routeKey === '屏東縣政府') {
-    return `背景母體 ${eligible.toLocaleString('zh-TW')} 件可計算案件中，${qualified.toLocaleString('zh-TW')} 件落入短公告窗口。`;
-  }
-  return `${routeKey}・${year}<br>${eligible.toLocaleString('zh-TW')} 件可計算案件中，${qualified.toLocaleString('zh-TW')} 件落入短公告窗口。`;
-}
-function temporalWindowRatioLabel(row, qualified, eligible) {
-  const presets = {
-    '三恆一樹::2023': '4 / 4 cases',
-    '李雨蓁::2023': '9 / 11 cases',
-    '屏東縣政府::2022': '29 / 31 cases',
-    '屏東縣政府::2023': '31 / 33 cases'
-  };
-  return presets[`${safe(row.route_key)}::${safe(row.year)}`] || `${qualified.toLocaleString('zh-TW')} / ${eligible.toLocaleString('zh-TW')} cases`;
-}
-function temporalBandLabel(band) {
-  return safe(band).replace(/_/g, '–');
-}
-function renderTemporalBacktestCockpit(routeProjection) {
-  if (temporalBacktestProjectionStatus !== 'ready' || !temporalBacktestProjectionPack) return '';
-  const routes = ['李雨蓁', '三恆一樹', '協昌', '屏東縣政府']
-    .map(key => temporalRouteSurface(key))
-    .filter(Boolean);
-  if (!routes.length) return '';
-  const timelineRows = routes.map(surface => {
-    const y2022 = temporalSlice(surface, 2022);
-    const y2023 = temporalSlice(surface, 2023);
-    return `<div class="temporal-timeline-row"><b>${safe(surface.route_key)}</b><span>${temporalCount(y2022).toLocaleString('zh-TW')} / ${safe(y2022.route_status || 'not observed')}</span><span>${temporalCount(y2023).toLocaleString('zh-TW')} / ${safe(y2023.route_status || 'active')}</span><span>${temporalCurrentLabel(surface.route_key)}</span></div>`;
-  }).join('');
-  const survivalCards = routes.map(surface => {
-    const y2022 = temporalSlice(surface, 2022);
-    const y2023 = temporalSlice(surface, 2023);
-    const [label, note] = temporalRouteStatus(surface.route_key, y2022, y2023);
-    return `<article class="temporal-survival-card"><b>${safe(surface.route_key)}</b><strong>${safe(label)}</strong><span>${safe(note)} · 2022 ${temporalCount(y2022).toLocaleString('zh-TW')} / 2023 ${temporalCount(y2023).toLocaleString('zh-TW')}</span></article>`;
-  }).join('');
-  const pressureOrder = {'三恆一樹::2023': 1, '李雨蓁::2023': 2, '屏東縣政府::2022': 3, '屏東縣政府::2023': 4};
-  const pressureRows = (temporalBacktestProjectionPack.tight_window_surfaces || [])
-    .filter(row => Object.prototype.hasOwnProperty.call(pressureOrder, `${safe(row.route_key)}::${safe(row.year)}`))
-    .filter(row => Number(row.eligible_count || 0) > 0)
-    .sort((a,b) => pressureOrder[`${safe(a.route_key)}::${safe(a.year)}`] - pressureOrder[`${safe(b.route_key)}::${safe(b.year)}`])
-    .slice(0, 5)
-    .map(row => {
-      const eligible = Number(row.eligible_count || 0);
-      const qualified = Number(row.qualified_3_to_14_count || 0);
-      const width = eligible ? Math.max(4, Math.min(100, qualified / eligible * 100)) : 0;
-      return `<article class="temporal-pressure-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${temporalWindowRatioLabel(row, qualified, eligible)}</em></strong><p>${temporalWindowCopy(row, qualified, eligible)}</p><b class="temporal-bar"><i style="width:${width.toFixed(1)}%"></i></b></article>`;
-    }).join('');
-  const budgetRows = (temporalBacktestProjectionPack.threshold_surfaces || [])
-    .filter(row => Number(row.case_count_in_band || 0) > 0)
-    .sort((a,b) => Number(b.case_count_in_band || 0) - Number(a.case_count_in_band || 0) || safe(a.route_key).localeCompare(safe(b.route_key), 'zh-Hant'))
-    .slice(0, 6)
-    .map(row => `<article class="temporal-budget-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${Number(row.case_count_in_band || 0).toLocaleString('zh-TW')} cases</em></strong><p>${temporalBandLabel(row.budget_band)} · ${row.band_share == null ? 'share —' : percent(Number(row.band_share || 0))}<br>以 distinct case basis 彙整公開投影中的預算與決標接觸面。</p></article>`)
-    .join('');
-  return `<section class="temporal-cockpit"><div class="temporal-head"><div><span>TEMPORAL BACKTEST COCKPIT</span><strong>Temporal Backtest Cockpit / 年度回測駕駛艙</strong></div><p>AAI 依公開投影資料，追蹤指定路徑在不同年度的出現、延續、時間窗口與預算接觸面。</p></div><div class="temporal-badges"><span>Historical Backtest：2022-2023</span><span>Current Surface：2024-2025</span><span>Public Projection Only</span><span>Core Exposure：None</span></div><div class="temporal-bullets"><span>看見路徑何時出現</span><span>比較年度壓力是否延續</span><span>將指定路徑放回縣府背景值中判讀</span></div><section class="temporal-card" style="margin-bottom:10px"><h4>Route Survival Cards / 路徑存活卡</h4><div class="temporal-survival-grid">${survivalCards}</div></section><div class="temporal-grid"><section class="temporal-card"><h4>Route Birth Timeline / 路徑生成時間軸</h4><div class="temporal-timeline"><div class="temporal-timeline-row header"><span>Route</span><span>2022</span><span>2023</span><span>Current Surface</span></div>${timelineRows}</div></section><section class="temporal-card"><h4>Compressed Notice Window / 短公告窗口比例</h4><p class="presence-note">統計指定路徑中，公告日至截止日為 3–14 天的案件占比，用於比較路徑與年度背景母體。</p><div class="temporal-pressure-list">${pressureRows || '<p class="presence-note">—</p>'}</div></section></div><div class="temporal-budget-grid"><section class="temporal-card"><h4>Budget Contact Surface / 預算接觸表面</h4><p class="presence-note">以 distinct case basis 彙整公開投影中的預算與決標接觸面。</p><div class="temporal-budget-list">${budgetRows || '<article class="temporal-budget-item"><strong><span>—</span><em>0 cases</em></strong><p>—</p></article>'}</div></section><section class="temporal-card"><h4>Method Proof Strip / 方法論證明條</h4><div class="temporal-badges"><span>歷史回測</span><span>現況展示</span><span>僅公開投影</span><span>核心暴露：無</span></div></section></div></section>`;
-}
 function routeCaseKey(row, fallback = '') {
   const caseNo = safe(row.case_number);
   if (caseNo !== '—') return caseNo;
@@ -2084,26 +1973,6 @@ function loadRfbPublicProjectionPack() {
       render();
     });
 }
-function loadTemporalBacktestProjection() {
-  if (temporalBacktestProjectionStatus === 'loading' || temporalBacktestProjectionStatus === 'ready') return;
-  temporalBacktestProjectionStatus = 'loading';
-  fetch(TEMPORAL_BACKTEST_PROJECTION_URL, {cache:'no-store'})
-    .then(response => {
-      if (!response.ok) throw new Error(`Temporal Backtest public projection ${response.status}`);
-      return response.json();
-    })
-    .then(pack => {
-      if (pack?.pack_type !== 'temporal_backtest_public_projection_candidate') throw new Error('Temporal Backtest public projection type mismatch');
-      temporalBacktestProjectionPack = pack;
-      temporalBacktestProjectionStatus = 'ready';
-      render();
-    })
-    .catch(error => {
-      temporalBacktestProjectionStatus = 'unavailable';
-      console.warn('Temporal Backtest public projection not ready', error);
-      render();
-    });
-}
 function getActiveRouteProjection(routeKey = activeSampleFilter) {
   const routes = routeDashboardProjectionPack?.routes || [];
   const key = safe(routeKey);
@@ -2607,7 +2476,6 @@ function renderProjectedRouteDashboard(el, routeProjection) {
   const associatedContextBlock = routePartition ? renderPartitionAssociatedContext(routePartition) : '';
   const calendarPressureBlock = renderPartitionCalendarPressurePanel(routeDisplaySemantics || routeSurface);
   const cockpitBlock = renderWarRoomCockpit(routeProjection, routePartition, routeDisplaySemantics);
-  const temporalBacktestBlock = renderTemporalBacktestCockpit(routeProjection);
   const routeMetricGrid = `<div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>`;
   const supplierReviewerHeatmapBlock = routePartition
     ? (renderPartitionSupplierReviewerHeatmap(routePartition) || renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)}))
@@ -2616,7 +2484,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `${cockpitBlock}${temporalBacktestBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、case budget rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
+  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="dashboard-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}<div class="dashboard-panel-head" style="margin:12px 0 0"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -2968,7 +2836,6 @@ loadRouteDisplaySemanticsProjection();
 loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
 loadRfbPublicProjectionPack();
-loadTemporalBacktestProjection();
 </script>
 </body>
 </html>
