@@ -1145,3 +1145,13 @@ Tracked review files should remain clean when scanned by the execution gate.
 - A touched: no.
 - C touched: no.
 - Manual deploy: no.
+
+## V8 ALPHA RFB Layout Polish Pass 01
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: RFB Public Projection / Specification Fingerprint visual layout only.
+- RFB metric row changed from flat four-card row to a steadier 2+2 rhythm.
+- Vendor Fingerprint Context moved beside Rare Term Density as a compact chip strip.
+- Document Similarity expanded into a wider evidence-card area with fixed Case Pair / Similarity / Shared Requirement Terms / Vendor hierarchy.
+- RFB data values, runtime refs, active route binding, dashboard source priority, heatmap source, and route filters untouched.
+- Data, assets, Vercel config, GitHub workflow, src, public, A/Core, and C/Ops Ledger untouched.
+- Manual deploy: none.
