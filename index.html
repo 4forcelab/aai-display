@@ -163,7 +163,9 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .dashboard-table { min-width:1040px; }
 .dashboard-table th { font-size:12px; padding:11px 10px; }
 .dashboard-table td { font-size:11px; line-height:1.48; }
-.dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:start; }
+.dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:stretch; }
+.dashboard-layer-panels > .dashboard-panel { display:flex; flex-direction:column; min-height:430px; min-width:0; overflow:hidden; }
+.dashboard-layer-panels > .dashboard-panel .dashboard-table-wrap { flex:1; min-height:0; }
 .dashboard-layer-note { margin:0 0 10px; color:rgba(214,235,244,.78); font:650 12px/1.55 var(--zh); }
 .semantic-table { min-width:760px; table-layout:fixed; }
 .semantic-table th { vertical-align:bottom; }
@@ -188,9 +190,9 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .fast-response-card b { color:var(--muted); font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
 .fast-response-card strong { color:#f4fbff; font:900 16px/1.24 var(--zh); overflow-wrap:anywhere; }
 .fast-response-card span { color:rgba(207,232,242,.82); font:650 11px/1.42 var(--zh); overflow-wrap:anywhere; }
-.fast-response-grid { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, .82fr); gap:10px; align-items:start; max-width:100%; min-width:0; overflow:hidden; box-sizing:border-box; }
+.fast-response-grid { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, .9fr); gap:10px; align-items:stretch; max-width:100%; min-width:0; overflow:hidden; box-sizing:border-box; }
 .fast-response-grid > .dashboard-panel, .response-panel { min-width:0; max-width:100%; overflow:hidden; box-sizing:border-box; }
-.response-panel { display:flex; flex-direction:column; }
+.response-panel { display:flex; flex-direction:column; min-height:100%; }
 .response-panel-header { min-height:52px; }
 .response-panel-body { min-width:0; max-width:100%; min-height:0; overflow:hidden; box-sizing:border-box; }
 .fast-response-table-wrap { overflow:auto; max-height:310px; border:1px solid rgba(91,231,255,.14); background:#03080e; }
@@ -226,10 +228,16 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .heatmap-mode-panel { display:none; }
 #heatmap-count:checked ~ .heatmap-tab-labels label[for="heatmap-count"],
 #heatmap-reviewer-share:checked ~ .heatmap-tab-labels label[for="heatmap-reviewer-share"],
-#heatmap-supplier-share:checked ~ .heatmap-tab-labels label[for="heatmap-supplier-share"] { color:#061018; background:linear-gradient(90deg,var(--cyan),var(--lime)); border-color:rgba(184,255,91,.72); box-shadow:0 0 16px rgba(91,231,255,.18); }
+#heatmap-supplier-share:checked ~ .heatmap-tab-labels label[for="heatmap-supplier-share"],
+#partition-heatmap-count:checked ~ .heatmap-tab-labels label[for="partition-heatmap-count"],
+#partition-heatmap-reviewer-share:checked ~ .heatmap-tab-labels label[for="partition-heatmap-reviewer-share"],
+#partition-heatmap-supplier-share:checked ~ .heatmap-tab-labels label[for="partition-heatmap-supplier-share"] { color:#061018; background:linear-gradient(90deg,var(--cyan),var(--lime)); border-color:rgba(184,255,91,.72); box-shadow:0 0 16px rgba(91,231,255,.18); }
 #heatmap-count:checked ~ .heatmap-count-panel,
 #heatmap-reviewer-share:checked ~ .heatmap-reviewer-share-panel,
-#heatmap-supplier-share:checked ~ .heatmap-supplier-share-panel { display:block; }
+#heatmap-supplier-share:checked ~ .heatmap-supplier-share-panel,
+#partition-heatmap-count:checked ~ .heatmap-count-panel,
+#partition-heatmap-reviewer-share:checked ~ .heatmap-reviewer-share-panel,
+#partition-heatmap-supplier-share:checked ~ .heatmap-supplier-share-panel { display:block; }
 .heatmap-wrap { overflow:auto; border:0; background:#03080e; padding:8px; }
 .heatmap-grid { display:grid; gap:4px; min-width:760px; }
 .heatmap-cell { min-height:34px; padding:7px 8px; border:1px solid rgba(91,231,255,.12); background:rgba(4,13,22,.58); color:#e8f7ff; font:800 11px/1.2 var(--mono); display:flex; align-items:center; justify-content:center; text-align:center; }
@@ -381,6 +389,7 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .module-card.preview_connected .status { border-color:rgba(91,231,255,.46); background:rgba(91,231,255,.12); color:#dffbff; }
 .module-card.preview_ready .status { border-color:rgba(184,255,91,.34); background:rgba(184,255,91,.075); color:#e9ffd0; }
 .module-card.contract_only .status { border-color:rgba(168,140,255,.34); background:rgba(168,140,255,.075); color:#eee8ff; }
+.module-card.contract_only { cursor:not-allowed; opacity:.9; }
 .preview { padding:8px 0 38px; }
 .preview-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(91,231,255,.14); }
 .preview-head h2 { margin:0; font:800 26px/1.2 var(--zh); color:#f0fbff; }
@@ -470,6 +479,8 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .direct-only-badge { margin:0 0 12px; border:1px solid rgba(91,231,255,.24); background:rgba(91,231,255,.06); padding:11px 12px; color:#d9edf5; font:700 12px/1.6 var(--zh); display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; }
 .direct-only-badge b { color:var(--cyan); font:800 11px/1.2 var(--mono); text-transform:uppercase; }
 .fast-response-mini-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0 0 10px; }
+.fast-response-mini-grid.dense { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.fast-response-mini-grid.single { grid-template-columns:1fr; min-height:178px; align-content:stretch; }
 .fast-response-mini-card { border:1px solid rgba(91,231,255,.16); background:rgba(255,255,255,.035); padding:9px 10px; min-width:0; }
 .fast-response-mini-card b { display:block; color:#f3fbff; font:800 12px/1.3 var(--zh); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .fast-response-mini-card strong { display:block; margin-top:5px; color:var(--green); font:800 15px/1.2 var(--mono); }
@@ -514,7 +525,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>03:02 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>04:13 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -598,13 +609,13 @@ const MODULE_STATE_CONTRACT = {
   },
   reviewer_matrix: {
     type: 'Public Module Sample',
-    status: 'preview_connected',
-    mode: 'Connected Preview'
+    status: 'contract_only',
+    mode: 'Display Access Pending'
   },
   custom_supplier_management: {
     type: 'Public Module Sample',
-    status: 'preview_connected',
-    mode: 'Display Aggregation Preview'
+    status: 'contract_only',
+    mode: 'Display Access Pending'
   },
   supplier_case_management_example: {
     type: 'Public Module Sample',
@@ -623,8 +634,8 @@ const MODULE_STATE_CONTRACT = {
   },
   timeline_field_calculator: {
     type: 'Public Module Sample',
-    status: 'preview_connected',
-    mode: 'Display Calculation Preview'
+    status: 'contract_only',
+    mode: 'Display Access Pending'
   }
 };
 const MODULE_DEPTH_CONTRACT = {
@@ -734,6 +745,14 @@ function sampleCases(v) {
 function moduleById(id) { return modules.find(m => m.id === id) || modules[0]; }
 function moduleContract(m) { return MODULE_STATE_CONTRACT[m.id] || {type:'Public Module Sample', status:safe(m.status), mode:safe(m.status)}; }
 function displayStatus(m) { return moduleContract(m).status; }
+function moduleStatusCopy(m) {
+  const contract = moduleContract(m);
+  return contract.status === 'contract_only' ? 'Contract Locked' : displayStatus(m);
+}
+function moduleSupportCopy(m) {
+  const contract = moduleContract(m);
+  return contract.status === 'contract_only' ? '模組契約已鎖定 / Display Access Pending' : safe(contract.mode);
+}
 const filterFieldMap = {
   bid_preparation_module: {
     search: ['case_number','case_name','entity','method','awarded_vendor','reviewer_matrix','searchable_text'],
@@ -1939,6 +1958,49 @@ function compactCountBadge(source, display, cap, capped = true) {
   if (capped) parts.push('<i>capped</i>');
   return parts.length ? `<span class="projection-badge">${parts.join('')}</span>` : '';
 }
+function publicFieldValue(...values) {
+  for (const value of values) {
+    const text = safe(value);
+    if (text === '—') continue;
+    if (/projection\s+unavailable/i.test(text)) continue;
+    return text;
+  }
+  return DISPLAY_PENDING;
+}
+function routeTenderMethodLookup(routeProjection) {
+  const map = new Map();
+  resolveRouteTable(routeProjection, 'participated_tenders').forEach(row => {
+    const caseNumber = safe(row.case_number);
+    if (caseNumber === '—') return;
+    const method = publicFieldValue(
+      row.method,
+      row.procurement_method,
+      row.tender_method,
+      row.award_method,
+      row['採購方式'],
+      row['招標方式'],
+      row.tenderMethod,
+      row.procurementMethod
+    );
+    if (method !== DISPLAY_PENDING) map.set(caseNumber, method);
+  });
+  return map;
+}
+function proofMethod(row, routeProjection) {
+  const method = publicFieldValue(
+    row?.method,
+    row?.procurement_method,
+    row?.tender_method,
+    row?.award_method,
+    row?.['採購方式'],
+    row?.['招標方式'],
+    row?.tenderMethod,
+    row?.procurementMethod
+  );
+  if (method !== DISPLAY_PENDING) return method;
+  const caseNumber = safe(row?.case_number);
+  return caseNumber !== '—' ? (routeTenderMethodLookup(routeProjection).get(caseNumber) || DISPLAY_PENDING) : DISPLAY_PENDING;
+}
 function projectedTopList(items = [], limit = 3) {
   const rows = items.slice(0, limit).map(item => `${safe(item.label)} ${Number(item.count || 0).toLocaleString('zh-TW')}`).filter(text => text !== '— 0');
   return rows.length ? rows.join(' / ') : DISPLAY_PENDING;
@@ -2009,7 +2071,7 @@ function projectionMetricCards(routeProjection, routeSemantics = null, routePart
 function renderProjectionTenderTable(routeProjection) {
   const rows = resolveRouteTable(routeProjection, 'participated_tenders');
   if (!rows.length) return `<div class="no-result"><h3>${DISPLAY_PENDING}</h3><p>Route Dashboard Public Projection / 路徑公開投影 table is unavailable.</p></div>`;
-  return `<div class="dashboard-table-wrap table-viewport"><table class="dashboard-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${rows.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title_display)}">${safe(row.case_title_display)}</td><td class="cell-ellipsis" title="${safe(row.agency)}">${safe(row.agency)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-count">${Number.isFinite(Number(row.preparation_days)) ? Number(row.preparation_days).toFixed(1) : DISPLAY_PENDING}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.awarded_vendors)}">${formatIdentityLabel(row.awarded_vendors)}</td><td class="cell-ellipsis" title="${safe(row.procurement_method)}">${safe(row.procurement_method)}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.reviewer_labels)}">${formatIdentityLabel(row.reviewer_labels)}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="dashboard-table-wrap table-viewport"><table class="dashboard-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${rows.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title_display)}">${safe(row.case_title_display)}</td><td class="cell-ellipsis" title="${safe(row.agency)}">${safe(row.agency)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-count">${Number.isFinite(Number(row.preparation_days)) ? Number(row.preparation_days).toFixed(1) : DISPLAY_PENDING}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.awarded_vendors)}">${formatIdentityLabel(row.awarded_vendors)}</td><td class="cell-ellipsis" title="${publicFieldValue(row.procurement_method, row.method)}">${publicFieldValue(row.procurement_method, row.method)}</td><td class="cell-ellipsis" title="${formatIdentityLabel(row.reviewer_labels)}">${formatIdentityLabel(row.reviewer_labels)}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function renderProjectedAwardedVendorTable(routeProjection) {
   const rows = resolveRouteTable(routeProjection, 'awarded_vendors');
@@ -2113,14 +2175,14 @@ function renderLocalStaticPackIndicator(routePartition) {
   if (!meta || localStaticPackStatus !== 'ready') return '';
   return `<div class="local-pack-indicator" aria-label="Local Static Projection Pack"><span>Source Mode: Local Static Projection Pack</span><span>Pack: ${safe(meta.pack_version || 'local-v0.1')}</span><span>Boundary: Public projection only</span><span>Core Exposure: None</span></div>`;
 }
-function renderPartitionDirectCoreProofTable(routePartition) {
+function renderPartitionDirectCoreProofTable(routePartition, routeProjection = null) {
   const rows = Array.isArray(routePartition?.top_budget_cases) ? routePartition.top_budget_cases : [];
   const summary = routePartition?.route_summary || {};
   if (!rows.length) return `<section class="dashboard-panel response-panel"><div class="dashboard-panel-head response-panel-header"><b>Direct Core Proof Table / 直接核心案件證據表</b><span>Display Count / 公開展示 0</span></div><div class="no-result"><h3>—</h3><p>No direct core proof rows exported for this route.</p></div></section>`;
   const direct = routePartition?.direct_route_core || {};
   const budgetSum = routePartition?.matched_case_budget_sum?.direct_core ?? summary.budget_sum_direct_core;
   const proofBadge = compactCountBadge(direct.case_count ?? rows.length, Math.min(rows.length, 10), direct.cap ?? direct.display_count ?? rows.length, rows.length > 10 || Boolean(direct.cap));
-  const rowMarkup = list => `<table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('命中依據','Match Basis')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${list.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="cell-ellipsis" title="${safe(row.agency_name)}">${safe(row.agency_name)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td><td class="col-count">${formatDaysPublic(row.deadline_or_notice_window)}</td><td class="cell-ellipsis" title="${safe(row.awarded_vendor)}">${safe(row.awarded_vendor)}</td><td class="cell-ellipsis" title="${safe(row.procurement_method)}">${safe(row.procurement_method)}</td><td class="cell-ellipsis" title="${matchBasisLabel(row.match_basis)}">${matchBasisLabel(row.match_basis)}</td><td class="cell-ellipsis" title="${safe(row.reviewer_identity_or_role)}">${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table>`;
+  const rowMarkup = list => `<table class="dashboard-table semantic-table"><thead><tr><th>${thLabel('案號','Case')}</th><th>${thLabel('案名','Title')}</th><th>${thLabel('機關','Agency')}</th><th class="col-money">${thLabel('預算','Budget')}</th><th class="col-money">${thLabel('決標','Award')}</th><th class="col-count">${thLabel('備標','Days')}</th><th>${thLabel('得標廠商','Vendor')}</th><th>${thLabel('採購方式','Method')}</th><th>${thLabel('命中依據','Match Basis')}</th><th>${thLabel('審委','Reviewers')}</th></tr></thead><tbody>${list.map(row => `<tr><td class="cell-ellipsis" title="${safe(row.case_number)}">${safe(row.case_number)}</td><td class="cell-ellipsis" title="${safe(row.case_title)}">${safe(row.case_title)}</td><td class="cell-ellipsis" title="${safe(row.agency_name)}">${safe(row.agency_name)}</td><td class="col-money">${projectedMoney(row.budget_amount)}</td><td class="col-money">${projectedMoney(row.award_amount)}</td><td class="col-count">${formatDaysPublic(row.deadline_or_notice_window)}</td><td class="cell-ellipsis" title="${safe(row.awarded_vendor)}">${safe(row.awarded_vendor)}</td><td class="cell-ellipsis" title="${proofMethod(row, routeProjection)}">${proofMethod(row, routeProjection)}</td><td class="cell-ellipsis" title="${matchBasisLabel(row.match_basis)}">${matchBasisLabel(row.match_basis)}</td><td class="cell-ellipsis" title="${safe(row.reviewer_identity_or_role)}">${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table>`;
   const topRows = rows.slice(0, 10);
   const extraRows = rows.slice(10);
   const drawer = extraRows.length ? `<details class="proof-drawer"><summary><span>View capped proof / 展開裁切證據列</span><b>${extraRows.length.toLocaleString('zh-TW')} more</b></summary><div class="dashboard-table-wrap table-viewport">${rowMarkup(extraRows)}</div></details>` : '';
@@ -2139,9 +2201,56 @@ function renderPartitionSupplierReviewerShare(routePartition) {
     return `<tr title="${meta}"><td class="cell-ellipsis" title="${safe(row.supplier_name)}">${safe(row.supplier_name)}<span class="cell-meta">${meta}</span></td><td class="cell-ellipsis" title="${safe(row.reviewer_name)}">${safe(row.reviewer_name)}</td><td class="col-count">${Number(row.co_presence_count || 0).toLocaleString('zh-TW')}</td><td class="col-share">${Number.isFinite(supplierRate) ? percent(supplierRate) : DISPLAY_PENDING}</td><td class="col-share">${Number.isFinite(reviewerCoverage) ? percent(reviewerCoverage) : DISPLAY_PENDING}</td><td class="col-count">${supportLabel(row.sample_support_label)}</td></tr>`;
   }).join('')}</tbody></table></div></div>`;
 }
+function renderPartitionSupplierReviewerHeatmap(routePartition) {
+  const rows = Array.isArray(routePartition?.supplier_reviewer_share) ? routePartition.supplier_reviewer_share : [];
+  const validRows = rows.filter(row => safe(row.supplier_name) !== '—' && safe(row.reviewer_name) !== '—' && Number(row.co_presence_count) > 0);
+  if (!validRows.length) return '';
+  const supplierTotals = new Map();
+  const reviewerTotals = new Map();
+  const cellMap = new Map();
+  validRows.forEach(row => {
+    const supplier = safe(row.supplier_name);
+    const reviewer = safe(row.reviewer_name);
+    const count = Number(row.co_presence_count || 0);
+    cellMap.set(`${supplier}||${reviewer}`, count);
+    const supplierPresence = Number(row.supplier_route_presence_count);
+    const reviewerPresence = Number(row.reviewer_route_presence_count);
+    supplierTotals.set(supplier, Math.max(supplierTotals.get(supplier) || 0, Number.isFinite(supplierPresence) ? supplierPresence : count));
+    reviewerTotals.set(reviewer, Math.max(reviewerTotals.get(reviewer) || 0, Number.isFinite(reviewerPresence) ? reviewerPresence : count));
+  });
+  const suppliers = [...supplierTotals.keys()].sort((a,b) => (supplierTotals.get(b) - supplierTotals.get(a)) || a.localeCompare(b, 'zh-Hant')).slice(0, 12);
+  const reviewers = [...reviewerTotals.keys()].sort((a,b) => (reviewerTotals.get(b) - reviewerTotals.get(a)) || a.localeCompare(b, 'zh-Hant')).slice(0, 12);
+  const cells = suppliers.map(supplier => reviewers.map(reviewer => cellMap.get(`${supplier}||${reviewer}`) || 0));
+  const maxCount = cells.flat().reduce((max, value) => Math.max(max, value), 0);
+  if (!maxCount) return '';
+  const columns = `minmax(150px,1.15fr) repeat(${reviewers.length}, minmax(54px,1fr))`;
+  const renderCells = (mode = 'count') => {
+    const values = suppliers.map((supplier, y) => reviewers.map((reviewer, x) => {
+      const count = cells[y][x] || 0;
+      if (mode === 'reviewer') return {count, value:boundedShare(count, reviewerTotals.get(reviewer) || 0)};
+      if (mode === 'supplier') return {count, value:boundedShare(count, supplierTotals.get(supplier) || 0)};
+      return {count, value:count};
+    }));
+    const maxValue = values.flat().reduce((max, item) => Math.max(max, item.value || 0), 0);
+    return suppliers.map((supplier, y) => `<div class="heatmap-cell axis">${safe(supplier)}</div>${reviewers.map((reviewer, x) => {
+      const item = values[y][x];
+      const display = mode === 'count' ? (item.count || '') : (item.count ? displayShare(item.value) : '');
+      const ratio = maxValue ? (item.value || 0) / maxValue : 0;
+      const alpha = item.value ? Math.min(.1 + ratio * .6, .76) : .025;
+      const border = item.value ? Math.min(.2 + ratio * .45, .65) : .1;
+      const label = mode === 'reviewer' ? 'Reviewer Coverage' : (mode === 'supplier' ? 'Supplier Co-presence Rate' : 'Count');
+      return `<div class="heatmap-cell" title="Supplier: ${safe(supplier)} / Reviewer: ${safe(reviewer)} / Count: ${item.count} / ${label}: ${display}" style="background:rgba(255,79,216,${alpha});border-color:rgba(91,231,255,${border})">${display}</div>`;
+    }).join('')}`).join('');
+  };
+  const heatmapGrid = mode => `<div class="heatmap-wrap"><div class="heatmap-grid" style="grid-template-columns:${columns}"><div class="heatmap-cell head">Supplier / Reviewer</div>${reviewers.map(reviewer => `<div class="heatmap-cell head">${safe(reviewer)}</div>`).join('')}${renderCells(mode)}</div></div>`;
+  const tabs = `<div class="heatmap-mode-tabs"><input type="radio" id="partition-heatmap-count" name="partition-heatmap-mode" checked><input type="radio" id="partition-heatmap-reviewer-share" name="partition-heatmap-mode"><input type="radio" id="partition-heatmap-supplier-share" name="partition-heatmap-mode"><div class="heatmap-tab-labels"><label for="partition-heatmap-count">Count View / 次數視圖</label><label for="partition-heatmap-reviewer-share">Reviewer Coverage / 審委覆蓋率</label><label for="partition-heatmap-supplier-share">Supplier Co-presence Rate / 供應商同框率</label></div><div class="heatmap-mode-panel heatmap-count-panel">${matrixFold(heatmapGrid('count'), 'Route partition supplier-reviewer share / 路徑供應商審委同框')}</div><div class="heatmap-mode-panel heatmap-reviewer-share-panel"><p class="matrix-compact-note">Shows supplier presence within each reviewer’s case surface.<br>顯示各審委案件表面中的供應商同框比例。</p>${matrixFold(heatmapGrid('reviewer'), 'Reviewer Coverage / 審委覆蓋率')}</div><div class="heatmap-mode-panel heatmap-supplier-share-panel"><p class="matrix-compact-note">Shows how often each supplier appears with each reviewer within the selected route.<br>顯示指定路徑中，各供應商與各審委同步出現的比例。</p>${matrixFold(heatmapGrid('supplier'), 'Supplier Co-presence Rate / 供應商同框率')}</div></div>`;
+  return `<section class="supplier-reviewer-panel"><div class="supplier-reviewer-head"><div><span>RELATION ARRANGEMENT LAYER</span><strong>Supplier × Reviewer Heatmap / 供應商 × 審委熱力圖</strong></div><p>以路徑公開投影中的供應商審委同框列呈現矩陣排列。<br>Maps explicit supplier-reviewer co-presence rows from the current route partition.</p></div><div class="dashboard-panel-head"><b>Route Partition Heatmap</b><span>${compactCountBadge(rows.length, validRows.length, rows.length, false)}</span></div>${tabs}</section>`;
+}
 function renderFastResponseMiniCards(rows, mode, routeTotal, routeKey) {
   if (!Array.isArray(rows) || !rows.length) return '';
-  return `<div class="fast-response-mini-grid">${rows.slice(0, 3).map(row => {
+  const limit = mode === 'stable' ? (rows.length > 3 ? 6 : 3) : 3;
+  const densityClass = mode === 'stable' && rows.length > 3 ? ' dense' : (mode === 'fastest' && rows.length === 1 ? ' single' : '');
+  return `<div class="fast-response-mini-grid${densityClass}">${rows.slice(0, limit).map(row => {
     if (mode === 'stable') {
       const routePresence = explicitRoutePresence(row.route_presence_count, routeTotal, `${routeKey}:stable_card_presence`);
       return `<article class="fast-response-mini-card"><b>${safe(row.supplier_name)}</b><strong>${Number(row.qualified_count || 0).toLocaleString('zh-TW')} windows</strong><span>Best ${formatDaysPublic(row.best_notice_window_days)} · Avg ${formatDaysPublic(row.average_notice_window_days)} · Presence ${routePresence}</span></article>`;
@@ -2235,14 +2344,16 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? renderPartitionDirectCoreSummary(routePartition)
     : (partitionPending ? `<section class="fast-response-panel"><div class="fast-response-head"><div><span>DIRECT ROUTE CORE SUMMARY</span><strong>直接命中核心摘要 · Match Basis / 命中依據</strong></div><p>Loading public route partition / 載入路徑公開投影</p></div></section>` : '');
   const localPackIndicator = renderLocalStaticPackIndicator(routePartition);
-  const directCoreProofBlock = routePartition ? renderPartitionDirectCoreProofTable(routePartition) : '';
+  const directCoreProofBlock = routePartition ? renderPartitionDirectCoreProofTable(routePartition, routeProjection) : '';
   const partitionSupplierReviewerShare = routePartition ? renderPartitionSupplierReviewerShare(routePartition) : '';
   const partitionFastResponseBlock = routePartition ? renderPartitionFastResponsePanel(routePartition) : '';
   const associatedContextBlock = routePartition ? renderPartitionAssociatedContext(routePartition) : '';
   const calendarPressureBlock = renderPartitionCalendarPressurePanel(routeDisplaySemantics || routeSurface);
   const cockpitBlock = renderWarRoomCockpit(routeProjection, routePartition, routeDisplaySemantics);
   const routeMetricGrid = `<div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>`;
-  const supplierReviewerHeatmapBlock = renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)});
+  const supplierReviewerHeatmapBlock = routePartition
+    ? (renderPartitionSupplierReviewerHeatmap(routePartition) || renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)}))
+    : renderSupplierReviewerHeatmap(bid, {includeShareList: !(routeDisplaySemantics || routePartition)});
   const matrixMeta = routeSurface && resolveCoPresenceMatrix(routeSurface)
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
@@ -2425,7 +2536,7 @@ function renderRouteNarrative() {
 function renderCards() {
   document.getElementById('moduleCards').innerHTML = modules.map(m => {
     const contract = moduleContract(m);
-    return `<article class="module-card ${displayStatus(m)} ${m.id===activeModuleId?'active':''}" data-module="${m.id}" data-status="${displayStatus(m)}"><div><h3>${safe(m.front_zh)}</h3><div class="en">${safe(m.front_en)}</div><div class="route">${safe(m.route)}</div><div class="source">${safe(contract.type)}</div></div><span class="status">${displayStatus(m)}</span></article>`;
+    return `<article class="module-card ${displayStatus(m)} ${m.id===activeModuleId?'active':''}" data-module="${m.id}" data-status="${displayStatus(m)}"><div><h3>${safe(m.front_zh)}</h3><div class="en">${safe(m.front_en)}</div><div class="route">${safe(m.route)}</div><div class="source">${safe(contract.type)} · ${moduleSupportCopy(m)}</div></div><span class="status">${moduleStatusCopy(m)}</span></article>`;
   }).join('');
   document.querySelectorAll('.module-card').forEach(card => card.addEventListener('click', () => setActiveModule(card.dataset.module)));
 }
@@ -2440,7 +2551,7 @@ function renderFilterBar(count) {
   document.getElementById('filterModule').textContent = `${safe(m.front_zh)} / ${safe(m.id)}`;
   document.getElementById('filterSample').textContent = activeSampleFilter || '全部資料';
   document.getElementById('filterSearch').textContent = searchQuery.trim() || '無';
-  document.getElementById('filterCount').textContent = count.toLocaleString('zh-TW');
+  document.getElementById('filterCount').textContent = count === null ? 'Contract Locked' : Number(count || 0).toLocaleString('zh-TW');
   document.getElementById('filterMode').textContent = mode;
 }
 function noResult(rows) {
@@ -2457,7 +2568,7 @@ function renderBid() {
     const rows = Array.isArray(routePartition.top_budget_cases) ? routePartition.top_budget_cases.slice(0, 20) : [];
     const summary = `<div class="summary">${summaryLabels.map(([k,zh,en]) => `<div class="summary-card"><strong>${s[k]}</strong><span class="zh">${zh}</span><span class="en">${en}</span></div>`).join('')}</div>`;
     const contextNote = `<div class="matrix-axis-note"><strong>Bid Preparation Module</strong> · Direct Route Core / 直接命中核心 · Matched Cases reads explicit route partition; preparation windows read route public projection.</div>`;
-    const table = rows.length ? `<div class="table-wrap bid-table-wrap"><table><thead><tr><th>案號</th><th>案名</th><th>機關</th><th>預算</th><th>決標</th><th>備標</th><th>得標廠商</th><th>採購方式</th><th>命中依據</th><th>審委</th></tr></thead><tbody>${rows.map(row => `<tr><td>${safe(row.case_number)}</td><td>${safe(row.case_title)}</td><td>${safe(row.agency_name)}</td><td>${projectedMoney(row.budget_amount)}</td><td>${projectedMoney(row.award_amount)}</td><td>${formatDaysPublic(row.deadline_or_notice_window)}</td><td>${safe(row.awarded_vendor)}</td><td>${safe(row.procurement_method)}</td><td>${matchBasisLabel(row.match_basis)}</td><td>${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table></div>` : '';
+    const table = rows.length ? `<div class="table-wrap bid-table-wrap"><table><thead><tr><th>案號</th><th>案名</th><th>機關</th><th>預算</th><th>決標</th><th>備標</th><th>得標廠商</th><th>採購方式</th><th>命中依據</th><th>審委</th></tr></thead><tbody>${rows.map(row => `<tr><td>${safe(row.case_number)}</td><td>${safe(row.case_title)}</td><td>${safe(row.agency_name)}</td><td>${projectedMoney(row.budget_amount)}</td><td>${projectedMoney(row.award_amount)}</td><td>${formatDaysPublic(row.deadline_or_notice_window)}</td><td>${safe(row.awarded_vendor)}</td><td>${proofMethod(row, routeProjection)}</td><td>${matchBasisLabel(row.match_basis)}</td><td>${safe(row.reviewer_identity_or_role)}</td></tr>`).join('')}</tbody></table></div>` : '';
     return `${summary}${contextNote}${table}`;
   }
   const filteredRows = activeRows();
@@ -2532,17 +2643,19 @@ function renderStateCard(m) {
     ? '此數字代表前台可顯示欄位數，不代表資料已完成接入。<br>Field count reflects public display fields, not a connected preview dataset.'
     : '此模組為商業展示樣張，實際欄位與資料接入依專案配置。<br>This module is a commercial display sample. Field structure and data connection depend on project configuration.';
   const list = arr => `<ul>${arr.map(item => `<li>${safe(item)}</li>`).join('')}</ul>`;
-  return `<div class="state-card ${displayStatus(m)}"><span class="state-status">${displayStatus(m)}</span><h3>${titleZh}</h3><p>${titleEn}</p><p>${body}</p><div class="state-grid"><div class="state-item"><b>Route</b><span>${safe(m.route)}</span></div><div class="state-item"><b>Type</b><span>${safe(contract.type)}</span></div><div class="state-item"><b>Public Fields Count</b><span>${(m.public_fields || []).length}</span></div><div class="state-item"><b>Status</b><span>${displayStatus(m)}</span></div></div><div class="module-depth-grid"><div class="module-depth-card"><b>Purpose</b><p>${safe(depth.purpose)}</p></div><div class="module-depth-card"><b>Configurable Fields</b>${list(depth.fields || [])}</div><div class="module-depth-card"><b>Display Capabilities</b>${list(depth.capabilities || [])}</div><div class="module-depth-card"><b>Access State</b><p>${safe(depth.access)}</p></div></div><div class="note-box">${note}</div></div>`;
+  return `<div class="state-card ${displayStatus(m)}"><span class="state-status">${moduleStatusCopy(m)}</span><h3>${titleZh}</h3><p>${titleEn}</p><p>${body}</p><div class="state-grid"><div class="state-item"><b>Route</b><span>${safe(m.route)}</span></div><div class="state-item"><b>Type</b><span>${safe(contract.type)}</span></div><div class="state-item"><b>Public Fields Count</b><span>${(m.public_fields || []).length}</span></div><div class="state-item"><b>Status</b><span>${moduleStatusCopy(m)}</span></div></div><div class="module-depth-grid"><div class="module-depth-card"><b>Purpose</b><p>${safe(depth.purpose)}</p></div><div class="module-depth-card"><b>Configurable Fields</b>${list(depth.fields || [])}</div><div class="module-depth-card"><b>Display Capabilities</b>${list(depth.capabilities || [])}</div><div class="module-depth-card"><b>Access State</b><p>${safe(depth.access)}</p></div></div><div class="note-box">${note}</div></div>`;
 }
 function render() {
   const m = moduleById(activeModuleId);
-  const rows = activeModuleId === 'bid_preparation_module' ? activeRows() : (activeModuleId === 'reviewer_matrix' ? activeReviewerRows() : (activeModuleId === 'timeline_field_calculator' ? activeTimelineRows() : (activeModuleId === 'custom_supplier_management' ? activeSupplierRows() : [])));
-  renderCards(); syncModuleChips(); syncSampleChips(); renderFilterBar(rows.length);
+  const contract = moduleContract(m);
+  const locked = contract.status === 'contract_only';
+  const rows = locked ? [] : (activeModuleId === 'bid_preparation_module' ? activeRows() : (activeModuleId === 'reviewer_matrix' ? activeReviewerRows() : (activeModuleId === 'timeline_field_calculator' ? activeTimelineRows() : (activeModuleId === 'custom_supplier_management' ? activeSupplierRows() : []))));
+  renderCards(); syncModuleChips(); syncSampleChips(); renderFilterBar(locked ? null : rows.length);
   renderRouteDashboard();
   renderDimensionBridge();
   renderRouteNarrative();
-  const body = activeModuleId === 'bid_preparation_module' ? renderBid() : (activeModuleId === 'reviewer_matrix' ? renderReviewerMatrix() : (activeModuleId === 'timeline_field_calculator' ? renderTimelineCalculator() : (activeModuleId === 'custom_supplier_management' ? renderSupplierManagement() : renderStateCard(m))));
-  document.getElementById('activePreview').innerHTML = `<div class="preview-head"><div><h2>${safe(m.front_zh)}</h2><span>${safe(m.front_en)} · ${safe(m.route)}</span></div><span>${displayStatus(m)}</span></div>${body}`;
+  const body = locked ? renderStateCard(m) : (activeModuleId === 'bid_preparation_module' ? renderBid() : (activeModuleId === 'reviewer_matrix' ? renderReviewerMatrix() : (activeModuleId === 'timeline_field_calculator' ? renderTimelineCalculator() : (activeModuleId === 'custom_supplier_management' ? renderSupplierManagement() : renderStateCard(m)))));
+  document.getElementById('activePreview').innerHTML = `<div class="preview-head"><div><h2>${safe(m.front_zh)}</h2><span>${safe(m.front_en)} · ${safe(m.route)}</span></div><span>${moduleStatusCopy(m)}</span></div>${body}`;
   const clear = document.getElementById('clearSampleBtn'); if (clear) clear.addEventListener('click', () => { clearFilters(); render(); });
 }
 document.getElementById('searchInput').addEventListener('input', e => { searchQuery = e.target.value.trim(); render(); });

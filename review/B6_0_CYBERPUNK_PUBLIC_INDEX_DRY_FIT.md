@@ -1034,6 +1034,27 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL3 Heatmap Regression + Sales Grid Alignment
+- Base head: 0bf6f749a1fc16314ef43fb76981a5cd7e475918.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- War-room Cockpit preserved as the primary sales/command route surface.
+- Direct Core Proof Table now resolves Method / 採購方式 through existing B capped route public projection lookup by case number; no local pack JSON change.
+- Supplier × Reviewer Heatmap restored to consume explicit route-partition supplier-reviewer share rows when present, instead of falling through to the empty legacy row source.
+- Stable Fast Response compact cards can show up to six rows when exported; Fastest Single Case keeps an equal-height frame with table expansion.
+- Core Matched Awarded Vendors and Reviewer Distribution Table panels now align with shared card height and inner scroll.
+- Direct-only routes keep only the compact direct-only badge; 三恆一樹 and 協昌 retain Associated Membership sections.
+- Six non-Bid Preparation module cards now present Contract Locked / 模組契約已鎖定 with Display Access Pending / 依專案契約開通.
+- Projection Update timestamp refreshed to 2026-05-30 04:13 UTC.
+- Footer copyright statement preserved.
+- Source mode indicator preserved in compact Local Static Pack / Boundary / Core Exposure form.
+- 睿霓 absence is not handled in LOCAL3; future A route/search forensic can inspect 職人町 / 睿霓 if needed.
+- Preserved LOCAL1 sidecar consumer, LOCAL2 cockpit, V8.7 Competition Scarcity Surface, AG3 agency-scoped projection, AG4 budget fit surfaces, GA, mobile gate, DevTools easter egg, logo, hero, Source & Model, search placeholder, and CTA.
+- No A write.
+- No C/Ops Ledger touch.
+- Manual deploy: none.
+- Semantic gate result: pass.
+- Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## V8.1.2 Proposal Readability Pass
 - Base: V8.1.1 Route Guide Slogan Text Patch / dee31517565d99b23c1ea9b4d0aed0ee6029cbb1.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
