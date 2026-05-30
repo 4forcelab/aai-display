@@ -1178,3 +1178,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Data, runtime refs, active route binding, search/filter behavior, dashboard source priority, heatmap source, sorting, and denominator logic untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Reviewer Matrix Theater Layout Polish Pass 01
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, Statistical Observation Axes, and Participated Tender List visual layout only.
+- Participated Tender List now sits above the matrix as a full-width evidence strip with its existing table, source/display badges, scroll behavior, fields, ordering, and values preserved.
+- Reviewer Co-presence Grid breaks out into a full-width matrix theater card; raw count, diagonal self-count, source-count copy, row/column order, and cell values are unchanged.
+- Conditional Presence Matrix breaks out into its own full-width matrix theater card; conditional-rate reading label, denominator logic, support threshold behavior, and cell values are unchanged.
+- Top Conditional Presence Pairs remains below the matrix as support ranking with table fields, scrollbar, sorting, and values unchanged.
+- Statistical Observation Axes are retained as a compact bottom support deck with the same four observation terms.
+- RFB layout, Top Gun signal layout, Presence Contrast / Companion Drop, Ceiling Proximity / Award-to-Budget Rhythm, and Compressed Notice four-card rhythm preserved.
+- Matrix data, heatmap source, conditional values, route binding, runtime refs, data JSON, active route, search/filter behavior, and computation untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
