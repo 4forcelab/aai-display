@@ -1205,17 +1205,11 @@ Tracked review files should remain clean when scanned by the execution gate.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
 
-## V8 ALPHA Reading Flow Pass 01
-- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
-- Scope: reading-flow and section-order adjustment only.
-- Entry layer now leads with Route Dashboard, capped route metrics, and the core inscription.
-- First-read layer follows with War-room Cockpit, Stable Fast Response, and Calendar Pressure / compressed-notice reading surfaces.
-- RFB Specification Fingerprint stays after first-read signals and preserves the V8 ALPHA RFB layout polish, values, caps, and support metrics.
-- Top Gun signal layer follows RFB with Presence Contrast, Companion Drop Surface, Ceiling Proximity, Award-to-Budget Rhythm, and Competition Scarcity preserved.
-- Matrix Theater now follows Top Gun with Participated Tender evidence strip, Supplier x Reviewer Heatmap, Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, and Statistical Observation Axes.
-- Case Budget Reference List moved to the post-Matrix support layer, after Vendor / Reviewer distribution tables and before contract-only module surfaces.
-- RFB / Top Gun / Matrix Theater protection layouts preserved.
-- Data, runtime refs, active route, activeRows, search priority, heatmap source, matrix source, row/column order, filters, JSON projections, and computation untouched.
+## V8 ALPHA Reading Flow Pass 01 Revert
+- Reading Flow Pass 01 reverted because the section reorder caused layout regression.
+- No layout repair attempted in this pass.
+- Restored V8 ALPHA Intelligence Skin stable reading structure.
+- Data, runtime refs, active route, activeRows, search priority, dashboard binding, heatmap source, matrix source, filters, JSON projections, and computation untouched.
 - LOCAL6 consumer absent.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
