@@ -1064,6 +1064,18 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Semantic gate result: pass.
 - Production QA target: https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
 
+## B LOCAL5.1.1 TWP Copy Clarification Patch
+- Base head: ae54a199e06b3584daea4fc4dd0fc5ce3d38e90f.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- TWP renamed to Compressed Notice Window / 短公告窗口比例.
+- Numerator / denominator copy clarified for each visible route-year row.
+- Threshold days found: yes, 3-14 days from qualified_3_to_14_count.
+- Data JSON untouched.
+- A untouched.
+- C untouched.
+- Manual deploy: none.
+- Production QA target remains https://aai-display.vercel.app/ and https://aai.4force.com.tw/.
+
 ## B LOCAL2 War-room Sales Surface Major Repair
 - Base head: 6ac34ac3c84baf9646f5b29d3d67cd7573766c7c.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.

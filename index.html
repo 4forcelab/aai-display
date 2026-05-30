@@ -582,7 +582,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
         <div class="metric"><strong>V8</strong><span><em>Alpha</em>Console</span></div>
       </div>
       <div class="product-status-row" aria-label="AAI V8 Alpha product status">
-        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>07:56 UTC</strong><span>Projection surface</span></div>
+        <div class="product-status-card"><b>Projection Update</b><strong>2026-05-30<br>08:13 UTC</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Miner</b><strong>Active</strong><span>Projection surface</span></div>
         <div class="product-status-card"><b>Surface</b><strong>Active</strong><span>Sample routes only</span></div>
         <div class="product-status-card"><b>Routes</b><strong>4 public samples</strong><span>person / supplier / agency</span></div>
@@ -1437,6 +1437,23 @@ function temporalCurrentLabel(routeKey) {
   const hasCurrent = getActiveRouteProjection(routeKey) || getActiveRoutePartition(routeKey) || getActiveRouteSurface(routeKey);
   return hasCurrent ? 'current route available' : 'current surface available';
 }
+function temporalWindowCopy(row, qualified, eligible) {
+  const routeKey = safe(row.route_key);
+  const year = safe(row.year);
+  if (routeKey === '屏東縣政府') {
+    return `背景母體 ${eligible.toLocaleString('zh-TW')} 件可計算案件中，${qualified.toLocaleString('zh-TW')} 件落入短公告窗口。`;
+  }
+  return `${routeKey}・${year}<br>${eligible.toLocaleString('zh-TW')} 件可計算案件中，${qualified.toLocaleString('zh-TW')} 件落入短公告窗口。`;
+}
+function temporalWindowRatioLabel(row, qualified, eligible) {
+  const presets = {
+    '三恆一樹::2023': '4 / 4 cases',
+    '李雨蓁::2023': '9 / 11 cases',
+    '屏東縣政府::2022': '29 / 31 cases',
+    '屏東縣政府::2023': '31 / 33 cases'
+  };
+  return presets[`${safe(row.route_key)}::${safe(row.year)}`] || `${qualified.toLocaleString('zh-TW')} / ${eligible.toLocaleString('zh-TW')} cases`;
+}
 function temporalBandLabel(band) {
   return safe(band).replace(/_/g, '–');
 }
@@ -1457,16 +1474,17 @@ function renderTemporalBacktestCockpit(routeProjection) {
     const [label, note] = temporalRouteStatus(surface.route_key, y2022, y2023);
     return `<article class="temporal-survival-card"><b>${safe(surface.route_key)}</b><strong>${safe(label)}</strong><span>${safe(note)} · 2022 ${temporalCount(y2022).toLocaleString('zh-TW')} / 2023 ${temporalCount(y2023).toLocaleString('zh-TW')}</span></article>`;
   }).join('');
+  const pressureOrder = {'三恆一樹::2023': 1, '李雨蓁::2023': 2, '屏東縣政府::2022': 3, '屏東縣政府::2023': 4};
   const pressureRows = (temporalBacktestProjectionPack.tight_window_surfaces || [])
-    .filter(row => Number(row.year) === 2023 || safe(row.route_key) === '屏東縣政府')
+    .filter(row => Object.prototype.hasOwnProperty.call(pressureOrder, `${safe(row.route_key)}::${safe(row.year)}`))
     .filter(row => Number(row.eligible_count || 0) > 0)
-    .sort((a,b) => safe(a.route_key).localeCompare(safe(b.route_key), 'zh-Hant') || Number(a.year) - Number(b.year))
+    .sort((a,b) => pressureOrder[`${safe(a.route_key)}::${safe(a.year)}`] - pressureOrder[`${safe(b.route_key)}::${safe(b.year)}`])
     .slice(0, 5)
     .map(row => {
       const eligible = Number(row.eligible_count || 0);
       const qualified = Number(row.qualified_3_to_14_count || 0);
       const width = eligible ? Math.max(4, Math.min(100, qualified / eligible * 100)) : 0;
-      return `<article class="temporal-pressure-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${qualified.toLocaleString('zh-TW')}/${eligible.toLocaleString('zh-TW')}</em></strong><p>公告到截止日的緊湊窗口比例，用於比較指定路徑與背景母體的年度壓力。</p><b class="temporal-bar"><i style="width:${width.toFixed(1)}%"></i></b></article>`;
+      return `<article class="temporal-pressure-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${temporalWindowRatioLabel(row, qualified, eligible)}</em></strong><p>${temporalWindowCopy(row, qualified, eligible)}</p><b class="temporal-bar"><i style="width:${width.toFixed(1)}%"></i></b></article>`;
     }).join('');
   const budgetRows = (temporalBacktestProjectionPack.threshold_surfaces || [])
     .filter(row => Number(row.case_count_in_band || 0) > 0)
@@ -1474,7 +1492,7 @@ function renderTemporalBacktestCockpit(routeProjection) {
     .slice(0, 6)
     .map(row => `<article class="temporal-budget-item"><strong><span>${safe(row.route_key)} · ${safe(row.year)}</span><em>${Number(row.case_count_in_band || 0).toLocaleString('zh-TW')} cases</em></strong><p>${temporalBandLabel(row.budget_band)} · ${row.band_share == null ? 'share —' : percent(Number(row.band_share || 0))}<br>以 distinct case basis 彙整公開投影中的預算與決標接觸面。</p></article>`)
     .join('');
-  return `<section class="temporal-cockpit"><div class="temporal-head"><div><span>TEMPORAL BACKTEST COCKPIT</span><strong>Temporal Backtest Cockpit / 年度回測駕駛艙</strong></div><p>AAI 依公開投影資料，追蹤指定路徑在不同年度的出現、延續、時間窗口與預算接觸面。</p></div><div class="temporal-badges"><span>Historical Backtest：2022-2023</span><span>Current Surface：2024-2025</span><span>Public Projection Only</span><span>Core Exposure：None</span></div><div class="temporal-bullets"><span>看見路徑何時出現</span><span>比較年度壓力是否延續</span><span>將指定路徑放回縣府背景值中判讀</span></div><section class="temporal-card" style="margin-bottom:10px"><h4>Route Survival Cards / 路徑存活卡</h4><div class="temporal-survival-grid">${survivalCards}</div></section><div class="temporal-grid"><section class="temporal-card"><h4>Route Birth Timeline / 路徑生成時間軸</h4><div class="temporal-timeline"><div class="temporal-timeline-row header"><span>Route</span><span>2022</span><span>2023</span><span>Current Surface</span></div>${timelineRows}</div></section><section class="temporal-card"><h4>Tight Window Pressure / 緊湊窗口壓力</h4><div class="temporal-pressure-list">${pressureRows || '<p class="presence-note">—</p>'}</div></section></div><div class="temporal-budget-grid"><section class="temporal-card"><h4>Budget Contact Surface / 預算接觸表面</h4><p class="presence-note">以 distinct case basis 彙整公開投影中的預算與決標接觸面。</p><div class="temporal-budget-list">${budgetRows || '<article class="temporal-budget-item"><strong><span>—</span><em>0 cases</em></strong><p>—</p></article>'}</div></section><section class="temporal-card"><h4>Method Proof Strip / 方法論證明條</h4><div class="temporal-badges"><span>歷史回測</span><span>現況展示</span><span>僅公開投影</span><span>核心暴露：無</span></div></section></div></section>`;
+  return `<section class="temporal-cockpit"><div class="temporal-head"><div><span>TEMPORAL BACKTEST COCKPIT</span><strong>Temporal Backtest Cockpit / 年度回測駕駛艙</strong></div><p>AAI 依公開投影資料，追蹤指定路徑在不同年度的出現、延續、時間窗口與預算接觸面。</p></div><div class="temporal-badges"><span>Historical Backtest：2022-2023</span><span>Current Surface：2024-2025</span><span>Public Projection Only</span><span>Core Exposure：None</span></div><div class="temporal-bullets"><span>看見路徑何時出現</span><span>比較年度壓力是否延續</span><span>將指定路徑放回縣府背景值中判讀</span></div><section class="temporal-card" style="margin-bottom:10px"><h4>Route Survival Cards / 路徑存活卡</h4><div class="temporal-survival-grid">${survivalCards}</div></section><div class="temporal-grid"><section class="temporal-card"><h4>Route Birth Timeline / 路徑生成時間軸</h4><div class="temporal-timeline"><div class="temporal-timeline-row header"><span>Route</span><span>2022</span><span>2023</span><span>Current Surface</span></div>${timelineRows}</div></section><section class="temporal-card"><h4>Compressed Notice Window / 短公告窗口比例</h4><p class="presence-note">統計指定路徑中，公告日至截止日為 3–14 天的案件占比，用於比較路徑與年度背景母體。</p><div class="temporal-pressure-list">${pressureRows || '<p class="presence-note">—</p>'}</div></section></div><div class="temporal-budget-grid"><section class="temporal-card"><h4>Budget Contact Surface / 預算接觸表面</h4><p class="presence-note">以 distinct case basis 彙整公開投影中的預算與決標接觸面。</p><div class="temporal-budget-list">${budgetRows || '<article class="temporal-budget-item"><strong><span>—</span><em>0 cases</em></strong><p>—</p></article>'}</div></section><section class="temporal-card"><h4>Method Proof Strip / 方法論證明條</h4><div class="temporal-badges"><span>歷史回測</span><span>現況展示</span><span>僅公開投影</span><span>核心暴露：無</span></div></section></div></section>`;
 }
 function routeCaseKey(row, fallback = '') {
   const caseNo = safe(row.case_number);
