@@ -1155,3 +1155,14 @@ Tracked review files should remain clean when scanned by the execution gate.
 - RFB data values, runtime refs, active route binding, dashboard source priority, heatmap source, and route filters untouched.
 - Data, assets, Vercel config, GitHub workflow, src, public, A/Core, and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Presence Contrast Layout Polish Pass 01
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Presence Contrast Board / 在場對照板 and Companion Drop Surface / 伴隨落差表面 visual layout only.
+- Presence Contrast and Companion Drop now use equal-height twin rails on desktop.
+- Companion Drop Surface remains an expanded card wall; present / absent bars, delta, denominator, supplier names, ordering, and values are unchanged.
+- Presence Contrast table keeps the existing compact table and horizontal viewport, with a low-weight projection floor note added below.
+- Compressed Notice x Budget Band card rhythm, order, labels, and data semantics preserved.
+- Data, runtime refs, active route binding, dashboard source priority, heatmap source, and filters untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.

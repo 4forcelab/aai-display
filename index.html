@@ -266,20 +266,23 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .presence-contrast-head strong { display:block; margin-top:7px; color:#fff; font:900 16px/1.25 var(--zh); }
 .presence-contrast-head p { max-width:790px; margin:0; color:rgba(222,238,246,.84); font:650 12px/1.62 var(--zh); }
 .presence-note { margin:0 0 10px; color:rgba(214,235,244,.78); font:650 12px/1.55 var(--zh); }
-.presence-layout { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:10px; align-items:start; max-width:100%; min-width:0; overflow:hidden; }
-.presence-card { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.68); padding:11px; }
+.presence-layout { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); gap:10px; align-items:stretch; max-width:100%; min-width:0; overflow:hidden; }
+.presence-card { min-width:0; max-width:100%; overflow:hidden; border:1px solid rgba(91,231,255,.16); background:rgba(4,13,22,.68); padding:11px; display:flex; flex-direction:column; }
 .presence-card h4 { margin:0 0 8px; color:var(--cyan); font:900 12px/1.25 var(--zh); }
 .presence-table-viewport { width:100%; max-width:100%; overflow:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; }
+.presence-card-main { flex:1; min-height:0; }
+.presence-floor { margin-top:auto; border:1px solid rgba(184,255,91,.12); background:rgba(184,255,91,.035); padding:8px 9px; color:rgba(214,235,244,.76); font:650 11px/1.48 var(--zh); }
+.presence-floor b { color:var(--lime); font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.035em; }
 .presence-table { min-width:920px; width:100%; border-collapse:separate; border-spacing:0; }
 .presence-table th,.presence-table td { padding:8px 9px; border-bottom:1px solid rgba(91,231,255,.1); text-align:left; color:rgba(224,242,248,.9); font:700 11px/1.35 var(--zh); }
 .presence-table th { color:var(--cyan); background:rgba(91,231,255,.065); font-weight:900; }
-.companion-drop-list { display:grid; gap:8px; }
-.companion-drop-item { min-width:0; border:1px solid rgba(184,255,91,.15); background:rgba(184,255,91,.045); padding:9px 10px; }
+.companion-drop-list { display:grid; gap:9px; }
+.companion-drop-item { min-width:0; border:1px solid rgba(184,255,91,.17); background:linear-gradient(135deg,rgba(184,255,91,.055),rgba(91,231,255,.03)); padding:10px 11px; box-shadow:inset 0 1px 0 rgba(255,255,255,.018); }
 .companion-drop-item strong { display:block; color:#f4fbff; font:850 12px/1.35 var(--zh); overflow-wrap:anywhere; }
 .companion-drop-item span { display:block; margin-top:4px; color:rgba(206,232,242,.78); font:650 11px/1.45 var(--zh); overflow-wrap:anywhere; }
-.companion-bar-row { margin-top:7px; }
+.companion-bar-row { margin-top:8px; }
 .companion-bar-row b { display:block; margin-bottom:3px; color:rgba(230,248,255,.84); font:850 10px/1.2 var(--mono); text-transform:uppercase; }
-.companion-track { position:relative; height:9px; border:1px solid rgba(91,231,255,.16); background:rgba(91,231,255,.08); overflow:hidden; }
+.companion-track { position:relative; height:10px; border:1px solid rgba(91,231,255,.16); background:rgba(91,231,255,.08); overflow:hidden; }
 .companion-track i { display:block; height:100%; background:linear-gradient(90deg,var(--cyan),var(--lime)); box-shadow:0 0 12px rgba(184,255,91,.16); }
 .companion-track em { display:block; height:100%; background:linear-gradient(90deg,rgba(168,140,255,.72),rgba(91,231,255,.52)); box-shadow:0 0 10px rgba(91,231,255,.12); }
 .budget-band-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-top:10px; }
@@ -525,7 +528,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -533,7 +536,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .rfb-metrics, .rfb-list.similarity-list { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .presence-layout, .rfb-metrics, .rfb-list.similarity-list { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -1299,7 +1302,7 @@ function renderAG3PresenceSurfaces() {
     return `<article class="companion-drop-item"><strong>${safe(row.supplier)}</strong><span>Delta / 伴隨落差：${percent(row.delta)}<br>Denominator / 樣本母數：${row.denominator.toLocaleString('zh-TW')}</span><div class="companion-bar-row"><b>Present / 在場：${row.present.toLocaleString('zh-TW')}</b><div class="companion-track"><i style="width:${presentWidth}%"></i></div></div><div class="companion-bar-row"><b>Absent / 不在場：${row.absent.toLocaleString('zh-TW')}</b><div class="companion-track"><em style="width:${absentWidth}%"></em></div></div></article>`;
   }).join('')}</div>`;
   const budgetCards = AG3_BUDGET_BAND_ROWS.map(row => `<article class="budget-band-card"><b>${budgetBandLabel(row.band)}</b><strong>${row.cases.toLocaleString('zh-TW')} cases · ${row.compressed.toLocaleString('zh-TW')} compressed</strong><span>Avg Preparation Days ${row.avg} · Median Preparation Days ${row.median}<br>Display Strength: ${safe(row.strength)}<br>Top Suppliers: ${row.suppliers.map(safe).join(' / ')}<br>Top Reviewer Groups: ${row.groups.map(safe).join(' / ')}</span></article>`).join('');
-  return `<section class="presence-contrast-panel"><div class="presence-contrast-head"><div><span>PRESENCE CONTRAST BOARD</span><strong>在場對照板 · Companion Drop Surface / 伴隨落差表面</strong></div><p>比較初始審委群在場與不在場條件下的供應商伴隨變化。<br>Initial Reviewer Group presence compared with absence across supplier context.</p></div><p class="presence-note">初始審委群為 public projection 中高頻共現列形成的展示層群組。<br>Initial Reviewer Group is a display-layer grouping derived from high co-presence public projection rows.</p><span class="ag4-context">Agency Public Projection / 機關公開投影 · Scope: 屏東縣政府</span><div class="presence-layout"><section class="presence-card"><h4>Presence Contrast Board / 在場對照板</h4>${table}</section><section class="presence-card"><h4>Companion Drop Surface / 伴隨落差表面</h4>${dropSurface}</section></div><section class="presence-card" style="margin-top:10px"><h4>Compressed Notice × Budget Band / 壓縮公告 × 預算帶</h4><p class="presence-note">Budget Band Concentration / 預算帶聚集 · Compressed Notice / 壓縮公告 · Avg Preparation Days / 平均備標天數</p><div class="budget-band-grid">${budgetCards}</div></section></section>`;
+  return `<section class="presence-contrast-panel"><div class="presence-contrast-head"><div><span>PRESENCE CONTRAST BOARD</span><strong>在場對照板 · Companion Drop Surface / 伴隨落差表面</strong></div><p>比較初始審委群在場與不在場條件下的供應商伴隨變化。<br>Initial Reviewer Group presence compared with absence across supplier context.</p></div><p class="presence-note">初始審委群為 public projection 中高頻共現列形成的展示層群組。<br>Initial Reviewer Group is a display-layer grouping derived from high co-presence public projection rows.</p><span class="ag4-context">Agency Public Projection / 機關公開投影 · Scope: 屏東縣政府</span><div class="presence-layout"><section class="presence-card"><h4>Presence Contrast Board / 在場對照板</h4><div class="presence-card-main">${table}</div><div class="presence-floor"><b>Scope / Projection Floor</b><br>Agency Public Projection / 機關公開投影 · Initial Reviewer Group present / absent comparison · denominator retained per row.</div></section><section class="presence-card"><h4>Companion Drop Surface / 伴隨落差表面</h4>${dropSurface}</section></div><section class="presence-card" style="margin-top:10px"><h4>Compressed Notice × Budget Band / 壓縮公告 × 預算帶</h4><p class="presence-note">Budget Band Concentration / 預算帶聚集 · Compressed Notice / 壓縮公告 · Avg Preparation Days / 平均備標天數</p><div class="budget-band-grid">${budgetCards}</div></section></section>`;
 }
 function renderAG4BudgetFitSurfaces() {
   const sortedCeiling = prioritizeSupplierRows(AG4_CEILING_PROXIMITY_ROWS);
