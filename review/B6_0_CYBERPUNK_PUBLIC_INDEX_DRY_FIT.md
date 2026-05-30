@@ -1166,3 +1166,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Data, runtime refs, active route binding, dashboard source priority, heatmap source, and filters untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Top Gun Signal Layout Polish Pass 01
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Presence Contrast / Companion Drop and Ceiling Proximity / Award-to-Budget visual layout only.
+- Presence Contrast now includes a Top Contrast Signal panel using the visible top row; 程龍營造工程有限公司 remains the highlighted left-rail signal.
+- Ceiling Proximity now includes a Top Budget Fit Signal panel using the visible top row; 三恆一樹行銷有限公司 remains the highlighted budget-fit signal.
+- Companion Drop Surface and Award-to-Budget Rhythm card walls remain expanded; values, ordering, bars, and denominators are unchanged.
+- Core Matched Awarded Vendors and Reviewer Distribution Table alignment was adjusted with a low-weight left-side spacer.
+- Compressed Notice card rhythm, order, labels, and data semantics preserved.
+- Data, runtime refs, active route binding, search/filter behavior, dashboard source priority, heatmap source, sorting, and denominator logic untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
