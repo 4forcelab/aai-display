@@ -1344,3 +1344,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Local smoke: root HTTP 200, Amount Anchor Case visible, lower list renders 4 remaining from 5 total, remaining cards default open, no horizontal overflow.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA.2 Version Badge Lock
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Version defined as V8 ALPHA.2.
+- Semantic name: Statistical Theater + Expert Pair Defense Lock / 統計劇場與專家配對防禦鎖定版.
+- `.2` neon glow badge added with the existing hero version position preserved.
+- Display timestamp and data pack timestamps unchanged.
+- Data packs unchanged.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, Statistical Theater data loader, and Expert Pair Defense data loader untouched.
+- Local smoke: root HTTP 200, V8 ALPHA.2 visible, `.2` glow class active, Statistical Theater and Expert Pair Defense surfaces preserved, no horizontal overflow.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
+- Next recommended step: C acceptance log + release vault snapshot.
