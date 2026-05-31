@@ -288,10 +288,17 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .expert-pair-primary-signal h3 { margin:0; color:#f7fff4; font:900 17px/1.22 var(--zh); }
 .expert-pair-primary-signal .expert-pair-hero-grid,
 .expert-pair-primary-signal .expert-pair-primary-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(270px,.58fr); gap:12px; align-items:stretch; margin-top:10px; }
-.expert-pair-primary-left { min-width:0; }
+.expert-pair-primary-left { min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; align-content:stretch; }
 .expert-pair-primary-signal p { margin:8px 0 0; color:rgba(220,240,232,.82); font:650 12px/1.62 var(--zh); }
+.expert-pair-primary-tile { min-width:0; border:1px solid rgba(91,231,255,.1); background:rgba(3,8,14,.48); padding:9px; overflow:hidden; }
+.expert-pair-primary-tile-wide { grid-column:1 / -1; }
+.expert-pair-primary-label { display:block; color:rgba(91,231,255,.82); font:850 9px/1.2 var(--mono); text-transform:uppercase; }
+.expert-pair-primary-value { display:block; margin-top:6px; color:#f4fbff; font:900 14px/1.28 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.expert-pair-primary-copy { display:block; margin-top:6px; color:rgba(220,240,232,.82); font:650 12px/1.55 var(--zh); }
+.expert-pair-residual-chip-row { margin-top:7px; }
 .expert-pair-top-case { position:relative; min-width:0; border:1px solid rgba(91,231,255,.32); background:radial-gradient(circle at 82% 12%,rgba(184,255,91,.16),transparent 42%),linear-gradient(145deg,rgba(91,231,255,.095),rgba(3,8,14,.72)); padding:12px; overflow:hidden; box-shadow:0 0 28px rgba(91,231,255,.13), inset 0 1px 0 rgba(255,255,255,.05); }
-.expert-pair-top-case-glow { border-color:rgba(184,255,91,.34); box-shadow:0 0 34px rgba(184,255,91,.14),0 0 18px rgba(91,231,255,.08), inset 0 1px 0 rgba(255,255,255,.05); }
+.expert-pair-top-case-glow,
+.expert-pair-anchor-glow { border-color:rgba(184,255,91,.34); box-shadow:0 0 34px rgba(184,255,91,.14),0 0 18px rgba(91,231,255,.08), inset 0 1px 0 rgba(255,255,255,.05); }
 .expert-pair-top-case b { display:block; color:#f7fff4; font:900 14px/1.22 var(--zh); }
 .expert-pair-top-case small { display:block; margin-top:4px; color:rgba(184,255,91,.82); font:800 9px/1.25 var(--mono); text-transform:uppercase; }
 .expert-pair-top-case strong { display:block; margin-top:9px; color:#f4fbff; font:900 15px/1.28 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -3244,13 +3251,19 @@ function getExpertPairTopCaseSample(samples) {
     return parseExpertPairAmount(b.award_amount_public) - parseExpertPairAmount(a.award_amount_public);
   })[0] || list[0];
 }
+function getExpertPairSampleKey(sample) {
+  if (!sample) return '';
+  const id = sample.case_id_public || sample.case_id;
+  if (id) return `id:${id}`;
+  return `fallback:${sample.case_title_public || sample.case_title || ''}:${sample.budget_amount_public || ''}:${sample.award_amount_public || ''}`;
+}
 function renderExpertPairTopCaseHighlight(sample) {
-  if (!sample) return `<div class="expert-pair-top-case expert-pair-top-case-glow"><b>Top Case Highlight / 樣本主砲</b><p>Panel snapshot sample unavailable.<br>五案樣本暫不可用。</p></div>`;
+  if (!sample) return `<div class="expert-pair-top-case expert-pair-anchor-glow"><b>Amount Anchor Case / 金額錨點案</b><p>Panel snapshot sample unavailable.<br>五案樣本暫不可用。</p></div>`;
   const title = sample.case_title_public || sample.case_title || '—';
   const fullPanelCount = expertPairDefenseList(sample.full_panel_names_public).length;
   const residualPanelCount = expertPairDefenseList(sample.residual_panel_names_public).length;
   const repeated = expertPairDefenseList(sample.repeated_residual_names_public);
-  return `<aside class="expert-pair-top-case expert-pair-top-case-glow"><b>Top Case Highlight / 樣本主砲</b><small>Largest amount among panel snapshot samples. / 五案樣本中金額最高者。</small><strong title="${safe(title)}">${safe(title)}</strong><p>${safe(sample.case_id_public || sample.case_id || '—')} · ${safe(sample.agency_public || '—')} · ${safe(sample.year_public ?? sample.year ?? '—')} · ${safe(sample.budget_tier || '—')}</p><div class="expert-pair-top-case-metrics"><span>Budget<b title="${safe(moneyNT(sample.budget_amount_public))}">${safe(moneyNT(sample.budget_amount_public))}</b></span><span>Award<b title="${safe(moneyNT(sample.award_amount_public))}">${safe(moneyNT(sample.award_amount_public))}</b></span><span>Full panel count<b>${safe(fullPanelCount)}</b></span><span>Residual panel count<b>${safe(residualPanelCount)}</b></span></div><p class="expert-pair-case-label">Target pair</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(sample.target_pair_names_public, 'expert-pair-chip-target')}</div><p class="expert-pair-case-label">Repeated residual chips</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(repeated, 'expert-pair-chip-repeat')}</div><p class="expert-pair-amount-anchor"><b>Amount anchor / 金額錨點</b><br>This sample anchors the panel snapshot display by amount scale.<br>本案作為五案樣本金額尺度錨點。</p></aside>`;
+  return `<aside class="expert-pair-top-case expert-pair-anchor-glow"><b>Amount Anchor Case / 金額錨點案</b><small>Largest amount among panel snapshot samples. / 五案樣本中金額最高者。</small><strong title="${safe(title)}">${safe(title)}</strong><p>${safe(sample.case_id_public || sample.case_id || '—')} · ${safe(sample.agency_public || '—')} · ${safe(sample.year_public ?? sample.year ?? '—')} · ${safe(sample.budget_tier || '—')}</p><div class="expert-pair-top-case-metrics"><span>Budget<b title="${safe(moneyNT(sample.budget_amount_public))}">${safe(moneyNT(sample.budget_amount_public))}</b></span><span>Award<b title="${safe(moneyNT(sample.award_amount_public))}">${safe(moneyNT(sample.award_amount_public))}</b></span><span>Full panel count<b>${safe(fullPanelCount)}</b></span><span>Residual panel count<b>${safe(residualPanelCount)}</b></span></div><p class="expert-pair-case-label">Target pair</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(sample.target_pair_names_public, 'expert-pair-chip-target')}</div><p class="expert-pair-case-label">Repeated residual chips</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(repeated, 'expert-pair-chip-repeat')}</div><p class="expert-pair-amount-anchor"><b>Amount anchor / 金額錨點</b><br>This sample anchors the panel snapshot display by amount scale.<br>本案作為五案樣本金額尺度錨點。</p></aside>`;
 }
 function renderExpertPairSignalRoles() {
   const priority = ['李德純 × 程泰運', '吳明榮 × 莊世杰', '張恭文 × 黃國維'];
@@ -3269,13 +3282,16 @@ function renderExpertPairPrimarySignal() {
   if (!target) return `<div class="stat-theater-empty">Expert Pair Defense projection unavailable.<br>專家配對防禦測試公開投影暫不可用。</div>`;
   const repeated = expertPairDefenseList(target.residual_overlap_metrics?.top_residual_reviewers).slice(0, 3).map(row => row.reviewer_name_public);
   const topCase = getExpertPairTopCaseSample(target.panel_snapshot_samples);
-  return `<section class="expert-pair-primary-signal"><h3>Primary Panel Formation Signal / 主要組成機制訊號</h3><div class="expert-pair-hero-grid"><div class="expert-pair-primary-left"><p><b>Pair / 配對</b><br><span title="${safe(target.pair_name)}">${safe(target.pair_name)}</span></p><p><b>Status</b><br>High-budget residual concentration<br>高預算層剩餘席次集中</p><p><b>Top repeated residual names</b></p><div class="expert-pair-chip-row">${expertPairDefenseChipList(repeated, 'expert-pair-chip-repeat')}</div><p><b>Method line</b><br>Target pair removed before residual panel comparison.<br>已先扣除目標 pair，再比較剩餘席次。</p><p>If expertise explains A+B, the remaining seats still require a separate formation explanation.<br>若專業需求可解釋 A+B，剩餘席次仍需要獨立的組成解釋。</p></div>${renderExpertPairTopCaseHighlight(topCase)}</div></section>`;
+  return `<section class="expert-pair-primary-signal"><h3>Primary Panel Formation Signal / 主要組成機制訊號</h3><div class="expert-pair-hero-grid"><div class="expert-pair-primary-left"><div class="expert-pair-primary-tile"><span class="expert-pair-primary-label">Pair / 配對</span><span class="expert-pair-primary-value" title="${safe(target.pair_name)}">${safe(target.pair_name)}</span></div><div class="expert-pair-primary-tile"><span class="expert-pair-primary-label">Status / 狀態</span><span class="expert-pair-primary-value">High-budget residual concentration</span><span class="expert-pair-primary-copy">高預算層剩餘席次集中</span></div><div class="expert-pair-primary-tile"><span class="expert-pair-primary-label">Method / 方法</span><span class="expert-pair-primary-copy">Target pair removed before residual panel comparison.<br>已先扣除目標 pair，再比較剩餘席次。</span></div><div class="expert-pair-primary-tile"><span class="expert-pair-primary-label">Repeated residual names / 重複剩餘席次</span><div class="expert-pair-chip-row expert-pair-residual-chip-row">${expertPairDefenseChipList(repeated, 'expert-pair-chip-repeat')}</div></div><div class="expert-pair-primary-tile expert-pair-primary-tile-wide"><span class="expert-pair-primary-label">Formation question / 組成問題</span><span class="expert-pair-primary-copy">If expertise explains A+B, the remaining seats still require a separate formation explanation.<br>若專業需求可解釋 A+B，剩餘席次仍需要獨立的組成解釋。</span></div></div>${renderExpertPairTopCaseHighlight(topCase)}</div></section>`;
 }
 function renderExpertPairPanelSnapshots() {
   const target = expertPairDefenseTargetPair();
   const samples = expertPairDefenseList(target?.panel_snapshot_samples).slice(0, 5);
   if (!samples.length) return `<div class="stat-theater-empty">Panel snapshot samples unavailable.<br>Panel snapshot samples 暫不可用。</div>`;
-  return `<section><div class="stat-theater-card-head"><b>Panel Snapshot Samples / 五案 Panel Snapshot</b><span>${samples.length} cases · Default expanded for panel comparison. / 預設展開以便比對委員組成。</span></div><div class="expert-pair-snapshot-grid">${samples.map((item, index) => {
+  const topCase = getExpertPairTopCaseSample(samples);
+  const topCaseKey = getExpertPairSampleKey(topCase);
+  const remainingSamples = samples.filter(item => getExpertPairSampleKey(item) !== topCaseKey);
+  return `<section><div class="stat-theater-card-head"><b>Remaining Panel Snapshot Samples / 其餘樣本 Panel Snapshot</b><span>${remainingSamples.length} remaining / ${samples.length} total · Top amount case is lifted into the anchor card above. / 五案樣本中其餘 ${remainingSamples.length} 案。</span></div><div class="expert-pair-snapshot-grid">${remainingSamples.map((item, index) => {
     const id = item.case_id_public || item.case_id || `case ${index + 1}`;
     const title = item.case_title_public || item.case_title || '—';
     const meta = [

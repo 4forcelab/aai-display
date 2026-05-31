@@ -1319,12 +1319,28 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
 - Scope: Expert Pair Defense Primary Panel Formation Signal visual layout only.
 - Top repeated residual names merged into the left primary signal content.
-- Top Case Highlight / 樣本主砲 added to the right side of the primary signal card.
+- Top Case Highlight card added to the right side of the primary signal card.
 - Top case selection is render-only: largest `budget_amount_public`, with `award_amount_public` fallback, then first sample fallback.
 - Five Panel Snapshot Samples remain default open.
 - Data packs unchanged.
 - Canonical name check: pass.
 - Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
 - Local smoke: root HTTP 200, Top Case Highlight visible, repeated residual names merged into primary left, five snapshots remain open, no horizontal overflow.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
+
+## V8 ALPHA Expert Pair Anchor Layout Repair
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Expert Pair Defense Amount Anchor Case and Primary Panel Formation Signal layout only.
+- Top Case label changed to Amount Anchor Case / 金額錨點案.
+- Highlighted top amount case is removed from the lower remaining snapshot list.
+- Lower list now renders 4 remaining cases from 5 samples, with the total sample count preserved in copy.
+- Primary Panel Formation Signal left area rebuilt as a two-column structured grid with field tiles.
+- Repeated residual names remain visible in the primary left area.
+- Remaining snapshot cases remain default open.
+- Data packs unchanged.
+- Canonical name check: pass.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- Local smoke: root HTTP 200, Amount Anchor Case visible, lower list renders 4 remaining from 5 total, remaining cards default open, no horizontal overflow.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
