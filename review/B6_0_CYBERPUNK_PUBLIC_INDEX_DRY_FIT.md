@@ -1214,3 +1214,15 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Core inscription, RFB Specification Fingerprint, Presence Top Gun, Ceiling Top Gun, Supplier Reviewer Heatmap, Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, mobile gate, and DevTools easter egg preserved.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Expected Co-presence Matrix Consumer
+- Changed files: index.html, data/preview/v8_alpha_expected_copresence_ammo_pack.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- A read-only source: core-v2.9V8-ALPHA-expected-copresence-ammo-pack / 6bc62d31bc8b617838abfa2bcaa4a64c287fec8d.
+- Copied the public-safe expected co-presence ammo pack into B as a capped display sidecar.
+- Added Expected Co-presence Matrix / 期望共現倍率矩陣 directly below the existing Reviewer Matrix Theater.
+- Added global Lift vs Expected, Random Tail Probability, and High Actual with Expected Context panels.
+- Added compact route chips for 李雨蓁, 協昌, 三恆一樹, and 屏東縣政府 using the pack's route-specific capped top pairs.
+- Existing Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, heatmap source, active route, search/filter behavior, runtime refs, and matrix values untouched.
+- LOCAL6 consumer absent; aggregate projection main dashboard binding unchanged.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
