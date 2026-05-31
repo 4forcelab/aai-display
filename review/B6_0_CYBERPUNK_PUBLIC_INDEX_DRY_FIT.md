@@ -1241,3 +1241,17 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Main route state, activeRows, sample tags, route dashboard binding, Reviewer Matrix Theater, heatmap source, and LOCAL6 untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Statistical Theater Readability Repair
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- B baseline: `display-v2.9V8-ALPHA-statistical-theater-visual-alignment` / `0b0c1600dd9bf9d32ca42f6429490ef147cfab3b`.
+- Scope: Statistical Theater visual readability only; no data pack, pack schema, main dashboard, route state, heatmap, or Reviewer Matrix Theater changes.
+- Added Signal Highlights / 重點訊號 rail with the pinned public projection values: 李德純 × 程泰運, 吳明榮 × 莊世杰, and 張亦文 × 黃國維.
+- Added Statistical Reference Scale / 統計參考尺 with p < 0.05 / p < 0.01 / p < 0.001 reference copy.
+- Added Amount tier basis / 金額分層基準. Pack scan found amount buckets and high/low counts but no public threshold values, so the top-third / bottom-third fallback copy is used with global High 402 / Low 403 counts.
+- Signal card mini rows, Expected table rows, and Budget-Stratified cards now use explicit Statistical Theater grid classes for pair readability, right-aligned numeric scanning, centered budget metrics, and compact case disclosure.
+- Statistical Theater pack unchanged; rescued sidecars unchanged.
+- Isolated namespace and `#statistical-theater` render target preserved.
+- Main route state, activeRows, sample tags, route dashboard binding, Reviewer Matrix Theater, heatmap source, and LOCAL6 untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
