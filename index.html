@@ -193,7 +193,7 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .statistical-theater-route-chip { min-height:32px; border:1px solid rgba(91,231,255,.24); background:rgba(91,231,255,.055); color:#dffaff; padding:8px 11px; font:850 12px/1 var(--zh); cursor:pointer; }
 .statistical-theater-route-chip.active { border-color:var(--magenta); background:rgba(255,79,216,.105); box-shadow:0 0 16px rgba(255,79,216,.18); color:#fff; }
 .stat-theater-scope { margin:0 0 12px; border:1px solid rgba(91,231,255,.12); background:rgba(3,8,14,.48); padding:8px 10px; color:rgba(214,235,244,.74); font:750 11px/1.45 var(--mono); }
-.stat-theater-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; align-items:start; }
+.stat-theater-grid { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); gap:12px; align-items:start; }
 .stat-theater-card { min-width:0; border:1px solid rgba(91,231,255,.17); background:rgba(4,13,22,.7); padding:12px; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
 .stat-theater-card-head { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-bottom:10px; }
 .stat-theater-card-head b { color:#f4fbff; font:900 14px/1.24 var(--zh); }
@@ -201,29 +201,41 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .stat-theater-signal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
 .stat-theater-signal-card { min-width:0; min-height:142px; border:1px solid rgba(91,231,255,.14); background:linear-gradient(180deg,rgba(5,18,30,.72),rgba(3,8,14,.72)); padding:10px; overflow:hidden; }
 .stat-theater-signal-card b { display:block; color:var(--cyan); font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
-.stat-theater-signal-row { display:grid; grid-template-columns:minmax(0,1fr) 44px 54px 54px 58px; gap:5px; align-items:center; margin-top:6px; color:rgba(228,244,250,.9); font:750 10px/1.25 var(--mono); }
+.stat-theater-scroll-x { max-width:100%; overflow-x:auto; overflow-y:hidden; }
+.stat-theater-signal-header,
+.stat-theater-signal-row { display:grid; grid-template-columns:minmax(120px,1.6fr) 64px 76px 72px 92px; gap:8px; align-items:center; min-width:456px; color:rgba(228,244,250,.9); font:750 10px/1.25 var(--mono); }
+.stat-theater-signal-header { height:22px; color:rgba(176,209,220,.68); font-size:8px; text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid rgba(91,231,255,.08); }
+.stat-theater-signal-row { min-height:30px; border-bottom:1px solid rgba(91,231,255,.055); }
+.stat-theater-signal-row:last-child { border-bottom:0; }
 .stat-theater-pair { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#f4fbff; font-family:var(--zh); }
 .stat-theater-number { text-align:right; white-space:nowrap; color:var(--lime); }
 .stat-theater-table-wrap { max-width:100%; overflow-x:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; }
-.stat-theater-table { width:100%; min-width:780px; border-collapse:collapse; table-layout:fixed; }
-.stat-theater-table th { position:sticky; top:0; z-index:1; background:var(--table-head-bg); color:var(--cyan); padding:9px 8px; font:850 10px/1.2 var(--mono); text-align:left; }
-.stat-theater-table td { border-top:1px solid rgba(91,231,255,.08); padding:9px 8px; color:rgba(236,248,255,.9); font:650 11px/1.42 var(--zh); vertical-align:top; }
-.stat-theater-table .stat-theater-numeric { width:72px; text-align:right; white-space:nowrap; font-family:var(--mono); color:var(--lime); }
-.stat-theater-drawer { margin-top:7px; border:1px solid rgba(91,231,255,.1); background:rgba(91,231,255,.035); }
-.stat-theater-drawer summary { cursor:pointer; list-style:none; padding:6px 7px; color:rgba(214,235,244,.78); font:800 10px/1.2 var(--mono); }
+.stat-theater-table { min-width:660px; }
+.stat-theater-table-head,
+.stat-theater-table-row { display:grid; grid-template-columns:minmax(180px,2fr) 80px 90px 80px 110px 120px; gap:0; align-items:center; }
+.stat-theater-table-head { position:sticky; top:0; z-index:1; background:var(--table-head-bg); color:var(--cyan); font:850 10px/1.2 var(--mono); text-transform:uppercase; }
+.stat-theater-table-head span,
+.stat-theater-table-row > span { min-width:0; padding:8px; }
+.stat-theater-table-head span:not(:first-child),
+.stat-theater-table-row > span:not(:first-child) { text-align:right; }
+.stat-theater-table-row { min-height:50px; border-top:1px solid rgba(91,231,255,.08); color:rgba(236,248,255,.9); font:650 11px/1.34 var(--zh); }
+.stat-theater-table-row .stat-theater-number { font-family:var(--mono); color:var(--lime); }
+.stat-theater-drawer { display:inline-block; max-width:100%; border:1px solid rgba(91,231,255,.1); background:rgba(91,231,255,.035); vertical-align:middle; }
+.stat-theater-drawer summary { cursor:pointer; list-style:none; padding:5px 7px; color:rgba(214,235,244,.78); font:800 9px/1.1 var(--mono); white-space:nowrap; }
 .stat-theater-drawer summary::-webkit-details-marker { display:none; }
-.stat-theater-drawer div { padding:0 7px 7px; color:rgba(214,235,244,.7); font:650 10px/1.45 var(--zh); }
+.stat-theater-drawer div { min-width:260px; padding:0 7px 7px; color:rgba(214,235,244,.7); font:650 10px/1.45 var(--zh); text-align:left; }
 .stat-theater-budget-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
-.stat-theater-budget-item { min-height:72px; border:1px solid rgba(184,255,91,.15); background:rgba(184,255,91,.035); padding:9px; overflow:hidden; }
+.stat-theater-budget-item { min-height:78px; border:1px solid rgba(184,255,91,.15); background:rgba(184,255,91,.035); padding:9px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
 .stat-theater-budget-item b { display:block; color:rgba(184,255,91,.9); font:850 9px/1.2 var(--mono); text-transform:uppercase; }
-.stat-theater-budget-item strong { display:block; margin-top:6px; color:#f4fbff; font:900 16px/1.2 var(--mono); }
+.stat-theater-budget-item strong { display:block; margin-top:6px; color:#f4fbff; font:900 18px/1.1 var(--mono); }
 .stat-theater-budget-item span { display:block; margin-top:4px; color:rgba(207,232,242,.75); font:650 10px/1.35 var(--zh); }
 .stat-theater-rank-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
 .stat-theater-rank-card { min-width:0; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.62); padding:10px; overflow:hidden; }
 .stat-theater-rank-card strong { display:block; color:#f4fbff; font:850 12px/1.25 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.stat-theater-rank-card dl { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; margin:8px 0 0; }
-.stat-theater-rank-card dt { color:rgba(176,209,220,.7); font:800 9px/1.1 var(--mono); text-transform:uppercase; }
-.stat-theater-rank-card dd { margin:3px 0 0; color:var(--lime); font:850 12px/1.2 var(--mono); text-align:right; }
+.stat-theater-rank-metrics { display:grid; grid-template-columns:repeat(4,minmax(64px,1fr)); gap:6px; margin:8px 0 0; }
+.stat-theater-rank-metric { min-width:0; border:1px solid rgba(91,231,255,.07); background:rgba(91,231,255,.025); padding:6px; text-align:right; }
+.stat-theater-rank-metric span { display:block; color:rgba(176,209,220,.7); font:800 8px/1.1 var(--mono); text-transform:uppercase; }
+.stat-theater-rank-metric b { display:block; margin-top:4px; color:var(--lime); font:850 12px/1.2 var(--mono); }
 .stat-theater-empty { border:1px solid rgba(91,231,255,.13); background:rgba(91,231,255,.04); padding:13px; color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
 .stat-theater-loading { color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
 .dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:stretch; }
@@ -3003,14 +3015,17 @@ function statTheaterEmpty() {
 function statTheaterSignalCard(title, kind) {
   const rows = getStatisticalTheaterRows('expected', kind).slice(0, 3);
   if (!rows.length) return `<article class="stat-theater-signal-card"><b>${safe(title)}</b><div class="stat-theater-empty">Projection thin</div></article>`;
-  return `<article class="stat-theater-signal-card"><b>${safe(title)}</b>${rows.map(row => `<div class="stat-theater-signal-row"><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span><span class="stat-theater-number">${statTheaterNumber(row.actual_co)}</span><span class="stat-theater-number">${statTheaterNumber(row.expected_co, 1)}</span><span class="stat-theater-number">${statTheaterLift(row.lift)}</span><span class="stat-theater-number">${statTheaterP(row.p_tail)}</span></div>`).join('')}</article>`;
+  const header = `<div class="stat-theater-signal-header"><span>Pair</span><span>Actual</span><span>Expected</span><span>Lift</span><span>P-tail</span></div>`;
+  const body = rows.map(row => `<div class="stat-theater-signal-row"><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span><span class="stat-theater-number">${statTheaterNumber(row.actual_co)}</span><span class="stat-theater-number">${statTheaterNumber(row.expected_co, 1)}</span><span class="stat-theater-number">${statTheaterLift(row.lift)}</span><span class="stat-theater-number">${statTheaterP(row.p_tail)}</span></div>`).join('');
+  return `<article class="stat-theater-signal-card"><b>${safe(title)}</b><div class="stat-theater-scroll-x">${header}${body}</div></article>`;
 }
 function renderStatisticalTheaterExpected() {
   const rows = getStatisticalTheaterRows('expected', 'main').slice(0, 12);
   const signalCards = `<div class="stat-theater-signal-grid">${statTheaterSignalCard('Lift Leaders', 'lift')}${statTheaterSignalCard('Tail Probability', 'tail')}${statTheaterSignalCard('High Actual Count', 'actual')}</div>`;
   if (!rows.length) return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Expected Co-presence Lift / 期望共現倍率</b><span>compact projection</span></div>${signalCards}${statTheaterEmpty()}</section>`;
-  const body = rows.map(row => `<tr><td><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span>${statTheaterCaseList(row)}</td><td class="stat-theater-numeric">${statTheaterNumber(row.actual_co)}</td><td class="stat-theater-numeric">${statTheaterNumber(row.expected_co, 2)}</td><td class="stat-theater-numeric">${statTheaterLift(row.lift)}</td><td class="stat-theater-numeric">${statTheaterP(row.p_tail)}</td></tr>`).join('');
-  return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Expected Co-presence Lift / 期望共現倍率</b><span>top 12 rows</span></div>${signalCards}<div class="stat-theater-table-wrap"><table class="stat-theater-table"><thead><tr><th>Pair</th><th>Actual</th><th>Expected</th><th>Lift</th><th>P-tail</th></tr></thead><tbody>${body}</tbody></table></div></section>`;
+  const header = `<div class="stat-theater-table-head"><span>Pair</span><span>Actual</span><span>Expected</span><span>Lift</span><span>P-tail</span><span>Cases</span></div>`;
+  const body = rows.map(row => `<div class="stat-theater-table-row"><span><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span></span><span class="stat-theater-number">${statTheaterNumber(row.actual_co)}</span><span class="stat-theater-number">${statTheaterNumber(row.expected_co, 2)}</span><span class="stat-theater-number">${statTheaterLift(row.lift)}</span><span class="stat-theater-number">${statTheaterP(row.p_tail)}</span><span>${statTheaterCaseList(row)}</span></div>`).join('');
+  return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Expected Co-presence Lift / 期望共現倍率</b><span>top 12 rows</span></div>${signalCards}<div class="stat-theater-table-wrap"><div class="stat-theater-table">${header}${body}</div></div></section>`;
 }
 function renderStatisticalTheaterBudgetStrip(scopeObject) {
   const rows = getStatisticalTheaterRows('budget', 'highMinusLow');
@@ -3029,7 +3044,7 @@ function renderStatisticalTheaterBudget() {
   const status = scopeObject?.denominator_note || scopeObject?.route_budget_status || 'High Budget vs Low Budget contrast';
   const strip = renderStatisticalTheaterBudgetStrip(scopeObject);
   if (!rows.length) return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Budget-Stratified Lift / 金額分層倍率</b><span>${safe(status)}</span></div>${strip}${statTheaterEmpty()}</section>`;
-  const cards = rows.map(row => `<article class="stat-theater-rank-card"><strong title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</strong><dl><div><dt>High</dt><dd>${statTheaterNumber(row.high_actual)}</dd></div><div><dt>Low</dt><dd>${statTheaterNumber(row.low_actual)}</dd></div><div><dt>Delta</dt><dd>${statTheaterLift(row.high_minus_low_lift)}</dd></div><div><dt>Lift</dt><dd>${statTheaterLift(row.high_lift)}</dd></div></dl>${statTheaterCaseList(row)}</article>`).join('');
+  const cards = rows.map(row => `<article class="stat-theater-rank-card"><strong title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</strong><div class="stat-theater-rank-metrics"><div class="stat-theater-rank-metric"><span>High</span><b>${statTheaterNumber(row.high_actual)}</b></div><div class="stat-theater-rank-metric"><span>Low</span><b>${statTheaterNumber(row.low_actual)}</b></div><div class="stat-theater-rank-metric"><span>Delta</span><b>${statTheaterLift(row.high_minus_low_lift)}</b></div><div class="stat-theater-rank-metric"><span>Lift</span><b>${statTheaterLift(row.high_lift)}</b></div></div>${statTheaterCaseList(row)}</article>`).join('');
   return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Budget-Stratified Lift / 金額分層倍率</b><span>${safe(status)}</span></div>${strip}<div class="stat-theater-rank-grid">${cards}</div></section>`;
 }
 function renderStatisticalTheater() {

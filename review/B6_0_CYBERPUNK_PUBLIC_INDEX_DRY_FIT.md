@@ -1227,3 +1227,17 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Local smoke: root HTTP 200, Statistical Theater copy/chips present, existing matrix and AAI markers present.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Statistical Theater Visual Alignment Pass
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- B baseline: `display-v2.9V8-ALPHA-statistical-theater-island-consumer` / `bfbaaf68dbce995cce5212e9d9fba9d6297f51ad`.
+- Scope: CSS/renderer-only visual alignment inside the isolated Statistical Theater island.
+- Signal cards now use a fixed Pair / Actual / Expected / Lift / P-tail grid with local horizontal overflow, ellipsis, tooltips, and right-aligned numbers.
+- Expected Co-presence main list now uses a fixed CSS grid table with aligned header/value columns and compact Sample cases disclosure.
+- Budget-Stratified cards now use a four-cell HIGH / LOW / DELTA / LIFT metric grid with consistent label/value placement.
+- Top budget metric cards keep the same values with more stable height and value placement.
+- Statistical Theater pack unchanged; rescued sidecars unchanged.
+- Isolated namespace and `#statistical-theater` render target preserved.
+- Main route state, activeRows, sample tags, route dashboard binding, Reviewer Matrix Theater, heatmap source, and LOCAL6 untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
