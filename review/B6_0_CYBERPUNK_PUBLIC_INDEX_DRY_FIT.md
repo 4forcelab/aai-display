@@ -1303,3 +1303,14 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Expert Pair Snapshot Default Open
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Expert Pair Defense Panel Snapshot Samples visual default only.
+- Five Panel Snapshot Samples now default open so full panel, residual panel, and repeated residual names are immediately visible.
+- Snapshot order, case content, panel names, residual names, repeated residual names, and data packs unchanged.
+- Canonical name check: pass.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- Local smoke: root HTTP 200, five snapshot cards rendered, five details default open, full / residual / repeated sections visible, no horizontal overflow.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.

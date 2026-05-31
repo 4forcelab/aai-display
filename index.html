@@ -3239,7 +3239,7 @@ function renderExpertPairPanelSnapshots() {
   const target = expertPairDefenseTargetPair();
   const samples = expertPairDefenseList(target?.panel_snapshot_samples).slice(0, 5);
   if (!samples.length) return `<div class="stat-theater-empty">Panel snapshot samples unavailable.<br>Panel snapshot samples 暫不可用。</div>`;
-  return `<section><div class="stat-theater-card-head"><b>Panel Snapshot Samples / 五案 Panel Snapshot</b><span>${samples.length} cases</span></div><div class="expert-pair-snapshot-grid">${samples.map((item, index) => {
+  return `<section><div class="stat-theater-card-head"><b>Panel Snapshot Samples / 五案 Panel Snapshot</b><span>${samples.length} cases · Default expanded for panel comparison. / 預設展開以便比對委員組成。</span></div><div class="expert-pair-snapshot-grid">${samples.map((item, index) => {
     const id = item.case_id_public || item.case_id || `case ${index + 1}`;
     const title = item.case_title_public || item.case_title || '—';
     const meta = [
@@ -3250,7 +3250,7 @@ function renderExpertPairPanelSnapshots() {
       expertPairDefenseCaseMeta('Budget', moneyNT(item.budget_amount_public)),
       expertPairDefenseCaseMeta('Award', moneyNT(item.award_amount_public))
     ].join('');
-    return `<details class="expert-pair-case-card" ${index === 0 ? 'open' : ''}><summary>${safe(title)}<span>${safe(id)} · ${safe(item.agency_public)} · ${safe(item.budget_tier)}</span></summary><div class="expert-pair-case-body"><div class="expert-pair-case-meta">${meta}</div><p class="expert-pair-case-label">Full panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.full_panel_names_public)}</div><p class="expert-pair-case-label">Target pair</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.target_pair_names_public, 'expert-pair-chip-target')}</div><p class="expert-pair-case-label">Residual panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.residual_panel_names_public, 'expert-pair-chip-residual')}</div><p class="expert-pair-case-label">Repeated residual names</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.repeated_residual_names_public, 'expert-pair-chip-repeat')}</div></div></details>`;
+    return `<details class="expert-pair-case-card" open><summary>${safe(title)}<span>${safe(id)} · ${safe(item.agency_public)} · ${safe(item.budget_tier)}</span></summary><div class="expert-pair-case-body"><div class="expert-pair-case-meta">${meta}</div><p class="expert-pair-case-label">Full panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.full_panel_names_public)}</div><p class="expert-pair-case-label">Target pair</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.target_pair_names_public, 'expert-pair-chip-target')}</div><p class="expert-pair-case-label">Residual panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.residual_panel_names_public, 'expert-pair-chip-residual')}</div><p class="expert-pair-case-label">Repeated residual names</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.repeated_residual_names_public, 'expert-pair-chip-repeat')}</div></div></details>`;
   }).join('')}</div></section>`;
 }
 function renderExpertPairDefense() {
