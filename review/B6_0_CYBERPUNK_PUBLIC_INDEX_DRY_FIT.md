@@ -1255,3 +1255,13 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Main route state, activeRows, sample tags, route dashboard binding, Reviewer Matrix Theater, heatmap source, and LOCAL6 untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Display Timestamp Patch
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- B baseline: `display-v2.9V8-ALPHA-statistical-theater-readability-repair` / `63021b90ef93d6232fb0d78a8dc065cb4b0b33cd`.
+- Scope: display-layer timestamp copy only.
+- Timestamp value: Display updated 2026/06/01 05:17 TST / 展示更新 2026/06/01 05:17 TST.
+- Data packs unchanged.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
