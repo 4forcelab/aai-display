@@ -1314,3 +1314,17 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Local smoke: root HTTP 200, five snapshot cards rendered, five details default open, full / residual / repeated sections visible, no horizontal overflow.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Expert Pair Hero Highlight Repair
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Scope: Expert Pair Defense Primary Panel Formation Signal visual layout only.
+- Top repeated residual names merged into the left primary signal content.
+- Top Case Highlight / 樣本主砲 added to the right side of the primary signal card.
+- Top case selection is render-only: largest `budget_amount_public`, with `award_amount_public` fallback, then first sample fallback.
+- Five Panel Snapshot Samples remain default open.
+- Data packs unchanged.
+- Canonical name check: pass.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- Local smoke: root HTTP 200, Top Case Highlight visible, repeated residual names merged into primary left, five snapshots remain open, no horizontal overflow.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
