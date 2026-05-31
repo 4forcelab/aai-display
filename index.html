@@ -184,6 +184,48 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .matrix-theater-panel .conditional-pairs { margin-top:12px; border-color:rgba(91,231,255,.18); background:rgba(3,8,14,.64); }
 .matrix-support-deck { max-width:100%; overflow:hidden; }
 .matrix-support-deck .observation-axes { margin-top:0; }
+.statistical-theater-panel { margin-top:13px; max-width:100%; overflow:hidden; border:1px solid rgba(91,231,255,.22); background:linear-gradient(135deg,rgba(91,231,255,.06),rgba(168,140,255,.052),rgba(3,9,16,.78)); padding:13px; box-shadow:0 0 28px rgba(91,231,255,.055), inset 0 1px 0 rgba(255,255,255,.03); }
+.stat-theater-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; border-bottom:1px solid rgba(91,231,255,.14); padding-bottom:11px; margin-bottom:12px; }
+.stat-theater-head span { display:block; color:var(--cyan); font:900 11px/1 var(--mono); letter-spacing:.09em; text-transform:uppercase; }
+.stat-theater-head strong { display:block; margin-top:7px; color:#f5fcff; font:900 18px/1.22 var(--zh); }
+.stat-theater-head p { max-width:760px; margin:0; color:rgba(214,235,244,.84); font:650 12px/1.62 var(--zh); }
+.stat-theater-route-chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px; }
+.statistical-theater-route-chip { min-height:32px; border:1px solid rgba(91,231,255,.24); background:rgba(91,231,255,.055); color:#dffaff; padding:8px 11px; font:850 12px/1 var(--zh); cursor:pointer; }
+.statistical-theater-route-chip.active { border-color:var(--magenta); background:rgba(255,79,216,.105); box-shadow:0 0 16px rgba(255,79,216,.18); color:#fff; }
+.stat-theater-scope { margin:0 0 12px; border:1px solid rgba(91,231,255,.12); background:rgba(3,8,14,.48); padding:8px 10px; color:rgba(214,235,244,.74); font:750 11px/1.45 var(--mono); }
+.stat-theater-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; align-items:start; }
+.stat-theater-card { min-width:0; border:1px solid rgba(91,231,255,.17); background:rgba(4,13,22,.7); padding:12px; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+.stat-theater-card-head { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.stat-theater-card-head b { color:#f4fbff; font:900 14px/1.24 var(--zh); }
+.stat-theater-card-head span { color:rgba(176,209,220,.72); font:800 10px/1.2 var(--mono); text-transform:uppercase; }
+.stat-theater-signal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
+.stat-theater-signal-card { min-width:0; min-height:142px; border:1px solid rgba(91,231,255,.14); background:linear-gradient(180deg,rgba(5,18,30,.72),rgba(3,8,14,.72)); padding:10px; overflow:hidden; }
+.stat-theater-signal-card b { display:block; color:var(--cyan); font:850 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+.stat-theater-signal-row { display:grid; grid-template-columns:minmax(0,1fr) 44px 54px 54px 58px; gap:5px; align-items:center; margin-top:6px; color:rgba(228,244,250,.9); font:750 10px/1.25 var(--mono); }
+.stat-theater-pair { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#f4fbff; font-family:var(--zh); }
+.stat-theater-number { text-align:right; white-space:nowrap; color:var(--lime); }
+.stat-theater-table-wrap { max-width:100%; overflow-x:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; }
+.stat-theater-table { width:100%; min-width:780px; border-collapse:collapse; table-layout:fixed; }
+.stat-theater-table th { position:sticky; top:0; z-index:1; background:var(--table-head-bg); color:var(--cyan); padding:9px 8px; font:850 10px/1.2 var(--mono); text-align:left; }
+.stat-theater-table td { border-top:1px solid rgba(91,231,255,.08); padding:9px 8px; color:rgba(236,248,255,.9); font:650 11px/1.42 var(--zh); vertical-align:top; }
+.stat-theater-table .stat-theater-numeric { width:72px; text-align:right; white-space:nowrap; font-family:var(--mono); color:var(--lime); }
+.stat-theater-drawer { margin-top:7px; border:1px solid rgba(91,231,255,.1); background:rgba(91,231,255,.035); }
+.stat-theater-drawer summary { cursor:pointer; list-style:none; padding:6px 7px; color:rgba(214,235,244,.78); font:800 10px/1.2 var(--mono); }
+.stat-theater-drawer summary::-webkit-details-marker { display:none; }
+.stat-theater-drawer div { padding:0 7px 7px; color:rgba(214,235,244,.7); font:650 10px/1.45 var(--zh); }
+.stat-theater-budget-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:10px; }
+.stat-theater-budget-item { min-height:72px; border:1px solid rgba(184,255,91,.15); background:rgba(184,255,91,.035); padding:9px; overflow:hidden; }
+.stat-theater-budget-item b { display:block; color:rgba(184,255,91,.9); font:850 9px/1.2 var(--mono); text-transform:uppercase; }
+.stat-theater-budget-item strong { display:block; margin-top:6px; color:#f4fbff; font:900 16px/1.2 var(--mono); }
+.stat-theater-budget-item span { display:block; margin-top:4px; color:rgba(207,232,242,.75); font:650 10px/1.35 var(--zh); }
+.stat-theater-rank-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.stat-theater-rank-card { min-width:0; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.62); padding:10px; overflow:hidden; }
+.stat-theater-rank-card strong { display:block; color:#f4fbff; font:850 12px/1.25 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.stat-theater-rank-card dl { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; margin:8px 0 0; }
+.stat-theater-rank-card dt { color:rgba(176,209,220,.7); font:800 9px/1.1 var(--mono); text-transform:uppercase; }
+.stat-theater-rank-card dd { margin:3px 0 0; color:var(--lime); font:850 12px/1.2 var(--mono); text-align:right; }
+.stat-theater-empty { border:1px solid rgba(91,231,255,.13); background:rgba(91,231,255,.04); padding:13px; color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
+.stat-theater-loading { color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
 .dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:stretch; }
 .dashboard-layer-panels > .dashboard-panel { display:flex; flex-direction:column; min-height:430px; min-width:0; overflow:hidden; }
 .dashboard-layer-panels > .dashboard-panel .dashboard-table-wrap { flex:1; min-height:0; }
@@ -595,7 +637,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics, .stat-theater-signal-grid, .stat-theater-budget-strip { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list, .stat-theater-grid, .stat-theater-rank-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -603,7 +645,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .presence-layout, .rfb-metrics, .rfb-list.similarity-list { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .presence-layout, .rfb-metrics, .rfb-list.similarity-list, .stat-theater-signal-grid, .stat-theater-budget-strip { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -663,6 +705,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
       <div class="chip-row"><span class="chip-label">SAMPLE TAGS</span><button class="chip sample-chip" data-sample="屏東縣政府">屏東縣政府</button><button class="chip sample-chip" data-sample="協昌">協昌</button><button class="chip sample-chip" data-sample="三恆一樹">三恆一樹</button><button class="chip sample-chip" data-sample="李雨蓁">李雨蓁</button></div>
     </div>
     <div id="routeDashboard" class="route-dashboard"></div>
+    <section id="statistical-theater" class="statistical-theater-panel"><div class="stat-theater-loading">Loading Statistical Theater / 載入統計劇場</div></section>
     <details class="sample-path-guide"><summary><span><span class="guide-kicker">HOW THIS ROUTE WORKS</span>路徑讀法 · compact reference</span></summary><div class="sample-guide-body"><div><strong>展示路徑導引 · Public Module Sample / AAI display layer</strong><p>樣本標籤提供預設展示路徑。主面板優先顯示 War-room Cockpit、Route Dashboard、Direct Route Core 與案件預算相關清單；本導引退到輔助說明。<br>Sample tags switch the active display route. The main panel now leads with cockpit, dashboard, Direct Route Core, and case budget reference rows.</p></div><div class="sample-route-grid"><span><b>李雨蓁</b><em>person route / 人物路徑</em></span><span><b>協昌</b><em>supplier route / 供應商路徑</em></span><span><b>三恆一樹</b><em>supplier route / 供應商路徑</em></span><span><b>屏東縣政府</b><em>agency route / 機關路徑</em></span></div></div></details>
     <div id="dimensionBridge" class="dimension-bridge"></div>
     <div id="routeNarrative" class="route-narrative"></div>
@@ -687,6 +730,7 @@ const ROUTE_DISPLAY_SEMANTICS_PROJECTION_URL = 'data/preview/ag5_4_3_route_displ
 const ROUTE_PARTITION_PROJECTION_URL = 'data/preview/ag5_7_route_partition_projection.json';
 const LOCAL_STATIC_PACK_URL = 'data/local_static_pack/local_projection_pack.json';
 const RFB_PUBLIC_PROJECTION_URL = 'data/preview/ag6_2_rfb_public_projection_pack.json';
+const STATISTICAL_THEATER_PACK_URL = 'data/preview/v8_alpha_statistical_theater_ammo_pack.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
 let routeSurfaceAggregateProjectionPack = null;
@@ -699,6 +743,10 @@ let localStaticPack = null;
 let localStaticPackStatus = 'idle';
 let rfbPublicProjectionPack = null;
 let rfbPublicProjectionStatus = 'idle';
+let statisticalTheaterPack = null;
+let statisticalTheaterPackStatus = 'idle';
+const statisticalTheaterRoutes = ['global', '李雨蓁', '協昌', '三恆一樹', '屏東縣政府'];
+let statisticalTheaterActiveRoute = 'global';
 const routePresenceWarningKeys = new Set();
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
@@ -2860,6 +2908,151 @@ function renderStateCard(m) {
   const list = arr => `<ul>${arr.map(item => `<li>${safe(item)}</li>`).join('')}</ul>`;
   return `<div class="state-card ${displayStatus(m)}"><span class="state-status">${moduleStatusCopy(m)}</span><h3>${titleZh}</h3><p>${titleEn}</p><p>${body}</p><div class="state-grid"><div class="state-item"><b>Route</b><span>${safe(m.route)}</span></div><div class="state-item"><b>Type</b><span>${safe(contract.type)}</span></div><div class="state-item"><b>Public Fields Count</b><span>${(m.public_fields || []).length}</span></div><div class="state-item"><b>Status</b><span>${moduleStatusCopy(m)}</span></div></div><div class="module-depth-grid"><div class="module-depth-card"><b>Purpose</b><p>${safe(depth.purpose)}</p></div><div class="module-depth-card"><b>Configurable Fields</b>${list(depth.fields || [])}</div><div class="module-depth-card"><b>Display Capabilities</b>${list(depth.capabilities || [])}</div><div class="module-depth-card"><b>Access State</b><p>${safe(depth.access)}</p></div></div><div class="note-box">${note}</div></div>`;
 }
+async function loadStatisticalTheaterPack() {
+  statisticalTheaterPackStatus = 'loading';
+  renderStatisticalTheater();
+  try {
+    const response = await fetch(STATISTICAL_THEATER_PACK_URL, {cache:'no-store'});
+    if (!response.ok) throw new Error(`Statistical Theater ${response.status}`);
+    statisticalTheaterPack = await response.json();
+    statisticalTheaterPackStatus = 'ready';
+  } catch (error) {
+    statisticalTheaterPack = null;
+    statisticalTheaterPackStatus = 'unavailable';
+    console.warn('Statistical Theater pack not ready', error);
+  }
+  renderStatisticalTheater();
+}
+function renderStatisticalTheaterRouteChips() {
+  return `<div class="stat-theater-route-chips">${statisticalTheaterRoutes.map(routeName => {
+    const label = routeName === 'global' ? 'Global' : routeName;
+    const active = routeName === statisticalTheaterActiveRoute ? ' active' : '';
+    return `<button type="button" class="statistical-theater-route-chip${active}" data-stat-theater-route="${safe(routeName)}">${safe(label)}</button>`;
+  }).join('')}</div>`;
+}
+function statisticalTheaterScopeObject(layer) {
+  if (!statisticalTheaterPack) return null;
+  const scopeRoot = layer === 'budget' ? statisticalTheaterPack.budget_stratified_lift : statisticalTheaterPack.expected_copresence;
+  if (!scopeRoot) return null;
+  if (statisticalTheaterActiveRoute === 'global') return scopeRoot.global || null;
+  const routeCollection = Array.isArray(scopeRoot.routes) ? scopeRoot.routes : [];
+  return routeCollection.find(item => item.route_key === statisticalTheaterActiveRoute || item.route_label === statisticalTheaterActiveRoute) || null;
+}
+function statisticalTheaterRowsFromKeys(scopeObject, keys) {
+  if (!scopeObject) return [];
+  for (const key of keys) {
+    if (Array.isArray(scopeObject[key]) && scopeObject[key].length) return scopeObject[key];
+  }
+  return [];
+}
+function getStatisticalTheaterRows(layer, kind) {
+  const scopeObject = statisticalTheaterScopeObject(layer);
+  if (layer === 'expected') {
+    const expectedKeys = {
+      lift: ['top_lift_pairs', 'lift_ranked_supported_pairs'],
+      tail: ['top_tail_pairs', 'p_tail_ranked_pairs'],
+      actual: ['top_actual_pairs', 'high_actual_with_expected_context'],
+      main: ['top_lift_pairs', 'lift_ranked_supported_pairs', 'top_actual_pairs', 'high_actual_with_expected_context']
+    };
+    return statisticalTheaterRowsFromKeys(scopeObject, expectedKeys[kind] || expectedKeys.main).filter(Boolean);
+  }
+  const budgetKeys = {
+    highBudget: ['high_budget_lift_signals'],
+    highMinusLow: ['high_minus_low_delta'],
+    highActual: ['high_actual_budget_context'],
+    main: ['high_minus_low_delta', 'high_budget_lift_signals', 'high_actual_budget_context']
+  };
+  return statisticalTheaterRowsFromKeys(scopeObject, budgetKeys[kind] || budgetKeys.main).filter(Boolean);
+}
+function statTheaterFinite(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+function statTheaterNumber(value, digits = 0) {
+  const number = statTheaterFinite(value);
+  return number === null ? '—' : number.toLocaleString('zh-TW', {maximumFractionDigits:digits, minimumFractionDigits:digits});
+}
+function statTheaterLift(value) {
+  const number = statTheaterFinite(value);
+  return number === null ? '—' : `${number.toLocaleString('zh-TW', {maximumFractionDigits:2})}x`;
+}
+function statTheaterP(value) {
+  const number = statTheaterFinite(value);
+  if (number === null) return '—';
+  if (number === 0) return '0';
+  if (number < .001) return number.toExponential(2);
+  return number.toLocaleString('zh-TW', {maximumFractionDigits:4});
+}
+function statTheaterPair(row) {
+  const first = safe(row?.reviewer_a);
+  const second = safe(row?.reviewer_b);
+  return first === '—' && second === '—' ? '—' : `${first} × ${second}`;
+}
+function statTheaterCaseList(row) {
+  const cases = [
+    ...(Array.isArray(row?.sample_cases) ? row.sample_cases : []),
+    ...(Array.isArray(row?.sample_high_cases) ? row.sample_high_cases : []),
+    ...(Array.isArray(row?.sample_low_cases) ? row.sample_low_cases : [])
+  ].slice(0, 5);
+  if (!cases.length) return '';
+  return `<details class="stat-theater-drawer"><summary>Sample cases / 樣本案件</summary><div>${cases.map(item => `${safe(item.case_number)} · ${safe(item.title_compact)} · ${safe(item.agency)}`).join('<br>')}</div></details>`;
+}
+function statTheaterEmpty() {
+  return `<div class="stat-theater-empty">Projection thin for this route.<br>此路徑公開投影不足，不展開排名。</div>`;
+}
+function statTheaterSignalCard(title, kind) {
+  const rows = getStatisticalTheaterRows('expected', kind).slice(0, 3);
+  if (!rows.length) return `<article class="stat-theater-signal-card"><b>${safe(title)}</b><div class="stat-theater-empty">Projection thin</div></article>`;
+  return `<article class="stat-theater-signal-card"><b>${safe(title)}</b>${rows.map(row => `<div class="stat-theater-signal-row"><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span><span class="stat-theater-number">${statTheaterNumber(row.actual_co)}</span><span class="stat-theater-number">${statTheaterNumber(row.expected_co, 1)}</span><span class="stat-theater-number">${statTheaterLift(row.lift)}</span><span class="stat-theater-number">${statTheaterP(row.p_tail)}</span></div>`).join('')}</article>`;
+}
+function renderStatisticalTheaterExpected() {
+  const rows = getStatisticalTheaterRows('expected', 'main').slice(0, 12);
+  const signalCards = `<div class="stat-theater-signal-grid">${statTheaterSignalCard('Lift Leaders', 'lift')}${statTheaterSignalCard('Tail Probability', 'tail')}${statTheaterSignalCard('High Actual Count', 'actual')}</div>`;
+  if (!rows.length) return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Expected Co-presence Lift / 期望共現倍率</b><span>compact projection</span></div>${signalCards}${statTheaterEmpty()}</section>`;
+  const body = rows.map(row => `<tr><td><span class="stat-theater-pair" title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</span>${statTheaterCaseList(row)}</td><td class="stat-theater-numeric">${statTheaterNumber(row.actual_co)}</td><td class="stat-theater-numeric">${statTheaterNumber(row.expected_co, 2)}</td><td class="stat-theater-numeric">${statTheaterLift(row.lift)}</td><td class="stat-theater-numeric">${statTheaterP(row.p_tail)}</td></tr>`).join('');
+  return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Expected Co-presence Lift / 期望共現倍率</b><span>top 12 rows</span></div>${signalCards}<div class="stat-theater-table-wrap"><table class="stat-theater-table"><thead><tr><th>Pair</th><th>Actual</th><th>Expected</th><th>Lift</th><th>P-tail</th></tr></thead><tbody>${body}</tbody></table></div></section>`;
+}
+function renderStatisticalTheaterBudgetStrip(scopeObject) {
+  const rows = getStatisticalTheaterRows('budget', 'highMinusLow');
+  const lead = rows[0] || {};
+  const items = [
+    ['High Budget', statTheaterNumber(scopeObject?.amount_case_count_high), 'case surface'],
+    ['Low Budget', statTheaterNumber(scopeObject?.amount_case_count_low), 'case surface'],
+    ['Delta', statTheaterLift(lead.high_minus_low_lift), 'high minus low'],
+    ['Eligible Pairs', statTheaterNumber(scopeObject?.eligible_pair_count), 'public projection']
+  ];
+  return `<div class="stat-theater-budget-strip">${items.map(([label,value,hint]) => `<div class="stat-theater-budget-item"><b>${label}</b><strong>${value}</strong><span>${hint}</span></div>`).join('')}</div>`;
+}
+function renderStatisticalTheaterBudget() {
+  const scopeObject = statisticalTheaterScopeObject('budget');
+  const rows = getStatisticalTheaterRows('budget', 'main').slice(0, 12);
+  const status = scopeObject?.denominator_note || scopeObject?.route_budget_status || 'High Budget vs Low Budget contrast';
+  const strip = renderStatisticalTheaterBudgetStrip(scopeObject);
+  if (!rows.length) return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Budget-Stratified Lift / 金額分層倍率</b><span>${safe(status)}</span></div>${strip}${statTheaterEmpty()}</section>`;
+  const cards = rows.map(row => `<article class="stat-theater-rank-card"><strong title="${safe(statTheaterPair(row))}">${safe(statTheaterPair(row))}</strong><dl><div><dt>High</dt><dd>${statTheaterNumber(row.high_actual)}</dd></div><div><dt>Low</dt><dd>${statTheaterNumber(row.low_actual)}</dd></div><div><dt>Delta</dt><dd>${statTheaterLift(row.high_minus_low_lift)}</dd></div><div><dt>Lift</dt><dd>${statTheaterLift(row.high_lift)}</dd></div></dl>${statTheaterCaseList(row)}</article>`).join('');
+  return `<section class="stat-theater-card"><div class="stat-theater-card-head"><b>Budget-Stratified Lift / 金額分層倍率</b><span>${safe(status)}</span></div>${strip}<div class="stat-theater-rank-grid">${cards}</div></section>`;
+}
+function renderStatisticalTheater() {
+  const statisticalTheaterRoot = document.getElementById('statistical-theater');
+  if (!statisticalTheaterRoot) return;
+  const loading = statisticalTheaterPackStatus === 'idle' || statisticalTheaterPackStatus === 'loading';
+  const unavailable = statisticalTheaterPackStatus === 'unavailable' || !statisticalTheaterPack;
+  const head = `<div class="stat-theater-head"><div><span>ISOLATED INTELLIGENCE ISLAND</span><strong>Statistical Theater / 統計劇場</strong></div><p>Public projection of expected co-presence and budget-stratified contrast.<br>公開投影層：期望共現與金額分層對照。</p></div>`;
+  if (loading) {
+    statisticalTheaterRoot.innerHTML = `${head}<div class="stat-theater-loading">Loading Statistical Theater / 載入統計劇場</div>`;
+    return;
+  }
+  if (unavailable) {
+    statisticalTheaterRoot.innerHTML = `${head}<div class="stat-theater-empty">Statistical Theater projection unavailable.<br>統計劇場公開投影暫不可用。</div>`;
+    return;
+  }
+  const expectedScope = statisticalTheaterScopeObject('expected');
+  const budgetScope = statisticalTheaterScopeObject('budget');
+  const scopeText = statisticalTheaterActiveRoute === 'global'
+    ? `Global · generated ${safe(statisticalTheaterPack.generated_at_utc)}`
+    : `${safe(expectedScope?.route_label || budgetScope?.route_label || statisticalTheaterActiveRoute)} · Expected pairs ${statTheaterNumber(expectedScope?.supported_pair_count ?? expectedScope?.route_pair_count_eligible)} · Budget pairs ${statTheaterNumber(budgetScope?.eligible_pair_count)}`;
+  statisticalTheaterRoot.innerHTML = `${head}${renderStatisticalTheaterRouteChips()}<div class="stat-theater-scope">${scopeText}</div><div class="stat-theater-grid">${renderStatisticalTheaterExpected()}${renderStatisticalTheaterBudget()}</div>`;
+}
 function render() {
   const m = moduleById(activeModuleId);
   const contract = moduleContract(m);
@@ -2877,6 +3070,12 @@ function render() {
 document.getElementById('searchInput').addEventListener('input', e => { searchQuery = e.target.value.trim(); render(); });
 document.getElementById('sortSelect').addEventListener('change', e => { sortMode = e.target.value; render(); });
 document.querySelectorAll('.sample-chip').forEach(chip => chip.addEventListener('click', () => setSampleFilter(chip.dataset.sample)));
+document.addEventListener('click', event => {
+  const chip = event.target.closest('.statistical-theater-route-chip');
+  if (!chip) return;
+  statisticalTheaterActiveRoute = chip.dataset.statTheaterRoute || 'global';
+  renderStatisticalTheater();
+});
 const resetBtn = document.getElementById('resetBtn');
 if (resetBtn) resetBtn.addEventListener('click', () => { clearFilters(); render(); });
 let skinObserver;
@@ -2972,6 +3171,7 @@ loadRouteDisplaySemanticsProjection();
 loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
 loadRfbPublicProjectionPack();
+loadStatisticalTheaterPack();
 </script>
 </body>
 </html>

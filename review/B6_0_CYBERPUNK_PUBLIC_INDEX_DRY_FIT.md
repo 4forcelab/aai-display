@@ -1214,3 +1214,16 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Core inscription, RFB Specification Fingerprint, Presence Top Gun, Ceiling Top Gun, Supplier Reviewer Heatmap, Reviewer Co-presence Grid, Conditional Presence Matrix, Top Conditional Presence Pairs, mobile gate, and DevTools easter egg preserved.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Statistical Theater Island Consumer
+- Changed files: index.html, data/preview/v8_alpha_statistical_theater_ammo_pack.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- A source pack: `core-v2.9V8-ALPHA-statistical-theater-ammo-pack` / `ac59d513dd7979af78a97afe030f24d33c51ead4`.
+- B baseline: `display-v2.9V8-ALPHA-sidecar-payload-restore` / `de3c22ee3d82e7e6ab396ffed542de37a2d846e5`.
+- Added an isolated `#statistical-theater` consumer below the Reviewer Matrix Theater surface.
+- Implemented `statisticalTheaterPack`, `statisticalTheaterRoutes`, `statisticalTheaterActiveRoute`, `renderStatisticalTheater()`, and `statisticalTheaterRouteChips` without reusing main route state.
+- Rendered Expected Co-presence Lift and Budget-Stratified Lift as compact cards/tables with route-local chips.
+- Main dashboard binding, sample tags, activeRows, route state, heatmap source, and Reviewer Matrix Theater renderer untouched.
+- Rescued sidecar SHA256 set unchanged after implementation.
+- Local smoke: root HTTP 200, Statistical Theater copy/chips present, existing matrix and AAI markers present.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
