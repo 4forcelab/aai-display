@@ -273,12 +273,17 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .expert-pair-hero-main p,
 .expert-pair-method p { margin:8px 0 0; color:rgba(220,240,232,.82); font:650 12px/1.62 var(--zh); }
 .expert-pair-method b { display:block; color:#f4fbff; font:900 13px/1.25 var(--zh); }
+.expert-pair-boundary { margin-bottom:12px; border:1px solid rgba(184,255,91,.24); background:linear-gradient(135deg,rgba(184,255,91,.08),rgba(91,231,255,.045)); padding:12px; overflow:hidden; }
+.expert-pair-boundary b { display:block; color:#f7fff4; font:900 13px/1.22 var(--zh); }
+.expert-pair-boundary p { margin:8px 0 0; color:rgba(220,240,232,.84); font:650 12px/1.62 var(--zh); }
+.expert-pair-boundary p + p { padding-top:8px; border-top:1px solid rgba(91,231,255,.09); }
 .expert-pair-role-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:12px; }
 .expert-pair-role-card { min-width:0; border:1px solid rgba(91,231,255,.12); background:rgba(3,8,14,.58); padding:10px; overflow:hidden; opacity:.74; }
 .expert-pair-role-card-main { opacity:1; border-color:rgba(184,255,91,.4); background:linear-gradient(180deg,rgba(184,255,91,.105),rgba(91,231,255,.055)); box-shadow:0 0 24px rgba(184,255,91,.12); }
 .expert-pair-role-card em { display:block; color:rgba(91,231,255,.82); font:850 9px/1.2 var(--mono); text-transform:uppercase; font-style:normal; }
 .expert-pair-role-card strong { display:block; margin-top:6px; color:#f4fbff; font:900 14px/1.22 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .expert-pair-role-card p { margin:8px 0 0; color:rgba(214,235,244,.74); font:650 11px/1.45 var(--zh); }
+.expert-pair-role-purpose { display:block; margin-top:7px; padding-top:7px; border-top:1px solid rgba(91,231,255,.09); color:rgba(184,255,91,.82); font:750 10px/1.4 var(--zh); }
 .expert-pair-primary-signal { border:1px solid rgba(184,255,91,.25); background:rgba(184,255,91,.04); padding:12px; margin-bottom:12px; overflow:hidden; }
 .expert-pair-primary-signal h3 { margin:0; color:#f7fff4; font:900 17px/1.22 var(--zh); }
 .expert-pair-primary-signal .expert-pair-primary-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,.55fr); gap:12px; align-items:start; margin-top:10px; }
@@ -3196,10 +3201,10 @@ function expertPairDefenseTargetPair() {
 }
 function expertPairDefenseRoleCopy(pair) {
   const key = pair?.signal_role_public || '';
-  if (key === 'statistical_highlight') return {role:'Statistical Highlight / 統計亮點', layer:'Pair-level only / 配對層'};
-  if (key === 'budget_layer_signal') return {role:'Budget-Layer Signal / 金額層訊號', layer:'Budget layer / 金額層'};
-  if (key === 'panel_formation_signal') return {role:'Panel Formation Signal / 組成機制訊號', layer:'Residual panel layer / 剩餘席次層'};
-  return {role:safe(key || 'Public projection signal'), layer:safe(pair?.survival_layer_public || '—')};
+  if (key === 'statistical_highlight') return {role:'Statistical Highlight / 統計亮點', layer:'Pair-level only / 配對層', purpose:'用途：展示統計偵測能力。'};
+  if (key === 'budget_layer_signal') return {role:'Budget-Layer Signal / 金額層訊號', layer:'Budget layer / 金額層', purpose:'用途：展示金額分層訊號。'};
+  if (key === 'panel_formation_signal') return {role:'Panel Formation Signal / 組成機制訊號', layer:'Residual panel layer / 剩餘席次層', purpose:'用途：主論述樣本。'};
+  return {role:safe(key || 'Public projection signal'), layer:safe(pair?.survival_layer_public || '—'), purpose:'用途：公開投影脈絡。'};
 }
 function expertPairDefenseList(value) {
   return Array.isArray(value) ? value.filter(Boolean) : [];
@@ -3218,8 +3223,11 @@ function renderExpertPairSignalRoles() {
   return `<div class="expert-pair-role-grid">${ordered.map(pair => {
     const copy = expertPairDefenseRoleCopy(pair);
     const main = pair.signal_role_public === 'panel_formation_signal';
-    return `<article class="expert-pair-role-card ${main ? 'expert-pair-role-card-main' : ''}"><em>${safe(copy.role)}</em><strong title="${safe(pair.pair_name)}">${safe(pair.pair_name)}</strong><p>${safe(copy.layer)}<br>${safe(pair.known_signal || pair.source_label || '')}</p></article>`;
+    return `<article class="expert-pair-role-card ${main ? 'expert-pair-role-card-main' : ''}"><em>${safe(copy.role)}</em><strong title="${safe(pair.pair_name)}">${safe(pair.pair_name)}</strong><p>${safe(copy.layer)}<br>${safe(pair.known_signal || pair.source_label || '')}<span class="expert-pair-role-purpose">${safe(copy.purpose)}</span></p></article>`;
   }).join('')}</div>`;
+}
+function renderExpertPairBoundaryCopy() {
+  return `<section class="expert-pair-boundary"><b>Observable Boundary / 可觀測邊界</b><p>This signal survived pair-level, budget-layer, and residual-panel tests.<br>本組訊號通過配對層、金額層與剩餘席次層檢測。</p><p>Under the matched baseline, random assignment is not a sufficient explanation for the observed panel composition outcome.<br>在 matched baseline 下，隨機分派不足以解釋目前觀測到的委員組成結果。</p><p>AAI has reached the observable boundary of public-data statistics. Without formation records or selection-process data, the actual panel formation process cannot be scientifically reproduced within this projection.<br>AAI 已抵達公開資料統計的可觀測邊界。在缺乏形成紀錄或遴選程序資料的條件下，實際 panel 形成過程無法於本投影內科學復現。</p></section>`;
 }
 function renderExpertPairPrimarySignal() {
   const target = expertPairDefenseTargetPair();
@@ -3248,7 +3256,7 @@ function renderExpertPairPanelSnapshots() {
 function renderExpertPairDefense() {
   const expertPairDefenseRoot = document.getElementById('expert-pair-defense');
   if (!expertPairDefenseRoot) return;
-  const head = `<div class="expert-pair-hero"><div class="expert-pair-hero-main"><span>Panel Formation Display Block</span><strong>Expert Pair Defense Test / 專家配對防禦測試</strong><p>A+B can explain the pair. It does not automatically explain the rest of the panel.<br>A+B 可以解釋專家配對。不能自動解釋剩餘席次。</p></div><div class="expert-pair-method"><b>Method / 方法</b><p>This test removes the target pair and checks whether the remaining panel members still concentrate across cases.<br>本測試扣除目標 pair 後，檢查剩餘席次是否仍跨案件集中。</p><p>No legal conclusion is generated.<br>本測試不生成法律結論。</p></div></div>`;
+  const head = `<div class="expert-pair-hero"><div class="expert-pair-hero-main"><span>Panel Formation Display Block</span><strong>Expert Pair Defense Test / 專家配對防禦測試</strong><p>A+B can explain the pair. It does not automatically explain the rest of the panel.<br>A+B 可以解釋專家配對。不能自動解釋剩餘席次。</p></div><div class="expert-pair-method"><b>Method / 方法</b><p>This test removes the target pair and checks whether the remaining panel members still concentrate across cases.<br>本測試扣除目標 pair 後，檢查剩餘席次是否仍跨案件集中。</p></div></div>`;
   if (expertPairDefensePackStatus === 'idle' || expertPairDefensePackStatus === 'loading') {
     expertPairDefenseRoot.innerHTML = `${head}<div class="stat-theater-loading">Loading Expert Pair Defense Test / 載入專家配對防禦測試</div>`;
     return;
@@ -3257,7 +3265,7 @@ function renderExpertPairDefense() {
     expertPairDefenseRoot.innerHTML = `${head}<div class="stat-theater-empty">Expert Pair Defense projection unavailable.<br>專家配對防禦測試公開投影暫不可用。</div>`;
     return;
   }
-  expertPairDefenseRoot.innerHTML = `${head}${renderExpertPairSignalRoles()}${renderExpertPairPrimarySignal()}${renderExpertPairPanelSnapshots()}`;
+  expertPairDefenseRoot.innerHTML = `${head}${renderExpertPairBoundaryCopy()}${renderExpertPairSignalRoles()}${renderExpertPairPrimarySignal()}${renderExpertPairPanelSnapshots()}`;
 }
 function render() {
   const m = moduleById(activeModuleId);

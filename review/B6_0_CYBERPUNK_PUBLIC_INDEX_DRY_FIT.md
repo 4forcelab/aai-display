@@ -1289,3 +1289,17 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Local smoke: root HTTP 200, Expert Pair Defense copy present, sidecar parsed, canonical pair present, five panel snapshot samples present, repeated residual names present, unsupported alias absent.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Expert Pair Defense Observable Boundary Copy
+- A source commit/tag: `3c7e261d9d050caa46d8f2458882947f32ae828e` / `core-v2.9V8-ALPHA-expert-pair-panel-snapshot`.
+- Changed files: index.html and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Expert Pair Defense consumer preserved under the isolated `#expert-pair-defense` render target.
+- Observable Boundary / 可觀測邊界 panel added with matched-baseline and public-data statistics boundary copy.
+- Signal role cards now include purpose lines for the statistical highlight, budget-layer signal, and panel formation signal.
+- Primary signal pair preserved: 張恭文 × 黃國維.
+- Panel snapshot samples count preserved: 5.
+- Repeated residual names preserved: 李志峰 / 陳志鶴 / 王裕民.
+- Existing data sidecars unchanged.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
