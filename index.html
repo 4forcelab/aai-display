@@ -184,37 +184,6 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .matrix-theater-panel .conditional-pairs { margin-top:12px; border-color:rgba(91,231,255,.18); background:rgba(3,8,14,.64); }
 .matrix-support-deck { max-width:100%; overflow:hidden; }
 .matrix-support-deck .observation-axes { margin-top:0; }
-.expected-copresence-theater { border-color:rgba(184,255,91,.24); background:linear-gradient(180deg,rgba(4,18,22,.78),rgba(3,8,14,.78)); box-shadow:0 0 30px rgba(184,255,91,.045), inset 0 1px 0 rgba(255,255,255,.025); }
-.expected-copresence-theater .dashboard-panel-head { align-items:flex-start; }
-.expected-source-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:10px 0 12px; }
-.expected-source-strip span { border:1px solid rgba(91,231,255,.13); background:rgba(91,231,255,.035); padding:8px 9px; color:rgba(214,235,244,.76); font:750 10px/1.35 var(--mono); text-transform:uppercase; overflow-wrap:anywhere; }
-.expected-source-strip b { display:block; color:#f4fbff; font:900 15px/1.25 var(--zh); margin-top:3px; text-transform:none; }
-.expected-copresence-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; align-items:start; }
-.expected-copresence-card { min-width:0; border:1px solid rgba(91,231,255,.14); background:rgba(3,8,14,.66); padding:10px; overflow:hidden; }
-.expected-copresence-card h4 { margin:0 0 3px; color:#f4fbff; font:900 13px/1.25 var(--zh); }
-.expected-copresence-card p { margin:0 0 8px; color:rgba(214,235,244,.72); font:650 11px/1.45 var(--zh); }
-.expected-table-wrap { max-height:430px; overflow:auto; border:1px solid rgba(91,231,255,.12); background:#03080e; }
-.expected-copresence-table { width:100%; min-width:760px; border-collapse:collapse; }
-.expected-copresence-table th { position:sticky; top:0; z-index:1; background:#06111b; color:rgba(222,238,246,.88); font:850 10px/1.25 var(--mono); text-transform:uppercase; padding:9px 8px; border-bottom:1px solid rgba(91,231,255,.14); text-align:left; }
-.expected-copresence-table td { padding:8px; border-bottom:1px solid rgba(91,231,255,.08); color:rgba(226,240,247,.9); font:650 11px/1.45 var(--zh); vertical-align:top; }
-.expected-copresence-table td:nth-child(n+2) { white-space:nowrap; font-family:var(--mono); }
-.expected-route-tabs { margin-top:12px; border:1px solid rgba(184,255,91,.16); background:rgba(184,255,91,.025); padding:10px; }
-.expected-route-tabs > input { position:absolute; opacity:0; pointer-events:none; }
-.expected-route-labels { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:10px; }
-.expected-route-labels label { border:1px solid rgba(91,231,255,.18); background:rgba(3,9,16,.72); color:rgba(214,235,244,.78); padding:6px 9px; font:850 11px/1.2 var(--zh); cursor:pointer; }
-#expected-route-li-yu-zhen:checked ~ .expected-route-labels label[for="expected-route-li-yu-zhen"],
-#expected-route-xie-chang:checked ~ .expected-route-labels label[for="expected-route-xie-chang"],
-#expected-route-san-heng:checked ~ .expected-route-labels label[for="expected-route-san-heng"],
-#expected-route-pingtung:checked ~ .expected-route-labels label[for="expected-route-pingtung"] { color:#071018; background:linear-gradient(90deg,var(--cyan),var(--acid)); border-color:transparent; }
-.expected-route-panel { display:none; }
-#expected-route-li-yu-zhen:checked ~ .expected-route-panels #expected-route-panel-li-yu-zhen,
-#expected-route-xie-chang:checked ~ .expected-route-panels #expected-route-panel-xie-chang,
-#expected-route-san-heng:checked ~ .expected-route-panels #expected-route-panel-san-heng,
-#expected-route-pingtung:checked ~ .expected-route-panels #expected-route-panel-pingtung { display:block; }
-.expected-route-meta { margin:0 0 8px; color:rgba(214,235,244,.72); font:650 11px/1.55 var(--zh); }
-.expected-case-details { margin-top:4px; color:rgba(176,209,220,.76); font:650 10px/1.35 var(--zh); }
-.expected-case-details summary { cursor:pointer; color:rgba(184,255,91,.78); }
-.expected-case-list { margin-top:4px; display:grid; gap:3px; }
 .dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:stretch; }
 .dashboard-layer-panels > .dashboard-panel { display:flex; flex-direction:column; min-height:430px; min-width:0; overflow:hidden; }
 .dashboard-layer-panels > .dashboard-panel .dashboard-table-wrap { flex:1; min-height:0; }
@@ -626,7 +595,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics, .expected-source-strip { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list, .expected-copresence-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -730,8 +699,6 @@ let localStaticPack = null;
 let localStaticPackStatus = 'idle';
 let rfbPublicProjectionPack = null;
 let rfbPublicProjectionStatus = 'idle';
-let expectedCopresenceAmmoPack = null;
-let expectedCopresenceAmmoStatus = 'idle';
 const routePresenceWarningKeys = new Set();
 let activeModuleId = 'bid_preparation_module';
 let activeSampleFilter = '李雨蓁';
@@ -1650,79 +1617,6 @@ function renderCoPresenceMatrixPanel(matrix) {
   const conditionalGrid = matrixFold(renderCoPresenceGrid(matrix, 'conditional'), 'Matrix Mode: Raw Count / 共現次數 · Conditional Rate / 條件出現率');
   return `<section class="matrix-theater-card"><div class="dashboard-panel-head"><b>Raw Count / 共現次數</b><span>diagonal = Self Count / 自身出現</span></div>${rawGrid}</section><section class="matrix-theater-card"><div class="dashboard-panel-head"><b>Conditional Presence Matrix / 條件出現矩陣</b><span>Conditional Rate / 條件出現率</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">比例讀法：欄位審委出現的案件中，列位審委同步出現的比例。<br>Rate reads as row reviewer appearing within column reviewer cases.</p>${conditionalGrid}</section>${renderConditionalPairs(matrix)}`;
 }
-function expectedAmmoNumber(value, digits = 2) {
-  const num = Number(value);
-  return Number.isFinite(num) ? num.toFixed(digits) : '—';
-}
-function expectedAmmoLift(value) {
-  const num = Number(value);
-  return Number.isFinite(num) ? `${num.toFixed(2)}x` : '—';
-}
-function expectedAmmoTail(value) {
-  const num = Number(value);
-  if (!Number.isFinite(num)) return '—';
-  return num < 0.001 ? num.toExponential(2) : num.toFixed(4);
-}
-function expectedAmmoIdentity(value) {
-  const text = safe(value);
-  return (!text || text === '—' || text === 'UNKNOWN / UNKNOWN') ? '—' : text;
-}
-function expectedAmmoSupport(value) {
-  const text = safe(value).toLowerCase();
-  if (text === 'thin') return 'thin / 薄支撐';
-  if (text === 'medium') return 'medium / 中支撐';
-  if (text === 'strong') return 'strong / 強支撐';
-  if (text === 'extreme') return 'extreme / 極端集中';
-  return safe(value);
-}
-function expectedAmmoRouteId(routeKey) {
-  const map = {'李雨蓁':'li-yu-zhen','協昌':'xie-chang','三恆一樹':'san-heng','屏東縣政府':'pingtung'};
-  return map[routeKey] || safe(routeKey).replace(/[^\w-]+/g, '-').toLowerCase();
-}
-function expectedAmmoPairLabel(row) {
-  return `${safe(row.reviewer_a)} × ${safe(row.reviewer_b)}`;
-}
-function expectedAmmoCaseDetails(row) {
-  const cases = Array.isArray(row.sample_cases) ? row.sample_cases.slice(0, 5) : [];
-  if (!cases.length) return '';
-  return `<details class="expected-case-details"><summary>Sample Cases / 樣本案件 ${Number(row.sample_case_count || cases.length).toLocaleString('zh-TW')}</summary><div class="expected-case-list">${cases.map(item => `<span>${safe(item.case_number)} · ${safe(item.title_compact)} · ${safe(item.agency)}</span>`).join('')}</div></details>`;
-}
-function renderExpectedAmmoTable(rows = [], title, note, limit = 12) {
-  const visibleRows = rows.slice(0, limit);
-  return `<article class="expected-copresence-card"><h4>${safe(title)}</h4><p>${safe(note)}</p>${visibleRows.length ? `<div class="expected-table-wrap"><table class="expected-copresence-table"><thead><tr><th>Pair / 配對</th><th>Actual / 實際</th><th>Expected / 期望</th><th>Lift / 倍率</th><th>P-tail / 尾端機率</th><th>Support / 支撐</th></tr></thead><tbody>${visibleRows.map(row => {
-    const identityA = expectedAmmoIdentity(row.identity_a);
-    const identityB = expectedAmmoIdentity(row.identity_b);
-    const identityLine = identityA !== '—' || identityB !== '—' ? `<span class="cell-meta">${identityA} / ${identityB}</span>` : '';
-    return `<tr><td>${expectedAmmoPairLabel(row)}${identityLine}${expectedAmmoCaseDetails(row)}</td><td>${Number(row.actual_co || 0).toLocaleString('zh-TW')}</td><td>${expectedAmmoNumber(row.expected_co)}</td><td>${expectedAmmoLift(row.lift)}</td><td>${expectedAmmoTail(row.p_tail)}</td><td>${expectedAmmoSupport(row.support_tier)}</td></tr>`;
-  }).join('')}</tbody></table></div>` : `<div class="no-result"><h3>—</h3><p>No supported pair rows in this public projection slice.</p></div>`}</article>`;
-}
-function renderExpectedRouteTabs(pack, activeRouteKey) {
-  const routes = Array.isArray(pack?.routes) ? pack.routes : [];
-  if (!routes.length) return '';
-  const activeRoute = routes.find(route => safe(route.route_key) === safe(activeRouteKey)) || routes[0];
-  const inputs = routes.map(route => {
-    const id = expectedAmmoRouteId(route.route_key);
-    return `<input type="radio" id="expected-route-${id}" name="expected-route-mode" ${route === activeRoute ? 'checked' : ''}>`;
-  }).join('');
-  const labels = `<div class="expected-route-labels">${routes.map(route => `<label for="expected-route-${expectedAmmoRouteId(route.route_key)}">${safe(route.route_label || route.route_key)}</label>`).join('')}</div>`;
-  const panels = routes.map(route => {
-    const id = expectedAmmoRouteId(route.route_key);
-    const meta = `Route Cases / 路徑案件 ${Number(route.route_case_count || 0).toLocaleString('zh-TW')} · Reviewers / 審委 ${Number(route.route_reviewer_count || 0).toLocaleString('zh-TW')} · Eligible Pairs / 可檢查配對 ${Number(route.route_pair_count_eligible || 0).toLocaleString('zh-TW')} · ${safe(route.denominator_note)}`;
-    return `<div class="expected-route-panel" id="expected-route-panel-${id}"><p class="expected-route-meta">${meta}</p><div class="expected-copresence-grid">${renderExpectedAmmoTable(route.top_lift_pairs || [], 'Route Lift vs Expected / 路徑期望倍率', 'local route supported pairs', 8)}${renderExpectedAmmoTable(route.top_tail_pairs || [], 'Route Tail Probability / 路徑尾端機率', 'small tail values first', 8)}${renderExpectedAmmoTable(route.top_actual_pairs || [], 'Route High Actual / 路徑高實際共現', 'actual co-presence with expectation context', 8)}</div></div>`;
-  }).join('');
-  return `<div class="expected-route-tabs">${inputs}${labels}<div class="expected-route-panels">${panels}</div></div>`;
-}
-function renderExpectedCopresenceMatrixSection(activeRouteKey = activeSampleFilter) {
-  if (expectedCopresenceAmmoStatus === 'idle' || expectedCopresenceAmmoStatus === 'loading') {
-    return `<div class="matrix-theater-stack"><section class="dashboard-panel expected-copresence-theater"><div class="dashboard-panel-head"><b>Expected Co-presence Matrix / 期望共現倍率矩陣</b><span>loading public projection</span></div><p class="matrix-compact-note">AAI Fingerprint Computation / AAI 指紋演算載入中。</p></section></div>`;
-  }
-  const pack = expectedCopresenceAmmoPack;
-  if (!pack || expectedCopresenceAmmoStatus !== 'ready') return '';
-  const scope = pack.source_scope || {};
-  const globalRows = pack.global || {};
-  const sourceStrip = `<div class="expected-source-strip"><span>Cases / 案件基礎<b>${Number(scope.n_cases || 0).toLocaleString('zh-TW')}</b></span><span>Reviewers / 審委基礎<b>${Number(scope.reviewer_count || 0).toLocaleString('zh-TW')}</b></span><span>Eligible Pairs / 可檢查配對<b>${Number(scope.pair_count_eligible || 0).toLocaleString('zh-TW')}</b></span><span>Display Cap / 公開裁切<b>${Number(scope.max_public_array_length || 0).toLocaleString('zh-TW')}</b></span></div>`;
-  return `<div class="matrix-theater-stack"><section class="dashboard-panel expected-copresence-theater"><div class="dashboard-panel-head"><div><b>Expected Co-presence Matrix / 期望共現倍率矩陣</b><p style="margin:7px 0 0;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">以公開投影中的審委在場基礎，對照實際共現、期望共現與尾端機率。<br>AAI Fingerprint Computation compares actual co-presence, expected co-presence, lift, and tail probability in a capped public projection.</p></div><span>Expected Co-presence Theater</span></div>${sourceStrip}<div class="expected-copresence-grid">${renderExpectedAmmoTable(globalRows.lift_ranked_supported_pairs || [], 'Lift vs Expected / 期望倍率排行', 'actual co-presence divided by expected co-presence', 12)}${renderExpectedAmmoTable(globalRows.p_tail_ranked_pairs || [], 'Random Tail Probability / 隨機尾端機率', 'smaller tail probability shown first', 12)}${renderExpectedAmmoTable(globalRows.high_actual_with_expected_context || [], 'High Actual with Expected Context / 高共現基準對照', 'high actual count with expectation context', 12)}</div>${renderExpectedRouteTabs(pack, activeRouteKey)}</section></div>`;
-}
 function aggregateCoPresenceMatrixModel(routeSurface) {
   const matrix = resolveCoPresenceMatrix(routeSurface);
   const nodes = Array.isArray(matrix?.nodes) ? matrix.nodes.map(node => safe(node.reviewer || node.name)).filter(value => value !== '—') : [];
@@ -2190,28 +2084,6 @@ function getActiveRoutePartition(routeKey = activeSampleFilter) {
   const localRoute = localRoutes.find(route => safe(route.route_key) === key) || localRoutes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
   if (localRoute) return normalizeLocalStaticRoute(localRoute, localStaticPack);
   return routes.find(route => safe(route.route_key) === key) || routes.find(route => key !== '—' && safe(route.route_key).includes(key)) || null;
-}
-function loadExpectedCopresenceAmmoPack() {
-  if (expectedCopresenceAmmoStatus === 'loading' || expectedCopresenceAmmoStatus === 'ready') return;
-  expectedCopresenceAmmoStatus = 'loading';
-  const fetcher = window.fetch.bind(window);
-  const ammoUrl = 'data/preview/v8_alpha_expected_copresence_ammo_pack.json';
-  fetcher(ammoUrl, {cache:'no-store'})
-    .then(response => {
-      if (!response.ok) throw new Error(`Expected Co-presence Matrix ${response.status}`);
-      return response.json();
-    })
-    .then(pack => {
-      if (pack?.pack_id !== 'v8-alpha-expected-copresence-ammo-pack') throw new Error('Expected Co-presence Matrix pack mismatch');
-      expectedCopresenceAmmoPack = pack;
-      expectedCopresenceAmmoStatus = 'ready';
-      render();
-    })
-    .catch(error => {
-      expectedCopresenceAmmoStatus = 'unavailable';
-      console.warn('Expected Co-presence Matrix not ready', error);
-      render();
-    });
 }
 function getActiveRfbRouteSurface(routeKey = activeSampleFilter) {
   const routes = rfbPublicProjectionPack?.route_surfaces || [];
@@ -2701,7 +2573,7 @@ function renderProjectedRouteDashboard(el, routeProjection) {
     ? `Route Surface Aggregate Projection / 路徑表面聚合投影 · 來源 ${Number(resolveCoPresenceMatrix(routeSurface).source_count || 0).toLocaleString('zh-TW')}`
     : `Seriated Co-presence View / 序列化共現視圖 · ${projectionCountMeta(routeProjection, 'co_presence_rows')}`;
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Core Matched Awarded Vendors / 核心命中案件得標廠商</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以路徑公開投影展開，代表案件不宣稱為最新案件。</p><div class="dashboard-layer-spacer">Outcome layer / 案件結果層 · 表格起點對齊右側評委分布展開。</div>${renderProjectedAwardedVendorTable(routeProjection)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">評委分布以公開身份欄位、出現占比與案件覆蓋率展開，呈現該路徑的評委構成與同框輪廓。</p>${renderProjectedReviewerDistributionTable(routeProjection, routeDisplaySemantics)}</section></div>`;
-  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${intelligenceInscription()}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>${renderExpectedCopresenceMatrixSection(routeProjection.route_key)}`;
+  el.innerHTML = `${cockpitBlock}<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Route Dashboard Public Projection / 路徑公開投影</strong></div><p>Direct Core、proof rows、supplier-reviewer signal and fast response are surfaced first. Counts stay capped in the public display layer.</p></div>${localPackIndicator}${routeMetricGrid}${intelligenceInscription()}${directCoreBlock}${directCoreProofBlock}${rfbFingerprintBlock}${partitionSupplierReviewerShare}${partitionFastResponseBlock}${supplierReviewerHeatmapBlock}${associatedContextBlock}${calendarPressureBlock}${semanticTables}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${projectionCountMeta(routeProjection, 'participated_tenders')}</span></div>${renderProjectionTenderTable(routeProjection)}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>${matrixMeta}</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function renderRouteDashboard() {
   const el = document.getElementById('routeDashboard');
@@ -2753,7 +2625,7 @@ function renderRouteDashboard() {
   const matrix = coPresenceMatrix(reviewer, 7);
   const matrixGrid = renderCoPresenceMatrixPanel(matrix);
   const semanticTables = `<div class="dashboard-layer-panels"><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Awarded Vendor Table / 得標廠商展開表</b><span>Outcome layer / 案件結果層</span></div><p class="dashboard-layer-note">得標廠商欄位以案件結果資料展開，與下方供應商審委排列分開閱讀。</p><div class="dashboard-layer-spacer">Outcome layer / 案件結果層 · 表格起點對齊右側評委分布展開。</div>${renderAwardedVendorTable(bid)}</section><section class="dashboard-panel"><div class="dashboard-panel-head"><b>Reviewer Distribution Table / 評委分布表</b><span>Reviewer distribution / 評委分布</span></div><p class="dashboard-layer-note">案件評委常態分布圖以審委出現次數、身份欄位與路徑供應商展開。</p>${renderReviewerDistributionTable(reviewer)}</section></div>`;
-  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Budget Direction / 預算方向</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, vendor outcomes, and reviewer co-presence.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${intelligenceInscription()}${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${tenders.length.toLocaleString('zh-TW')} unique cases · showing ${tenderRows.length.toLocaleString('zh-TW')}</span></div>${tenderTable}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${reviewer.length.toLocaleString('zh-TW')} Co-presence Rows</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>${renderExpectedCopresenceMatrixSection(route)}`;
+  el.innerHTML = `<div class="route-dashboard-head"><div><span>ROUTE DASHBOARD</span><strong>展示路徑總表 · Budget Direction / 預算方向</strong></div><p>同一條展示路徑，排列人物、參與案件、預算方向、招標方向、備標時間、得標廠商與案件評委常態分布圖。<br>One display route arranged across people, participated cases, budget direction, tender direction, preparation windows, vendor outcomes, and reviewer co-presence.</p></div><div class="dashboard-metrics">${metricCards.map(([label,value,hint]) => `<article class="dashboard-card"><b>${label}</b><strong>${safe(value)}</strong><span>${safe(hint)}</span></article>`).join('')}</div>${intelligenceInscription()}${semanticTables}${renderFastResponsePanel(bid, reviewer)}${renderAG3PresenceSurfaces()}${renderAG4BudgetFitSurfaces()}${renderCompetitionScarcitySurface()}${renderSupplierReviewerHeatmap(bid)}<div class="matrix-theater-stack"><section class="dashboard-panel matrix-evidence-strip"><div class="dashboard-panel-head"><b>PARTICIPATED TENDER LIST / 參與案件明細</b><span>${tenders.length.toLocaleString('zh-TW')} unique cases · showing ${tenderRows.length.toLocaleString('zh-TW')}</span></div>${tenderTable}</section><section class="dashboard-panel matrix-theater-panel"><div class="dashboard-panel-head"><b>REVIEWER CO-PRESENCE GRID / 案件評委共現棋盤</b><span>Seriated Co-presence View / 序列化共現視圖 · ${reviewer.length.toLocaleString('zh-TW')} Co-presence Rows</span></div><p style="margin:0 0 10px;color:rgba(214,235,244,.78);font:650 12px/1.55 var(--zh);">審委排序依共現接近度排列，使群聚區塊更容易被檢視。<br>Reviewer order is arranged by observed co-presence proximity to make clusters easier to inspect.</p>${matrixGrid}</section><section class="dashboard-panel matrix-support-deck"><div class="dashboard-panel-head"><b>STATISTICAL OBSERVATION AXES / 統計觀察軸</b><span>neutral terms</span></div><div class="observation-axes"><span>完全共線性</span><span>隨機性</span><span>高群聚係數（High Clustering Coefficient）</span><span>Dirac Delta Function（狄拉克δ函數）</span></div></section></div>`;
 }
 function bridgeContext() {
   const routeProjection = getActiveRouteProjection();
@@ -3100,7 +2972,6 @@ loadRouteDisplaySemanticsProjection();
 loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
 loadRfbPublicProjectionPack();
-loadExpectedCopresenceAmmoPack();
 </script>
 </body>
 </html>
