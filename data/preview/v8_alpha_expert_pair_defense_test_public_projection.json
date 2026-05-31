@@ -1,0 +1,4844 @@
+{
+  "display_notes": {
+    "en": "This test does not decide why a pair appears; it checks whether residual panel repetition remains after removing the target pair.",
+    "zh": "本測試不判斷原因，只檢查扣除目標配對後的 residual panel 是否仍有重複與分層集中。"
+  },
+  "expert_pair_defense_method_public": {
+    "en": [
+      "A+B can explain the pair. It does not automatically explain the rest of the panel.",
+      "This test removes the target pair and checks whether the remaining panel members still concentrate across cases.",
+      "No legal conclusion is generated."
+    ],
+    "zh": [
+      "A+B 可以解釋專家配對。不能自動解釋剩餘席次。",
+      "本測試扣除目標 pair 後，檢查剩餘席次是否仍跨案件集中。",
+      "本測試不生成法律結論。"
+    ]
+  },
+  "generated_at_utc": "2026-05-31T14:57:01Z",
+  "method": {
+    "baseline_a": "same high-budget tier",
+    "baseline_b": "matched agency/year with one-year fallback",
+    "baseline_c": "matched amount tier and procurement method",
+    "caps": {
+      "max_public_array": 100,
+      "residual_panel_rows_per_pair": 20,
+      "sample_cases": 20,
+      "target_pairs": 10,
+      "top_residual_reviewers_per_pair": 20,
+      "top_signatures_per_pair": 10
+    },
+    "core_question": "after removing a target expert pair, whether residual panel repetition remains visible",
+    "permutation_reference": "5000 deterministic runs when denominators allow",
+    "residual_panel": "all case reviewers excluding the target pair"
+  },
+  "pack_id": "v8-alpha-expert-pair-defense-test",
+  "projection_scope": "public_projection",
+  "source_scope": {
+    "amount_case_count": 1208,
+    "amount_tier_rule": "log amount ranked tertile; budget amount preferred with award amount fallback",
+    "max_public_array_length": 20,
+    "max_public_array_path": "$.target_pairs[2].residual_panel_rows",
+    "reviewer_case_count": 1233,
+    "reviewer_count": 675,
+    "source_files": [
+      "manual_samples/v2_9_G40C_reviewer_records.json",
+      "manual_samples/v2_9_G40C_case_reviewer_summary.json",
+      "data/preview/g40e_case_metadata_dictionary.json",
+      "data/preview/ag5_7_route_partition_projection.json",
+      "data/preview/ag5_4_1_route_surface_aggregate_projection.json",
+      "data/preview/v8_alpha_statistical_theater_ammo_pack.json"
+    ],
+    "target_pair_count": 3
+  },
+  "target_pairs": [
+    {
+      "baselines": [
+        {
+          "baseline_name": "same high-budget tier",
+          "case_count": 395,
+          "match_note": "all high-budget cases excluding target pair cases",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13200000.0,
+              "budget_amount_public": 13224925.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1140421-1",
+              "case_title_public": "水門客運轉運站站體空間再造屋頂防水改善與周邊交通設施增設工程",
+              "year": 2025
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 86,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.2177
+            },
+            {
+              "case_count": 68,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1722
+            },
+            {
+              "case_count": 67,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1696
+            },
+            {
+              "case_count": 61,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.1544
+            },
+            {
+              "case_count": 49,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.1241
+            },
+            {
+              "case_count": 43,
+              "reviewer_name_public": "李政任",
+              "share": 0.1089
+            },
+            {
+              "case_count": 40,
+              "reviewer_name_public": "江國豐",
+              "share": 0.1013
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "李志峰",
+              "share": 0.0962
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "黃國維",
+              "share": 0.0962
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.0962
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched agency/year",
+          "case_count": 896,
+          "match_note": "same agency and year",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 6800000.0,
+              "budget_amount_public": 6802000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "004-C1130304-1",
+              "case_title_public": "113年度屏東縣客運碼頭旅運安全設施改善計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 151,
+              "reviewer_name_public": "黃國維",
+              "share": 0.1685
+            },
+            {
+              "case_count": 133,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.1484
+            },
+            {
+              "case_count": 92,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1027
+            },
+            {
+              "case_count": 91,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1016
+            },
+            {
+              "case_count": 83,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.0926
+            },
+            {
+              "case_count": 74,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.0826
+            },
+            {
+              "case_count": 69,
+              "reviewer_name_public": "江國豐",
+              "share": 0.077
+            },
+            {
+              "case_count": 63,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0703
+            },
+            {
+              "case_count": 60,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.067
+            },
+            {
+              "case_count": 60,
+              "reviewer_name_public": "王韻",
+              "share": 0.067
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched amount/procurement",
+          "case_count": 951,
+          "match_note": "same amount tier and procurement method",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 1980000.0,
+              "budget_amount_public": 2000000.0,
+              "budget_tier": "low_budget",
+              "case_id": "025-1121129",
+              "case_title_public": "屏東熱帶農業博覽會活動-龍龍奇幻樂園主題區勞務採購",
+              "year": null
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 4500000.0,
+              "budget_amount_public": 4500000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "058-1130304-1",
+              "case_title_public": "屏東銀髮藝術節品牌營造推廣及製作執行",
+              "year": null
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 2052370.0,
+              "budget_amount_public": 2094255.0,
+              "budget_tier": "low_budget",
+              "case_id": "058-C1121222-1",
+              "case_title_public": "「113年屏東縣文康活動中心節能改善工程」委託規劃設計監造（含工作紀錄）技術服務案",
+              "year": 2023
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 7120000.0,
+              "budget_amount_public": 7200000.0,
+              "budget_tier": "high_budget",
+              "case_id": "094-1121127",
+              "case_title_public": "113年度屏菸1936文化基地環境清潔維護工作",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 2990000.0,
+              "budget_amount_public": null,
+              "budget_tier": "low_budget",
+              "case_id": "111-096-0701P2",
+              "case_title_public": "歷史建築聯福磚窯廠修復工程規劃設計 (含因應計畫)及監造",
+              "year": 2022
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 118,
+              "reviewer_name_public": "黃國維",
+              "share": 0.1241
+            },
+            {
+              "case_count": 99,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.1041
+            },
+            {
+              "case_count": 98,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.103
+            },
+            {
+              "case_count": 89,
+              "reviewer_name_public": "江國豐",
+              "share": 0.0936
+            },
+            {
+              "case_count": 76,
+              "reviewer_name_public": "劉美淑",
+              "share": 0.0799
+            },
+            {
+              "case_count": 75,
+              "reviewer_name_public": "王韻",
+              "share": 0.0789
+            },
+            {
+              "case_count": 71,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.0747
+            },
+            {
+              "case_count": 70,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0736
+            },
+            {
+              "case_count": 69,
+              "reviewer_name_public": "林洋助",
+              "share": 0.0726
+            },
+            {
+              "case_count": 55,
+              "reviewer_name_public": "侯政男",
+              "share": 0.0578
+            }
+          ]
+        }
+      ],
+      "co_traveler_lift": [
+        {
+          "co_traveler_lift": 56.4286,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0025,
+          "reviewer_name_public": "蔡佳玲",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 28.2143,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "張淑貞",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 18.8095,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0076,
+          "reviewer_name_public": "林聖峯",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 16.1224,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 2,
+          "high_minus_low": -0.0476,
+          "high_over_low": 0.8571,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.2857,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0177,
+          "reviewer_name_public": "李雨蓁",
+          "share_in_pair_cases": 0.25
+        },
+        {
+          "co_traveler_lift": 14.1071,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0101,
+          "reviewer_name_public": "張玲如",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 14.1071,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0101,
+          "reviewer_name_public": "田禮芳",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 9.4048,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0152,
+          "reviewer_name_public": "徐紫雲",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 6.2698,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0228,
+          "reviewer_name_public": "張秀桃",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 4.7024,
+          "count_in_pair_cases": 5,
+          "high_budget_count": 2,
+          "high_minus_low": -0.381,
+          "high_over_low": 0.4286,
+          "low_budget_count": 2,
+          "p_given_pair_high_budget": 0.2857,
+          "p_given_pair_low_budget": 0.6667,
+          "p_high_budget_baseline": 0.0608,
+          "reviewer_name_public": "劉美淑",
+          "share_in_pair_cases": 0.4167
+        },
+        {
+          "co_traveler_lift": 4.7024,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0304,
+          "reviewer_name_public": "許坋妃",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0532,
+          "reviewer_name_public": "王韻",
+          "share_in_pair_cases": 0.1667
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0203,
+          "reviewer_name_public": "侯政男",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "劉維群",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "吳佩珊",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": 0.0,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "張佳樺",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "江建廷",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": 0.0,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "洪淑君",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1429,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1429,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "王振家",
+          "share_in_pair_cases": 0.0833
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -0.3333,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.3333,
+          "p_high_budget_baseline": 0.0177,
+          "reviewer_name_public": "謝蕙蓮",
+          "share_in_pair_cases": 0.0833
+        }
+      ],
+      "computed": true,
+      "full_panel_repeat_test": {
+        "cases_with_3plus_same_residual_reviewers": 0,
+        "cases_with_4plus_same_residual_reviewers": 0,
+        "exact_full_panel_repeat_count": 2,
+        "exact_residual_panel_repeat_count": 2,
+        "top_full_panel_signatures": [
+          {
+            "case_count": 2,
+            "panel_names_public_capped": [
+              "劉美淑",
+              "李德純",
+              "王韻",
+              "程泰運"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 3500000.0,
+                "budget_amount_public": 3500000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "A058-1140812-1",
+                "case_title_public": "2025年屏東熟齡社團嘉年華",
+                "year": 2025
+              },
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2500000.0,
+                "budget_amount_public": 2500000.0,
+                "budget_tier": "low_budget",
+                "case_id": "A058-1141211-2",
+                "case_title_public": "2026年屏東「彩色時代」熟齡課程執行推廣製作",
+                "year": 2026
+              }
+            ],
+            "share": 0.1667,
+            "signature_hash_public": "ed6cc49dbe23698d"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "徐紫雲",
+              "李德純",
+              "程泰運"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 7158000.0,
+                "budget_amount_public": 20322000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B1121025-1B",
+                "case_title_public": "屏東縣布建身心障礙者社區式日間照顧服務計畫（屏北區）",
+                "year": 2023
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "d569895269745a47"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉美淑",
+              "李德純",
+              "程泰運"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 26693408.0,
+                "budget_amount_public": 26693408.0,
+                "budget_tier": "high_budget",
+                "case_id": "B1121020-1B",
+                "case_title_public": "屏東縣輔具資源中心服務計畫",
+                "year": 2023
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "77fef0d28ccbddc9"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張淑貞",
+              "李德純",
+              "程泰運",
+              "許坋妃"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 7250272.0,
+                "budget_amount_public": 30136561.0,
+                "budget_tier": "high_budget",
+                "case_id": "B056-1131105-2A",
+                "case_title_public": "擴增社區日間作業設施服務計畫（屏北區）",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "b6ab256388c1f269"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李德純",
+              "田禮芳",
+              "程泰運"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 13090869.0,
+                "budget_amount_public": 13090869.0,
+                "budget_tier": "high_budget",
+                "case_id": "B056-1131102-4A",
+                "case_title_public": "身心障礙者自立生活支持服務中心計畫",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "a3c921d679ddc3eb"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李德純",
+              "李雨蓁",
+              "林聖峯",
+              "王振家",
+              "程泰運"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 1519239.0,
+                "budget_amount_public": 9612268.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1150112-1",
+                "case_title_public": "就業安定基金補助屏東縣政府辦理115年身心障礙者職業訓練計畫",
+                "year": 2026
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "5607e47b8621c965"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉維群",
+              "吳佩珊",
+              "李德純",
+              "李雨蓁",
+              "江建廷",
+              "程泰運",
+              "謝蕙蓮"
+            ],
+            "panel_size": 7,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2145000.0,
+                "budget_amount_public": 2145000.0,
+                "budget_tier": "low_budget",
+                "case_id": "E1140821-1",
+                "case_title_public": "114年推動青年參與公共事務深化計畫-深化屏青參與力",
+                "year": 2025
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "827e1c47c358597b"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "侯政男",
+              "劉美淑",
+              "李德純",
+              "程泰運"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 1500000.0,
+                "budget_amount_public": 1500000.0,
+                "budget_tier": "low_budget",
+                "case_id": "A058-1141008-2",
+                "case_title_public": "115年屏東縣政府社會處網路媒體行銷維運案",
+                "year": 2026
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "cc805012b3af6916"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉美淑",
+              "張秀桃",
+              "李德純",
+              "程泰運",
+              "蔡佳玲"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 31614000.0,
+                "budget_amount_public": 31614000.0,
+                "budget_tier": "high_budget",
+                "case_id": "A056-1141015",
+                "case_title_public": "屏東縣輔具資源中心服務計畫",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "6cc5af2516f7532f"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張玲如",
+              "李德純",
+              "李雨蓁",
+              "程泰運"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 1240339.0,
+                "budget_amount_public": 9135728.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1130110-1",
+                "case_title_public": "就業安定基金補助屏東縣政府辦理113年身心障礙者職業訓練計畫",
+                "year": 2024
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "f16049f400b5b2bb"
+          }
+        ],
+        "top_residual_panel_signatures": [
+          {
+            "case_count": 2,
+            "panel_names_public_capped": [
+              "劉美淑",
+              "王韻"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 3500000.0,
+                "budget_amount_public": 3500000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "A058-1140812-1",
+                "case_title_public": "2025年屏東熟齡社團嘉年華",
+                "year": 2025
+              },
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2500000.0,
+                "budget_amount_public": 2500000.0,
+                "budget_tier": "low_budget",
+                "case_id": "A058-1141211-2",
+                "case_title_public": "2026年屏東「彩色時代」熟齡課程執行推廣製作",
+                "year": 2026
+              }
+            ],
+            "share": 0.1667,
+            "signature_hash_public": "8d410ca41fc4e663"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "徐紫雲"
+            ],
+            "panel_size": 1,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 7158000.0,
+                "budget_amount_public": 20322000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B1121025-1B",
+                "case_title_public": "屏東縣布建身心障礙者社區式日間照顧服務計畫（屏北區）",
+                "year": 2023
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "95728f835029ff56"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉美淑"
+            ],
+            "panel_size": 1,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 26693408.0,
+                "budget_amount_public": 26693408.0,
+                "budget_tier": "high_budget",
+                "case_id": "B1121020-1B",
+                "case_title_public": "屏東縣輔具資源中心服務計畫",
+                "year": 2023
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "5d4693ff7083e4e8"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張淑貞",
+              "許坋妃"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 7250272.0,
+                "budget_amount_public": 30136561.0,
+                "budget_tier": "high_budget",
+                "case_id": "B056-1131105-2A",
+                "case_title_public": "擴增社區日間作業設施服務計畫（屏北區）",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "cf8bc2e39d893d5d"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "田禮芳"
+            ],
+            "panel_size": 1,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 13090869.0,
+                "budget_amount_public": 13090869.0,
+                "budget_tier": "high_budget",
+                "case_id": "B056-1131102-4A",
+                "case_title_public": "身心障礙者自立生活支持服務中心計畫",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "d7f2ccd9fc9ea401"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李雨蓁",
+              "林聖峯",
+              "王振家"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 1519239.0,
+                "budget_amount_public": 9612268.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1150112-1",
+                "case_title_public": "就業安定基金補助屏東縣政府辦理115年身心障礙者職業訓練計畫",
+                "year": 2026
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "ef0e037f1de25ad3"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉維群",
+              "吳佩珊",
+              "李雨蓁",
+              "江建廷",
+              "謝蕙蓮"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2145000.0,
+                "budget_amount_public": 2145000.0,
+                "budget_tier": "low_budget",
+                "case_id": "E1140821-1",
+                "case_title_public": "114年推動青年參與公共事務深化計畫-深化屏青參與力",
+                "year": 2025
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "be263369c7831a78"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "侯政男",
+              "劉美淑"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 1500000.0,
+                "budget_amount_public": 1500000.0,
+                "budget_tier": "low_budget",
+                "case_id": "A058-1141008-2",
+                "case_title_public": "115年屏東縣政府社會處網路媒體行銷維運案",
+                "year": 2026
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "7b90f975817f74e9"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉美淑",
+              "張秀桃",
+              "蔡佳玲"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 31614000.0,
+                "budget_amount_public": 31614000.0,
+                "budget_tier": "high_budget",
+                "case_id": "A056-1141015",
+                "case_title_public": "屏東縣輔具資源中心服務計畫",
+                "year": null
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "f93f2caddb4192df"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張玲如",
+              "李雨蓁"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 1240339.0,
+                "budget_amount_public": 9135728.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1130110-1",
+                "case_title_public": "就業安定基金補助屏東縣政府辦理113年身心障礙者職業訓練計畫",
+                "year": 2024
+              }
+            ],
+            "share": 0.0833,
+            "signature_hash_public": "c3cbe9db25c547ea"
+          }
+        ]
+      },
+      "interpretation": {
+        "baseline_comparison_available": true,
+        "expert_pair_defense_status": "pair_only_plausible",
+        "high_budget_layer_concentration_detected": false,
+        "pair_only_explanation_supported": true,
+        "residual_panel_concentration_detected": false
+      },
+      "known_signal": "lift 11.12x; p 5.84e-11",
+      "pair_case_surface": {
+        "amount_basis_available_count": 12,
+        "amount_unavailable_pair_cases": 0,
+        "distinct_agencies": 1,
+        "distinct_years": 4,
+        "high_budget_pair_cases": 7,
+        "low_budget_pair_cases": 3,
+        "mid_budget_pair_cases": 2,
+        "pair_name": "李德純 × 程泰運",
+        "total_pair_cases": 12
+      },
+      "pair_name": "李德純 × 程泰運",
+      "panel_snapshot_samples": [],
+      "permutation_reference": {
+        "empirical_p_mean_residual_jaccard": 0.0002,
+        "empirical_p_top_residual_reviewer_share": 0.4733,
+        "observed_mean_residual_jaccard": 0.0729,
+        "observed_top_residual_reviewer_share": 0.1667,
+        "permutation_status": "run",
+        "runs": 5000,
+        "seed": 20260531,
+        "simulated_mean_residual_jaccard_median": 0.0,
+        "simulated_top_residual_reviewer_share_median": 0.0833
+      },
+      "residual_overlap_metrics": {
+        "max_residual_jaccard": 1.0,
+        "mean_residual_jaccard": 0.0729,
+        "median_residual_jaccard": 0.0,
+        "most_common_residual_signature_count": 2,
+        "most_common_residual_signature_share": 0.1667,
+        "residual_entropy": 3.4183,
+        "residual_signature_unique_count": 11,
+        "top_residual_reviewers": [
+          {
+            "count_in_pair_cases": 5,
+            "high_budget_count": 2,
+            "low_budget_count": 2,
+            "reviewer_name_public": "劉美淑",
+            "share_in_pair_cases": 0.4167
+          },
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 2,
+            "low_budget_count": 1,
+            "reviewer_name_public": "李雨蓁",
+            "share_in_pair_cases": 0.25
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "王韻",
+            "share_in_pair_cases": 0.1667
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "徐紫雲",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張淑貞",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "許坋妃",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "田禮芳",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "林聖峯",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "王振家",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "謝蕙蓮",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "劉維群",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "江建廷",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "吳佩珊",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "侯政男",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "蔡佳玲",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張秀桃",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張玲如",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張佳樺",
+            "share_in_pair_cases": 0.0833
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "洪淑君",
+            "share_in_pair_cases": 0.0833
+          }
+        ]
+      },
+      "residual_panel_rows": [
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 31614000.0,
+          "budget_amount_public": 31614000.0,
+          "budget_tier": "high_budget",
+          "case_id": "A056-1141015",
+          "case_title_public": "屏東縣輔具資源中心服務計畫",
+          "full_panel_signature_hash_public": "6cc5af2516f7532f",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "劉美淑",
+            "張秀桃",
+            "蔡佳玲"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "f93f2caddb4192df",
+          "target_pair_present": true,
+          "year": null
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 4280000.0,
+          "budget_amount_public": 4280000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "A058-1131128-5",
+          "case_title_public": "屏東縣高齡長輩照顧服務永大支援中心勞務委託服務計畫",
+          "full_panel_signature_hash_public": "2da9873ed48c7a0a",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "張佳樺",
+            "洪淑君"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "10a45fa8532012be",
+          "target_pair_present": true,
+          "year": null
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 3500000.0,
+          "budget_amount_public": 3500000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "A058-1140812-1",
+          "case_title_public": "2025年屏東熟齡社團嘉年華",
+          "full_panel_signature_hash_public": "ed6cc49dbe23698d",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "劉美淑",
+            "王韻"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "8d410ca41fc4e663",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 1500000.0,
+          "budget_amount_public": 1500000.0,
+          "budget_tier": "low_budget",
+          "case_id": "A058-1141008-2",
+          "case_title_public": "115年屏東縣政府社會處網路媒體行銷維運案",
+          "full_panel_signature_hash_public": "cc805012b3af6916",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "侯政男",
+            "劉美淑"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "7b90f975817f74e9",
+          "target_pair_present": true,
+          "year": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 2500000.0,
+          "budget_amount_public": 2500000.0,
+          "budget_tier": "low_budget",
+          "case_id": "A058-1141211-2",
+          "case_title_public": "2026年屏東「彩色時代」熟齡課程執行推廣製作",
+          "full_panel_signature_hash_public": "ed6cc49dbe23698d",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "劉美淑",
+            "王韻"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "8d410ca41fc4e663",
+          "target_pair_present": true,
+          "year": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 13090869.0,
+          "budget_amount_public": 13090869.0,
+          "budget_tier": "high_budget",
+          "case_id": "B056-1131102-4A",
+          "case_title_public": "身心障礙者自立生活支持服務中心計畫",
+          "full_panel_signature_hash_public": "a3c921d679ddc3eb",
+          "full_panel_size": 3,
+          "residual_panel_names_public": [
+            "田禮芳"
+          ],
+          "residual_panel_size": 1,
+          "residual_signature_hash_public": "d7f2ccd9fc9ea401",
+          "target_pair_present": true,
+          "year": null
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 7250272.0,
+          "budget_amount_public": 30136561.0,
+          "budget_tier": "high_budget",
+          "case_id": "B056-1131105-2A",
+          "case_title_public": "擴增社區日間作業設施服務計畫（屏北區）",
+          "full_panel_signature_hash_public": "b6ab256388c1f269",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "張淑貞",
+            "許坋妃"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "cf8bc2e39d893d5d",
+          "target_pair_present": true,
+          "year": null
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 26693408.0,
+          "budget_amount_public": 26693408.0,
+          "budget_tier": "high_budget",
+          "case_id": "B1121020-1B",
+          "case_title_public": "屏東縣輔具資源中心服務計畫",
+          "full_panel_signature_hash_public": "77fef0d28ccbddc9",
+          "full_panel_size": 3,
+          "residual_panel_names_public": [
+            "劉美淑"
+          ],
+          "residual_panel_size": 1,
+          "residual_signature_hash_public": "5d4693ff7083e4e8",
+          "target_pair_present": true,
+          "year": 2023
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 7158000.0,
+          "budget_amount_public": 20322000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B1121025-1B",
+          "case_title_public": "屏東縣布建身心障礙者社區式日間照顧服務計畫（屏北區）",
+          "full_panel_signature_hash_public": "d569895269745a47",
+          "full_panel_size": 3,
+          "residual_panel_names_public": [
+            "徐紫雲"
+          ],
+          "residual_panel_size": 1,
+          "residual_signature_hash_public": "95728f835029ff56",
+          "target_pair_present": true,
+          "year": 2023
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 1240339.0,
+          "budget_amount_public": 9135728.0,
+          "budget_tier": "high_budget",
+          "case_id": "E1130110-1",
+          "case_title_public": "就業安定基金補助屏東縣政府辦理113年身心障礙者職業訓練計畫",
+          "full_panel_signature_hash_public": "f16049f400b5b2bb",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "張玲如",
+            "李雨蓁"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "c3cbe9db25c547ea",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 2145000.0,
+          "budget_amount_public": 2145000.0,
+          "budget_tier": "low_budget",
+          "case_id": "E1140821-1",
+          "case_title_public": "114年推動青年參與公共事務深化計畫-深化屏青參與力",
+          "full_panel_signature_hash_public": "827e1c47c358597b",
+          "full_panel_size": 7,
+          "residual_panel_names_public": [
+            "劉維群",
+            "吳佩珊",
+            "李雨蓁",
+            "江建廷",
+            "謝蕙蓮"
+          ],
+          "residual_panel_size": 5,
+          "residual_signature_hash_public": "be263369c7831a78",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 1519239.0,
+          "budget_amount_public": 9612268.0,
+          "budget_tier": "high_budget",
+          "case_id": "E1150112-1",
+          "case_title_public": "就業安定基金補助屏東縣政府辦理115年身心障礙者職業訓練計畫",
+          "full_panel_signature_hash_public": "5607e47b8621c965",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "李雨蓁",
+            "林聖峯",
+            "王振家"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "ef0e037f1de25ad3",
+          "target_pair_present": true,
+          "year": 2026
+        }
+      ],
+      "reviewer_a": "李德純",
+      "reviewer_b": "程泰運",
+      "signal_role_public": "statistical_highlight",
+      "source_label": "expected co-presence high-lift pair",
+      "survival_layer_public": "pair_level_only"
+    },
+    {
+      "baselines": [
+        {
+          "baseline_name": "same high-budget tier",
+          "case_count": 394,
+          "match_note": "all high-budget cases excluding target pair cases",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13200000.0,
+              "budget_amount_public": 13224925.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1140421-1",
+              "case_title_public": "水門客運轉運站站體空間再造屋頂防水改善與周邊交通設施增設工程",
+              "year": 2025
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 86,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.2183
+            },
+            {
+              "case_count": 68,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1726
+            },
+            {
+              "case_count": 67,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1701
+            },
+            {
+              "case_count": 61,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.1548
+            },
+            {
+              "case_count": 49,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.1244
+            },
+            {
+              "case_count": 43,
+              "reviewer_name_public": "李政任",
+              "share": 0.1091
+            },
+            {
+              "case_count": 40,
+              "reviewer_name_public": "江國豐",
+              "share": 0.1015
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "李志峰",
+              "share": 0.0964
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "黃國維",
+              "share": 0.0964
+            },
+            {
+              "case_count": 37,
+              "reviewer_name_public": "黃有成",
+              "share": 0.0939
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched agency/year",
+          "case_count": 653,
+          "match_note": "same agency and year",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 6800000.0,
+              "budget_amount_public": 6802000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "004-C1130304-1",
+              "case_title_public": "113年度屏東縣客運碼頭旅運安全設施改善計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 126,
+              "reviewer_name_public": "黃國維",
+              "share": 0.193
+            },
+            {
+              "case_count": 104,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.1593
+            },
+            {
+              "case_count": 74,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1133
+            },
+            {
+              "case_count": 68,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1041
+            },
+            {
+              "case_count": 59,
+              "reviewer_name_public": "江國豐",
+              "share": 0.0904
+            },
+            {
+              "case_count": 52,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0796
+            },
+            {
+              "case_count": 48,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.0735
+            },
+            {
+              "case_count": 47,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.072
+            },
+            {
+              "case_count": 45,
+              "reviewer_name_public": "王韻",
+              "share": 0.0689
+            },
+            {
+              "case_count": 44,
+              "reviewer_name_public": "李志峰",
+              "share": 0.0674
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched amount/procurement",
+          "case_count": 953,
+          "match_note": "same amount tier and procurement method",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 1980000.0,
+              "budget_amount_public": 2000000.0,
+              "budget_tier": "low_budget",
+              "case_id": "025-1121129",
+              "case_title_public": "屏東熱帶農業博覽會活動-龍龍奇幻樂園主題區勞務採購",
+              "year": null
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 4500000.0,
+              "budget_amount_public": 4500000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "058-1130304-1",
+              "case_title_public": "屏東銀髮藝術節品牌營造推廣及製作執行",
+              "year": null
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 2052370.0,
+              "budget_amount_public": 2094255.0,
+              "budget_tier": "low_budget",
+              "case_id": "058-C1121222-1",
+              "case_title_public": "「113年屏東縣文康活動中心節能改善工程」委託規劃設計監造（含工作紀錄）技術服務案",
+              "year": 2023
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 7120000.0,
+              "budget_amount_public": 7200000.0,
+              "budget_tier": "high_budget",
+              "case_id": "094-1121127",
+              "case_title_public": "113年度屏菸1936文化基地環境清潔維護工作",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "1m_to_3m",
+              "award_amount_public": 2990000.0,
+              "budget_amount_public": null,
+              "budget_tier": "low_budget",
+              "case_id": "111-096-0701P2",
+              "case_title_public": "歷史建築聯福磚窯廠修復工程規劃設計 (含因應計畫)及監造",
+              "year": 2022
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 118,
+              "reviewer_name_public": "黃國維",
+              "share": 0.1238
+            },
+            {
+              "case_count": 98,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.1028
+            },
+            {
+              "case_count": 89,
+              "reviewer_name_public": "江國豐",
+              "share": 0.0934
+            },
+            {
+              "case_count": 81,
+              "reviewer_name_public": "劉美淑",
+              "share": 0.085
+            },
+            {
+              "case_count": 74,
+              "reviewer_name_public": "王韻",
+              "share": 0.0776
+            },
+            {
+              "case_count": 71,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.0745
+            },
+            {
+              "case_count": 70,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0735
+            },
+            {
+              "case_count": 69,
+              "reviewer_name_public": "林洋助",
+              "share": 0.0724
+            },
+            {
+              "case_count": 56,
+              "reviewer_name_public": "侯政男",
+              "share": 0.0588
+            },
+            {
+              "case_count": 52,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.0546
+            }
+          ]
+        }
+      ],
+      "co_traveler_lift": [
+        {
+          "co_traveler_lift": 49.25,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0025,
+          "reviewer_name_public": "江建廷",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 24.625,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "彭瑞珍",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 24.625,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "方慧茹",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 19.7,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 2,
+          "high_minus_low": 0.25,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.25,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0127,
+          "reviewer_name_public": "黃佳慧",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": 16.4167,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0076,
+          "reviewer_name_public": "陳寬裕",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": 16.4167,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0076,
+          "reviewer_name_public": "吳茂盛",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 16.4167,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0076,
+          "reviewer_name_public": "張榮華",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 12.3125,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0102,
+          "reviewer_name_public": "劉子利",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 12.3125,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0102,
+          "reviewer_name_public": "吳俊翰",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 8.2083,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0152,
+          "reviewer_name_public": "何孟穎",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 7.0357,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 2,
+          "high_minus_low": 0.25,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.25,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0355,
+          "reviewer_name_public": "何秉燦",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": 5.1842,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 2,
+          "high_minus_low": -0.75,
+          "high_over_low": 0.25,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.25,
+          "p_given_pair_low_budget": 1.0,
+          "p_high_budget_baseline": 0.0482,
+          "reviewer_name_public": "王韻",
+          "share_in_pair_cases": 0.3
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "田昀仙",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 2,
+          "high_minus_low": 0.25,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.25,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "蔡昀真",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "丁亦真",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": -1.0,
+          "high_over_low": 0.0,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 1.0,
+          "p_high_budget_baseline": 0.0025,
+          "reviewer_name_public": "謝宜茜",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 0.0,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 0,
+          "high_minus_low": 0.0,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.0,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "郭一勤",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": null,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.125,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.125,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0,
+          "reviewer_name_public": "馬薇茜",
+          "share_in_pair_cases": 0.1
+        }
+      ],
+      "computed": true,
+      "full_panel_repeat_test": {
+        "cases_with_3plus_same_residual_reviewers": 0,
+        "cases_with_4plus_same_residual_reviewers": 0,
+        "exact_full_panel_repeat_count": 1,
+        "exact_residual_panel_repeat_count": 1,
+        "top_full_panel_signatures": [
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "丁亦真",
+              "吳明榮",
+              "王韻",
+              "莊世杰"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8100000.0,
+                "budget_amount_public": 8171000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B095-1130823-1B",
+                "case_title_public": "2024屏東表演藝術扎根推廣委託執行案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "2462eaff28fb1af0"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉子利",
+              "吳俊翰",
+              "吳明榮",
+              "張榮華",
+              "莊世杰"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 11340000.0,
+                "budget_amount_public": 11340000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B096-1140414-1A",
+                "case_title_public": "「奇幻大津」活動規劃與執行委託案",
+                "year": null
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "4472355893a18935"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳明榮",
+              "彭瑞珍",
+              "莊世杰",
+              "陳寬裕",
+              "黃佳慧"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 9710000.0,
+                "budget_amount_public": 9800000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B092-1130426-1A",
+                "case_title_public": "2024年半島世界歌謠祭系列活動統籌與執行委託案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "500eda6adfd1c06f"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何秉燦",
+              "吳明榮",
+              "方慧茹",
+              "莊世杰"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 7930000.0,
+                "budget_amount_public": 8000000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1130520-1A",
+                "case_title_public": "113年屏東鐵道文化觀光祭統籌與執行委託案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "6b32c972f5dcf814"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳明榮",
+              "王韻",
+              "莊世杰",
+              "謝宜茜"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 2930000.0,
+                "budget_amount_public": 3000000.0,
+                "budget_tier": "low_budget",
+                "case_id": "B092-1130620-1A",
+                "case_title_public": "2025勝利星村春節光環境與花藝佈置",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "9466850a7a8fd86c"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳明榮",
+              "田昀仙",
+              "莊世杰",
+              "郭一勤",
+              "陳寬裕"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 3550000.0,
+                "budget_amount_public": 3570000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "B095-1141007-1B",
+                "case_title_public": "屏東國際樂儀隊交流演出委託規劃與執行案",
+                "year": null
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "b70911d99b8bfbba"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何孟穎",
+              "吳明榮",
+              "王韻",
+              "莊世杰"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 7350000.0,
+                "budget_amount_public": 7500000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1130905-1B",
+                "case_title_public": "114年屏菸周年系列活動統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "0948591c895d2a82"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳明榮",
+              "田昀仙",
+              "莊世杰",
+              "馬薇茜"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8380000.0,
+                "budget_amount_public": 8440000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B095-1141008-2B",
+                "case_title_public": "2025屏東表演藝術扎根推廣委託執行案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "5501dd0f7c094284"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何秉燦",
+              "吳明榮",
+              "莊世杰",
+              "蔡昀真",
+              "黃佳慧"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 9160000.0,
+                "budget_amount_public": 9300000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1140519-2B",
+                "case_title_public": "114年屏東鐵道文化觀光祭統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "2348d70361646140"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳明榮",
+              "吳茂盛",
+              "江建廷",
+              "莊世杰",
+              "蔡昀真"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 10350000.0,
+                "budget_amount_public": 10500000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B092-1140414-1B",
+                "case_title_public": "2025年半島世界歌謠祭系列活動統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "023a5842423b3313"
+          }
+        ],
+        "top_residual_panel_signatures": [
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "丁亦真",
+              "王韻"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8100000.0,
+                "budget_amount_public": 8171000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B095-1130823-1B",
+                "case_title_public": "2024屏東表演藝術扎根推廣委託執行案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "09f69fcd77510168"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "劉子利",
+              "吳俊翰",
+              "張榮華"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 11340000.0,
+                "budget_amount_public": 11340000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B096-1140414-1A",
+                "case_title_public": "「奇幻大津」活動規劃與執行委託案",
+                "year": null
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "3818a7763c0faa83"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "彭瑞珍",
+              "陳寬裕",
+              "黃佳慧"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 9710000.0,
+                "budget_amount_public": 9800000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B092-1130426-1A",
+                "case_title_public": "2024年半島世界歌謠祭系列活動統籌與執行委託案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "921de12cecb6343e"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何秉燦",
+              "方慧茹"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 7930000.0,
+                "budget_amount_public": 8000000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1130520-1A",
+                "case_title_public": "113年屏東鐵道文化觀光祭統籌與執行委託案",
+                "year": 2024
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "e9700068d5511728"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "王韻",
+              "謝宜茜"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 2930000.0,
+                "budget_amount_public": 3000000.0,
+                "budget_tier": "low_budget",
+                "case_id": "B092-1130620-1A",
+                "case_title_public": "2025勝利星村春節光環境與花藝佈置",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "a498a85815fd3fb9"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "田昀仙",
+              "郭一勤",
+              "陳寬裕"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 3550000.0,
+                "budget_amount_public": 3570000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "B095-1141007-1B",
+                "case_title_public": "屏東國際樂儀隊交流演出委託規劃與執行案",
+                "year": null
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "bf4a1179a55815d9"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何孟穎",
+              "王韻"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 7350000.0,
+                "budget_amount_public": 7500000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1130905-1B",
+                "case_title_public": "114年屏菸周年系列活動統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "621f7c1872fe0332"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "田昀仙",
+              "馬薇茜"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8380000.0,
+                "budget_amount_public": 8440000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B095-1141008-2B",
+                "case_title_public": "2025屏東表演藝術扎根推廣委託執行案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "84c0d80c4ef63134"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "何秉燦",
+              "蔡昀真",
+              "黃佳慧"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 9160000.0,
+                "budget_amount_public": 9300000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B094-1140519-2B",
+                "case_title_public": "114年屏東鐵道文化觀光祭統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "c29b2da7cef49edb"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳茂盛",
+              "江建廷",
+              "蔡昀真"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 10350000.0,
+                "budget_amount_public": 10500000.0,
+                "budget_tier": "high_budget",
+                "case_id": "B092-1140414-1B",
+                "case_title_public": "2025年半島世界歌謠祭系列活動統籌與執行委託案",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "9dd04bdee81ea078"
+          }
+        ]
+      },
+      "interpretation": {
+        "baseline_comparison_available": true,
+        "expert_pair_defense_status": "pair_only_plausible",
+        "high_budget_layer_concentration_detected": false,
+        "pair_only_explanation_supported": true,
+        "residual_panel_concentration_detected": false
+      },
+      "known_signal": "high budget lift 7.69x",
+      "pair_case_surface": {
+        "amount_basis_available_count": 10,
+        "amount_unavailable_pair_cases": 0,
+        "distinct_agencies": 1,
+        "distinct_years": 2,
+        "high_budget_pair_cases": 8,
+        "low_budget_pair_cases": 1,
+        "mid_budget_pair_cases": 1,
+        "pair_name": "吳明榮 × 莊世杰",
+        "total_pair_cases": 10
+      },
+      "pair_name": "吳明榮 × 莊世杰",
+      "panel_snapshot_samples": [],
+      "permutation_reference": {
+        "empirical_p_mean_residual_jaccard": 0.0002,
+        "empirical_p_top_residual_reviewer_share": 1.0,
+        "observed_mean_residual_jaccard": 0.0467,
+        "observed_top_residual_reviewer_share": 0.1,
+        "permutation_status": "run",
+        "runs": 5000,
+        "seed": 20260531,
+        "simulated_mean_residual_jaccard_median": 0.0044,
+        "simulated_top_residual_reviewer_share_median": 0.2
+      },
+      "residual_overlap_metrics": {
+        "max_residual_jaccard": 0.3333,
+        "mean_residual_jaccard": 0.0467,
+        "median_residual_jaccard": 0.0,
+        "most_common_residual_signature_count": 1,
+        "most_common_residual_signature_share": 0.1,
+        "residual_entropy": 3.3219,
+        "residual_signature_unique_count": 10,
+        "top_residual_reviewers": [
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 2,
+            "low_budget_count": 1,
+            "reviewer_name_public": "王韻",
+            "share_in_pair_cases": 0.3
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "陳寬裕",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "黃佳慧",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "何秉燦",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "田昀仙",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "蔡昀真",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "丁亦真",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張榮華",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "吳俊翰",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "劉子利",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "彭瑞珍",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "方慧茹",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "謝宜茜",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "郭一勤",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "何孟穎",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "馬薇茜",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "江建廷",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "吳茂盛",
+            "share_in_pair_cases": 0.1
+          }
+        ]
+      },
+      "residual_panel_rows": [
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 9710000.0,
+          "budget_amount_public": 9800000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B092-1130426-1A",
+          "case_title_public": "2024年半島世界歌謠祭系列活動統籌與執行委託案",
+          "full_panel_signature_hash_public": "500eda6adfd1c06f",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "彭瑞珍",
+            "陳寬裕",
+            "黃佳慧"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "921de12cecb6343e",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 2930000.0,
+          "budget_amount_public": 3000000.0,
+          "budget_tier": "low_budget",
+          "case_id": "B092-1130620-1A",
+          "case_title_public": "2025勝利星村春節光環境與花藝佈置",
+          "full_panel_signature_hash_public": "9466850a7a8fd86c",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "王韻",
+            "謝宜茜"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "a498a85815fd3fb9",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 10350000.0,
+          "budget_amount_public": 10500000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B092-1140414-1B",
+          "case_title_public": "2025年半島世界歌謠祭系列活動統籌與執行委託案",
+          "full_panel_signature_hash_public": "023a5842423b3313",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "吳茂盛",
+            "江建廷",
+            "蔡昀真"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "9dd04bdee81ea078",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 7930000.0,
+          "budget_amount_public": 8000000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B094-1130520-1A",
+          "case_title_public": "113年屏東鐵道文化觀光祭統籌與執行委託案",
+          "full_panel_signature_hash_public": "6b32c972f5dcf814",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "何秉燦",
+            "方慧茹"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "e9700068d5511728",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 7350000.0,
+          "budget_amount_public": 7500000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B094-1130905-1B",
+          "case_title_public": "114年屏菸周年系列活動統籌與執行委託案",
+          "full_panel_signature_hash_public": "0948591c895d2a82",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "何孟穎",
+            "王韻"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "621f7c1872fe0332",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 9160000.0,
+          "budget_amount_public": 9300000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B094-1140519-2B",
+          "case_title_public": "114年屏東鐵道文化觀光祭統籌與執行委託案",
+          "full_panel_signature_hash_public": "2348d70361646140",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "何秉燦",
+            "蔡昀真",
+            "黃佳慧"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "c29b2da7cef49edb",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 8100000.0,
+          "budget_amount_public": 8171000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B095-1130823-1B",
+          "case_title_public": "2024屏東表演藝術扎根推廣委託執行案",
+          "full_panel_signature_hash_public": "2462eaff28fb1af0",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "丁亦真",
+            "王韻"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "09f69fcd77510168",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 3550000.0,
+          "budget_amount_public": 3570000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "B095-1141007-1B",
+          "case_title_public": "屏東國際樂儀隊交流演出委託規劃與執行案",
+          "full_panel_signature_hash_public": "b70911d99b8bfbba",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "田昀仙",
+            "郭一勤",
+            "陳寬裕"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "bf4a1179a55815d9",
+          "target_pair_present": true,
+          "year": null
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 8380000.0,
+          "budget_amount_public": 8440000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B095-1141008-2B",
+          "case_title_public": "2025屏東表演藝術扎根推廣委託執行案",
+          "full_panel_signature_hash_public": "5501dd0f7c094284",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "田昀仙",
+            "馬薇茜"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "84c0d80c4ef63134",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 11340000.0,
+          "budget_amount_public": 11340000.0,
+          "budget_tier": "high_budget",
+          "case_id": "B096-1140414-1A",
+          "case_title_public": "「奇幻大津」活動規劃與執行委託案",
+          "full_panel_signature_hash_public": "4472355893a18935",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "劉子利",
+            "吳俊翰",
+            "張榮華"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "3818a7763c0faa83",
+          "target_pair_present": true,
+          "year": null
+        }
+      ],
+      "reviewer_a": "吳明榮",
+      "reviewer_b": "莊世杰",
+      "signal_role_public": "budget_layer_signal",
+      "source_label": "budget-stratified high-budget pair",
+      "survival_layer_public": "budget_layer"
+    },
+    {
+      "baselines": [
+        {
+          "baseline_name": "same high-budget tier",
+          "case_count": 392,
+          "match_note": "all high-budget cases excluding target pair cases",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 12500000.0,
+              "budget_amount_public": 12530000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1140701-1",
+              "case_title_public": "屏東縣東港鹽埔交通船航道清理工程",
+              "year": 2025
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 86,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.2194
+            },
+            {
+              "case_count": 68,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1735
+            },
+            {
+              "case_count": 66,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1684
+            },
+            {
+              "case_count": 60,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.1531
+            },
+            {
+              "case_count": 49,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.125
+            },
+            {
+              "case_count": 42,
+              "reviewer_name_public": "李政任",
+              "share": 0.1071
+            },
+            {
+              "case_count": 40,
+              "reviewer_name_public": "江國豐",
+              "share": 0.102
+            },
+            {
+              "case_count": 38,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.0969
+            },
+            {
+              "case_count": 37,
+              "reviewer_name_public": "黃有成",
+              "share": 0.0944
+            },
+            {
+              "case_count": 35,
+              "reviewer_name_public": "李志峰",
+              "share": 0.0893
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched agency/year",
+          "case_count": 777,
+          "match_note": "same agency and year",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 6800000.0,
+              "budget_amount_public": 6802000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "004-C1130304-1",
+              "case_title_public": "113年度屏東縣客運碼頭旅運安全設施改善計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 120,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.1544
+            },
+            {
+              "case_count": 84,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1081
+            },
+            {
+              "case_count": 81,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.1042
+            },
+            {
+              "case_count": 69,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.0888
+            },
+            {
+              "case_count": 63,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.0811
+            },
+            {
+              "case_count": 60,
+              "reviewer_name_public": "江國豐",
+              "share": 0.0772
+            },
+            {
+              "case_count": 58,
+              "reviewer_name_public": "王韻",
+              "share": 0.0746
+            },
+            {
+              "case_count": 56,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0721
+            },
+            {
+              "case_count": 52,
+              "reviewer_name_public": "謝玉興",
+              "share": 0.0669
+            },
+            {
+              "case_count": 49,
+              "reviewer_name_public": "李志峰",
+              "share": 0.0631
+            }
+          ]
+        },
+        {
+          "baseline_name": "matched amount/procurement",
+          "case_count": 1163,
+          "match_note": "same amount tier and procurement method",
+          "sample_cases": [
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 32896400.0,
+              "budget_amount_public": 32896400.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130111-3",
+              "case_title_public": "出火地質公園優化工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "3m_to_7m",
+              "award_amount_public": 6800000.0,
+              "budget_amount_public": 6802000.0,
+              "budget_tier": "mid_budget",
+              "case_id": "004-C1130304-1",
+              "case_title_public": "113年度屏東縣客運碼頭旅運安全設施改善計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "15m_plus",
+              "award_amount_public": 155829423.0,
+              "budget_amount_public": 155829423.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1130918-1",
+              "case_title_public": "鹽埔漁港貨運碼頭興建工程",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 13310000.0,
+              "budget_amount_public": 13319000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131022-1",
+              "case_title_public": "糖鐵自行車道周邊植栽綠美化計畫",
+              "year": 2024
+            },
+            {
+              "agency_public": "屏東縣政府",
+              "amount_bucket": "7m_to_15m",
+              "award_amount_public": 8800000.0,
+              "budget_amount_public": 8800000.0,
+              "budget_tier": "high_budget",
+              "case_id": "004-C1131205-2",
+              "case_title_public": "溫泉公園景觀步道點亮及設施改善工程",
+              "year": 2024
+            }
+          ],
+          "status": "available",
+          "top_reviewers": [
+            {
+              "case_count": 145,
+              "reviewer_name_public": "林宗凱",
+              "share": 0.1247
+            },
+            {
+              "case_count": 137,
+              "reviewer_name_public": "林洋助",
+              "share": 0.1178
+            },
+            {
+              "case_count": 113,
+              "reviewer_name_public": "吳明榮",
+              "share": 0.0972
+            },
+            {
+              "case_count": 113,
+              "reviewer_name_public": "陳世榮",
+              "share": 0.0972
+            },
+            {
+              "case_count": 112,
+              "reviewer_name_public": "鄭永裕",
+              "share": 0.0963
+            },
+            {
+              "case_count": 111,
+              "reviewer_name_public": "薛東裕",
+              "share": 0.0954
+            },
+            {
+              "case_count": 98,
+              "reviewer_name_public": "江國豐",
+              "share": 0.0843
+            },
+            {
+              "case_count": 82,
+              "reviewer_name_public": "劉美淑",
+              "share": 0.0705
+            },
+            {
+              "case_count": 77,
+              "reviewer_name_public": "王韻",
+              "share": 0.0662
+            },
+            {
+              "case_count": 71,
+              "reviewer_name_public": "李政任",
+              "share": 0.061
+            }
+          ]
+        }
+      ],
+      "co_traveler_lift": [
+        {
+          "co_traveler_lift": 78.4,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 2,
+          "high_minus_low": 0.2,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.2,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0026,
+          "reviewer_name_public": "龔旭陽",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 58.8,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 3,
+          "high_minus_low": 0.3,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.3,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "陳志鶴",
+          "share_in_pair_cases": 0.15
+        },
+        {
+          "co_traveler_lift": 26.1333,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 2,
+          "high_minus_low": 0.2,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.2,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0077,
+          "reviewer_name_public": "張桂鳳",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 19.6,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 1,
+          "high_minus_low": -0.15,
+          "high_over_low": 0.4,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.25,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "張琬菁",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 19.6,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0051,
+          "reviewer_name_public": "李龍魁",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 11.2,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 2,
+          "high_minus_low": 0.2,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.2,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0179,
+          "reviewer_name_public": "王裕民",
+          "share_in_pair_cases": 0.15
+        },
+        {
+          "co_traveler_lift": 9.8,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0102,
+          "reviewer_name_public": "梁榮達",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 7.84,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 1,
+          "high_minus_low": -0.15,
+          "high_over_low": 0.4,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.25,
+          "p_high_budget_baseline": 0.0128,
+          "reviewer_name_public": "傅信維",
+          "share_in_pair_cases": 0.15
+        },
+        {
+          "co_traveler_lift": 7.84,
+          "count_in_pair_cases": 3,
+          "high_budget_count": 1,
+          "high_minus_low": -0.15,
+          "high_over_low": 0.4,
+          "low_budget_count": 1,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.25,
+          "p_high_budget_baseline": 0.0128,
+          "reviewer_name_public": "胡茂榮",
+          "share_in_pair_cases": 0.15
+        },
+        {
+          "co_traveler_lift": 7.84,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0128,
+          "reviewer_name_public": "藍信男",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 4.9,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0204,
+          "reviewer_name_public": "葉益志",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 4.9,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0204,
+          "reviewer_name_public": "蔡璧光",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 4.3556,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.023,
+          "reviewer_name_public": "鄭哲英",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 3.92,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0255,
+          "reviewer_name_public": "林呈俊",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 3.36,
+          "count_in_pair_cases": 4,
+          "high_budget_count": 3,
+          "high_minus_low": 0.3,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.3,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0893,
+          "reviewer_name_public": "李志峰",
+          "share_in_pair_cases": 0.2
+        },
+        {
+          "co_traveler_lift": 3.0154,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0332,
+          "reviewer_name_public": "唐琦",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 2.8,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0357,
+          "reviewer_name_public": "丁澈士",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 2.6133,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0383,
+          "reviewer_name_public": "周權英",
+          "share_in_pair_cases": 0.05
+        },
+        {
+          "co_traveler_lift": 1.4519,
+          "count_in_pair_cases": 2,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.0689,
+          "reviewer_name_public": "陳明吉",
+          "share_in_pair_cases": 0.1
+        },
+        {
+          "co_traveler_lift": 0.9333,
+          "count_in_pair_cases": 1,
+          "high_budget_count": 1,
+          "high_minus_low": 0.1,
+          "high_over_low": null,
+          "low_budget_count": 0,
+          "p_given_pair_high_budget": 0.1,
+          "p_given_pair_low_budget": 0.0,
+          "p_high_budget_baseline": 0.1071,
+          "reviewer_name_public": "李政任",
+          "share_in_pair_cases": 0.05
+        }
+      ],
+      "computed": true,
+      "full_panel_repeat_test": {
+        "cases_with_3plus_same_residual_reviewers": 0,
+        "cases_with_4plus_same_residual_reviewers": 0,
+        "exact_full_panel_repeat_count": 2,
+        "exact_residual_panel_repeat_count": 2,
+        "top_full_panel_signatures": [
+          {
+            "case_count": 2,
+            "panel_names_public_capped": [
+              "傅信維",
+              "張恭文",
+              "張琬菁",
+              "黃國維"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 1760000.0,
+                "budget_amount_public": 1784626.0,
+                "budget_tier": "low_budget",
+                "case_id": "C1140424-1",
+                "case_title_public": "2025馬來西亞吉隆坡觀光推廣活動",
+                "year": 2025
+              },
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8800000.0,
+                "budget_amount_public": 8800000.0,
+                "budget_tier": "high_budget",
+                "case_id": "C1140703-4",
+                "case_title_public": "2025-2026屏東四重溪溫泉季系列活動整合行銷推廣",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "5d269a042cfc5337"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "李一民",
+              "王逸峰",
+              "蔡玲瓏",
+              "黃國維"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 5950000.0,
+                "budget_amount_public": 6000000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "C1141223-1",
+                "case_title_public": "2026鹽琉趴",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "35085a40bf67e3b7"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "鄭哲英",
+              "陳志鶴",
+              "黃國維",
+              "龔旭陽"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 99300000.0,
+                "budget_amount_public": 99344000.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1140620-03",
+                "case_title_public": "114-116年屏東縣太陽能電子紙及集中式站牌建置案",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "52f9912f86a75440"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "李龍魁",
+              "林雅敏",
+              "陳志鶴",
+              "黃國維",
+              "龔旭陽"
+            ],
+            "panel_size": 6,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 29994000.0,
+                "budget_amount_public": 29994000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1150210-1",
+                "case_title_public": "屏東縣CMS資訊建置工程",
+                "year": 2026
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "f9df645e95f419d1"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳守從",
+              "張恭文",
+              "胡佩芸",
+              "莊世杰",
+              "黃國維"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2670000.0,
+                "budget_amount_public": 2700000.0,
+                "budget_tier": "low_budget",
+                "case_id": "C1141223-3",
+                "case_title_public": "2026屏東縣觀光形象影片拍攝行銷案",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "0764ef1c6790307f"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "周碩芳",
+              "張恭文",
+              "李志峰",
+              "王裕民",
+              "陳明吉",
+              "黃國維"
+            ],
+            "panel_size": 6,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 4000000.0,
+                "budget_amount_public": 4030000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "004-C1140625-1",
+                "case_title_public": "114年度客運碼頭旅運安全設施改善計畫",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "3d8a355f8c217df6"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "李志峰",
+              "李東泰",
+              "薛東裕",
+              "陳志鶴",
+              "黃國維"
+            ],
+            "panel_size": 6,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 100220000.0,
+                "budget_amount_public": 100224856.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1150108-1",
+                "case_title_public": "墾丁轉運站建置工程",
+                "year": 2026
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "d825e011b70cea91"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "張桂鳳",
+              "李政任",
+              "胡茂榮",
+              "黃國維"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 338500000.0,
+                "budget_amount_public": 338560439.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141030-1",
+                "case_title_public": "屏東北野公園新建工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "cc4598e4f3b8c3f4"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張恭文",
+              "張桂鳳",
+              "李志峰",
+              "葉益志",
+              "黃國維"
+            ],
+            "panel_size": 5,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 59888000.0,
+                "budget_amount_public": 59964000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141017-1",
+                "case_title_public": "內埔旅運站建置工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "a34fe6eb844cc7e5"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "丁澈士",
+              "張恭文",
+              "李志峰",
+              "蔡璧光",
+              "陳明吉",
+              "黃國維"
+            ],
+            "panel_size": 6,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 164000000.0,
+                "budget_amount_public": 164000000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141003-1",
+                "case_title_public": "滿州鄉港口吊橋改建工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "b9043ac68661664e"
+          }
+        ],
+        "top_residual_panel_signatures": [
+          {
+            "case_count": 2,
+            "panel_names_public_capped": [
+              "傅信維",
+              "張琬菁"
+            ],
+            "panel_size": 2,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 1760000.0,
+                "budget_amount_public": 1784626.0,
+                "budget_tier": "low_budget",
+                "case_id": "C1140424-1",
+                "case_title_public": "2025馬來西亞吉隆坡觀光推廣活動",
+                "year": 2025
+              },
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "7m_to_15m",
+                "award_amount_public": 8800000.0,
+                "budget_amount_public": 8800000.0,
+                "budget_tier": "high_budget",
+                "case_id": "C1140703-4",
+                "case_title_public": "2025-2026屏東四重溪溫泉季系列活動整合行銷推廣",
+                "year": 2025
+              }
+            ],
+            "share": 0.1,
+            "signature_hash_public": "ee1cc020e323331e"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李一民",
+              "王逸峰",
+              "蔡玲瓏"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 5950000.0,
+                "budget_amount_public": 6000000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "C1141223-1",
+                "case_title_public": "2026鹽琉趴",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "fb751123a7051e90"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "鄭哲英",
+              "陳志鶴",
+              "龔旭陽"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 99300000.0,
+                "budget_amount_public": 99344000.0,
+                "budget_tier": "high_budget",
+                "case_id": "E1140620-03",
+                "case_title_public": "114-116年屏東縣太陽能電子紙及集中式站牌建置案",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "340bf2a0fec68c70"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李龍魁",
+              "林雅敏",
+              "陳志鶴",
+              "龔旭陽"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 29994000.0,
+                "budget_amount_public": 29994000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1150210-1",
+                "case_title_public": "屏東縣CMS資訊建置工程",
+                "year": 2026
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "733f511cb0cdb4ad"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "吳守從",
+              "胡佩芸",
+              "莊世杰"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "1m_to_3m",
+                "award_amount_public": 2670000.0,
+                "budget_amount_public": 2700000.0,
+                "budget_tier": "low_budget",
+                "case_id": "C1141223-3",
+                "case_title_public": "2026屏東縣觀光形象影片拍攝行銷案",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "3490340a6cfb89c0"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "周碩芳",
+              "李志峰",
+              "王裕民",
+              "陳明吉"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "3m_to_7m",
+                "award_amount_public": 4000000.0,
+                "budget_amount_public": 4030000.0,
+                "budget_tier": "mid_budget",
+                "case_id": "004-C1140625-1",
+                "case_title_public": "114年度客運碼頭旅運安全設施改善計畫",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "c80ca7e8441a3583"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "李志峰",
+              "李東泰",
+              "薛東裕",
+              "陳志鶴"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 100220000.0,
+                "budget_amount_public": 100224856.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1150108-1",
+                "case_title_public": "墾丁轉運站建置工程",
+                "year": 2026
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "02c753b060bf296b"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張桂鳳",
+              "李政任",
+              "胡茂榮"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 338500000.0,
+                "budget_amount_public": 338560439.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141030-1",
+                "case_title_public": "屏東北野公園新建工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "9b794f9edffe9c7e"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "張桂鳳",
+              "李志峰",
+              "葉益志"
+            ],
+            "panel_size": 3,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 59888000.0,
+                "budget_amount_public": 59964000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141017-1",
+                "case_title_public": "內埔旅運站建置工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "3d5998d136ae7302"
+          },
+          {
+            "case_count": 1,
+            "panel_names_public_capped": [
+              "丁澈士",
+              "李志峰",
+              "蔡璧光",
+              "陳明吉"
+            ],
+            "panel_size": 4,
+            "sample_cases": [
+              {
+                "agency_public": "屏東縣政府",
+                "amount_bucket": "15m_plus",
+                "award_amount_public": 164000000.0,
+                "budget_amount_public": 164000000.0,
+                "budget_tier": "high_budget",
+                "case_id": "004-C1141003-1",
+                "case_title_public": "滿州鄉港口吊橋改建工程",
+                "year": 2025
+              }
+            ],
+            "share": 0.05,
+            "signature_hash_public": "4bcc3a994ab3c52f"
+          }
+        ]
+      },
+      "interpretation": {
+        "baseline_comparison_available": true,
+        "expert_pair_defense_status": "high_budget_residual_concentration",
+        "high_budget_layer_concentration_detected": true,
+        "pair_only_explanation_supported": false,
+        "residual_panel_concentration_detected": false
+      },
+      "known_signal": "high budget lift 8.14x",
+      "pair_case_surface": {
+        "amount_basis_available_count": 20,
+        "amount_unavailable_pair_cases": 0,
+        "distinct_agencies": 1,
+        "distinct_years": 3,
+        "high_budget_pair_cases": 10,
+        "low_budget_pair_cases": 4,
+        "mid_budget_pair_cases": 6,
+        "pair_name": "張恭文 × 黃國維",
+        "total_pair_cases": 20
+      },
+      "pair_name": "張恭文 × 黃國維",
+      "panel_snapshot_samples": [
+        {
+          "agency_public": "屏東縣政府",
+          "award_amount_public": 100220000.0,
+          "budget_amount_public": 100224856.0,
+          "budget_tier": "high_budget",
+          "case_id_public": "004-C1150108-1",
+          "case_title_public": "墾丁轉運站建置工程",
+          "full_panel_names_public": [
+            "張恭文",
+            "李志峰",
+            "李東泰",
+            "薛東裕",
+            "陳志鶴",
+            "黃國維"
+          ],
+          "full_panel_size": 6,
+          "repeated_residual_names_public": [
+            "李志峰",
+            "陳志鶴"
+          ],
+          "residual_overlap_note_public": "Residual panel member repeats across target-pair cases. 扣除目標 pair 後，剩餘席次中仍有成員跨案件重複出現。",
+          "residual_panel_names_public": [
+            "李志峰",
+            "李東泰",
+            "薛東裕",
+            "陳志鶴"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "02c753b060bf296b",
+          "target_pair_names_public": [
+            "張恭文",
+            "黃國維"
+          ],
+          "year_public": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "award_amount_public": 164000000.0,
+          "budget_amount_public": 164000000.0,
+          "budget_tier": "high_budget",
+          "case_id_public": "004-C1141003-1",
+          "case_title_public": "滿州鄉港口吊橋改建工程",
+          "full_panel_names_public": [
+            "丁澈士",
+            "張恭文",
+            "李志峰",
+            "蔡璧光",
+            "陳明吉",
+            "黃國維"
+          ],
+          "full_panel_size": 6,
+          "repeated_residual_names_public": [
+            "李志峰",
+            "陳明吉"
+          ],
+          "residual_overlap_note_public": "Residual panel member repeats across target-pair cases. 扣除目標 pair 後，剩餘席次中仍有成員跨案件重複出現。",
+          "residual_panel_names_public": [
+            "丁澈士",
+            "李志峰",
+            "蔡璧光",
+            "陳明吉"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "4bcc3a994ab3c52f",
+          "target_pair_names_public": [
+            "張恭文",
+            "黃國維"
+          ],
+          "year_public": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "award_amount_public": 29994000.0,
+          "budget_amount_public": 29994000.0,
+          "budget_tier": "high_budget",
+          "case_id_public": "004-C1150210-1",
+          "case_title_public": "屏東縣CMS資訊建置工程",
+          "full_panel_names_public": [
+            "張恭文",
+            "李龍魁",
+            "林雅敏",
+            "陳志鶴",
+            "黃國維",
+            "龔旭陽"
+          ],
+          "full_panel_size": 6,
+          "repeated_residual_names_public": [
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_overlap_note_public": "Residual panel member repeats across target-pair cases. 扣除目標 pair 後，剩餘席次中仍有成員跨案件重複出現。",
+          "residual_panel_names_public": [
+            "李龍魁",
+            "林雅敏",
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "733f511cb0cdb4ad",
+          "target_pair_names_public": [
+            "張恭文",
+            "黃國維"
+          ],
+          "year_public": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "award_amount_public": 59888000.0,
+          "budget_amount_public": 59964000.0,
+          "budget_tier": "high_budget",
+          "case_id_public": "004-C1141017-1",
+          "case_title_public": "內埔旅運站建置工程",
+          "full_panel_names_public": [
+            "張恭文",
+            "張桂鳳",
+            "李志峰",
+            "葉益志",
+            "黃國維"
+          ],
+          "full_panel_size": 5,
+          "repeated_residual_names_public": [
+            "李志峰",
+            "張桂鳳"
+          ],
+          "residual_overlap_note_public": "Residual panel member repeats across target-pair cases. 扣除目標 pair 後，剩餘席次中仍有成員跨案件重複出現。",
+          "residual_panel_names_public": [
+            "張桂鳳",
+            "李志峰",
+            "葉益志"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "3d5998d136ae7302",
+          "target_pair_names_public": [
+            "張恭文",
+            "黃國維"
+          ],
+          "year_public": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "award_amount_public": 99300000.0,
+          "budget_amount_public": 99344000.0,
+          "budget_tier": "high_budget",
+          "case_id_public": "E1140620-03",
+          "case_title_public": "114-116年屏東縣太陽能電子紙及集中式站牌建置案",
+          "full_panel_names_public": [
+            "張恭文",
+            "鄭哲英",
+            "陳志鶴",
+            "黃國維",
+            "龔旭陽"
+          ],
+          "full_panel_size": 5,
+          "repeated_residual_names_public": [
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_overlap_note_public": "Residual panel member repeats across target-pair cases. 扣除目標 pair 後，剩餘席次中仍有成員跨案件重複出現。",
+          "residual_panel_names_public": [
+            "鄭哲英",
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "340bf2a0fec68c70",
+          "target_pair_names_public": [
+            "張恭文",
+            "黃國維"
+          ],
+          "year_public": 2025
+        }
+      ],
+      "permutation_reference": {
+        "empirical_p_mean_residual_jaccard": 0.0002,
+        "empirical_p_top_residual_reviewer_share": 0.9666,
+        "observed_mean_residual_jaccard": 0.0309,
+        "observed_top_residual_reviewer_share": 0.1,
+        "permutation_status": "run",
+        "runs": 5000,
+        "seed": 20260531,
+        "simulated_mean_residual_jaccard_median": 0.003,
+        "simulated_top_residual_reviewer_share_median": 0.1
+      },
+      "residual_overlap_metrics": {
+        "max_residual_jaccard": 1.0,
+        "mean_residual_jaccard": 0.0309,
+        "median_residual_jaccard": 0.0,
+        "most_common_residual_signature_count": 2,
+        "most_common_residual_signature_share": 0.1,
+        "residual_entropy": 4.2219,
+        "residual_signature_unique_count": 19,
+        "top_residual_reviewers": [
+          {
+            "count_in_pair_cases": 4,
+            "high_budget_count": 3,
+            "low_budget_count": 0,
+            "reviewer_name_public": "李志峰",
+            "share_in_pair_cases": 0.2
+          },
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 3,
+            "low_budget_count": 0,
+            "reviewer_name_public": "陳志鶴",
+            "share_in_pair_cases": 0.15
+          },
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "王裕民",
+            "share_in_pair_cases": 0.15
+          },
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 1,
+            "low_budget_count": 1,
+            "reviewer_name_public": "胡茂榮",
+            "share_in_pair_cases": 0.15
+          },
+          {
+            "count_in_pair_cases": 3,
+            "high_budget_count": 1,
+            "low_budget_count": 1,
+            "reviewer_name_public": "傅信維",
+            "share_in_pair_cases": 0.15
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "蔡玲瓏",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "李一民",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "王逸峰",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "龔旭陽",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 2,
+            "reviewer_name_public": "吳守從",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "莊世杰",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "陳明吉",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 2,
+            "low_budget_count": 0,
+            "reviewer_name_public": "張桂鳳",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 2,
+            "high_budget_count": 1,
+            "low_budget_count": 1,
+            "reviewer_name_public": "張琬菁",
+            "share_in_pair_cases": 0.1
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "鄭哲英",
+            "share_in_pair_cases": 0.05
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "李龍魁",
+            "share_in_pair_cases": 0.05
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "林雅敏",
+            "share_in_pair_cases": 0.05
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 1,
+            "reviewer_name_public": "胡佩芸",
+            "share_in_pair_cases": 0.05
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 0,
+            "low_budget_count": 0,
+            "reviewer_name_public": "周碩芳",
+            "share_in_pair_cases": 0.05
+          },
+          {
+            "count_in_pair_cases": 1,
+            "high_budget_count": 1,
+            "low_budget_count": 0,
+            "reviewer_name_public": "李東泰",
+            "share_in_pair_cases": 0.05
+          }
+        ]
+      },
+      "residual_panel_rows": [
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 13200000.0,
+          "budget_amount_public": 13224925.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1140421-1",
+          "case_title_public": "水門客運轉運站站體空間再造屋頂防水改善與周邊交通設施增設工程",
+          "full_panel_signature_hash_public": "dc18f4324cf0441e",
+          "full_panel_size": 7,
+          "residual_panel_names_public": [
+            "周權英",
+            "林呈俊",
+            "王裕民",
+            "藍信男",
+            "陳世榮"
+          ],
+          "residual_panel_size": 5,
+          "residual_signature_hash_public": "427a152122368e70",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 4000000.0,
+          "budget_amount_public": 4030000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "004-C1140625-1",
+          "case_title_public": "114年度客運碼頭旅運安全設施改善計畫",
+          "full_panel_signature_hash_public": "3d8a355f8c217df6",
+          "full_panel_size": 6,
+          "residual_panel_names_public": [
+            "周碩芳",
+            "李志峰",
+            "王裕民",
+            "陳明吉"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "c80ca7e8441a3583",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 7220000.0,
+          "budget_amount_public": 7225331.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1140702-2",
+          "case_title_public": "落山風風景特定區車城水岸及環境營造計畫(三期)-設施優化工程",
+          "full_panel_signature_hash_public": "7e8a6a9a6da57da9",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "唐琦",
+            "王裕民"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "3a59a64c7fb5deb1",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 164000000.0,
+          "budget_amount_public": 164000000.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1141003-1",
+          "case_title_public": "滿州鄉港口吊橋改建工程",
+          "full_panel_signature_hash_public": "b9043ac68661664e",
+          "full_panel_size": 6,
+          "residual_panel_names_public": [
+            "丁澈士",
+            "李志峰",
+            "蔡璧光",
+            "陳明吉"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "4bcc3a994ab3c52f",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 59888000.0,
+          "budget_amount_public": 59964000.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1141017-1",
+          "case_title_public": "內埔旅運站建置工程",
+          "full_panel_signature_hash_public": "a34fe6eb844cc7e5",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "張桂鳳",
+            "李志峰",
+            "葉益志"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "3d5998d136ae7302",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 338500000.0,
+          "budget_amount_public": 338560439.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1141030-1",
+          "case_title_public": "屏東北野公園新建工程",
+          "full_panel_signature_hash_public": "cc4598e4f3b8c3f4",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "張桂鳳",
+            "李政任",
+            "胡茂榮"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "9b794f9edffe9c7e",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 100220000.0,
+          "budget_amount_public": 100224856.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1150108-1",
+          "case_title_public": "墾丁轉運站建置工程",
+          "full_panel_signature_hash_public": "d825e011b70cea91",
+          "full_panel_size": 6,
+          "residual_panel_names_public": [
+            "李志峰",
+            "李東泰",
+            "薛東裕",
+            "陳志鶴"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "02c753b060bf296b",
+          "target_pair_present": true,
+          "year": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 29994000.0,
+          "budget_amount_public": 29994000.0,
+          "budget_tier": "high_budget",
+          "case_id": "004-C1150210-1",
+          "case_title_public": "屏東縣CMS資訊建置工程",
+          "full_panel_signature_hash_public": "f9df645e95f419d1",
+          "full_panel_size": 6,
+          "residual_panel_names_public": [
+            "李龍魁",
+            "林雅敏",
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "733f511cb0cdb4ad",
+          "target_pair_present": true,
+          "year": 2026
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 5400000.0,
+          "budget_amount_public": 5500000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "C1130620-1",
+          "case_title_public": "屏東海洋嘉年華-海洋共融共榮計畫",
+          "full_panel_signature_hash_public": "c7e85cf4d7814c70",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "王逸峰",
+            "翁守德"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "e4f5c6e50d3cc3ad",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 4500000.0,
+          "budget_amount_public": 4500000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "C1130904-1",
+          "case_title_public": "屏東縣多媒體數位化道路交通安全執行計畫",
+          "full_panel_signature_hash_public": "f94a4aed8fcecc0b",
+          "full_panel_size": 6,
+          "residual_panel_names_public": [
+            "廖俊雄",
+            "張俊陽",
+            "林佐鼎",
+            "蔡壁光"
+          ],
+          "residual_panel_size": 4,
+          "residual_signature_hash_public": "7c7186570b05fa40",
+          "target_pair_present": true,
+          "year": 2024
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 4950000.0,
+          "budget_amount_public": 5000000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "C1140113-1",
+          "case_title_public": "「恆春建城150週年-深度走讀恆春半島推廣活動」勞務採購案",
+          "full_panel_signature_hash_public": "0eb7924e5860c780",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "李一民",
+            "江建廷",
+            "莊世杰"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "b36f716a1ebec9d1",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 2970000.0,
+          "budget_amount_public": 2993080.0,
+          "budget_tier": "low_budget",
+          "case_id": "C1140304-2",
+          "case_title_public": "2025韓國首爾觀光推廣活動",
+          "full_panel_signature_hash_public": "cb0d4d3a779af7d7",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "吳守從",
+            "蔡玲瓏"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "2a41ae65c066fdb8",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 2990000.0,
+          "budget_amount_public": 3000000.0,
+          "budget_tier": "low_budget",
+          "case_id": "C1140306-1",
+          "case_title_public": "2025覓屏東半年刊行銷編輯印刷委託案",
+          "full_panel_signature_hash_public": "6cbaf0bc2544e8fa",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "吳茂盛",
+            "胡茂榮"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "97f82c11e7f25ffc",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 1760000.0,
+          "budget_amount_public": 1784626.0,
+          "budget_tier": "low_budget",
+          "case_id": "C1140424-1",
+          "case_title_public": "2025馬來西亞吉隆坡觀光推廣活動",
+          "full_panel_signature_hash_public": "5d269a042cfc5337",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "傅信維",
+            "張琬菁"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "ee1cc020e323331e",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 4900000.0,
+          "budget_amount_public": 5000000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "C1140623-1",
+          "case_title_public": "恆春出火地質公園觀光推廣活動",
+          "full_panel_signature_hash_public": "58955de3fb9e7346",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "侯政男",
+            "傅信維",
+            "胡茂榮"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "2993747d4651dd6f",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "7m_to_15m",
+          "award_amount_public": 8800000.0,
+          "budget_amount_public": 8800000.0,
+          "budget_tier": "high_budget",
+          "case_id": "C1140703-4",
+          "case_title_public": "2025-2026屏東四重溪溫泉季系列活動整合行銷推廣",
+          "full_panel_signature_hash_public": "5d269a042cfc5337",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "傅信維",
+            "張琬菁"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "ee1cc020e323331e",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "3m_to_7m",
+          "award_amount_public": 5950000.0,
+          "budget_amount_public": 6000000.0,
+          "budget_tier": "mid_budget",
+          "case_id": "C1141223-1",
+          "case_title_public": "2026鹽琉趴",
+          "full_panel_signature_hash_public": "35085a40bf67e3b7",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "李一民",
+            "王逸峰",
+            "蔡玲瓏"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "fb751123a7051e90",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "1m_to_3m",
+          "award_amount_public": 2670000.0,
+          "budget_amount_public": 2700000.0,
+          "budget_tier": "low_budget",
+          "case_id": "C1141223-3",
+          "case_title_public": "2026屏東縣觀光形象影片拍攝行銷案",
+          "full_panel_signature_hash_public": "0764ef1c6790307f",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "吳守從",
+            "胡佩芸",
+            "莊世杰"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "3490340a6cfb89c0",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 23000000.0,
+          "budget_amount_public": 23000000.0,
+          "budget_tier": "high_budget",
+          "case_id": "E1140619-2",
+          "case_title_public": "屏東縣運輸資訊平台功能提升暨觀光景區智慧交通應用服務擴充計畫",
+          "full_panel_signature_hash_public": "326dbf15802d3279",
+          "full_panel_size": 4,
+          "residual_panel_names_public": [
+            "徐村和",
+            "梁榮達"
+          ],
+          "residual_panel_size": 2,
+          "residual_signature_hash_public": "55964c75240e82e6",
+          "target_pair_present": true,
+          "year": 2025
+        },
+        {
+          "agency_public": "屏東縣政府",
+          "amount_bucket": "15m_plus",
+          "award_amount_public": 99300000.0,
+          "budget_amount_public": 99344000.0,
+          "budget_tier": "high_budget",
+          "case_id": "E1140620-03",
+          "case_title_public": "114-116年屏東縣太陽能電子紙及集中式站牌建置案",
+          "full_panel_signature_hash_public": "52f9912f86a75440",
+          "full_panel_size": 5,
+          "residual_panel_names_public": [
+            "鄭哲英",
+            "陳志鶴",
+            "龔旭陽"
+          ],
+          "residual_panel_size": 3,
+          "residual_signature_hash_public": "340bf2a0fec68c70",
+          "target_pair_present": true,
+          "year": 2025
+        }
+      ],
+      "reviewer_a": "張恭文",
+      "reviewer_b": "黃國維",
+      "signal_role_public": "panel_formation_signal",
+      "source_label": "budget-stratified high-budget pair",
+      "survival_layer_public": "residual_panel_layer"
+    }
+  ]
+}

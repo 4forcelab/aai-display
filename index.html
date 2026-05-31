@@ -264,6 +264,40 @@ details.sample-path-guide[open] .sample-guide-body { display:grid; grid-template
 .stat-theater-budget-metric b { color:var(--lime); font:850 13px/1.2 var(--mono); font-variant-numeric:tabular-nums; }
 .stat-theater-empty { border:1px solid rgba(91,231,255,.13); background:rgba(91,231,255,.04); padding:13px; color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
 .stat-theater-loading { color:rgba(214,235,244,.74); font:750 12px/1.55 var(--zh); }
+.expert-pair-section { margin-top:12px; max-width:100%; overflow:hidden; border:1px solid rgba(184,255,91,.22); background:linear-gradient(135deg,rgba(184,255,91,.055),rgba(91,231,255,.048),rgba(3,9,16,.82)); padding:13px; box-shadow:0 0 30px rgba(184,255,91,.055), inset 0 1px 0 rgba(255,255,255,.03); }
+.expert-pair-hero { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(280px,.62fr); gap:12px; align-items:stretch; margin-bottom:12px; }
+.expert-pair-hero-main,
+.expert-pair-method { min-width:0; border:1px solid rgba(91,231,255,.15); background:rgba(3,8,14,.62); padding:12px; overflow:hidden; }
+.expert-pair-hero-main span { display:block; color:var(--lime); font:900 10px/1.2 var(--mono); letter-spacing:.09em; text-transform:uppercase; }
+.expert-pair-hero-main strong { display:block; margin-top:7px; color:#f7fff4; font:900 19px/1.22 var(--zh); }
+.expert-pair-hero-main p,
+.expert-pair-method p { margin:8px 0 0; color:rgba(220,240,232,.82); font:650 12px/1.62 var(--zh); }
+.expert-pair-method b { display:block; color:#f4fbff; font:900 13px/1.25 var(--zh); }
+.expert-pair-role-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:12px; }
+.expert-pair-role-card { min-width:0; border:1px solid rgba(91,231,255,.12); background:rgba(3,8,14,.58); padding:10px; overflow:hidden; opacity:.74; }
+.expert-pair-role-card-main { opacity:1; border-color:rgba(184,255,91,.4); background:linear-gradient(180deg,rgba(184,255,91,.105),rgba(91,231,255,.055)); box-shadow:0 0 24px rgba(184,255,91,.12); }
+.expert-pair-role-card em { display:block; color:rgba(91,231,255,.82); font:850 9px/1.2 var(--mono); text-transform:uppercase; font-style:normal; }
+.expert-pair-role-card strong { display:block; margin-top:6px; color:#f4fbff; font:900 14px/1.22 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.expert-pair-role-card p { margin:8px 0 0; color:rgba(214,235,244,.74); font:650 11px/1.45 var(--zh); }
+.expert-pair-primary-signal { border:1px solid rgba(184,255,91,.25); background:rgba(184,255,91,.04); padding:12px; margin-bottom:12px; overflow:hidden; }
+.expert-pair-primary-signal h3 { margin:0; color:#f7fff4; font:900 17px/1.22 var(--zh); }
+.expert-pair-primary-signal .expert-pair-primary-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,.55fr); gap:12px; align-items:start; margin-top:10px; }
+.expert-pair-primary-signal p { margin:8px 0 0; color:rgba(220,240,232,.82); font:650 12px/1.62 var(--zh); }
+.expert-pair-chip-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; min-width:0; }
+.expert-pair-chip { max-width:100%; border:1px solid rgba(91,231,255,.18); background:rgba(91,231,255,.055); color:#e8fbff; padding:5px 8px; font:850 11px/1.2 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.expert-pair-chip-target { border-color:rgba(184,255,91,.36); background:rgba(184,255,91,.09); color:#f7ffe4; }
+.expert-pair-chip-residual { border-color:rgba(168,140,255,.28); background:rgba(168,140,255,.08); color:#f2edff; }
+.expert-pair-chip-repeat { border-color:rgba(91,231,255,.34); background:rgba(91,231,255,.1); color:#dffaff; }
+.expert-pair-snapshot-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.expert-pair-case-card { min-width:0; border:1px solid rgba(91,231,255,.15); background:rgba(3,8,14,.62); overflow:hidden; }
+.expert-pair-case-card summary { cursor:pointer; list-style:none; padding:11px 12px; color:#f4fbff; font:900 13px/1.25 var(--zh); border-bottom:1px solid rgba(91,231,255,.1); }
+.expert-pair-case-card summary::-webkit-details-marker { display:none; }
+.expert-pair-case-card summary span { display:block; margin-top:4px; color:rgba(176,209,220,.72); font:800 9px/1.2 var(--mono); text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.expert-pair-case-body { padding:11px 12px; }
+.expert-pair-case-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin-bottom:10px; }
+.expert-pair-case-meta span { min-width:0; border:1px solid rgba(91,231,255,.08); background:rgba(91,231,255,.035); padding:6px; color:rgba(214,235,244,.74); font:800 8px/1.15 var(--mono); text-transform:uppercase; }
+.expert-pair-case-meta b { display:block; margin-top:4px; color:#f4fbff; font:850 11px/1.25 var(--zh); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-transform:none; }
+.expert-pair-case-label { margin:9px 0 0; color:rgba(176,209,220,.72); font:850 9px/1.2 var(--mono); text-transform:uppercase; }
 .dashboard-layer-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; margin-top:13px; align-items:stretch; }
 .dashboard-layer-panels > .dashboard-panel { display:flex; flex-direction:column; min-height:430px; min-width:0; overflow:hidden; }
 .dashboard-layer-panels > .dashboard-panel .dashboard-table-wrap { flex:1; min-height:0; }
@@ -675,7 +709,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 .fast-response-mini-card span { display:block; margin-top:4px; color:#9fb8c5; font:650 10px/1.45 var(--mono); overflow-wrap:anywhere; }
 @media (max-width: 1080px) {
   .hero { grid-template-columns:1fr; } .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics, .stat-theater-signal-grid, .stat-theater-budget-strip, .stat-theater-highlight-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list, .stat-theater-grid, .stat-theater-rank-grid, .stat-theater-highlight-shell { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
+  .summary, .filter-bar, .metrics, .module-depth-grid, .entity-card-grid, .route-narrative-grid, .dashboard-metrics, .fast-response-metrics, .observation-axes, .local-pack-indicator, .rfb-metrics, .stat-theater-signal-grid, .stat-theater-budget-strip, .stat-theater-highlight-grid, .expert-pair-role-grid, .expert-pair-snapshot-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .sample-path-guide, .dashboard-panels, .dashboard-layer-panels, .fast-response-grid, .presence-layout, .rfb-grid, .rfb-secondary, .rfb-list.similarity-list, .stat-theater-grid, .stat-theater-rank-grid, .stat-theater-highlight-shell, .expert-pair-hero, .expert-pair-primary-signal .expert-pair-primary-grid { grid-template-columns:1fr; } .source-card, .mobile-terminal { max-width:720px; }
   .war-room-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .footer { align-items:flex-start; flex-direction:column; } .footer-right { justify-items:start; }
   .footer-legal { text-align:left; max-width:100%; }
@@ -683,7 +717,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
 }
 @media (max-width: 640px) {
   .wrap { width:min(100vw - 24px, 100%); } .brand-logo-slot { width:62px; min-width:62px; height:62px; } .brand-logo-slot img { height:56px; max-height:62px; }
-  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .presence-layout, .rfb-metrics, .rfb-list.similarity-list, .stat-theater-signal-grid, .stat-theater-budget-strip, .stat-theater-highlight-grid { grid-template-columns:1fr; }
+  .search-row { grid-template-columns:1fr; } .modules, .summary, .filter-bar, .metrics, .state-grid, .module-depth-grid, .entity-card-grid, .sample-route-grid, .route-narrative-grid, .dashboard-metrics, .dashboard-layer-panels, .fast-response-metrics, .observation-axes, .war-room-grid, .presence-layout, .rfb-metrics, .rfb-list.similarity-list, .stat-theater-signal-grid, .stat-theater-budget-strip, .stat-theater-highlight-grid, .expert-pair-role-grid, .expert-pair-snapshot-grid, .expert-pair-case-meta { grid-template-columns:1fr; }
   h1 { font-size:42px; } .slogan { font-size:22px; }
 }
 @media (max-width: 760px) {
@@ -744,6 +778,7 @@ td:nth-child(2), td:nth-child(3) { font-family:var(--zh); min-width:220px; }
     </div>
     <div id="routeDashboard" class="route-dashboard"></div>
     <section id="statistical-theater" class="statistical-theater-panel"><div class="stat-theater-loading">Loading Statistical Theater / 載入統計劇場</div></section>
+    <section id="expert-pair-defense" class="expert-pair-section"><div class="stat-theater-loading">Loading Expert Pair Defense Test / 載入專家配對防禦測試</div></section>
     <details class="sample-path-guide"><summary><span><span class="guide-kicker">HOW THIS ROUTE WORKS</span>路徑讀法 · compact reference</span></summary><div class="sample-guide-body"><div><strong>展示路徑導引 · Public Module Sample / AAI display layer</strong><p>樣本標籤提供預設展示路徑。主面板優先顯示 War-room Cockpit、Route Dashboard、Direct Route Core 與案件預算相關清單；本導引退到輔助說明。<br>Sample tags switch the active display route. The main panel now leads with cockpit, dashboard, Direct Route Core, and case budget reference rows.</p></div><div class="sample-route-grid"><span><b>李雨蓁</b><em>person route / 人物路徑</em></span><span><b>協昌</b><em>supplier route / 供應商路徑</em></span><span><b>三恆一樹</b><em>supplier route / 供應商路徑</em></span><span><b>屏東縣政府</b><em>agency route / 機關路徑</em></span></div></div></details>
     <div id="dimensionBridge" class="dimension-bridge"></div>
     <div id="routeNarrative" class="route-narrative"></div>
@@ -769,6 +804,7 @@ const ROUTE_PARTITION_PROJECTION_URL = 'data/preview/ag5_7_route_partition_proje
 const LOCAL_STATIC_PACK_URL = 'data/local_static_pack/local_projection_pack.json';
 const RFB_PUBLIC_PROJECTION_URL = 'data/preview/ag6_2_rfb_public_projection_pack.json';
 const STATISTICAL_THEATER_PACK_URL = 'data/preview/v8_alpha_statistical_theater_ammo_pack.json';
+const EXPERT_PAIR_DEFENSE_PACK_URL = 'data/preview/v8_alpha_expert_pair_defense_test_public_projection.json';
 let routeDashboardProjectionPack = null;
 let routeDashboardProjectionStatus = 'idle';
 let routeSurfaceAggregateProjectionPack = null;
@@ -783,6 +819,8 @@ let rfbPublicProjectionPack = null;
 let rfbPublicProjectionStatus = 'idle';
 let statisticalTheaterPack = null;
 let statisticalTheaterPackStatus = 'idle';
+let expertPairDefensePack = null;
+let expertPairDefensePackStatus = 'idle';
 const statisticalTheaterRoutes = ['global', '李雨蓁', '協昌', '三恆一樹', '屏東縣政府'];
 let statisticalTheaterActiveRoute = 'global';
 const routePresenceWarningKeys = new Set();
@@ -2961,6 +2999,21 @@ async function loadStatisticalTheaterPack() {
   }
   renderStatisticalTheater();
 }
+async function loadExpertPairDefensePack() {
+  expertPairDefensePackStatus = 'loading';
+  renderExpertPairDefense();
+  try {
+    const response = await fetch(EXPERT_PAIR_DEFENSE_PACK_URL, {cache:'no-store'});
+    if (!response.ok) throw new Error(`Expert Pair Defense ${response.status}`);
+    expertPairDefensePack = await response.json();
+    expertPairDefensePackStatus = 'ready';
+  } catch (error) {
+    expertPairDefensePack = null;
+    expertPairDefensePackStatus = 'unavailable';
+    console.warn('Expert Pair Defense pack not ready', error);
+  }
+  renderExpertPairDefense();
+}
 function renderStatisticalTheaterRouteChips() {
   return `<div class="stat-theater-route-chips">${statisticalTheaterRoutes.map(routeName => {
     const label = routeName === 'global' ? 'Global' : routeName;
@@ -3133,6 +3186,79 @@ function renderStatisticalTheater() {
     : `${safe(expectedScope?.route_label || budgetScope?.route_label || statisticalTheaterActiveRoute)} · Expected pairs ${statTheaterNumber(expectedScope?.supported_pair_count ?? expectedScope?.route_pair_count_eligible)} · Budget pairs ${statTheaterNumber(budgetScope?.eligible_pair_count)}`;
   statisticalTheaterRoot.innerHTML = `${head}${renderStatisticalTheaterRouteChips()}${renderStatTheaterHighlightRail()}<div class="stat-theater-scope">${scopeText}</div><div class="stat-theater-grid">${renderStatisticalTheaterExpected()}${renderStatisticalTheaterBudget()}</div>`;
 }
+function expertPairDefensePairs() {
+  return Array.isArray(expertPairDefensePack?.target_pairs) ? expertPairDefensePack.target_pairs : [];
+}
+function expertPairDefenseTargetPair() {
+  return expertPairDefensePairs().find(pair => pair?.pair_name === '張恭文 × 黃國維')
+    || expertPairDefensePairs().find(pair => pair?.signal_role_public === 'panel_formation_signal')
+    || null;
+}
+function expertPairDefenseRoleCopy(pair) {
+  const key = pair?.signal_role_public || '';
+  if (key === 'statistical_highlight') return {role:'Statistical Highlight / 統計亮點', layer:'Pair-level only / 配對層'};
+  if (key === 'budget_layer_signal') return {role:'Budget-Layer Signal / 金額層訊號', layer:'Budget layer / 金額層'};
+  if (key === 'panel_formation_signal') return {role:'Panel Formation Signal / 組成機制訊號', layer:'Residual panel layer / 剩餘席次層'};
+  return {role:safe(key || 'Public projection signal'), layer:safe(pair?.survival_layer_public || '—')};
+}
+function expertPairDefenseList(value) {
+  return Array.isArray(value) ? value.filter(Boolean) : [];
+}
+function expertPairDefenseChipList(items, className = '') {
+  const values = expertPairDefenseList(items);
+  if (!values.length) return `<span class="expert-pair-chip ${className}">—</span>`;
+  return values.map(item => `<span class="expert-pair-chip ${className}" title="${safe(item)}">${safe(item)}</span>`).join('');
+}
+function expertPairDefenseCaseMeta(label, value) {
+  return `<span>${safe(label)}<b title="${safe(value)}">${safe(value)}</b></span>`;
+}
+function renderExpertPairSignalRoles() {
+  const priority = ['李德純 × 程泰運', '吳明榮 × 莊世杰', '張恭文 × 黃國維'];
+  const ordered = priority.map(name => expertPairDefensePairs().find(pair => pair?.pair_name === name)).filter(Boolean);
+  return `<div class="expert-pair-role-grid">${ordered.map(pair => {
+    const copy = expertPairDefenseRoleCopy(pair);
+    const main = pair.signal_role_public === 'panel_formation_signal';
+    return `<article class="expert-pair-role-card ${main ? 'expert-pair-role-card-main' : ''}"><em>${safe(copy.role)}</em><strong title="${safe(pair.pair_name)}">${safe(pair.pair_name)}</strong><p>${safe(copy.layer)}<br>${safe(pair.known_signal || pair.source_label || '')}</p></article>`;
+  }).join('')}</div>`;
+}
+function renderExpertPairPrimarySignal() {
+  const target = expertPairDefenseTargetPair();
+  if (!target) return `<div class="stat-theater-empty">Expert Pair Defense projection unavailable.<br>專家配對防禦測試公開投影暫不可用。</div>`;
+  const repeated = expertPairDefenseList(target.residual_overlap_metrics?.top_residual_reviewers).slice(0, 3).map(row => row.reviewer_name_public);
+  return `<section class="expert-pair-primary-signal"><h3>Primary Panel Formation Signal / 主要組成機制訊號</h3><div class="expert-pair-primary-grid"><div><p><b>Pair / 配對</b><br><span title="${safe(target.pair_name)}">${safe(target.pair_name)}</span></p><p><b>Status</b><br>High-budget residual concentration<br>高預算層剩餘席次集中</p><p><b>Method line</b><br>Target pair removed before residual panel comparison.<br>已先扣除目標 pair，再比較剩餘席次。</p><p>If expertise explains A+B, the remaining seats still require a separate formation explanation.<br>若專業需求可解釋 A+B，剩餘席次仍需要獨立的組成解釋。</p></div><div><p><b>Top repeated residual names</b></p><div class="expert-pair-chip-row">${expertPairDefenseChipList(repeated, 'expert-pair-chip-repeat')}</div></div></div></section>`;
+}
+function renderExpertPairPanelSnapshots() {
+  const target = expertPairDefenseTargetPair();
+  const samples = expertPairDefenseList(target?.panel_snapshot_samples).slice(0, 5);
+  if (!samples.length) return `<div class="stat-theater-empty">Panel snapshot samples unavailable.<br>Panel snapshot samples 暫不可用。</div>`;
+  return `<section><div class="stat-theater-card-head"><b>Panel Snapshot Samples / 五案 Panel Snapshot</b><span>${samples.length} cases</span></div><div class="expert-pair-snapshot-grid">${samples.map((item, index) => {
+    const id = item.case_id_public || item.case_id || `case ${index + 1}`;
+    const title = item.case_title_public || item.case_title || '—';
+    const meta = [
+      expertPairDefenseCaseMeta('Case ID', id),
+      expertPairDefenseCaseMeta('Agency', item.agency_public),
+      expertPairDefenseCaseMeta('Year', item.year_public ?? item.year),
+      expertPairDefenseCaseMeta('Budget tier', item.budget_tier),
+      expertPairDefenseCaseMeta('Budget', moneyNT(item.budget_amount_public)),
+      expertPairDefenseCaseMeta('Award', moneyNT(item.award_amount_public))
+    ].join('');
+    return `<details class="expert-pair-case-card" ${index === 0 ? 'open' : ''}><summary>${safe(title)}<span>${safe(id)} · ${safe(item.agency_public)} · ${safe(item.budget_tier)}</span></summary><div class="expert-pair-case-body"><div class="expert-pair-case-meta">${meta}</div><p class="expert-pair-case-label">Full panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.full_panel_names_public)}</div><p class="expert-pair-case-label">Target pair</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.target_pair_names_public, 'expert-pair-chip-target')}</div><p class="expert-pair-case-label">Residual panel</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.residual_panel_names_public, 'expert-pair-chip-residual')}</div><p class="expert-pair-case-label">Repeated residual names</p><div class="expert-pair-chip-row">${expertPairDefenseChipList(item.repeated_residual_names_public, 'expert-pair-chip-repeat')}</div></div></details>`;
+  }).join('')}</div></section>`;
+}
+function renderExpertPairDefense() {
+  const expertPairDefenseRoot = document.getElementById('expert-pair-defense');
+  if (!expertPairDefenseRoot) return;
+  const head = `<div class="expert-pair-hero"><div class="expert-pair-hero-main"><span>Panel Formation Display Block</span><strong>Expert Pair Defense Test / 專家配對防禦測試</strong><p>A+B can explain the pair. It does not automatically explain the rest of the panel.<br>A+B 可以解釋專家配對。不能自動解釋剩餘席次。</p></div><div class="expert-pair-method"><b>Method / 方法</b><p>This test removes the target pair and checks whether the remaining panel members still concentrate across cases.<br>本測試扣除目標 pair 後，檢查剩餘席次是否仍跨案件集中。</p><p>No legal conclusion is generated.<br>本測試不生成法律結論。</p></div></div>`;
+  if (expertPairDefensePackStatus === 'idle' || expertPairDefensePackStatus === 'loading') {
+    expertPairDefenseRoot.innerHTML = `${head}<div class="stat-theater-loading">Loading Expert Pair Defense Test / 載入專家配對防禦測試</div>`;
+    return;
+  }
+  if (expertPairDefensePackStatus === 'unavailable' || !expertPairDefensePack) {
+    expertPairDefenseRoot.innerHTML = `${head}<div class="stat-theater-empty">Expert Pair Defense projection unavailable.<br>專家配對防禦測試公開投影暫不可用。</div>`;
+    return;
+  }
+  expertPairDefenseRoot.innerHTML = `${head}${renderExpertPairSignalRoles()}${renderExpertPairPrimarySignal()}${renderExpertPairPanelSnapshots()}`;
+}
 function render() {
   const m = moduleById(activeModuleId);
   const contract = moduleContract(m);
@@ -3252,6 +3378,7 @@ loadRoutePartitionProjection();
 loadLocalStaticPackProjection();
 loadRfbPublicProjectionPack();
 loadStatisticalTheaterPack();
+loadExpertPairDefensePack();
 </script>
 </body>
 </html>

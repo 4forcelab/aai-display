@@ -1275,3 +1275,17 @@ Tracked review files should remain clean when scanned by the execution gate.
 - Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
 - A/Core and C/Ops Ledger untouched.
 - Manual deploy: none.
+
+## V8 ALPHA Expert Pair Defense Consumer
+- A source commit/tag: `3c7e261d9d050caa46d8f2458882947f32ae828e` / `core-v2.9V8-ALPHA-expert-pair-panel-snapshot`.
+- Changed files: index.html, data/preview/v8_alpha_expert_pair_defense_test_public_projection.json, and review/B6_0_CYBERPUNK_PUBLIC_INDEX_DRY_FIT.md.
+- Added isolated Expert Pair Defense Test / 專家配對防禦測試 consumer under Statistical Theater.
+- Canonical name constitution enforced from the public projection.
+- Primary signal pair: 張恭文 × 黃國維.
+- Panel snapshot samples count: 5.
+- Repeated residual names: 李志峰 / 陳志鶴 / 王裕民.
+- Existing data sidecars unchanged.
+- Main route state, activeRows, renderRouteDashboard, sample tags, route dashboard binding, heatmap source, Reviewer Matrix Theater, and Statistical Theater data loader untouched.
+- Local smoke: root HTTP 200, Expert Pair Defense copy present, sidecar parsed, canonical pair present, five panel snapshot samples present, repeated residual names present, unsupported alias absent.
+- A/Core and C/Ops Ledger untouched.
+- Manual deploy: none.
